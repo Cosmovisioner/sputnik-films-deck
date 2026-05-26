@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Sputnik Films — Топ-5 (VK / Дзен 2026)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    @font-face {
+      font-family: "Polonium";
+      src: url("_assets/fonts/Polonium.otf") format("opentype");
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "Polonium";
+      src: url("_assets/fonts/Polonium-Bold.otf") format("opentype");
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    :root {
+      --bg: #f4f4f3;
+      --ink: #181819;
+      --red: #e85d4a;
+      --W: 1920px;
+      --H: 1080px;
+      --mx: 134px;
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+      --display: "Polonium", system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background: #0e0e0e;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .deck { width: var(--W); margin: 0 auto; }
+
+    .slide {
+      width: var(--W);
+      height: var(--H);
+      position: relative;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--ink);
+      page-break-after: always;
+      break-after: page;
+    }
+
+    /* Углы — JetBrains Mono 20px, inset 45px (как в Figma / PDF экспорте) */
+    .chrome {
+      position: absolute;
+      z-index: 10;
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 20px;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      line-height: 1;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+    .chrome-tl { left: 45px; top: 45px; }
+    .chrome-tr { right: 45px; top: 45px; }
+    .chrome-bl { left: 45px; bottom: 45px; }
+    .chrome-br { right: 45px; bottom: 45px; }
+    .chrome-bc {
+      left: 50%;
+      bottom: 45px;
+      transform: translateX(-50%);
+      font-size: 20px;
+      letter-spacing: 0.06em;
+    }
+
+    /* фон кейсов — градиент + grain как в Figma */
+    .slide-case {
+      background-color: #f4f4f3;
+      background-image:
+        radial-gradient(ellipse 95% 75% at 0% 0%, rgba(232, 93, 74, 0.38) 0%, transparent 52%),
+        radial-gradient(ellipse 85% 70% at 100% 100%, rgba(232, 93, 74, 0.28) 0%, transparent 48%),
+        linear-gradient(180deg, #f6f5f4 0%, #f4f4f3 45%, #f2f1f0 100%);
+    }
+    .slide-case--pink {
+      background-color: #efeae8;
+      background-image:
+        radial-gradient(ellipse 110% 85% at -5% -15%, rgba(232, 93, 74, 0.52) 0%, transparent 50%),
+        radial-gradient(ellipse 95% 75% at 105% 105%, rgba(232, 93, 74, 0.42) 0%, transparent 46%),
+        linear-gradient(165deg, #f8f4f2 0%, #f4f4f3 42%, #ebe6e4 100%);
+    }
+    .slide-cover {
+      background-color: #f4f4f3;
+      background-image:
+        radial-gradient(ellipse 130% 55% at 50% 50%, rgba(248, 214, 206, 0.42) 0%, transparent 62%),
+        radial-gradient(ellipse 95% 75% at 0% 0%, rgba(232, 93, 74, 0.34) 0%, transparent 52%),
+        radial-gradient(ellipse 85% 70% at 100% 100%, rgba(232, 93, 74, 0.26) 0%, transparent 48%),
+        linear-gradient(180deg, #f6f5f4 0%, #f4f4f3 50%, #f2f1f0 100%);
+    }
+    .slide-cover::before,
+    .slide-contacts::before,
+    .slide-case::before,
+    .slide-brief::before,
+    .slide-team::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.22;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    }
+    .slide-brief,
+    .slide-team {
+      background-color: #f4f4f3;
+      background-image:
+        radial-gradient(ellipse 95% 75% at 0% 0%, rgba(232, 93, 74, 0.3) 0%, transparent 52%),
+        radial-gradient(ellipse 85% 70% at 100% 100%, rgba(232, 93, 74, 0.22) 0%, transparent 48%),
+        linear-gradient(180deg, #f6f5f4 0%, #f4f4f3 50%, #f2f1f0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 88px var(--mx);
+      box-sizing: border-box;
+    }
+    .glow-tl {
+      position: absolute;
+      top: -120px;
+      left: -80px;
+      width: 560px;
+      height: 560px;
+      background: radial-gradient(circle, rgba(232, 93, 74, 0.32) 0%, transparent 68%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .glow-br {
+      position: absolute;
+      bottom: -140px;
+      right: -100px;
+      width: 620px;
+      height: 620px;
+      background: radial-gradient(circle, rgba(232, 93, 74, 0.26) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* cover — Polonium + лавры; полоса в фоне слайда, без отдельного PNG */
+    .slide-cover .cover-center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 1440px;
+      z-index: 2;
+      text-align: center;
+    }
+    .slide-cover .cover-title {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 110px;
+      line-height: 1;
+      letter-spacing: 0.015em;
+      color: var(--ink);
+      display: inline-block;
+      position: relative;
+    }
+    .slide-cover .cover-dot {
+      position: absolute;
+      top: 0.1em;
+      right: -0.42em;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--red);
+    }
+    .slide-cover .cover-laurels {
+      display: block;
+      width: 100%;
+      max-width: 1320px;
+      height: auto;
+      margin: 34px auto 0;
+      mix-blend-mode: multiply;
+    }
+
+    /* contacts — та же система, что кейсы/обложка (не PDF-растр) */
+    .slide-contacts {
+      background-color: #f4f4f3;
+      background-image:
+        radial-gradient(ellipse 95% 75% at 0% 0%, rgba(232, 93, 74, 0.38) 0%, transparent 52%),
+        radial-gradient(ellipse 85% 70% at 100% 100%, rgba(232, 93, 74, 0.28) 0%, transparent 48%),
+        linear-gradient(180deg, #f6f5f4 0%, #f4f4f3 45%, #f2f1f0 100%);
+    }
+    .contacts-h1 {
+      position: absolute;
+      left: 188px;
+      top: 215px;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 88px;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--ink);
+      z-index: 2;
+    }
+    .contacts-rule {
+      position: absolute;
+      left: 188px;
+      width: 1543px;
+      height: 2px;
+      background: var(--ink);
+      z-index: 2;
+    }
+    .contacts-rule.l0 { top: 374px; }
+    .contacts-rule.l1 { top: 474px; }
+    .contacts-rule.l2 { top: 574px; }
+    .contacts-rule.l3 { top: 674px; }
+    .contacts-rule.l4 { top: 774px; }
+    .contacts-row {
+      position: absolute;
+      left: 188px;
+      width: 1543px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 46px;
+      font-weight: 400;
+      line-height: 1;
+      color: var(--ink);
+      z-index: 2;
+      text-decoration: none;
+    }
+    .contacts-row span,
+    .contacts-row a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .contacts-row.r1 { top: 398px; }
+    .contacts-row.r2 { top: 497px; }
+    .contacts-row.r3 { top: 596px; }
+    .contacts-row.r4 { top: 695px; }
+    .contacts-row .mark {
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+    .contacts-tg {
+      position: absolute;
+      left: 188px;
+      top: 805px;
+      width: 52px;
+      height: 52px;
+      z-index: 2;
+      mix-blend-mode: multiply;
+    }
+
+    /* case — координаты из PDF / Figma */
+    .media {
+      position: absolute;
+      left: 134px;
+      top: 186px;
+      width: 1006px;
+      z-index: 2;
+    }
+    .hero {
+      width: 1006px;
+      height: 395px;
+      overflow: hidden;
+      background: #2a2a2c center/cover no-repeat;
+    }
+    .thumbs { margin-top: 32px; display: flex; gap: 32px; }
+    .thumb {
+      width: 487px;
+      height: 281px;
+      overflow: hidden;
+      position: relative;
+      background: #2a2a2c center/cover no-repeat;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .thumb .cap {
+      position: absolute;
+      left: 16px;
+      bottom: 14px;
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 500;
+      color: #fff;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.65);
+      z-index: 2;
+    }
+    .thumb .play {
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.92);
+      z-index: 2;
+    }
+    .thumb .play::after {
+      content: "";
+      position: absolute;
+      left: 17px;
+      top: 13px;
+      border: 9px solid transparent;
+      border-left: 14px solid var(--ink);
+    }
+
+    /* правая колонка: низ блока = низ сетки media (186+395+32+281 = 894 → bottom 186px) */
+    .copy {
+      position: absolute;
+      left: 1206px;
+      right: 134px;
+      top: auto;
+      bottom: 186px;
+      width: auto;
+      max-width: 610px;
+      z-index: 2;
+    }
+    .copy--vk { left: 1198px; }
+    .platform-logos {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+      min-height: 25px;
+    }
+    .platform-logos img {
+      height: 25px;
+      width: auto;
+      display: block;
+    }
+    .copy h2 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 36px;
+      line-height: 1.12;
+      letter-spacing: 0;
+      margin-bottom: 22px;
+      text-transform: uppercase;
+    }
+    .copy h2 .slash { color: var(--red); }
+    .copy h2.title-line1 { margin-bottom: 6px; }
+    .copy h2.title-line2 { margin-top: 0; }
+    .copy .body {
+      font-family: var(--mono);
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 1.36;
+      margin-bottom: 28px;
+    }
+    .copy .body.size-24 { font-size: 24px; line-height: 1.34; }
+    .copy .body .reach { display: block; margin-top: 18px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 56px;
+      padding: 0 32px;
+      border: 2px solid var(--ink);
+      border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 30px;
+      font-weight: 500;
+      letter-spacing: 0;
+      text-decoration: none;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.35);
+    }
+    .btn-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .btn-row .btn { min-width: 200px; justify-content: center; }
+    /* 3 кнопки в одну строку (Love Generation) */
+    .btn-row--three {
+      flex-wrap: nowrap;
+      gap: 14px;
+      width: 100%;
+    }
+    .btn-row--three .btn {
+      flex: 1 1 0;
+      min-width: 0;
+      padding: 0 14px;
+      font-size: 26px;
+      min-height: 54px;
+      white-space: nowrap;
+    }
+
+    /* brief — блок по центру слайда, не прилипает к верху */
+    .brief {
+      position: relative;
+      width: 100%;
+      max-width: 1652px;
+      z-index: 2;
+      padding-left: 32px;
+      border-left: 4px solid var(--red);
+    }
+    .brief h2 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 44px;
+      line-height: 1.1;
+      margin-bottom: 22px;
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+    }
+    .brief h2 .slash { color: var(--red); }
+    .brief .meta {
+      font-family: var(--mono);
+      font-size: 20px;
+      line-height: 1.55;
+      margin-bottom: 0;
+      padding-bottom: 24px;
+      color: rgba(24, 24, 25, 0.78);
+    }
+    .brief .meta a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .brief .brief-rule {
+      width: 100%;
+      height: 2px;
+      background: rgba(24, 24, 25, 0.12);
+      margin-bottom: 28px;
+    }
+    .brief .text {
+      font-family: var(--mono);
+      font-size: 22px;
+      line-height: 1.52;
+      column-count: 2;
+      column-gap: 56px;
+      color: var(--ink);
+    }
+    .brief .text p { margin-bottom: 18px; break-inside: avoid; }
+    .brief .text ul {
+      margin: 0 0 18px 1.15em;
+      padding: 0;
+      list-style: disc;
+      break-inside: avoid;
+    }
+    .brief .text li { margin-bottom: 8px; }
+
+    /* team — та же вертикальная логика, что brief */
+    .team-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 1652px;
+      z-index: 2;
+      padding-left: 32px;
+      border-left: 4px solid var(--red);
+    }
+    .team-wrap h2 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 44px;
+      line-height: 1.1;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    .team-wrap h2 .slash { color: var(--red); }
+    .team-wrap .loc {
+      font-family: var(--mono);
+      font-size: 20px;
+      color: rgba(24, 24, 25, 0.72);
+      margin-bottom: 28px;
+    }
+    table.crew {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--mono);
+      font-size: 18px;
+      line-height: 1.4;
+    }
+    table.crew thead th {
+      font-family: var(--mono);
+      text-align: left;
+      padding: 16px 18px;
+      background: var(--ink);
+      color: #fff;
+      font-weight: 600;
+      font-size: 17px;
+    }
+    table.crew tbody td {
+      padding: 12px 18px;
+      border-bottom: 1px solid rgba(24, 24, 25, 0.14);
+      background: rgba(255, 255, 255, 0.55);
+      vertical-align: top;
+    }
+    table.crew tbody tr:nth-child(even) td {
+      background: rgba(255, 255, 255, 0.78);
+    }
+
+    @page { size: 1920px 1080px; margin: 0; }
+    @media print {
+      html, body { background: #fff; }
+      .deck { margin: 0; }
+    }
+  </style>
+</head>
+<body>
+<div class="deck">
+
+  <section class="slide slide-cover">
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">portfolio 01</span>
+    <span class="chrome chrome-bc">SPUTNIKFILMS.RU</span>
+    <div class="cover-center">
+      <h1 class="cover-title">SPUTNIK FILMS<span class="cover-dot" aria-hidden="true"></span></h1>
+      <img class="cover-laurels" src="_assets/laurels_row.png" alt="Награды и фестивали"/>
+    </div>
+  </section>
+
+  <!-- 1 VK -->
+  <section class="slide slide-case">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="media">
+      <div class="hero" style="background-image:url('_assets/vk_hero.jpg')"></div>
+      <div class="thumbs">
+        <a class="thumb" href="https://disk.yandex.ru/d/wbTwqrdSWOTkrw" style="background-image:url('_assets/vk_t1.jpg')"><span class="play"></span></a>
+        <a class="thumb" href="https://disk.yandex.ru/d/wbTwqrdSWOTkrw" style="background-image:url('_assets/vk_t2.jpg')"><span class="play"></span></a>
+      </div>
+    </div>
+    <div class="copy copy--vk">
+      <h2>VK ID <span class="slash">/</span> Promo</h2>
+      <p class="body">9&nbsp;роликов о&nbsp;безопасности «VK ID» под&nbsp;ключ. Производство c&nbsp;командой более 40&nbsp;человек. За&nbsp;3&nbsp;съёмочных дня&nbsp;в&nbsp;доме, переоборудованном под&nbsp;5&nbsp;зон, сняли весь материал, избегая лишних логистических затрат. Постпродакшн с&nbsp;обилием графики завершили за&nbsp;2,5&nbsp;недели в&nbsp;коллаборации с&nbsp;командой «Buralqy» из&nbsp;Казахстана, работавшими с&nbsp;The Weeknd и&nbsp;Kanye West.</p>
+      <a class="btn" href="https://disk.yandex.ru/d/wbTwqrdSWOTkrw">Смотреть всю серию</a>
+    </div>
+  </section>
+
+  <section class="slide slide-brief">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">brief</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="brief">
+      <h2>01 <span class="slash">/</span> VK ID — серия промо-роликов</h2>
+      <p class="meta">Место съёмок: Московская область, Звенигород<br/>Ссылка: <a href="https://disk.yandex.ru/d/wbTwqrdSWOTkrw">disk.yandex.ru/d/wbTwqrdSWOTkrw</a></p>
+      <div class="brief-rule" aria-hidden="true"></div>
+      <div class="text">
+        <p>VK ID — серия промо-роликов о функциях цифровой безопасности платформы. Проект включал производство 9 отдельных промо-роликов, каждый из которых демонстрирует одно из ключевых преимуществ сервиса VK ID, а также единый 30-секундный ролик, объединяющий все функции продукта в одном формате.</p>
+        <p>Работы выполнены под ключ: от разработки режиссёрского сценария и организации съёмочного процесса до полного цикла постпродакшена, включая сложную графику. Ключевой производственной сложностью проекта стали жёсткие сроки — полный цикл реализации был выполнен менее чем за три недели, при одновременной работе с масштабной серией роликов и большим объёмом графических элементов.</p>
+        <p>Для оптимизации бюджета и сроков была разработана нестандартная производственная схема: вместо павильонной съёмки мы арендовали загородный дом на 3 суток и организовали там полноценную съёмочную базу. Это позволило:</p>
+        <ul>
+          <li>сократить съёмочный период с 4 до 3 дней;</li>
+          <li>исключить ежедневную логистику оборудования;</li>
+          <li>сохранить высокий визуальный уровень при ограниченных сроках.</li>
+        </ul>
+        <p>Графическая часть проекта реализована в коллаборации с командой Buralqy (Казахстан), что потребовало точной удалённой синхронизации продакшна и постпродакшена. В проекте было задействовано более 40 специалистов. Ролики используются для знакомства пользователей с сервисом VK ID и его промоушена внутри экосистемы VK.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide slide-team">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">team</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="team-wrap">
+      <h2>Команда <span class="slash">/</span> VK ID</h2>
+      <p class="loc">Место съёмок: Московская область, Звенигород</p>
+      <table class="crew">
+        <thead><tr><th>ФИО</th><th>Роль</th><th>Тип занятости</th><th>Стаж в роли</th><th>Период</th></tr></thead>
+        <tbody>
+          <tr><td>Анна Веселова</td><td>Режиссёр</td><td>ГПХ</td><td>5+ лет</td><td>проектно</td></tr>
+          <tr><td>Сергей Клейн</td><td>Генеральный продюсер</td><td>ГПХ</td><td>6+ лет</td><td>проектно</td></tr>
+          <tr><td>Дмитрий Квашнин</td><td>Креативный продюсер</td><td>ИП</td><td>8+ лет</td><td>проектно</td></tr>
+          <tr><td>Марина Фролова</td><td>Исполнительный продюсер</td><td>ГПХ</td><td>10+ лет</td><td>проектно</td></tr>
+          <tr><td>Анна Каширина</td><td>Линейный продюсер</td><td>ГПХ</td><td>9+ лет</td><td>проектно</td></tr>
+          <tr><td>Константин Шмелев</td><td>Оператор-постановщик</td><td>ГПХ</td><td>4+ года</td><td>проектно</td></tr>
+          <tr><td>Николай Хавроненко</td><td>Режиссёр монтажа</td><td>ГПХ</td><td>5+ лет</td><td>проектно</td></tr>
+          <tr><td>Николай Хавроненко</td><td>Продюсер постпродакшна</td><td>ГПХ</td><td>5+ лет</td><td>проектно</td></tr>
+          <tr><td>Егор Жук</td><td>Арт-директор</td><td>ГПХ</td><td>7+ лет</td><td>проектно</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 2 ОСЕТИЯ -->
+  <section class="slide slide-case slide-case--pink">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="media">
+      <div class="hero" style="background-image:url('_assets/osetia_hero.jpg')"></div>
+      <div class="thumbs">
+        <a class="thumb" href="https://wink.ru/movies/tam-gde-nash-dom-severnaya-osetiya-year-2024" style="background-image:url('_assets/osetia_t1.jpg')"><span class="play"></span></a>
+        <a class="thumb" href="https://wink.ru/movies/tam-gde-nash-dom-severnaya-osetiya-year-2024" style="background-image:url('_assets/osetia_t2.jpg')"><span class="play"></span></a>
+      </div>
+    </div>
+    <div class="copy copy--doc copy--osetia">
+      <h2 class="title-line1">Там, где наш дом:</h2>
+      <h2 class="title-line2">Северная Осетия</h2>
+      <div class="platform-logos">
+        <img src="_assets/osetia_logos.png" alt="Wink, VK" height="25"/>
+      </div>
+      <p class="body size-24">Третья часть нашего авторского документального проекта.<br/><br/>В&nbsp;героях: горцы из&nbsp;высокогорных сёл, известный фотограф, студия осетинского театра, команда строителей арт-объектов.<br/><br/>Проект стал победителем фестиваля «Неизвестная Россия», LAMPA, лауреатом премии РГО и&nbsp;финалистом премии «НИКА».</p>
+      <a class="btn" href="https://wink.ru/movies/tam-gde-nash-dom-severnaya-osetiya-year-2024">Смотреть</a>
+    </div>
+  </section>
+
+  <section class="slide slide-brief">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">brief</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="brief">
+      <h2>02 <span class="slash">/</span> «Там, где наш дом: Северная Осетия»</h2>
+      <p class="meta">Место съёмок: Республика Северная Осетия — Алания<br/>Ссылка: <a href="https://wink.ru/movies/tam-gde-nash-dom-severnaya-osetiya-year-2024">wink.ru</a></p>
+      <div class="brief-rule" aria-hidden="true"></div>
+      <div class="text">
+        <p>Документальный фильм-портрет о неординарных людях из Северной Осетии с разными профессиями, взглядами и культурой, но сходящихся в бескрайней любви к месту, где они выросли и живут.</p>
+        <p>Фильм создан при поддержке Фонда поддержки регионального кинематографа (ФПРК) Союза кинематографистов РФ. Продакшен выполнил полный цикл производства: разработка концепции и сценария, организация экспедиционных съёмок в Республике, монтаж и постпродакшн. Хронометраж: 82 минуты.</p>
+        <p>Проект вышел в финал Премии Русского географического общества, стал участником программы «Душа России. Кавказ», был показан в ограниченном прокате в Северной Осетии и на Кавказском инвестиционном форуме (2025), а также доступен на платформе WINK.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide slide-team">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">team</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="team-wrap">
+      <h2>Команда <span class="slash">/</span> Северная Осетия</h2>
+      <p class="loc">Место съёмок: Республика Северная Осетия — Алания</p>
+      <table class="crew">
+        <thead><tr><th>ФИО</th><th>Роль</th><th>Тип занятости</th><th>Стаж в роли</th><th>Период</th></tr></thead>
+        <tbody>
+          <tr><td>Дмитрий Квашнин</td><td>Режиссёр, ген. продюсер</td><td>ИП</td><td>8+ лет</td><td>проектно</td></tr>
+          <tr><td>Сослан Чехоев</td><td>Режиссёр</td><td>ГПХ</td><td>5+ лет</td><td>проектно</td></tr>
+          <tr><td>Владимир Тарасов</td><td>Режиссёр</td><td>ГПХ</td><td>6+ лет</td><td>проектно</td></tr>
+          <tr><td>Сергей Клейн</td><td>Продюсер</td><td>ГПХ</td><td>6+ лет</td><td>проектно</td></tr>
+          <tr><td>Тимур Багов</td><td>Продюсер</td><td>ГПХ</td><td>5+ лет</td><td>проектно</td></tr>
+          <tr><td>Гульфия Шарипова</td><td>Продюсер</td><td>ГПХ</td><td>5+ лет</td><td>проектно</td></tr>
+          <tr><td>Сергей Меньшенин</td><td>Оператор-постановщик</td><td>ГПХ</td><td>5+ лет</td><td>проектно</td></tr>
+          <tr><td>Аслан Тускаев</td><td>Композитор</td><td>ГПХ</td><td>5+ лет</td><td>проектно</td></tr>
+          <tr><td>Роман Воробьев</td><td>Режиссёр монтажа</td><td>ГПХ</td><td>3+ года</td><td>проектно</td></tr>
+          <tr><td>Иван Чернявский</td><td>Режиссёр монтажа</td><td>ГПХ</td><td>3+ года</td><td>проектно</td></tr>
+          <tr><td>Николай Хавроненко</td><td>Режиссёр монтажа</td><td>ГПХ</td><td>5+ лет</td><td>проектно</td></tr>
+          <tr><td>Николай Хавроненко</td><td>Продюсер постпродакшна</td><td>ГПХ</td><td>5+ лет</td><td>проектно</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 3 СПОРТС -->
+  <section class="slide slide-case">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="media">
+      <div class="hero" style="background-image:url('_assets/sports_hero.jpg')"></div>
+      <div class="thumbs">
+        <a class="thumb" href="https://vimeo.com/1023951929" style="background-image:url('_assets/sports_t1.jpg')"><span class="cap">Ролик 1</span><span class="play"></span></a>
+        <a class="thumb" href="https://vimeo.com/1023951929" style="background-image:url('_assets/sports_t2.jpg')"><span class="cap">Ролик 2</span><span class="play"></span></a>
+      </div>
+    </div>
+    <div class="copy copy--sports">
+      <h2>Спортс <span class="slash">/</span> Promo</h2>
+      <p class="body">Рекламный и&nbsp;презентационный ролики для&nbsp;курса спортивного блогинга. За&nbsp;один съёмочный день в&nbsp;рамках одной локации сняли два&nbsp;ролика, что&nbsp;позволило оптимизировать бюджет. Мы&nbsp;стали первыми, кто&nbsp;провёл работу по&nbsp;2Д-графике после&nbsp;ребрендинга клиента. Анимировали фирменный стиль по&nbsp;свежему гайдбуку, гармонично отразив обновлённый бренд.</p>
+      <div class="btn-row">
+        <a class="btn" href="https://vimeo.com/1023951929">Ролик 1</a>
+        <a class="btn" href="https://vimeo.com/1023951929">Ролик 2</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide slide-brief">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">brief</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="brief">
+      <h2>03 <span class="slash">/</span> СПОРТС — промо к запуску курса</h2>
+      <p class="meta">Место съёмок: Москва<br/>Ссылка: <a href="https://vimeo.com/1023951929">vimeo.com/1023951929</a></p>
+      <div class="brief-rule" aria-hidden="true"></div>
+      <div class="text">
+        <p>Проект по созданию промо- и презентационного роликов к запуску курса спортивного блогинга. В рамках одного съёмочного дня и одной локации были организованы съёмки двух роликов, что позволило эффективно уложиться в бюджет и сроки проекта (3 месяца).</p>
+        <p>На этапе производства у клиента проходил ребрендинг — продакшен стал первым, кто работал по обновлённому гайдбуку и реализовал анимацию нового фирменного стиля в видеоконтенте. Героем ролика стал известный актёр Сергей Гилев.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide slide-team">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">team</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="team-wrap">
+      <h2>Команда <span class="slash">/</span> СПОРТС</h2>
+      <p class="loc">Место съёмок: Москва</p>
+      <table class="crew">
+        <thead><tr><th>ФИО</th><th>Роль</th><th>Тип занятости</th><th>Стаж в роли</th><th>Период</th></tr></thead>
+        <tbody>
+          <tr><td>Максим Катков</td><td>Режиссёр</td><td>ГПХ</td><td>4+ года</td><td>проектно</td></tr>
+          <tr><td>Дмитрий Квашнин</td><td>Генеральный продюсер</td><td>ИП</td><td>8+ лет</td><td>проектно</td></tr>
+          <tr><td>Марина Фролова</td><td>Исполнительный продюсер</td><td>ГПХ</td><td>7+ лет</td><td>проектно</td></tr>
+          <tr><td>Сергей Томилка</td><td>Линейный продюсер</td><td>ГПХ</td><td>10+ лет</td><td>проектно</td></tr>
+          <tr><td>Данила Мушкарев</td><td>Оператор-постановщик</td><td>ГПХ</td><td>4+ года</td><td>проектно</td></tr>
+          <tr><td>Николай Хавроненко</td><td>Режиссёр монтажа</td><td>ГПХ</td><td>5+ лет</td><td>проектно</td></tr>
+          <tr><td>Николай Хавроненко</td><td>Продюсер постпродакшна</td><td>ГПХ</td><td>5+ лет</td><td>проектно</td></tr>
+          <tr><td>Егор Жук</td><td>Арт-директор</td><td>ГПХ</td><td>7+ лет</td><td>проектно</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 4 LG -->
+  <section class="slide slide-case slide-case--pink">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="media">
+      <div class="hero" style="background-image:url('_assets/lg_hero.jpg')"></div>
+      <div class="thumbs">
+        <a class="thumb" href="https://disk.yandex.ru/d/iKUXCJWCkJeT9A" style="background-image:url('_assets/lg_t1.jpg')"><span class="cap">Ролик 1</span><span class="play"></span></a>
+        <a class="thumb" href="https://disk.yandex.ru/d/iKUXCJWCkJeT9A" style="background-image:url('_assets/lg_t2.jpg')"><span class="cap">Ролик 2</span><span class="play"></span></a>
+      </div>
+    </div>
+    <div class="copy copy--lg">
+      <h2 class="title-line1">Love Generation:</h2>
+      <h2 class="title-line2">Танцы-шманцы <span class="slash">/</span> promo</h2>
+      <p class="body size-24">Разработали и&nbsp;реализовали серию промо-роликов для&nbsp;спецпроекта Love Generation в&nbsp;формате караоке-такси. Задача&nbsp;— креативная активация новой линейки бренда. Полностью организовали съёмочный процесс: от&nbsp;перекрытия улицы и&nbsp;размещения группы до&nbsp;обеспечения райдера артистов. Подготовили дополнительные версии роликов для&nbsp;всех площадок. Проект стал вирусным и&nbsp;усилил интерес к&nbsp;бренду.<span class="reach">Охват 10+&nbsp;млн&nbsp;человек и&nbsp;25+&nbsp;млн&nbsp;показов.</span></p>
+      <div class="btn-row btn-row--three">
+        <a class="btn" href="https://disk.yandex.ru/d/iKUXCJWCkJeT9A">Ролик 1</a>
+        <a class="btn" href="https://disk.yandex.ru/d/iKUXCJWCkJeT9A">Ролик 2</a>
+        <a class="btn" href="https://disk.yandex.ru/d/iKUXCJWCkJeT9A">Ролик 3</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide slide-brief">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">brief</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="brief">
+      <h2>04 <span class="slash">/</span> Love Generation — «Танцы Шманцы»</h2>
+      <p class="meta">Место съёмок: Москва<br/>Ссылка: <a href="https://disk.yandex.ru/d/iKUXCJWCkJeT9A">disk.yandex.ru/d/iKUXCJWCkJeT9A</a></p>
+      <div class="brief-rule" aria-hidden="true"></div>
+      <div class="text">
+        <p>Серия промо-роликов в формате «караоке-такси» для спецпроекта Love Generation к запуску коллекции «Танцы Шманцы». Продакшен выполнил полный цикл работ: разработка идеи, организация съёмок, обеспечение райдера артистов, согласование перекрытия улиц и размещение кинокаравана, съёмка и монтаж, а также адаптация роликов под разные ориентации и хронометражи для всех платформ.</p>
+        <p>В проекте приняли участие Маш Милаш, Анна Покров и Анна Плетнёва. Все ролики были реализованы за одну съёмочную смену, проект получил широкий охват и высокий отклик аудитории.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide slide-team">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">team</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="team-wrap">
+      <h2>Команда <span class="slash">/</span> Love Generation</h2>
+      <p class="loc">Место съёмок: Москва</p>
+      <table class="crew">
+        <thead><tr><th>ФИО</th><th>Роль</th><th>Тип занятости</th><th>Стаж в роли</th><th>Период</th></tr></thead>
+        <tbody>
+          <tr><td>Дмитрий Квашнин</td><td>Режиссёр</td><td>ИП</td><td>8+ лет</td><td>проектно</td></tr>
+          <tr><td>Сергей Клейн</td><td>Генеральный продюсер</td><td>ГПХ</td><td>6+ лет</td><td>проектно</td></tr>
+          <tr><td>Сергей Томилка</td><td>Исполнительный продюсер</td><td>ГПХ</td><td>10+ лет</td><td>проектно</td></tr>
+          <tr><td>Елизавета Мамонтова</td><td>Линейный продюсер</td><td>ГПХ</td><td>3+ года</td><td>проектно</td></tr>
+          <tr><td>Данила Мушкарев</td><td>Оператор-постановщик</td><td>ГПХ</td><td>4+ года</td><td>проектно</td></tr>
+          <tr><td>Никита Вазиков</td><td>Режиссёр монтажа</td><td>ГПХ</td><td>2+ года</td><td>проектно</td></tr>
+          <tr><td>Николай Хавроненко</td><td>Продюсер постпродакшна</td><td>ГПХ</td><td>5+ лет</td><td>проектно</td></tr>
+          <tr><td>Ксения Яковлева</td><td>Арт-директор</td><td>ГПХ</td><td>2+ года</td><td>проектно</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- 5 БРУСНИКА -->
+  <section class="slide slide-case slide-case--pink">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="media">
+      <div class="hero" style="background-image:url('_assets/brusnika_hero.jpg')"></div>
+      <div class="thumbs">
+        <a class="thumb" href="https://vkvideo.ru/video-22382635_456240641" style="background-image:url('_assets/brusnika_t1.jpg')"><span class="play"></span></a>
+        <a class="thumb" href="https://vkvideo.ru/video-22382635_456240660" style="background-image:url('_assets/brusnika_t2.jpg')"><span class="play"></span></a>
+      </div>
+    </div>
+    <div class="copy copy--brusnika">
+      <h2 class="title-line1">Бонд с кнопкой × Брусника —</h2>
+      <h2 class="title-line2">кухни live-клип</h2>
+      <p class="body size-24">Live-клип на&nbsp;нашумевший трек «Кухни», снятый на&nbsp;стройке в&nbsp;живом исполнении с&nbsp;хором. Клип облетел весь интернет, собрал более 5&nbsp;миллионов просмотров.<br/><br/>Особенность проекта в&nbsp;создании трека с&nbsp;миксом звуков стройки, из&nbsp;которых создаётся новый бит и&nbsp;инструментал.<br/><br/>Закрыли все задачи&nbsp;— от&nbsp;разработки идеи до&nbsp;производства бэкстейджа.</p>
+      <div class="btn-row">
+        <a class="btn" href="https://vkvideo.ru/video-22382635_456240641">Ролик</a>
+        <a class="btn" href="https://vkvideo.ru/video-22382635_456240660">Бэкстейдж</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide slide-brief">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">brief</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="brief">
+      <h2>05 <span class="slash">/</span> Брусника × Бонд с кнопкой — «Кухни»</h2>
+      <p class="meta">Место съёмок: Москва<br/>Клип: <a href="https://vkvideo.ru/video-22382635_456240641">vkvideo.ru</a> · Бэкстейдж: <a href="https://vkvideo.ru/video-22382635_456240660">vkvideo.ru</a></p>
+      <div class="brief-rule" aria-hidden="true"></div>
+      <div class="text">
+        <p>Спецпроект «Бонд с кнопкой × Брусника × Florium × Союз» — лайв-клип на трек «Кухни», записанный и снятый непосредственно на строительном объекте компании «Брусника». В проекте были объединены живое музыкальное исполнение и реальные звуки стройки, что позволило создать выраженный ASMR-эффект и нестандартно поздравить аудиторию с Днём строителя.</p>
+        <p>Продакшен разработал идею, организовал съёмки и реализовал полный цикл производства; креатив был предложен на первом созвоне и согласован в кратчайшие сроки. Клип вышел на всех ключевых платформах, наружных экранах застройщика и получил широкое распространение в профессиональных медиа о рекламе и маркетинге.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="slide slide-team">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">team</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="team-wrap">
+      <h2>Команда <span class="slash">/</span> Брусника</h2>
+      <p class="loc">Место съёмок: Москва</p>
+      <table class="crew">
+        <thead><tr><th>ФИО</th><th>Роль</th><th>Тип занятости</th><th>Стаж в роли</th><th>Период</th></tr></thead>
+        <tbody>
+          <tr><td>Дмитрий Квашнин</td><td>Режиссёр</td><td>ИП</td><td>8+ лет</td><td>проектно</td></tr>
+          <tr><td>Дмитрий Квашнин</td><td>Генеральный продюсер</td><td>ИП</td><td>8+ лет</td><td>проектно</td></tr>
+          <tr><td>Сергей Клейн</td><td>Исполнительный продюсер</td><td>ГПХ</td><td>6+ лет</td><td>проектно</td></tr>
+          <tr><td>Тимур Багов</td><td>Линейный продюсер</td><td>ГПХ</td><td>10+ лет</td><td>проектно</td></tr>
+          <tr><td>Максим Струков</td><td>Оператор-постановщик</td><td>ГПХ</td><td>5+ лет</td><td>проектно</td></tr>
+          <tr><td>Тимур Касаев</td><td>Режиссёр монтажа</td><td>ГПХ</td><td>6+ лет</td><td>проектно</td></tr>
+          <tr><td>Михаил Емельянов</td><td>Продюсер постпродакшна</td><td>ГПХ</td><td>4+ года</td><td>проектно</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <section class="slide slide-contacts">
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">contacts</span>
+    <span class="chrome chrome-bc">SPUTNIKFILMS.RU</span>
+    <h1 class="contacts-h1">давайте снимать!</h1>
+    <div class="contacts-rule l0" aria-hidden="true"></div>
+    <a class="contacts-row r1" href="mailto:hello@sputnikfilms.ru">
+      <span>hello@sputnikfilms.ru</span><span class="mark">01</span>
+    </a>
+    <div class="contacts-rule l1" aria-hidden="true"></div>
+    <a class="contacts-row r2" href="tel:+79136898769">
+      <span>+79136898769</span><span class="mark">02</span>
+    </a>
+    <div class="contacts-rule l2" aria-hidden="true"></div>
+    <a class="contacts-row r3" href="https://sputnikfilms.ru" target="_blank" rel="noopener">
+      <span>sputnikfilms.ru</span><span class="mark">03</span>
+    </a>
+    <div class="contacts-rule l3" aria-hidden="true"></div>
+    <a class="contacts-row r4" href="https://sputnikfilms.ru" target="_blank" rel="noopener">
+      <span>смотреть больше работ</span><span class="mark">→</span>
+    </a>
+    <div class="contacts-rule l4" aria-hidden="true"></div>
+    <a class="contacts-tg" href="https://t.me/sputnikfilms" target="_blank" rel="noopener" aria-label="Telegram">
+      <img src="_assets/contacts_telegram.png" width="52" height="52" alt=""/>
+    </a>
+  </section>
+
+</div>
+</body>
+</html>

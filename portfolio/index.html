@@ -1,0 +1,1056 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <title>Sputnik Films — Портфолио 2026</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    @font-face {
+      font-family: "Polonium";
+      src: url("_assets/fonts/Polonium.otf") format("opentype");
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "Polonium";
+      src: url("_assets/fonts/Polonium-Bold.otf") format("opentype");
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    :root {
+      --bg: #f4f4f3;
+      --ink: #181819;
+      --red: #e85d4a;
+      --W: 1920px;
+      --H: 1080px;
+      --mx: 134px;
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+      --display: "Polonium", system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background: #0e0e0e;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .deck { width: var(--W); margin: 0 auto; }
+
+    .slide {
+      width: var(--W);
+      height: var(--H);
+      position: relative;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--ink);
+      page-break-after: always;
+      break-after: page;
+    }
+
+    .chrome {
+      position: absolute;
+      z-index: 10;
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 20px;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      line-height: 1;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+    .chrome-tl { left: 45px; top: 45px; }
+    .chrome-tr { right: 45px; top: 45px; }
+    .chrome-bl { left: 45px; bottom: 45px; }
+    .chrome-br { right: 45px; bottom: 45px; }
+    .chrome-bc {
+      left: 50%;
+      bottom: 45px;
+      transform: translateX(-50%);
+      font-size: 20px;
+      letter-spacing: 0.06em;
+    }
+
+    .slide-case {
+      background-color: #f4f4f3;
+      background-image:
+        radial-gradient(ellipse 95% 75% at 0% 0%, rgba(232, 93, 74, 0.38) 0%, transparent 52%),
+        radial-gradient(ellipse 85% 70% at 100% 100%, rgba(232, 93, 74, 0.28) 0%, transparent 48%),
+        linear-gradient(180deg, #f6f5f4 0%, #f4f4f3 45%, #f2f1f0 100%);
+    }
+    .slide-cover {
+      background-color: #f4f4f3;
+      background-image:
+        radial-gradient(ellipse 130% 55% at 50% 50%, rgba(248, 214, 206, 0.42) 0%, transparent 62%),
+        radial-gradient(ellipse 95% 75% at 0% 0%, rgba(232, 93, 74, 0.34) 0%, transparent 52%),
+        radial-gradient(ellipse 85% 70% at 100% 100%, rgba(232, 93, 74, 0.26) 0%, transparent 48%),
+        linear-gradient(180deg, #f6f5f4 0%, #f4f4f3 50%, #f2f1f0 100%);
+    }
+    .slide-cover::before,
+    .slide-contacts::before,
+    .slide-case::before,
+    .slide-section::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.22;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    }
+
+    .glow-tl {
+      position: absolute;
+      top: -120px;
+      left: -80px;
+      width: 560px;
+      height: 560px;
+      background: radial-gradient(circle, rgba(232, 93, 74, 0.32) 0%, transparent 68%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .glow-br {
+      position: absolute;
+      bottom: -140px;
+      right: -100px;
+      width: 620px;
+      height: 620px;
+      background: radial-gradient(circle, rgba(232, 93, 74, 0.26) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* cover */
+    .slide-cover .cover-center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 1440px;
+      z-index: 2;
+      text-align: center;
+    }
+    .slide-cover .cover-title {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 110px;
+      line-height: 1;
+      letter-spacing: 0.015em;
+      color: var(--ink);
+      display: inline-block;
+      position: relative;
+    }
+    .slide-cover .cover-dot {
+      position: absolute;
+      top: 0.1em;
+      right: -0.42em;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--red);
+    }
+    .slide-cover .cover-laurels {
+      display: block;
+      width: 100%;
+      max-width: 1320px;
+      height: auto;
+      margin: 34px auto 0;
+      mix-blend-mode: multiply;
+    }
+
+    /* section divider */
+    .slide-section {
+      background-color: #f4f4f3;
+      background-image:
+        radial-gradient(ellipse 130% 55% at 50% 50%, rgba(248, 214, 206, 0.42) 0%, transparent 62%),
+        radial-gradient(ellipse 95% 75% at 0% 0%, rgba(232, 93, 74, 0.34) 0%, transparent 52%),
+        radial-gradient(ellipse 85% 70% at 100% 100%, rgba(232, 93, 74, 0.26) 0%, transparent 48%),
+        linear-gradient(180deg, #f6f5f4 0%, #f4f4f3 50%, #f2f1f0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .section-center {
+      text-align: center;
+      z-index: 2;
+      max-width: 1440px;
+    }
+    .section-center h1 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 82px;
+      line-height: 1.1;
+      letter-spacing: 0.01em;
+      text-transform: uppercase;
+      color: var(--ink);
+      position: relative;
+      display: inline-block;
+    }
+    .section-center .section-dot {
+      position: absolute;
+      top: 0.1em;
+      right: -0.35em;
+      width: 13px;
+      height: 13px;
+      border-radius: 50%;
+      background: var(--red);
+    }
+    .section-center .section-sub {
+      display: block;
+      margin-top: 28px;
+      font-family: var(--mono);
+      font-size: 28px;
+      font-weight: 400;
+      color: rgba(24, 24, 25, 0.6);
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    /* contacts */
+    .slide-contacts {
+      background-color: #f4f4f3;
+      background-image:
+        radial-gradient(ellipse 95% 75% at 0% 0%, rgba(232, 93, 74, 0.38) 0%, transparent 52%),
+        radial-gradient(ellipse 85% 70% at 100% 100%, rgba(232, 93, 74, 0.28) 0%, transparent 48%),
+        linear-gradient(180deg, #f6f5f4 0%, #f4f4f3 45%, #f2f1f0 100%);
+    }
+    .contacts-h1 {
+      position: absolute;
+      left: 188px;
+      top: 215px;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 88px;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--ink);
+      z-index: 2;
+    }
+    .contacts-rule {
+      position: absolute;
+      left: 188px;
+      width: 1543px;
+      height: 2px;
+      background: var(--ink);
+      z-index: 2;
+    }
+    .contacts-rule.l0 { top: 374px; }
+    .contacts-rule.l1 { top: 474px; }
+    .contacts-rule.l2 { top: 574px; }
+    .contacts-rule.l3 { top: 674px; }
+    .contacts-rule.l4 { top: 774px; }
+    .contacts-row {
+      position: absolute;
+      left: 188px;
+      width: 1543px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 46px;
+      font-weight: 400;
+      line-height: 1;
+      color: var(--ink);
+      z-index: 2;
+      text-decoration: none;
+    }
+    .contacts-row span,
+    .contacts-row a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .contacts-row.r1 { top: 398px; }
+    .contacts-row.r2 { top: 497px; }
+    .contacts-row.r3 { top: 596px; }
+    .contacts-row.r4 { top: 695px; }
+    .contacts-row .mark {
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+    .contacts-tg {
+      position: absolute;
+      left: 188px;
+      top: 805px;
+      width: 52px;
+      height: 52px;
+      z-index: 2;
+      mix-blend-mode: multiply;
+    }
+
+    /* case — media grid */
+    .media {
+      position: absolute;
+      left: 134px;
+      top: 186px;
+      width: 1006px;
+      z-index: 2;
+    }
+    .hero {
+      width: 1006px;
+      height: 395px;
+      overflow: hidden;
+      background: #2a2a2c center/cover no-repeat;
+    }
+    .thumbs { margin-top: 32px; display: flex; gap: 32px; }
+    .thumb {
+      width: 487px;
+      height: 281px;
+      overflow: hidden;
+      position: relative;
+      background: #2a2a2c center/cover no-repeat;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .thumb .play {
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.92);
+      z-index: 2;
+    }
+    .thumb .play::after {
+      content: "";
+      position: absolute;
+      left: 17px;
+      top: 13px;
+      border: 9px solid transparent;
+      border-left: 14px solid var(--ink);
+    }
+
+    .copy {
+      position: absolute;
+      left: 1206px;
+      right: 134px;
+      top: auto;
+      bottom: 186px;
+      width: auto;
+      max-width: 610px;
+      z-index: 2;
+    }
+    .copy h2 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 36px;
+      line-height: 1.12;
+      letter-spacing: 0;
+      margin-bottom: 22px;
+      text-transform: uppercase;
+    }
+    .copy h2 .slash { color: var(--red); }
+    .copy h2.title-line1 { margin-bottom: 6px; }
+    .copy h2.title-line2 { margin-top: 0; }
+    .copy .body {
+      font-family: var(--mono);
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 1.36;
+      margin-bottom: 28px;
+    }
+    .copy .body.size-24 { font-size: 24px; line-height: 1.34; }
+    .copy .body .reach { display: block; margin-top: 18px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 56px;
+      padding: 0 32px;
+      border: 2px solid var(--ink);
+      border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 30px;
+      font-weight: 500;
+      letter-spacing: 0;
+      text-decoration: none;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.35);
+    }
+    .btn-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .btn-row .btn { min-width: 200px; justify-content: center; }
+    .btn-row--three {
+      flex-wrap: nowrap;
+      gap: 14px;
+      width: 100%;
+    }
+    .btn-row--three .btn {
+      flex: 1 1 0;
+      min-width: 0;
+      padding: 0 14px;
+      font-size: 26px;
+      min-height: 54px;
+      white-space: nowrap;
+    }
+
+    /* 3-column vertical media grid (МТС, ВТБ HR) */
+    .media-vert {
+      position: absolute;
+      left: 134px;
+      top: 186px;
+      width: 1006px;
+      height: 708px;
+      z-index: 2;
+      display: flex;
+      gap: 10px;
+    }
+    .media-vert .vert-col {
+      flex: 1;
+      height: 100%;
+      background: #2a2a2c center/cover no-repeat;
+      overflow: hidden;
+    }
+
+    /* Naked Eye: 1 vertical + 2 landscape stacked */
+    .media-ne {
+      position: absolute;
+      left: 134px;
+      top: 186px;
+      width: 1006px;
+      height: 708px;
+      z-index: 2;
+      display: flex;
+      gap: 10px;
+    }
+    .media-ne .ne-left {
+      width: 332px;
+      height: 100%;
+      background: #2a2a2c center/cover no-repeat;
+      overflow: hidden;
+    }
+    .media-ne .ne-right {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .media-ne .ne-right .ne-img {
+      flex: 1;
+      background: #2a2a2c center/cover no-repeat;
+      overflow: hidden;
+    }
+
+    @page { size: 1920px 1080px; margin: 0; }
+    @media print {
+      html, body { background: #fff; }
+      .deck { margin: 0; }
+    }
+  </style>
+</head>
+<body>
+<div class="deck">
+
+  <!-- ═══════════════════ COVER ═══════════════════ -->
+  <section class="slide slide-cover">
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">portfolio</span>
+    <span class="chrome chrome-bc">SPUTNIKFILMS.RU</span>
+    <div class="cover-center">
+      <h1 class="cover-title">SPUTNIK FILMS<span class="cover-dot" aria-hidden="true"></span></h1>
+      <img class="cover-laurels" src="_assets/laurels_row.png" alt="Награды и фестивали"/>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ SECTION: ОТ 5 МЛН ═══════════════════ -->
+  <section class="slide slide-section">
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">portfolio</span>
+    <div class="section-center">
+      <h1>Проекты от 5&nbsp;миллионов</h1>
+    </div>
+  </section>
+
+  <!-- 01 VK ID -->
+  <section class="slide slide-case">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="media">
+      <div class="hero" style="background-image:url('_assets/vk_id_hero.jpg')"></div>
+      <div class="thumbs">
+        <a class="thumb" href="https://disk.yandex.ru/d/wbTwqrdSWOTkrw" style="background-image:url('_assets/vk_id_t1.jpg')"><span class="play"></span></a>
+        <a class="thumb" href="https://disk.yandex.ru/d/wbTwqrdSWOTkrw" style="background-image:url('_assets/vk_id_t2.jpg')"><span class="play"></span></a>
+      </div>
+    </div>
+    <div class="copy">
+      <h2>VK ID <span class="slash">/</span> Promo</h2>
+      <p class="body">9&nbsp;роликов о&nbsp;безопасности «VK ID» под&nbsp;ключ. Производство c&nbsp;командой более 40&nbsp;человек. За&nbsp;3&nbsp;съёмочных дня в&nbsp;доме, переоборудованном под&nbsp;5&nbsp;зон, сняли весь материал, избегая лишних логистических затрат. Постпродакшн с&nbsp;обилием графики завершили за&nbsp;2,5&nbsp;недели в&nbsp;коллаборации с&nbsp;командой «Buralqy» из&nbsp;Казахстана.</p>
+      <a class="btn" href="https://disk.yandex.ru/d/wbTwqrdSWOTkrw">Смотреть всю серию</a>
+    </div>
+  </section>
+
+  <!-- 02 МТС -->
+  <section class="slide slide-case">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="media-vert">
+      <div class="vert-col" style="background-image:url('_assets/mts_v1.jpg')"></div>
+      <div class="vert-col" style="background-image:url('_assets/mts_v2.jpg')"></div>
+      <div class="vert-col" style="background-image:url('_assets/mts_v3.jpg')"></div>
+    </div>
+    <div class="copy">
+      <h2>МТС <span class="slash">/</span> Social media</h2>
+      <p class="body">Серия роликов для&nbsp;викторины об&nbsp;экосистеме МТС. Полностью закрыли съёмочный процесс: от&nbsp;организации съёмок до&nbsp;обеспечения райдеров селебрити. За&nbsp;минимальные сроки создали яркую графику по&nbsp;строгому гайдбуку, усилив визуальную идентичность бренда.</p>
+      <a class="btn" href="https://disk.yandex.ru/d/n7uA7LvjieyjXQ" target="_blank">Смотреть</a>
+    </div>
+  </section>
+
+  <!-- 03 Яндекс GO -->
+  <section class="slide slide-case">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="media">
+      <div class="hero" style="background-image:url('_assets/yandex_go_hero.jpg')"></div>
+      <div class="thumbs">
+        <a class="thumb" href="https://vimeo.com/433120966" target="_blank" style="background-image:url('_assets/yandex_go_t1.jpg')"><span class="play"></span></a>
+        <a class="thumb" href="https://vimeo.com/1023952089" target="_blank" style="background-image:url('_assets/yandex_go_t2.jpg')"><span class="play"></span></a>
+      </div>
+    </div>
+    <div class="copy">
+      <h2>Яндекс GO <span class="slash">/</span> Doc Promo</h2>
+      <p class="body">Душевные ролики о&nbsp;профессии таксиста. Сняли один день из&nbsp;жизни реальных водителей, выбранных из&nbsp;числа сотрудников клиента. Для&nbsp;разных аудиторий разработали две линии: эконом — про&nbsp;искренность, бизнес — про&nbsp;стиль и&nbsp;профессионализм.</p>
+      <div class="btn-row">
+        <a class="btn" href="https://vimeo.com/433120966" target="_blank">Ролик 1</a>
+        <a class="btn" href="https://vimeo.com/1023952089" target="_blank">Ролик 2</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 04 ВТБ HR -->
+  <section class="slide slide-case">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="media-vert">
+      <div class="vert-col" style="background-image:url('_assets/vtb_hr_v1.jpg')"></div>
+      <div class="vert-col" style="background-image:url('_assets/vtb_hr_v2.jpg')"></div>
+      <div class="vert-col" style="background-image:url('_assets/vtb_hr_v3.jpg')"></div>
+    </div>
+    <div class="copy">
+      <h2>ВТБ HR <span class="slash">/</span> Image</h2>
+      <p class="body">Вертикальный сериал для&nbsp;HR-отдела ВТБ, направленный на&nbsp;привлечение соискателей через соцсети. Все герои — реальные сотрудники, прошедшие внутренний кастинг. За&nbsp;один день отсняли 8&nbsp;роликов, что&nbsp;позволило оптимизировать расходы.</p>
+      <a class="btn" href="https://disk.yandex.ru/d/YmyOJvWVB7pEMA" target="_blank">Смотреть</a>
+    </div>
+  </section>
+
+  <!-- 05 Там, где наш дом (Красноярский край) -->
+  <section class="slide slide-case">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="media">
+      <div class="hero" style="background-image:url('_assets/tgnd_hakasia_hero.jpg')"></div>
+      <div class="thumbs">
+        <a class="thumb" href="https://www.kinopoisk.ru/film/4934473/" target="_blank" style="background-image:url('_assets/tgnd_hakasia_t1.jpg')"><span class="play"></span></a>
+        <a class="thumb" href="https://www.kinopoisk.ru/film/4934473/" target="_blank" style="background-image:url('_assets/tgnd_hakasia_t2.jpg')"><span class="play"></span></a>
+      </div>
+    </div>
+    <div class="copy">
+      <h2 class="title-line1">Там, где наш дом</h2>
+      <h2 class="title-line2"><span class="slash">/</span> Красноярский край</h2>
+      <p class="body size-24">Альманах о&nbsp;неординарных людях из&nbsp;Красноярского края. Четыре героя из&nbsp;разных культур рассказывают о&nbsp;своей жизни и&nbsp;любви к&nbsp;родной земле. Фильм вышел в&nbsp;прокат в&nbsp;54&nbsp;городах России и&nbsp;Беларуси, оценка 8.4 на&nbsp;«Кинопоиске». Доступен на&nbsp;Okko, Wink и&nbsp;1TV.</p>
+      <a class="btn" href="https://www.kinopoisk.ru/film/4934473/" target="_blank">Смотреть</a>
+    </div>
+  </section>
+
+  <!-- 06 Там, где наш дом: Хакасия -->
+  <section class="slide slide-case">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="media">
+      <div class="hero" style="background-image:url('_assets/tgnd_hakasia_2_hero.jpg')"></div>
+      <div class="thumbs">
+        <a class="thumb" href="https://www.kinopoisk.ru/film/6013486/" target="_blank" style="background-image:url('_assets/tgnd_hakasia_2_t1.jpg')"><span class="play"></span></a>
+        <a class="thumb" href="https://www.kinopoisk.ru/film/6013486/" target="_blank" style="background-image:url('_assets/tgnd_hakasia_2_t2.jpg')"><span class="play"></span></a>
+      </div>
+    </div>
+    <div class="copy">
+      <h2 class="title-line1">Там, где наш дом:</h2>
+      <h2 class="title-line2">Хакасия</h2>
+      <p class="body size-24">За&nbsp;14&nbsp;дней экспедиции сняли сиквел успешного альманаха — фильм о&nbsp;Хакасии и&nbsp;её&nbsp;удивительных людях. Победитель «Тавриды.Арт», «Shortfilmdays», «Горький Fest». Оценка 8.1 на&nbsp;«Кинопоиске», участие в&nbsp;международных фестивалях.</p>
+      <a class="btn" href="https://www.kinopoisk.ru/film/6013486/" target="_blank">Смотреть</a>
+    </div>
+  </section>
+
+  <!-- 07 НесКорый поезд -->
+  <section class="slide slide-case">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="media">
+      <div class="hero" style="background-image:url('_assets/neskoriy_hero.jpg')"></div>
+      <div class="thumbs">
+        <a class="thumb" href="https://www.kinopoisk.ru/film/5232612/" target="_blank" style="background-image:url('_assets/neskoriy_t1.jpg')"><span class="play"></span></a>
+        <a class="thumb" href="https://www.kinopoisk.ru/film/5232612/" target="_blank" style="background-image:url('_assets/neskoriy_t2.jpg')"><span class="play"></span></a>
+      </div>
+    </div>
+    <div class="copy">
+      <h2>НесКорый поезд <span class="slash">/</span> Doc</h2>
+      <p class="body size-24">На&nbsp;электричках из&nbsp;Москвы до&nbsp;Владивостока. История о&nbsp;путешествии трёх друзей. 27&nbsp;съёмочных дней, 10&nbsp;000&nbsp;км. Фильм собрал 5+&nbsp;млн зрителей без&nbsp;вложений, победитель «Умного кино», оценка 7.4 на&nbsp;«Кинопоиске».</p>
+      <a class="btn" href="https://www.kinopoisk.ru/film/5232612/" target="_blank">Смотреть</a>
+    </div>
+  </section>
+
+  <!-- 08 Биоинженерия -->
+  <section class="slide slide-case">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="media">
+      <div class="hero" style="background-image:url('_assets/nauka_hero.jpg')"></div>
+      <div class="thumbs">
+        <a class="thumb" href="https://rutube.ru/video/500fdf9199374f72fac73a01b4e2b30c/" target="_blank" style="background-image:url('_assets/nauka_t1.jpg')"><span class="play"></span></a>
+        <a class="thumb" href="https://rutube.ru/video/500fdf9199374f72fac73a01b4e2b30c/" target="_blank" style="background-image:url('_assets/nauka_t2.jpg')"><span class="play"></span></a>
+      </div>
+    </div>
+    <div class="copy">
+      <h2 class="title-line1">Биоинженерия:</h2>
+      <h2 class="title-line2">Займёмся наукой</h2>
+      <p class="body size-24">Документальный веб-сериал о&nbsp;молодом поколении российских учёных. 12&nbsp;съёмочных дней в&nbsp;3&nbsp;городах Сибири, копродукция с&nbsp;«Moviestart». Более 2&nbsp;млн просмотров, охват 4+&nbsp;млн, победы на&nbsp;«Lampa», «Moscow Shorts».</p>
+      <a class="btn" href="https://rutube.ru/video/500fdf9199374f72fac73a01b4e2b30c/" target="_blank">Смотреть</a>
+    </div>
+  </section>
+
+  <!-- 09 Игровая независимость -->
+  <section class="slide slide-case">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="media">
+      <div class="hero" style="background-image:url('_assets/igrovaya_hero.jpg')"></div>
+      <div class="thumbs">
+        <a class="thumb" href="https://youtu.be/bVn7kaga_-o" target="_blank" style="background-image:url('_assets/igrovaya_t1.jpg')"><span class="play"></span></a>
+        <a class="thumb" href="https://youtu.be/ff7xtXetn3c" target="_blank" style="background-image:url('_assets/igrovaya_t2.jpg')"><span class="play"></span></a>
+      </div>
+    </div>
+    <div class="copy">
+      <h2 class="title-line1">Игровая</h2>
+      <h2 class="title-line2">независимость</h2>
+      <p class="body size-24">Вдохновляющий фильм о&nbsp;российской независимой игровой индустрии. Эксклюзивный релиз на&nbsp;«Okko», копродукция с&nbsp;«Moviestart». Победитель «Doker», 3+&nbsp;млн просмотров в&nbsp;соцсетях, охват 5+&nbsp;млн.</p>
+      <a class="btn" href="https://youtu.be/bVn7kaga_-o" target="_blank">Смотреть</a>
+    </div>
+  </section>
+
+  <!-- 10 Командор -->
+  <section class="slide slide-case">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="media">
+      <div class="hero" style="background-image:url('_assets/komandor_hero.jpg')"></div>
+      <div class="thumbs">
+        <a class="thumb" href="https://vk.com/video-48333978_456243389" target="_blank" style="background-image:url('_assets/komandor_t1.jpg')"><span class="play"></span></a>
+        <a class="thumb" href="https://vk.com/video-48333978_456243389" target="_blank" style="background-image:url('_assets/komandor_t2.jpg')"><span class="play"></span></a>
+      </div>
+    </div>
+    <div class="copy">
+      <h2 class="title-line1">Командор</h2>
+      <h2 class="title-line2"><span class="slash">/</span> живём Сибирью</h2>
+      <p class="body size-24">Большой фильм-исследование об&nbsp;истории и&nbsp;масштабах одной из&nbsp;крупнейших сетей продуктовых супермаркетов за&nbsp;Уралом «Командор». Закрыли полный цикл производства: от&nbsp;разработки идеи до&nbsp;многомесячных съёмок в&nbsp;городах Сибири. Гран-при конкурса «Лучшее корпоративное видео».</p>
+      <a class="btn" href="https://vk.com/video-48333978_456243389" target="_blank">Смотреть</a>
+    </div>
+  </section>
+
+  <!-- 11 Енисейский марафон -->
+  <section class="slide slide-case">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="media">
+      <div class="hero" style="background-image:url('_assets/marafon_hero.jpg')"></div>
+      <div class="thumbs">
+        <a class="thumb" href="https://wink.ru/movies/eniseyskiy-marafon-year-2023" target="_blank" style="background-image:url('_assets/marafon_t1.jpg')"><span class="play"></span></a>
+        <a class="thumb" href="https://wink.ru/movies/eniseyskiy-marafon-year-2023" target="_blank" style="background-image:url('_assets/marafon_t2.jpg')"><span class="play"></span></a>
+      </div>
+    </div>
+    <div class="copy">
+      <h2 class="title-line1">Енисейский</h2>
+      <h2 class="title-line2">марафон <span class="slash">/</span> Doc</h2>
+      <p class="body size-24">Двое друзей-мечтателей отправляются в&nbsp;полное опасностей путешествие по&nbsp;Сибири на&nbsp;скейтбордах. Вдохновляющий документальный фильм о&nbsp;смельчаках с&nbsp;палатками. Реализован по&nbsp;грантовой программе «Документальное кино Красноярья», гран-при «Неизвестная Россия» 2024.</p>
+      <a class="btn" href="https://wink.ru/movies/eniseyskiy-marafon-year-2023" target="_blank">Смотреть</a>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ SECTION: ДО 5 МЛН ═══════════════════ -->
+  <section class="slide slide-section">
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">portfolio</span>
+    <div class="section-center">
+      <h1>Проекты до 5&nbsp;миллионов</h1>
+    </div>
+  </section>
+
+  <!-- 10 ВТБ Promo -->
+  <section class="slide slide-case">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="media">
+      <div class="hero" style="background-image:url('_assets/vtb_promo_hero.jpg')"></div>
+      <div class="thumbs">
+        <a class="thumb" href="https://vimeo.com/966460214" target="_blank" style="background-image:url('_assets/vtb_promo_t1.jpg')"><span class="play"></span></a>
+        <a class="thumb" href="https://vimeo.com/966460214" target="_blank" style="background-image:url('_assets/vtb_promo_t2.jpg')"><span class="play"></span></a>
+      </div>
+    </div>
+    <div class="copy">
+      <h2>ВТБ <span class="slash">/</span> Promo</h2>
+      <p class="body">Ролик ко&nbsp;Дню предпринимателя для&nbsp;Бизнес Платформы ВТБ. За&nbsp;8&nbsp;дней организовали съёмки: нашли локацию, провели кастинг и&nbsp;собрали команду. Учли сложные погодные условия, запустили графику ещё до&nbsp;старта съёмок.</p>
+      <a class="btn" href="https://vimeo.com/966460214" target="_blank">Смотреть</a>
+    </div>
+  </section>
+
+  <!-- 11 Спортс -->
+  <section class="slide slide-case">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="media">
+      <div class="hero" style="background-image:url('_assets/sports_hero.jpg')"></div>
+      <div class="thumbs">
+        <a class="thumb" href="https://vimeo.com/1023951929" style="background-image:url('_assets/sports_t1.jpg')"><span class="play"></span></a>
+        <a class="thumb" href="https://vimeo.com/1023952089" target="_blank" style="background-image:url('_assets/sports_t2.jpg')"><span class="play"></span></a>
+      </div>
+    </div>
+    <div class="copy">
+      <h2>Спортс <span class="slash">/</span> Promo</h2>
+      <p class="body">Рекламный и&nbsp;презентационный ролики для&nbsp;курса спортивного блогинга. За&nbsp;один съёмочный день сняли два&nbsp;ролика, оптимизировав бюджет. Первыми провели работу по&nbsp;2Д-графике после&nbsp;ребрендинга клиента.</p>
+      <div class="btn-row">
+        <a class="btn" href="https://vimeo.com/1023951929">Ролик 1</a>
+        <a class="btn" href="https://vimeo.com/1023952089" target="_blank">Ролик 2</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 12 Love Generation -->
+  <section class="slide slide-case">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="media">
+      <div class="hero" style="background-image:url('_assets/love_gen_hero.jpg')"></div>
+      <div class="thumbs">
+        <a class="thumb" href="https://disk.yandex.ru/d/iKUXCJWCkJeT9A" style="background-image:url('_assets/love_gen_t1.jpg')"><span class="play"></span></a>
+        <a class="thumb" href="https://disk.yandex.ru/d/iKUXCJWCkJeT9A" style="background-image:url('_assets/love_gen_t2.jpg')"><span class="play"></span></a>
+      </div>
+    </div>
+    <div class="copy">
+      <h2 class="title-line1">Love Generation:</h2>
+      <h2 class="title-line2">Танцы-шманцы <span class="slash">/</span> promo</h2>
+      <p class="body size-24">Серия промо в&nbsp;формате караоке-такси. Полностью организовали съёмочный процесс: перекрытие улицы, кинокараван. Маш Милаш, Анна Покров, Анна Плетнёва.<span class="reach">Охват 10+&nbsp;млн человек, 25+&nbsp;млн показов.</span></p>
+      <div class="btn-row btn-row--three">
+        <a class="btn" href="https://vk.com/lovegeneration.beauty?z=clip-224208894_456239344%2Ff391c377f9c9614bac%2Fpl_wall_-224208894" target="_blank">Ролик 1</a>
+        <a class="btn" href="https://vk.com/lovegeneration.beauty?z=clip-224208894_456239305%2Fb1070066354b895796%2Fpl_wall_-224208894" target="_blank">Ролик 2</a>
+        <a class="btn" href="https://vk.com/lovegeneration.beauty?z=clip-224208894_456239321%2Ffb9728dbcc3bbb46d9%2Fpl_wall_-224208894" target="_blank">Ролик 3</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 13 Funky Toys -->
+  <section class="slide slide-case">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="media">
+      <div class="hero" style="background-image:url('_assets/funky_toys_hero.jpg')"></div>
+      <div class="thumbs">
+        <a class="thumb" href="https://disk.yandex.ru/d/yjW65Ci8ZzZi_w" target="_blank" style="background-image:url('_assets/funky_toys_t1.jpg')"><span class="play"></span></a>
+        <a class="thumb" href="https://vimeo.com/913785752" target="_blank" style="background-image:url('_assets/funky_toys_t2.jpg')"><span class="play"></span></a>
+      </div>
+    </div>
+    <div class="copy">
+      <h2>Funky Toys <span class="slash">/</span> Promo</h2>
+      <p class="body">Разработали креатив и&nbsp;сделали серию роликов для&nbsp;запуска новых линеек игрушек. За&nbsp;1&nbsp;смену сняли ТВ-ролик на&nbsp;30&nbsp;секунд и&nbsp;12&nbsp;коротких адаптаций для&nbsp;различных площадок. Ролики до&nbsp;сих пор транслируются на&nbsp;«Карусели».</p>
+      <a class="btn" href="https://disk.yandex.ru/d/yjW65Ci8ZzZi_w" target="_blank">Смотреть всю серию</a>
+    </div>
+  </section>
+
+  <!-- 14 Meferi -->
+  <section class="slide slide-case">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="media">
+      <div class="hero" style="background-image:url('_assets/meferi_hero.jpg')"></div>
+      <div class="thumbs">
+        <a class="thumb" href="https://vimeo.com/832593773" target="_blank" style="background-image:url('_assets/meferi_t1.jpg')"><span class="play"></span></a>
+        <a class="thumb" href="https://vimeo.com/832593773" target="_blank" style="background-image:url('_assets/meferi_t2.jpg')"><span class="play"></span></a>
+      </div>
+    </div>
+    <div class="copy">
+      <h2>Meferi <span class="slash">/</span> Promo</h2>
+      <p class="body">Рекламно-презентационный ролик для&nbsp;производителя складских терминалов из&nbsp;Китая, ориентированный на&nbsp;американский рынок. Преподнесли продукт в&nbsp;игровой форме, сохранив чёткие УТП. Юмористический подход с&nbsp;вау-эффектом.</p>
+      <a class="btn" href="https://vimeo.com/832593773" target="_blank">Смотреть</a>
+    </div>
+  </section>
+
+  <!-- 15 WAY GROUP -->
+  <section class="slide slide-case">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="media">
+      <div class="hero" style="background-image:url('_assets/way_group_hero.jpg')"></div>
+      <div class="thumbs">
+        <a class="thumb" href="https://vimeo.com/935394734" target="_blank" style="background-image:url('_assets/way_group_t1.jpg')"><span class="play"></span></a>
+        <a class="thumb" href="https://vimeo.com/935394734" target="_blank" style="background-image:url('_assets/way_group_t2.jpg')"><span class="play"></span></a>
+      </div>
+    </div>
+    <div class="copy">
+      <h2>WAY GROUP <span class="slash">/</span> Image</h2>
+      <p class="body">Имиджевый ролик: путь предпринимателя от&nbsp;маленьких шагов до&nbsp;большого успеха. Грузовой контейнер — символ компании — стал центральным атрибутом. Большой вирусный охват, внимание СМИ и&nbsp;мощный старт для&nbsp;бренда.</p>
+      <a class="btn" href="https://vimeo.com/935394734" target="_blank">Смотреть</a>
+    </div>
+  </section>
+
+  <!-- 16 Улицы Олимпийского Резерва -->
+  <section class="slide slide-case">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="media">
+      <div class="hero" style="background-image:url('_assets/uor_hero.jpg')"></div>
+      <div class="thumbs">
+        <a class="thumb" href="https://vimeo.com/831151211" target="_blank" style="background-image:url('_assets/uor_t1.jpg')"><span class="play"></span></a>
+        <a class="thumb" href="https://vimeo.com/831151211" target="_blank" style="background-image:url('_assets/uor_t2.jpg')"><span class="play"></span></a>
+      </div>
+    </div>
+    <div class="copy">
+      <h2 class="title-line1">Улицы Олимпийского</h2>
+      <h2 class="title-line2">Резерва <span class="slash">/</span> Doc</h2>
+      <p class="body size-24">Фильм о&nbsp;развитии паркура, скейтбординга и&nbsp;BMX через истории топ-спортсменов. Победитель грантового конкурса ФПРК, участник фестивалей Beat и&nbsp;Unknown. Помог запустить фестиваль и&nbsp;строительство экстрим-парка.</p>
+      <a class="btn" href="https://vimeo.com/831151211" target="_blank">Смотреть</a>
+    </div>
+  </section>
+
+  <!-- 17 Naked Eye -->
+  <section class="slide slide-case">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="media-ne">
+      <div class="ne-left" style="background-image:url('_assets/naked_eye_v1.jpg')"></div>
+      <div class="ne-right">
+        <div class="ne-img" style="background-image:url('_assets/naked_eye_v2.jpg')"></div>
+        <div class="ne-img" style="background-image:url('_assets/naked_eye_v3.jpg')"></div>
+      </div>
+    </div>
+    <div class="copy">
+      <h2>Naked Eye <span class="slash">/</span> 3D</h2>
+      <p class="body">Невооружённый взгляд — новая технология графики со&nbsp;специальным дисплеем, которая создаёт 3D-эффекты, видимые без&nbsp;очков или&nbsp;специальных устройств.</p>
+      <a class="btn" href="https://disk.yandex.ru/i/0GZUfJorldh5ZA" target="_blank">Смотреть</a>
+    </div>
+  </section>
+
+  <!-- 18 Ак Барс -->
+  <section class="slide slide-case">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="media">
+      <div class="hero" style="background-image:url('_assets/akbars_hero.jpg')"></div>
+      <div class="thumbs">
+        <a class="thumb" href="https://vimeo.com/913786109" target="_blank" style="background-image:url('_assets/akbars_t1.jpg')"><span class="play"></span></a>
+        <a class="thumb" href="https://vimeo.com/913786109" target="_blank" style="background-image:url('_assets/akbars_t2.jpg')"><span class="play"></span></a>
+      </div>
+    </div>
+    <div class="copy">
+      <h2>Ак Барс <span class="slash">/</span> Графика</h2>
+      <p class="body">Графический ролик для&nbsp;ТВ и&nbsp;digital, презентующий услуги банка для&nbsp;бизнеса. Полностью разработали концепцию, сценарий и&nbsp;визуальный стиль. Стоп-кадры из&nbsp;ролика стали основой для&nbsp;Outdoor-кампании по&nbsp;всей стране.</p>
+      <a class="btn" href="https://vimeo.com/913786109" target="_blank">Смотреть</a>
+    </div>
+  </section>
+
+  <!-- 19 Silbertool -->
+  <section class="slide slide-case">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="media">
+      <div class="hero" style="background-image:url('_assets/silbertool_hero.jpg')"></div>
+      <div class="thumbs">
+        <a class="thumb" href="https://vimeo.com/831173678" target="_blank" style="background-image:url('_assets/silbertool_t1.jpg')"><span class="play"></span></a>
+        <a class="thumb" href="https://vimeo.com/831173678" target="_blank" style="background-image:url('_assets/silbertool_t2.jpg')"><span class="play"></span></a>
+      </div>
+    </div>
+    <div class="copy">
+      <h2>Silbertool <span class="slash">/</span> 3D</h2>
+      <p class="body">Динамичный ролик: одним кадром и&nbsp;в&nbsp;движении разобрали фуру на&nbsp;детали, чтобы показать функционал и&nbsp;применение продукта. Понятная подача с&nbsp;вау-эффектом, высокая вовлечённость.</p>
+      <a class="btn" href="https://vimeo.com/831173678" target="_blank">Смотреть</a>
+    </div>
+  </section>
+
+  <!-- 20 RISOLIN -->
+  <section class="slide slide-case">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="media">
+      <div class="hero" style="background-image:url('_assets/risolin_hero.jpg')"></div>
+      <div class="thumbs">
+        <a class="thumb" href="https://vimeo.com/788918262" target="_blank" style="background-image:url('_assets/risolin_t1.jpg')"><span class="play"></span></a>
+        <a class="thumb" href="https://vimeo.com/788918146" target="_blank" style="background-image:url('_assets/risolin_t2.jpg')"><span class="play"></span></a>
+      </div>
+    </div>
+    <div class="copy">
+      <h2>RISOLIN <span class="slash">/</span> 3D</h2>
+      <p class="body">Два 3D-видео, наглядно показавших, как&nbsp;запатентованное решение клиента упрощает строительство дорог. Ролики были показаны главам регионов на&nbsp;переговорах и&nbsp;помогли клиенту в&nbsp;продажах продукта.</p>
+      <div class="btn-row">
+        <a class="btn" href="https://vimeo.com/788918262" target="_blank">Ролик 1</a>
+        <a class="btn" href="https://vimeo.com/788918146" target="_blank">Ролик 2</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 23 Kiss-Секретики -->
+  <section class="slide slide-case">
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">case</span>
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <div class="media-vert">
+      <div class="vert-col" style="background-image:url('_assets/kiss_v1.jpg')"></div>
+      <div class="vert-col" style="background-image:url('_assets/kiss_v2.jpg')"></div>
+      <div class="vert-col" style="background-image:url('_assets/kiss_v3.jpg')"></div>
+    </div>
+    <div class="copy">
+      <h2 class="title-line1">Love Generation</h2>
+      <h2 class="title-line2">Kiss-Секретики <span class="slash">/</span> promo</h2>
+      <p class="body size-24">Серия роликов в&nbsp;формате уличного реалити-шоу с&nbsp;интервью для&nbsp;активации новой линейки в&nbsp;бренде косметики. Организовали большие съёмки внутри торгового центра, весь продакшн-сервис и&nbsp;постпроизводство «под&nbsp;ключ».</p>
+      <div class="btn-row btn-row--three">
+        <a class="btn" href="https://disk.yandex.ru/i/5Nx-mkT7bzRTHg" target="_blank">Ролик 1</a>
+        <a class="btn" href="https://disk.yandex.ru/i/ygOqXGnvjUAWpg" target="_blank">Ролик 2</a>
+        <a class="btn" href="https://disk.yandex.ru/i/5QzuNCncIZWEpQ" target="_blank">Ролик 3</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ═══════════════════ CONTACTS ═══════════════════ -->
+  <section class="slide slide-contacts">
+    <div class="glow-tl"></div>
+    <div class="glow-br"></div>
+    <span class="chrome chrome-tl">SPUTNIK FILMS</span>
+    <span class="chrome chrome-tr">2026</span>
+    <span class="chrome chrome-bl">PRODUCTION</span>
+    <span class="chrome chrome-br">contacts</span>
+    <span class="chrome chrome-bc">SPUTNIKFILMS.RU</span>
+    <h1 class="contacts-h1">давайте снимать!</h1>
+    <div class="contacts-rule l0" aria-hidden="true"></div>
+    <a class="contacts-row r1" href="mailto:hello@sputnikfilms.ru">
+      <span>hello@sputnikfilms.ru</span><span class="mark">01</span>
+    </a>
+    <div class="contacts-rule l1" aria-hidden="true"></div>
+    <a class="contacts-row r2" href="tel:+79636631057">
+      <span>+79636631057</span><span class="mark">02</span>
+    </a>
+    <div class="contacts-rule l2" aria-hidden="true"></div>
+    <a class="contacts-row r3" href="https://sputnikfilms.ru" target="_blank" rel="noopener">
+      <span>sputnikfilms.ru</span><span class="mark">03</span>
+    </a>
+    <div class="contacts-rule l3" aria-hidden="true"></div>
+    <a class="contacts-row r4" href="https://sputnikfilms.ru" target="_blank" rel="noopener">
+      <span>смотреть больше работ</span><span class="mark">→</span>
+    </a>
+    <div class="contacts-rule l4" aria-hidden="true"></div>
+    <a class="contacts-tg" href="https://t.me/sputnikfilms" target="_blank" rel="noopener" aria-label="Telegram">
+      <img src="_assets/contacts_telegram.png" width="52" height="52" alt=""/>
+    </a>
+  </section>
+
+</div>
+</body>
+</html>
