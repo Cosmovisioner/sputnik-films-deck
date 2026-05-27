@@ -1,0 +1,988 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8"/>
+  <title>LIC — Опрос бьюти-шоу · 61 ответ</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+@font-face {
+      font-family: "Polonium";
+      src: url("_assets/fonts/Polonium.otf") format("opentype");
+      font-weight: 400;
+      font-style: normal;
+    }
+    @font-face {
+      font-family: "Polonium";
+      src: url("_assets/fonts/Polonium-Bold.otf") format("opentype");
+      font-weight: 700;
+      font-style: normal;
+    }
+
+    :root {
+      --bg: #f4f4f3;
+      --ink: #181819;
+      --red: #e85d4a;
+      --W: 1920px;
+      --H: 1080px;
+      --mx: 134px;
+      --mono: "JetBrains Mono", ui-monospace, monospace;
+      --display: "Polonium", system-ui, sans-serif;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      background: #0e0e0e;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    .deck { width: var(--W); margin: 0 auto; }
+
+    .slide {
+      width: var(--W);
+      height: var(--H);
+      position: relative;
+      overflow: hidden;
+      background: var(--bg);
+      color: var(--ink);
+      page-break-after: always;
+      break-after: page;
+    }
+
+    /* Углы — JetBrains Mono 20px, inset 45px (как в Figma / PDF экспорте) */
+    .chrome {
+      position: absolute;
+      z-index: 10;
+      font-family: var(--mono);
+      font-weight: 500;
+      font-size: 20px;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      line-height: 1;
+      color: var(--ink);
+      white-space: nowrap;
+    }
+    .chrome-tl { left: 45px; top: 45px; }
+    .chrome-tr { right: 45px; top: 45px; }
+    .chrome-bl { left: 45px; bottom: 45px; }
+    .chrome-br { right: 45px; bottom: 45px; }
+    .chrome-bc {
+      left: 50%;
+      bottom: 45px;
+      transform: translateX(-50%);
+      font-size: 20px;
+      letter-spacing: 0.06em;
+    }
+
+    /* фон кейсов — градиент + grain как в Figma */
+    .slide-case {
+      background-color: #f4f4f3;
+      background-image:
+        radial-gradient(ellipse 95% 75% at 0% 0%, rgba(232, 93, 74, 0.38) 0%, transparent 52%),
+        radial-gradient(ellipse 85% 70% at 100% 100%, rgba(232, 93, 74, 0.28) 0%, transparent 48%),
+        linear-gradient(180deg, #f6f5f4 0%, #f4f4f3 45%, #f2f1f0 100%);
+    }
+    .slide-case--pink {
+      background-color: #efeae8;
+      background-image:
+        radial-gradient(ellipse 110% 85% at -5% -15%, rgba(232, 93, 74, 0.52) 0%, transparent 50%),
+        radial-gradient(ellipse 95% 75% at 105% 105%, rgba(232, 93, 74, 0.42) 0%, transparent 46%),
+        linear-gradient(165deg, #f8f4f2 0%, #f4f4f3 42%, #ebe6e4 100%);
+    }
+    .slide-cover {
+      background-color: #f4f4f3;
+      background-image:
+        radial-gradient(ellipse 130% 55% at 50% 50%, rgba(248, 214, 206, 0.42) 0%, transparent 62%),
+        radial-gradient(ellipse 95% 75% at 0% 0%, rgba(232, 93, 74, 0.34) 0%, transparent 52%),
+        radial-gradient(ellipse 85% 70% at 100% 100%, rgba(232, 93, 74, 0.26) 0%, transparent 48%),
+        linear-gradient(180deg, #f6f5f4 0%, #f4f4f3 50%, #f2f1f0 100%);
+    }
+    .slide-cover::before,
+    .slide-contacts::before,
+    .slide-case::before,
+    .slide-brief::before,
+    .slide-team::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.22;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    }
+    .slide-brief,
+    .slide-team {
+      background-color: #f4f4f3;
+      background-image:
+        radial-gradient(ellipse 95% 75% at 0% 0%, rgba(232, 93, 74, 0.3) 0%, transparent 52%),
+        radial-gradient(ellipse 85% 70% at 100% 100%, rgba(232, 93, 74, 0.22) 0%, transparent 48%),
+        linear-gradient(180deg, #f6f5f4 0%, #f4f4f3 50%, #f2f1f0 100%);
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 88px var(--mx);
+      box-sizing: border-box;
+    }
+    .glow-tl {
+      position: absolute;
+      top: -120px;
+      left: -80px;
+      width: 560px;
+      height: 560px;
+      background: radial-gradient(circle, rgba(232, 93, 74, 0.32) 0%, transparent 68%);
+      pointer-events: none;
+      z-index: 0;
+    }
+    .glow-br {
+      position: absolute;
+      bottom: -140px;
+      right: -100px;
+      width: 620px;
+      height: 620px;
+      background: radial-gradient(circle, rgba(232, 93, 74, 0.26) 0%, transparent 70%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* cover — Polonium + лавры; полоса в фоне слайда, без отдельного PNG */
+    .slide-cover .cover-center {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      width: 1440px;
+      z-index: 2;
+      text-align: center;
+    }
+    .slide-cover .cover-title {
+      margin: 0;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 110px;
+      line-height: 1;
+      letter-spacing: 0.015em;
+      color: var(--ink);
+      display: inline-block;
+      position: relative;
+    }
+    .slide-cover .cover-dot {
+      position: absolute;
+      top: 0.1em;
+      right: -0.42em;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      background: var(--red);
+    }
+    .slide-cover .cover-laurels {
+      display: block;
+      width: 100%;
+      max-width: 1320px;
+      height: auto;
+      margin: 34px auto 0;
+      mix-blend-mode: multiply;
+    }
+
+    /* contacts — та же система, что кейсы/обложка (не PDF-растр) */
+    .slide-contacts {
+      background-color: #f4f4f3;
+      background-image:
+        radial-gradient(ellipse 95% 75% at 0% 0%, rgba(232, 93, 74, 0.38) 0%, transparent 52%),
+        radial-gradient(ellipse 85% 70% at 100% 100%, rgba(232, 93, 74, 0.28) 0%, transparent 48%),
+        linear-gradient(180deg, #f6f5f4 0%, #f4f4f3 45%, #f2f1f0 100%);
+    }
+    .contacts-h1 {
+      position: absolute;
+      left: 188px;
+      top: 215px;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 88px;
+      line-height: 1.05;
+      letter-spacing: -0.01em;
+      text-transform: uppercase;
+      color: var(--ink);
+      z-index: 2;
+    }
+    .contacts-rule {
+      position: absolute;
+      left: 188px;
+      width: 1543px;
+      height: 2px;
+      background: var(--ink);
+      z-index: 2;
+    }
+    .contacts-rule.l0 { top: 374px; }
+    .contacts-rule.l1 { top: 474px; }
+    .contacts-rule.l2 { top: 574px; }
+    .contacts-rule.l3 { top: 674px; }
+    .contacts-rule.l4 { top: 774px; }
+    .contacts-row {
+      position: absolute;
+      left: 188px;
+      width: 1543px;
+      height: 54px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-family: var(--mono);
+      font-size: 46px;
+      font-weight: 400;
+      line-height: 1;
+      color: var(--ink);
+      z-index: 2;
+      text-decoration: none;
+    }
+    .contacts-row span,
+    .contacts-row a {
+      color: inherit;
+      text-decoration: none;
+    }
+    .contacts-row.r1 { top: 398px; }
+    .contacts-row.r2 { top: 497px; }
+    .contacts-row.r3 { top: 596px; }
+    .contacts-row.r4 { top: 695px; }
+    .contacts-row .mark {
+      font-weight: 400;
+      letter-spacing: 0;
+    }
+    .contacts-tg {
+      position: absolute;
+      left: 188px;
+      top: 805px;
+      width: 52px;
+      height: 52px;
+      z-index: 2;
+      mix-blend-mode: multiply;
+    }
+
+    /* case — координаты из PDF / Figma */
+    .media {
+      position: absolute;
+      left: 134px;
+      top: 186px;
+      width: 1006px;
+      z-index: 2;
+    }
+    .hero {
+      width: 1006px;
+      height: 395px;
+      overflow: hidden;
+      background: #2a2a2c center/cover no-repeat;
+    }
+    .thumbs { margin-top: 32px; display: flex; gap: 32px; }
+    .thumb {
+      width: 487px;
+      height: 281px;
+      overflow: hidden;
+      position: relative;
+      background: #2a2a2c center/cover no-repeat;
+      text-decoration: none;
+      color: inherit;
+      display: block;
+    }
+    .thumb .cap {
+      position: absolute;
+      left: 16px;
+      bottom: 14px;
+      font-family: var(--mono);
+      font-size: 18px;
+      font-weight: 500;
+      color: #fff;
+      text-shadow: 0 1px 8px rgba(0, 0, 0, 0.65);
+      z-index: 2;
+    }
+    .thumb .play {
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.92);
+      z-index: 2;
+    }
+    .thumb .play::after {
+      content: "";
+      position: absolute;
+      left: 17px;
+      top: 13px;
+      border: 9px solid transparent;
+      border-left: 14px solid var(--ink);
+    }
+
+    /* правая колонка: низ блока = низ сетки media (186+395+32+281 = 894 → bottom 186px) */
+    .copy {
+      position: absolute;
+      left: 1206px;
+      right: 134px;
+      top: auto;
+      bottom: 186px;
+      width: auto;
+      max-width: 610px;
+      z-index: 2;
+    }
+    .copy--vk { left: 1198px; }
+    .platform-logos {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 18px;
+      min-height: 25px;
+    }
+    .platform-logos img {
+      height: 25px;
+      width: auto;
+      display: block;
+    }
+    .copy h2 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 36px;
+      line-height: 1.12;
+      letter-spacing: 0;
+      margin-bottom: 22px;
+      text-transform: uppercase;
+    }
+    .copy h2 .slash { color: var(--red); }
+    .copy h2.title-line1 { margin-bottom: 6px; }
+    .copy h2.title-line2 { margin-top: 0; }
+    .copy .body {
+      font-family: var(--mono);
+      font-size: 26px;
+      font-weight: 400;
+      line-height: 1.36;
+      margin-bottom: 28px;
+    }
+    .copy .body.size-24 { font-size: 24px; line-height: 1.34; }
+    .copy .body .reach { display: block; margin-top: 18px; }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 56px;
+      padding: 0 32px;
+      border: 2px solid var(--ink);
+      border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 30px;
+      font-weight: 500;
+      letter-spacing: 0;
+      text-decoration: none;
+      color: var(--ink);
+      background: rgba(255, 255, 255, 0.35);
+    }
+    .btn-row {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    .btn-row .btn { min-width: 200px; justify-content: center; }
+    /* 3 кнопки в одну строку (Love Generation) */
+    .btn-row--three {
+      flex-wrap: nowrap;
+      gap: 14px;
+      width: 100%;
+    }
+    .btn-row--three .btn {
+      flex: 1 1 0;
+      min-width: 0;
+      padding: 0 14px;
+      font-size: 26px;
+      min-height: 54px;
+      white-space: nowrap;
+    }
+
+    /* brief — блок по центру слайда, не прилипает к верху */
+    .brief {
+      position: relative;
+      width: 100%;
+      max-width: 1652px;
+      z-index: 2;
+      padding-left: 32px;
+      border-left: 4px solid var(--red);
+    }
+    .brief h2 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 44px;
+      line-height: 1.1;
+      margin-bottom: 22px;
+      text-transform: uppercase;
+      letter-spacing: 0.01em;
+    }
+    .brief h2 .slash { color: var(--red); }
+    .brief .meta {
+      font-family: var(--mono);
+      font-size: 20px;
+      line-height: 1.55;
+      margin-bottom: 0;
+      padding-bottom: 24px;
+      color: rgba(24, 24, 25, 0.78);
+    }
+    .brief .meta a {
+      color: var(--ink);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .brief .brief-rule {
+      width: 100%;
+      height: 2px;
+      background: rgba(24, 24, 25, 0.12);
+      margin-bottom: 28px;
+    }
+    .brief .text {
+      font-family: var(--mono);
+      font-size: 22px;
+      line-height: 1.52;
+      column-count: 2;
+      column-gap: 56px;
+      color: var(--ink);
+    }
+    .brief .text p { margin-bottom: 18px; break-inside: avoid; }
+    .brief .text ul {
+      margin: 0 0 18px 1.15em;
+      padding: 0;
+      list-style: disc;
+      break-inside: avoid;
+    }
+    .brief .text li { margin-bottom: 8px; }
+
+    /* team — та же вертикальная логика, что brief */
+    .team-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 1652px;
+      z-index: 2;
+      padding-left: 32px;
+      border-left: 4px solid var(--red);
+    }
+    .team-wrap h2 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 44px;
+      line-height: 1.1;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+    }
+    .team-wrap h2 .slash { color: var(--red); }
+    .team-wrap .loc {
+      font-family: var(--mono);
+      font-size: 20px;
+      color: rgba(24, 24, 25, 0.72);
+      margin-bottom: 28px;
+    }
+    table.crew {
+      width: 100%;
+      border-collapse: collapse;
+      font-family: var(--mono);
+      font-size: 18px;
+      line-height: 1.4;
+    }
+    table.crew thead th {
+      font-family: var(--mono);
+      text-align: left;
+      padding: 16px 18px;
+      background: var(--ink);
+      color: #fff;
+      font-weight: 600;
+      font-size: 17px;
+    }
+    table.crew tbody td {
+      padding: 12px 18px;
+      border-bottom: 1px solid rgba(24, 24, 25, 0.14);
+      background: rgba(255, 255, 255, 0.55);
+      vertical-align: top;
+    }
+    table.crew tbody tr:nth-child(even) td {
+      background: rgba(255, 255, 255, 0.78);
+    }
+
+    @page { size: 1920px 1080px; margin: 0; }
+    @media print {
+      html, body { background: #fff; }
+      .deck { margin: 0; }
+    }
+
+
+    .slide-survey {
+      background-color: #f4f4f3;
+      background-image:
+        radial-gradient(ellipse 95% 75% at 0% 0%, rgba(232, 93, 74, 0.3) 0%, transparent 52%),
+        radial-gradient(ellipse 85% 70% at 100% 100%, rgba(232, 93, 74, 0.22) 0%, transparent 48%),
+        linear-gradient(180deg, #f6f5f4 0%, #f4f4f3 50%, #f2f1f0 100%);
+      display: flex;
+      align-items: center;
+      padding: 72px var(--mx);
+      box-sizing: border-box;
+    }
+    .slide-survey::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      opacity: 0.22;
+      pointer-events: none;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+    }
+    .survey-wrap {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      max-width: 1652px;
+      padding-left: 32px;
+      border-left: 4px solid var(--red);
+    }
+    .survey-wrap h2 {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 44px;
+      line-height: 1.08;
+      margin-bottom: 14px;
+      text-transform: uppercase;
+    }
+    .survey-wrap h2 .slash { color: var(--red); }
+    .survey-meta {
+      font-family: var(--mono);
+      font-size: 20px;
+      color: rgba(24, 24, 25, 0.72);
+      margin-bottom: 20px;
+    }
+    .survey-rule {
+      width: 100%;
+      height: 2px;
+      background: rgba(24, 24, 25, 0.12);
+      margin-bottom: 28px;
+    }
+    .survey-cols {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+    }
+    .survey-col h3 {
+      font-family: var(--display);
+      font-size: 26px;
+      font-weight: 700;
+      margin-bottom: 18px;
+      text-transform: uppercase;
+    }
+    .bar-row {
+      display: grid;
+      grid-template-columns: 220px 1fr 110px;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: 12px;
+      font-family: var(--mono);
+      font-size: 17px;
+    }
+    .bar-row.compact {
+      grid-template-columns: 200px 1fr 100px;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    .bar-label { line-height: 1.25; }
+    .bar-track {
+      height: 14px;
+      background: rgba(24, 24, 25, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+    }
+    .bar-fill {
+      height: 100%;
+      background: var(--red);
+      border-radius: 999px;
+      min-width: 4px;
+    }
+    .bar-val { text-align: right; white-space: nowrap; }
+    .bar-val em { font-style: normal; color: rgba(24, 24, 25, 0.55); font-size: 15px; }
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      margin-bottom: 8px;
+    }
+    .stat-card {
+      background: rgba(255, 255, 255, 0.65);
+      border: 1px solid rgba(24, 24, 25, 0.1);
+      padding: 22px 24px;
+      font-family: var(--mono);
+    }
+    .stat-card .num {
+      font-family: var(--display);
+      font-size: 52px;
+      font-weight: 700;
+      color: var(--red);
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .stat-card .lbl { font-size: 18px; line-height: 1.35; }
+    .tag-cloud {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 8px;
+    }
+    .tag {
+      font-family: var(--mono);
+      font-size: 20px;
+      padding: 10px 18px;
+      border: 2px solid var(--ink);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.45);
+    }
+    .tag strong { color: var(--red); font-weight: 600; }
+    .quote-list {
+      font-family: var(--mono);
+      font-size: 17px;
+      line-height: 1.45;
+      column-count: 2;
+      column-gap: 40px;
+    }
+    .quote-list p {
+      margin-bottom: 14px;
+      break-inside: avoid;
+      padding-left: 14px;
+      border-left: 2px solid rgba(232, 93, 74, 0.45);
+    }
+    .insights-list {
+      font-family: var(--mono);
+      font-size: 22px;
+      line-height: 1.5;
+      list-style: none;
+    }
+    .insights-list li {
+      margin-bottom: 16px;
+      padding-left: 28px;
+      position: relative;
+    }
+    .insights-list li::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--red);
+      font-weight: 700;
+    }
+    .slide-cover .cover-sub {
+      display: block;
+      margin-top: 28px;
+      font-family: var(--mono);
+      font-size: 28px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: rgba(24, 24, 25, 0.75);
+    }
+    .slide-cover .cover-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 36px;
+      font-family: var(--mono);
+      font-size: 22px;
+    }
+    .slide-cover .cover-stats span em {
+      font-style: normal;
+      color: var(--red);
+      font-weight: 600;
+    }
+    
+  </style>
+</head>
+<body>
+<div class="deck">
+
+<section class="slide slide-cover">
+  <div class="glow-tl"></div>
+  <div class="glow-br"></div>
+
+  <span class="chrome chrome-tl">LIC</span>
+  <span class="chrome chrome-tr">2026</span>
+  <span class="chrome chrome-bl">BEAUTY SHOW</span>
+  <span class="chrome chrome-br">survey 01</span>
+  <span class="chrome chrome-bc">61 ОТВЕТ · 19–27 МАЯ 2026</span>
+  <div class="cover-center">
+    <h1 class="cover-title" style="font-size:88px">LIC BEAUTY SHOW<span class="cover-dot" aria-hidden="true"></span></h1>
+    <span class="cover-sub">Результаты опроса аудитории</span>
+    <div class="cover-stats">
+      <span><em>61</em> респондентов</span>
+      <span><em>92%</em> женщины</span>
+      <span><em>48%</em> 25–32 года</span>
+    </div>
+  </div>
+</section>
+
+<section class="slide slide-survey">
+
+  <span class="chrome chrome-tl">LIC</span>
+  <span class="chrome chrome-tr">2026</span>
+  <span class="chrome chrome-bl">BEAUTY SHOW</span>
+  <span class="chrome chrome-br">data 02</span>
+  <div class="glow-tl"></div>
+  <div class="glow-br"></div>
+  <div class="survey-wrap">
+    <h2>02 <span class="slash">/</span> Аудитория</h2>
+    <p class="survey-meta">n = 61 · опрос в VK / Telegram · 19–27 мая 2026</p>
+    <div class="survey-rule" aria-hidden="true"></div>
+    
+<div class="stat-grid">
+  <div class="stat-card"><div class="num">92%</div><div class="lbl">женщины<br/>(56 из 61)</div></div>
+  <div class="stat-card"><div class="num">48%</div><div class="lbl">возраст 25–32<br/>основной сегмент</div></div>
+  <div class="stat-card"><div class="num">77%</div><div class="lbl">работают в найме<br/>+ 12% фриланс</div></div>
+</div>
+<div class="survey-cols" style="margin-top:28px">
+  <div class="survey-col"><h3>Возраст</h3><div class="bar-row"><span class="bar-label">25-32 года</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">29 <em>(48%)</em></span></div>
+<div class="bar-row"><span class="bar-label">33-45 лет</span><div class="bar-track"><div class="bar-fill" style="width:55%"></div></div><span class="bar-val">16 <em>(26%)</em></span></div>
+<div class="bar-row"><span class="bar-label">18-24 года</span><div class="bar-track"><div class="bar-fill" style="width:48%"></div></div><span class="bar-val">14 <em>(23%)</em></span></div>
+<div class="bar-row"><span class="bar-label">46 и старше</span><div class="bar-track"><div class="bar-fill" style="width:7%"></div></div><span class="bar-val">2 <em>(3%)</em></span></div></div>
+  <div class="survey-col"><h3>Деятельность</h3><div class="bar-row"><span class="bar-label">Работаю в найме</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">46 <em>(75%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Фрилансер</span><div class="bar-track"><div class="bar-fill" style="width:15%"></div></div><span class="bar-val">7 <em>(11%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Предприниматель</span><div class="bar-track"><div class="bar-fill" style="width:4%"></div></div><span class="bar-val">2 <em>(3%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Студент</span><div class="bar-track"><div class="bar-fill" style="width:4%"></div></div><span class="bar-val">2 <em>(3%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Другое</span><div class="bar-track"><div class="bar-fill" style="width:4%"></div></div><span class="bar-val">2 <em>(3%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Домохозяйка</span><div class="bar-track"><div class="bar-fill" style="width:2%"></div></div><span class="bar-val">1 <em>(2%)</em></span></div></div>
+</div>
+  </div>
+</section>
+
+<section class="slide slide-survey">
+
+  <span class="chrome chrome-tl">LIC</span>
+  <span class="chrome chrome-tr">2026</span>
+  <span class="chrome chrome-bl">BEAUTY SHOW</span>
+  <span class="chrome chrome-br">data 03</span>
+  <div class="glow-tl"></div>
+  <div class="glow-br"></div>
+  <div class="survey-wrap">
+    <h2>03 <span class="slash">/</span> Потребление контента</h2>
+    <p class="survey-meta">Где смотрят · как часто · откуда узнают о шоу</p>
+    <div class="survey-rule" aria-hidden="true"></div>
+    
+<div class="survey-cols">
+  <div class="survey-col">
+    <h3>Частота просмотра</h3>
+    <div class="bar-row"><span class="bar-label">Несколько раз в неделю</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">23 <em>(38%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Пару раз в месяц</span><div class="bar-track"><div class="bar-fill" style="width:87%"></div></div><span class="bar-val">20 <em>(33%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Очень редко</span><div class="bar-track"><div class="bar-fill" style="width:30%"></div></div><span class="bar-val">7 <em>(11%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Каждый день</span><div class="bar-track"><div class="bar-fill" style="width:30%"></div></div><span class="bar-val">7 <em>(11%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Почти не смотрю</span><div class="bar-track"><div class="bar-fill" style="width:17%"></div></div><span class="bar-val">4 <em>(7%)</em></span></div>
+  </div>
+  <div class="survey-col">
+    <h3>Платформы (мультивыбор)</h3>
+    <div class="bar-row"><span class="bar-label">Ютуб</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">40 <em>(66%)</em></span></div>
+<div class="bar-row"><span class="bar-label">ВК видео</span><div class="bar-track"><div class="bar-fill" style="width:88%"></div></div><span class="bar-val">35 <em>(57%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Рутуб</span><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div><span class="bar-val">8 <em>(13%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Другое</span><div class="bar-track"><div class="bar-fill" style="width:18%"></div></div><span class="bar-val">7 <em>(11%)</em></span></div>
+  </div>
+</div><div style="margin-top:32px"><h3 style="font-family:var(--display);font-size:26px;margin-bottom:18px;text-transform:uppercase">Откуда узнают о шоу</h3><div class="bar-row"><span class="bar-label">Инстаграм*</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">47 <em>(78%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Телеграм</span><div class="bar-track"><div class="bar-fill" style="width:70%"></div></div><span class="bar-val">33 <em>(55%)</em></span></div>
+<div class="bar-row"><span class="bar-label">ВКонтакте</span><div class="bar-track"><div class="bar-fill" style="width:30%"></div></div><span class="bar-val">14 <em>(23%)</em></span></div>
+<div class="bar-row"><span class="bar-label">ТикТок</span><div class="bar-track"><div class="bar-fill" style="width:21%"></div></div><span class="bar-val">10 <em>(17%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Другое</span><div class="bar-track"><div class="bar-fill" style="width:21%"></div></div><span class="bar-val">10 <em>(17%)</em></span></div></div>
+  </div>
+</section>
+
+<section class="slide slide-survey">
+
+  <span class="chrome chrome-tl">LIC</span>
+  <span class="chrome chrome-tr">2026</span>
+  <span class="chrome chrome-bl">BEAUTY SHOW</span>
+  <span class="chrome chrome-br">data 04</span>
+  <div class="glow-tl"></div>
+  <div class="glow-br"></div>
+  <div class="survey-wrap">
+    <h2>04 <span class="slash">/</span> Формат и вайб</h2>
+    <p class="survey-meta">Комфортная длительность · что хочется вечером без инфошума</p>
+    <div class="survey-rule" aria-hidden="true"></div>
+    
+<div class="survey-cols">
+  <div class="survey-col">
+    <h3>Формат (мультивыбор)</h3>
+    <div class="bar-row"><span class="bar-label">Зависит от темы и гостя</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">42 <em>(69%)</em></span></div>
+<div class="bar-row"><span class="bar-label">20-40 минут</span><div class="bar-track"><div class="bar-fill" style="width:81%"></div></div><span class="bar-val">34 <em>(56%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Короткие видео до 1 минуты</span><div class="bar-track"><div class="bar-fill" style="width:43%"></div></div><span class="bar-val">18 <em>(30%)</em></span></div>
+<div class="bar-row"><span class="bar-label">5-15 минут</span><div class="bar-track"><div class="bar-fill" style="width:40%"></div></div><span class="bar-val">17 <em>(28%)</em></span></div>
+<div class="bar-row"><span class="bar-label">1 час и более</span><div class="bar-track"><div class="bar-fill" style="width:12%"></div></div><span class="bar-val">5 <em>(8%)</em></span></div>
+  </div>
+  <div class="survey-col">
+    <h3>Вечерний вайб</h3>
+    <div class="bar-row"><span class="bar-label">Смешное</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">45 <em>(74%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Как разговор с друзьями</span><div class="bar-track"><div class="bar-fill" style="width:78%"></div></div><span class="bar-val">35 <em>(57%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Уютное</span><div class="bar-track"><div class="bar-fill" style="width:71%"></div></div><span class="bar-val">32 <em>(52%)</em></span></div>
+<div class="bar-row"><span class="bar-label">С вайбом «старого ютуб»</span><div class="bar-track"><div class="bar-fill" style="width:47%"></div></div><span class="bar-val">21 <em>(34%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Эстетичное</span><div class="bar-track"><div class="bar-fill" style="width:24%"></div></div><span class="bar-val">11 <em>(18%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Другое</span><div class="bar-track"><div class="bar-fill" style="width:4%"></div></div><span class="bar-val">2 <em>(3%)</em></span></div>
+  </div>
+</div>
+  </div>
+</section>
+
+<section class="slide slide-survey">
+
+  <span class="chrome chrome-tl">LIC</span>
+  <span class="chrome chrome-tr">2026</span>
+  <span class="chrome chrome-bl">BEAUTY SHOW</span>
+  <span class="chrome chrome-br">data 05</span>
+  <div class="glow-tl"></div>
+  <div class="glow-br"></div>
+  <div class="survey-wrap">
+    <h2>05 <span class="slash">/</span> Триггеры просмотра</h2>
+    <p class="survey-meta">Что заставляет включить выпуск · что удерживает до конца</p>
+    <div class="survey-rule" aria-hidden="true"></div>
+    
+<div class="survey-cols">
+  <div class="survey-col">
+    <h3>Включить выпуск</h3>
+    <div class="bar-row"><span class="bar-label">Интересный гость</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">55 <em>(90%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Тема выпуска</span><div class="bar-track"><div class="bar-fill" style="width:87%"></div></div><span class="bar-val">48 <em>(79%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Юмор</span><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><span class="bar-val">33 <em>(54%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Полезность</span><div class="bar-track"><div class="bar-fill" style="width:51%"></div></div><span class="bar-val">28 <em>(46%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Ведущий шоу</span><div class="bar-track"><div class="bar-fill" style="width:47%"></div></div><span class="bar-val">26 <em>(43%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Общий вайб</span><div class="bar-track"><div class="bar-fill" style="width:36%"></div></div><span class="bar-val">20 <em>(33%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Сплетни и личные истории</span><div class="bar-track"><div class="bar-fill" style="width:29%"></div></div><span class="bar-val">16 <em>(26%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Визуал и монтаж</span><div class="bar-track"><div class="bar-fill" style="width:29%"></div></div><span class="bar-val">16 <em>(26%)</em></span></div>
+  </div>
+  <div class="survey-col">
+    <h3>Досмотреть до конца</h3>
+    <div class="bar-row"><span class="bar-label">Интересные истории</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">50 <em>(82%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Смешные моменты</span><div class="bar-track"><div class="bar-fill" style="width:78%"></div></div><span class="bar-val">39 <em>(64%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Искренность гостей и ведущего</span><div class="bar-track"><div class="bar-fill" style="width:76%"></div></div><span class="bar-val">38 <em>(62%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Небанальные темы</span><div class="bar-track"><div class="bar-fill" style="width:64%"></div></div><span class="bar-val">32 <em>(52%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Комфортная дружелюбная атмосфера</span><div class="bar-track"><div class="bar-fill" style="width:34%"></div></div><span class="bar-val">17 <em>(28%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Красивый визуал</span><div class="bar-track"><div class="bar-fill" style="width:26%"></div></div><span class="bar-val">13 <em>(21%)</em></span></div>
+  </div>
+</div>
+  </div>
+</section>
+
+<section class="slide slide-survey">
+
+  <span class="chrome chrome-tl">LIC</span>
+  <span class="chrome chrome-tr">2026</span>
+  <span class="chrome chrome-bl">BEAUTY SHOW</span>
+  <span class="chrome chrome-br">data 06</span>
+  <div class="glow-tl"></div>
+  <div class="glow-br"></div>
+  <div class="survey-wrap">
+    <h2>06 <span class="slash">/</span> Контент: интерес vs усталость</h2>
+    <p class="survey-meta">Что хотят видеть · что уже утомило в инфополе</p>
+    <div class="survey-rule" aria-hidden="true"></div>
+    
+<div class="survey-cols">
+  <div class="survey-col">
+    <h3>Интересный контент</h3>
+    <div class="bar-row"><span class="bar-label">Юмористические шоу</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">37 <em>(61%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Разговоры о жизни</span><div class="bar-track"><div class="bar-fill" style="width:78%"></div></div><span class="bar-val">29 <em>(48%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Обзоры косметики</span><div class="bar-track"><div class="bar-fill" style="width:76%"></div></div><span class="bar-val">28 <em>(46%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Разбор трендов</span><div class="bar-track"><div class="bar-fill" style="width:68%"></div></div><span class="bar-val">25 <em>(41%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Психология</span><div class="bar-track"><div class="bar-fill" style="width:68%"></div></div><span class="bar-val">25 <em>(41%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Макияж и туториалы</span><div class="bar-track"><div class="bar-fill" style="width:54%"></div></div><span class="bar-val">20 <em>(33%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Честные отзывы</span><div class="bar-track"><div class="bar-fill" style="width:46%"></div></div><span class="bar-val">17 <em>(28%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Влоги / бэкстейджи</span><div class="bar-track"><div class="bar-fill" style="width:43%"></div></div><span class="bar-val">16 <em>(26%)</em></span></div>
+  </div>
+  <div class="survey-col">
+    <h3>Утомило</h3>
+    <div class="bar-row"><span class="bar-label">Слишком много рекламы</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">42 <em>(69%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Все говорят одно и то же</span><div class="bar-track"><div class="bar-fill" style="width:74%"></div></div><span class="bar-val">31 <em>(51%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Скучные разговоры</span><div class="bar-track"><div class="bar-fill" style="width:71%"></div></div><span class="bar-val">30 <em>(49%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Неискренность</span><div class="bar-track"><div class="bar-fill" style="width:67%"></div></div><span class="bar-val">28 <em>(46%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Слишком идеальная картинка</span><div class="bar-track"><div class="bar-fill" style="width:62%"></div></div><span class="bar-val">26 <em>(43%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Все нравится, ничего не раздражает</span><div class="bar-track"><div class="bar-fill" style="width:5%"></div></div><span class="bar-val">2 <em>(3%)</em></span></div>
+  </div>
+</div>
+  </div>
+</section>
+
+<section class="slide slide-survey">
+
+  <span class="chrome chrome-tl">LIC</span>
+  <span class="chrome chrome-tr">2026</span>
+  <span class="chrome chrome-bl">BEAUTY SHOW</span>
+  <span class="chrome chrome-br">data 07</span>
+  <div class="glow-tl"></div>
+  <div class="glow-br"></div>
+  <div class="survey-wrap">
+    <h2>07 <span class="slash">/</span> Гости и ностальгия</h2>
+    <p class="survey-meta">Кого зовут · по кому скучают · запрос на «живых» людей, не только звёзд</p>
+    <div class="survey-rule" aria-hidden="true"></div>
+    
+<div class="survey-cols">
+  <div class="survey-col">
+    <h3>Топ упоминаний в гостях</h3>
+    <div class="bar-row"><span class="bar-label">Олеся Иванченко</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">5 <em>(8%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Гоша Карцев</span><div class="bar-track"><div class="bar-fill" style="width:80%"></div></div><span class="bar-val">4 <em>(7%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Оля Парфенюк</span><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><span class="bar-val">3 <em>(5%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Алексей Жидковский</span><div class="bar-track"><div class="bar-fill" style="width:60%"></div></div><span class="bar-val">3 <em>(5%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Катя Клэп</span><div class="bar-track"><div class="bar-fill" style="width:40%"></div></div><span class="bar-val">2 <em>(3%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Александр Рогов</span><div class="bar-track"><div class="bar-fill" style="width:40%"></div></div><span class="bar-val">2 <em>(3%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Катя Голден</span><div class="bar-track"><div class="bar-fill" style="width:40%"></div></div><span class="bar-val">2 <em>(3%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Гоар Аветисян</span><div class="bar-track"><div class="bar-fill" style="width:40%"></div></div><span class="bar-val">2 <em>(3%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Екатерина Кривых</span><div class="bar-track"><div class="bar-fill" style="width:40%"></div></div><span class="bar-val">2 <em>(3%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Ксения Собчак</span><div class="bar-track"><div class="bar-fill" style="width:20%"></div></div><span class="bar-val">1 <em>(2%)</em></span></div>
+  </div>
+  <div class="survey-col">
+    <h3>Скучают по атмосфере</h3>
+    <div class="bar-row"><span class="bar-label">Катя Клэп / «Весёлые пятницы»</span><div class="bar-track"><div class="bar-fill" style="width:100%"></div></div><span class="bar-val">6 <em>(10%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Иван Ургант</span><div class="bar-track"><div class="bar-fill" style="width:83%"></div></div><span class="bar-val">5 <em>(8%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Старый YouTube / MTV</span><div class="bar-track"><div class="bar-fill" style="width:50%"></div></div><span class="bar-val">3 <em>(5%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Соня Есьман</span><div class="bar-track"><div class="bar-fill" style="width:33%"></div></div><span class="bar-val">2 <em>(3%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Юра Дудь</span><div class="bar-track"><div class="bar-fill" style="width:33%"></div></div><span class="bar-val">2 <em>(3%)</em></span></div>
+<div class="bar-row"><span class="bar-label">Гоар Аветисян</span><div class="bar-track"><div class="bar-fill" style="width:17%"></div></div><span class="bar-val">1 <em>(2%)</em></span></div>
+  </div>
+</div>
+<p style="font-family:var(--mono);font-size:17px;margin-top:24px;color:rgba(24,24,25,0.72);line-height:1.45">
+  Повторяющийся паттерн: эксперты (визажисты, бьюти-инфлюенсеры) + медийные гости «в новом амплуа»,
+  обычные люди с сильной историей, сотрудники бренда за кадром производства.
+</p>
+  </div>
+</section>
+
+<section class="slide slide-survey">
+
+  <span class="chrome chrome-tl">LIC</span>
+  <span class="chrome chrome-tr">2026</span>
+  <span class="chrome chrome-bl">BEAUTY SHOW</span>
+  <span class="chrome chrome-br">data 08</span>
+  <div class="glow-tl"></div>
+  <div class="glow-br"></div>
+  <div class="survey-wrap">
+    <h2>08 <span class="slash">/</span> Идеальное шоу</h2>
+    <p class="survey-meta">Три слова от аудитории · чего не хватает в инфополе</p>
+    <div class="survey-rule" aria-hidden="true"></div>
+    
+<h3 style="font-family:var(--display);font-size:26px;margin-bottom:14px;text-transform:uppercase">Частые слова</h3>
+<div class="tag-cloud"><span class="tag"><strong>8</strong> · юмор</span><span class="tag"><strong>7</strong> · красиво</span><span class="tag"><strong>4</strong> · легкость</span><span class="tag"><strong>4</strong> · красота</span><span class="tag"><strong>4</strong> · стиль</span><span class="tag"><strong>4</strong> · полезно</span><span class="tag"><strong>3</strong> · интересно</span><span class="tag"><strong>3</strong> · вдохновляющее</span><span class="tag"><strong>3</strong> · стильно</span><span class="tag"><strong>2</strong> · честное</span><span class="tag"><strong>2</strong> · интересное</span><span class="tag"><strong>2</strong> · веселое</span><span class="tag"><strong>2</strong> · легко</span><span class="tag"><strong>2</strong> · не скучно</span></div>
+<div class="survey-rule" style="margin-top:28px"></div>
+<h3 style="font-family:var(--display);font-size:26px;margin-bottom:14px;text-transform:uppercase">Голоса аудитории</h3>
+<div class="quote-list"><p>«Больше искреннего и доброго контента»</p><p>«Простых и интересных историй, честности»</p><p>«Лайтовый юмор с интересными историями из жизни»</p><p>«да в целом все окей»</p><p>«Таких шоу, как Вечерний Ургант»</p><p>«Хочется меньше контента, но больше годноты) 
+
+Как будто слишком огромный выбор и от этого сложно найти что-то стоящее»</p></div>
+  </div>
+</section>
+
+<section class="slide slide-survey">
+
+  <span class="chrome chrome-tl">LIC</span>
+  <span class="chrome chrome-tr">2026</span>
+  <span class="chrome chrome-bl">BEAUTY SHOW</span>
+  <span class="chrome chrome-br">data 09</span>
+  <div class="glow-tl"></div>
+  <div class="glow-br"></div>
+  <div class="survey-wrap">
+    <h2>09 <span class="slash">/</span> Выводы для формата</h2>
+    <p class="survey-meta">Сводка инсайтов для концепции LIC Beauty Show</p>
+    <div class="survey-rule" aria-hidden="true"></div>
+    
+<ul class="insights-list">
+  <li><strong>Формат:</strong> 20–40 мин, «зависит от гостя и темы» — главный ответ; вечером хотят смешное + разговор «как с подругами» + уют.</li>
+  <li><strong>Триггер клика:</strong> интересный гость (90%) и тема (79%); удержание — истории (82%), юмор (64%), искренность (62%).</li>
+  <li><strong>Контент:</strong> юмор + жизненные разговоры + бьюти-обзоры; боль — реклама (69%), однообразие (51%), неискренность (46%).</li>
+  <li><strong>Тон:</strong> не «идеальная картинка», а честность, лёгкость, полезность без пафоса; ностальгия по старому YouTube / MTV / «Весёлым пятницам».</li>
+  <li><strong>Гости:</strong> микс медийных имён (Клэп, Иванченко, Карцев, Рогов) + эксперты и «обычные» герои с историей.</li>
+  <li><strong>Каналы:</strong> Instagram* и Telegram — основные точки дистрибуции; VK Video — второй экран.</li>
+</ul>
+  </div>
+</section>
+</div>
+</body>
+</html>
