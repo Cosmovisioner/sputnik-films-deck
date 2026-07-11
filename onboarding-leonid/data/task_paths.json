@@ -12,13 +12,14 @@
     { "kind": "note", "text": "Не продакшен, не PR, не тащить всё в Sputnik по привычке" }
   ],
   "1.access": [
-    { "kind": "step", "text": "1. На вводной — получи чеклист доступов от Димы" },
+    { "kind": "resource", "id": "view_access" },
+    { "kind": "step", "text": "1. Пройди чеклист доступов — отметь что уже есть" },
     { "kind": "resource", "id": "drive_hiring" },
     { "kind": "resource", "id": "amo_cult" },
     { "kind": "resource", "id": "drive_commerce" },
     { "kind": "resource", "id": "email_leonid" },
     { "kind": "section", "id": "chats", "filter": "required" },
-    { "kind": "note", "text": "Пароли Amo и закрытый документ — только в личке от Димы" }
+    { "kind": "note", "text": "Если чего-то нет — скопируй шаблон сообщения из раздела «Доступы» и отправь Диме" }
   ],
   "1.clifton_order": [
     { "kind": "step", "text": "Напиши Диме — компания оплачивает тест CliftonStrengths (Top 34)" },
@@ -190,6 +191,7 @@
   ],
   "6.skills": [
     { "kind": "resource", "id": "skills_pack" },
+    { "kind": "step", "text": "Установи 3 скилла в Cursor · прогони 1 тестовый лид через скоринг + brief-gate + deck-router" },
     { "kind": "person", "id": "dima" }
   ],
   "6.amo_100": [

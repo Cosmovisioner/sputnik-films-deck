@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "title": "Cursor-скиллы Cult Group",
+    "install_title": "Как установить в Cursor",
+    "install_steps": [
+      "Скачай папку skills_pack с квеста (ссылка ниже) или попроси zip у Димы",
+      "Скопируй каждый скилл в ~/.cursor/skills/ или в skills проекта Second Brain",
+      "В чате Cursor: «скоринг лида», «brief gate», «какую презу показать» — скилл подхватится по описанию",
+      "На 6-й день онбординга — прогони 1 тестовый лид через все три скилла"
+    ],
+    "pack_url": "skills_pack/",
+    "pack_note": "Папка skills_pack деплоится вместе с квестом — можно клонировать из GitHub repo sputnik-films-deck/onboarding-leonid/skills_pack/"
+  },
+  "skills": [
+    {
+      "id": "lead_scoring",
+      "slug": "cult-group-lead-scoring",
+      "title": "Скоринг лида",
+      "triggers": "«скоринг лида», «оцени бриф», «квал. лид», «проходит ли в воронку»",
+      "summary": "CoT-оценка по 5 критериям (0–2 балла). Порог ≥5 = квал. лид. Обязателен перед handoff.",
+      "rules": [
+        "Квалифицированный бриф = все обязательные поля (brief-gate)",
+        "Квалифицированный лид = бриф + скоринг ≥ 5",
+        "Скоринг < 5 → решение за head юнита, но зафиксировать в Amo обязательно"
+      ],
+      "criteria": [
+        "ICP fit — тип задачи → юнит",
+        "Бюджет / чек — выше порога юнита",
+        "ЛПР и доступ",
+        "Сроки — реалистичные",
+        "Адекватность — без red flags"
+      ],
+      "red_flags": "Стоп-лист (казино, букмекеры, алкоголь, политика) · бесплатный креатив в тендере · токс"
+    },
+    {
+      "id": "brief_gate",
+      "slug": "cult-group-brief-gate",
+      "title": "Brief-gate",
+      "triggers": "«оформи бриф», «brief gate», «готов ли бриф», «handoff в продакшен»",
+      "summary": "Без квалифицированного брифа handoff в продакшен запрещён. 8 обязательных полей.",
+      "fields": [
+        "Клиент / бренд",
+        "Контакт / ЛПР",
+        "Тип задачи",
+        "Цель / KPI",
+        "Формат и носители",
+        "Бюджет / вилка",
+        "Сроки",
+        "Конкуренты / контекст"
+      ],
+      "handoff_point": "Договор + предоплата → формальная передача продюсеру. Sales остаётся наблюдателем в клиентском чате.",
+      "doc_url": "https://docs.google.com/document/d/1cSkBD_Zx6Oo2RRaDGtv7n2LxW-QglW_rk6hhw9FaF38/edit"
+    },
+    {
+      "id": "deck_router",
+      "slug": "cult-group-deck-router",
+      "title": "Deck-router",
+      "triggers": "«какую презу показать», «deck для клиента», «маршрутизация лида»",
+      "summary": "Тип лида → юнит → презентация → кого звать на созвон.",
+      "routes": [
+        { "signal": "Реклама, ролик, съёмка", "unit": "Cult", "deck": "Преза Cult + шоурил", "who": "Денис" },
+        { "signal": "CG, motion, 3D, мультимедиа", "unit": "Blaster", "deck": "Преза Blaster", "who": "Лиза" },
+        { "signal": "Док, спецпроект, шоу", "unit": "Sputnik", "deck": "One-pager Sputnik", "who": "Сергей (+ Тая)" },
+        { "signal": "Неясно / холод", "unit": "Группа", "deck": "Cult Group deck", "who": "Sales / Дима" }
+      ],
+      "group_deck": "https://cosmovisioner.github.io/sputnik-films-deck/cult-group/"
+    }
+  ]
+}

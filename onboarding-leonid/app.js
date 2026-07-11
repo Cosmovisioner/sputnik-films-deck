@@ -3,7 +3,8 @@
 
   const STORAGE_KEY = "cult_leonid_daily_v5";
   const WELCOME_KEY = "cult_leonid_welcome_v3";
-  const ASSET_VER = "20260711-v23";
+  const ACCESS_KEY = "cult_leonid_access_v1";
+  const ASSET_VER = "20260711-v24";
 
   const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "homich", "taya"]);
 
@@ -58,12 +59,45 @@
   let decks = null;
   let taskPaths = {};
   let salesSnapshot = null;
+  let accessChecklist = null;
+  let skillsHub = null;
+  let accessState = loadAccessState();
   let state = loadState();
   let currentView = "program";
   let currentDayIdx = 0;
   let selectedUnit = null;
   let peopleFilter = "all";
   let expandedTasks = {};
+
+  function loadAccessState() {
+    try {
+      const raw = localStorage.getItem(ACCESS_KEY);
+      if (raw) return JSON.parse(raw);
+    } catch (_) {}
+    return {};
+  }
+
+  function saveAccessState() {
+    localStorage.setItem(ACCESS_KEY, JSON.stringify(accessState));
+  }
+
+  function userProfile() {
+    const meta = stepsMeta || {};
+    const params = new URLSearchParams(location.search);
+    const name = params.get("user") || meta.user || "Sales";
+    const first = params.get("first") || meta.userFirst || name.split(" ")[0];
+    const email = params.get("email") || meta.email || meta.emailGeneric || "sales@cult.team";
+    return { name, first, email };
+  }
+
+  function applyUserBranding() {
+    const u = userProfile();
+    const titleEl = document.querySelector(".brand-title");
+    if (titleEl) titleEl.textContent = u.first + " · продажи";
+    const welcomeTitle = document.getElementById("welcomeTitle");
+    if (welcomeTitle) welcomeTitle.textContent = "Привет, " + u.first;
+    document.title = "Cult Group — онбординг · " + u.first;
+  }
 
   function loadState() {
     try {
@@ -414,7 +448,7 @@
     const note = document.querySelector(".welcome-note");
     if (lead && steps.length) {
       const span = stepsMeta.calendarSpan || "13–23 июл";
-      lead.innerHTML = `Привет, <strong>Лёня</strong>. Тут всё на первые две недели: куда вести клиента, кто за что отвечает, что открыть в Amo.<br><br><strong>${steps.length} дней</strong> по календарю (${span}). Карту и людей логично закрыть уже в понедельник — после вводной с Димой.`;
+      lead.innerHTML = `Привет, <strong>${userProfile().first}</strong>. Тут всё на первые две недели: куда вести клиента, кто за что отвечает, что открыть в Amo.<br><br><strong>${steps.length} дней</strong> по календарю (${span}). Карту и людей логично закрыть уже в понедельник — после вводной с Димой.`;
     }
     if (list && steps.length) {
       list.innerHTML = `
@@ -520,7 +554,7 @@
       const r = findResource(item.id);
       if (!r) return "";
       if (r.action) {
-        const icon = r.action === "sales" ? "📈" : r.action === "people" ? "👥" : "🗺";
+        const icon = r.action === "sales" ? "📈" : r.action === "people" ? "👥" : r.action === "access" ? "🔐" : r.action === "skills" ? "⚡" : "🗺";
         return `<button type="button" class="path-link" data-view="${r.action}">
           <span class="icon">${icon}</span>
           <span>${r.title}<span class="sub">${r.subtitle}</span></span>
@@ -689,6 +723,8 @@
           <button type="button" class="btn" data-view="people">👥 Люди</button>
           <button type="button" class="btn" data-view="chats">💬 Telegram</button>
           <button type="button" class="btn" data-view="decks">📊 Презентации</button>
+          <button type="button" class="btn" data-view="access">🔐 Доступы</button>
+          <button type="button" class="btn" data-view="skills">⚡ Скиллы</button>
         </div>
       </div>
       ${currentDayIdx === 0 ? renderExcludedCard() : ""}`;
@@ -884,7 +920,7 @@
     return `
       <div class="card">
         <h2 class="card-title">Telegram · рабочие чаты</h2>
-        <p class="card-intro">${chats.meta?.note || ""}</p>
+        <p class="card-intro">${chats.meta?.note || ""} <button type="button" class="btn" data-view="access" style="margin-top:8px">🔐 Чеклист доступов + шаблон для Димы</button></p>
         <h3 class="mono-tag" style="margin-bottom:12px">Обязательные с первого дня</h3>
         ${required.map(chatCardHtml).join("")}
         <h3 class="mono-tag" style="margin:20px 0 12px">По мере работы</h3>
@@ -932,6 +968,148 @@
       </div>`;
   }
 
+  function renderAccess() {
+    if (!accessChecklist) {
+      return `<div class="card"><h2 class="card-title">Доступы</h2><p class="card-intro">Не удалось загрузить чеклист.</p></div>`;
+    }
+    const u = userProfile();
+    const meta = accessChecklist.meta || {};
+    const verify = accessChecklist.hiree_verify || [];
+    const doneCount = verify.filter(x => accessState[x.id]).length;
+    const pct = verify.length ? Math.round((doneCount / verify.length) * 100) : 0;
+
+    const verifyHtml = verify.map(item => {
+      const checked = accessState[item.id] ? "checked" : "";
+      return `<label class="access-row"><input type="checkbox" data-access-id="${item.id}" ${checked} /><span>${esc(item.text)}</span></label>`;
+    }).join("");
+
+    const systemsHtml = (accessChecklist.systems || []).map(s => {
+      const link = s.url
+        ? `<a class="contact-btn" href="${s.url}" target="_blank" rel="noopener">Открыть</a>`
+        : `<button type="button" class="contact-btn" data-view="program">После выдачи</button>`;
+      const resBtn = s.resource
+        ? `<button type="button" class="contact-btn" data-view="program">В программе →</button>`
+        : "";
+      return `<div class="access-sys-card">
+        <div class="access-sys-name">${esc(s.name)}</div>
+        <div class="access-sys-meta">${esc(s.role)} · выдаёт ${esc(s.who)}</div>
+        <div class="chat-actions">${link}${resBtn}</div>
+      </div>`;
+    }).join("");
+
+    const docsHtml = (accessChecklist.docs || []).map(d =>
+      `<a class="path-link" href="${d.url}" target="_blank" rel="noopener"><span class="icon">📄</span><span>${esc(d.name)}</span></a>`
+    ).join("");
+
+    const crmHtml = (accessChecklist.crm_rules || []).map(r =>
+      `<tr><td>${esc(r.rule)}</td><td><strong>${esc(r.where)}</strong></td><td>${esc(r.since)}</td></tr>`
+    ).join("");
+
+    const icrmHtml = (accessChecklist.icrm_timeline || []).map(t =>
+      `<li><strong>${esc(t.when)}</strong> — ${esc(t.what)}</li>`
+    ).join("");
+
+    const tgRequired = (accessChecklist.telegram_required || []).map(t => {
+      const ch = (chats.chats || []).find(c => c.id === t.chatId);
+      if (!ch) return "";
+      return chatCardHtml(ch);
+    }).join("");
+
+    const tpl = (accessChecklist.tg_request_template || "").replace("@cult.team", u.email);
+
+    return `
+      <div class="card">
+        <div class="card-meta">День 1 · ${esc(u.name)}</div>
+        <h2 class="card-title">${esc(meta.title || "Доступы")}</h2>
+        <p class="card-intro">${esc(accessChecklist.hiree_intro || meta.note || "")}</p>
+        <div class="access-progress">
+          <span class="access-progress-num">${pct}%</span>
+          <span class="access-progress-label">доступов проверено (${doneCount}/${verify.length})</span>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="section-heading">Твой чеклист</h3>
+        <div class="access-verify-list">${verifyHtml}</div>
+      </div>
+
+      <div class="card">
+        <h3 class="section-heading">Шаблон для Димы</h3>
+        <p class="card-intro">Скопируй и отправь одним сообщением в Telegram, если чего-то не хватает.</p>
+        <pre class="copy-template" id="accessTemplate">${esc(tpl)}</pre>
+        <button type="button" class="btn primary" id="copyAccessTemplate">Скопировать текст</button>
+        <button type="button" class="btn" data-person="dima" style="margin-left:8px">Написать Диме →</button>
+      </div>
+
+      <div class="card">
+        <h3 class="section-heading">Системы</h3>
+        <div class="access-sys-grid">${systemsHtml}</div>
+      </div>
+
+      <div class="card">
+        <h3 class="section-heading">Google Docs</h3>
+        ${docsHtml}
+      </div>
+
+      <div class="card">
+        <h3 class="section-heading">Telegram · обязательные</h3>
+        ${tgRequired || "<p class='path-note'>Список чатов — в разделе Telegram</p>"}
+      </div>
+
+      <div class="card">
+        <h3 class="section-heading">Правило CRM (до миграции на Prodavan)</h3>
+        <div class="sales-table-wrap">
+          <table class="sales-table"><thead><tr><th>Тип</th><th>Куда</th><th>Когда</th></tr></thead><tbody>${crmHtml}</tbody></table>
+        </div>
+        <ul class="sales-tldr-list" style="margin-top:14px">${icrmHtml}</ul>
+      </div>`;
+  }
+
+  function renderSkills() {
+    if (!skillsHub) {
+      return `<div class="card"><h2 class="card-title">Скиллы</h2><p class="card-intro">Не удалось загрузить.</p></div>`;
+    }
+    const meta = skillsHub.meta || {};
+    const install = (meta.install_steps || []).map(s => `<li>${esc(s)}</li>`).join("");
+    const packBase = location.pathname.replace(/\/[^/]*$/, "/") + (meta.pack_url || "skills_pack/");
+
+    const cards = (skillsHub.skills || []).map(sk => {
+      let body = `<p class="card-intro">${esc(sk.summary)}</p>`;
+      body += `<p class="path-note"><strong>Триггеры:</strong> ${esc(sk.triggers)}</p>`;
+      if (sk.rules) body += listSection("Правила", sk.rules);
+      if (sk.criteria) body += listSection("Критерии", sk.criteria);
+      if (sk.fields) body += listSection("8 полей brief-gate", sk.fields);
+      if (sk.routes) {
+        const rows = sk.routes.map(r =>
+          `<tr><td>${esc(r.signal)}</td><td>${esc(r.unit)}</td><td>${esc(r.deck)}</td><td>${esc(r.who)}</td></tr>`
+        ).join("");
+        body += `<div class="sales-table-wrap"><table class="sales-table"><thead><tr><th>Сигнал</th><th>Юнит</th><th>Преза</th><th>Кто</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+      }
+      if (sk.red_flags) body += `<p class="path-note" style="margin-top:10px"><strong>Red flags:</strong> ${esc(sk.red_flags)}</p>`;
+      if (sk.handoff_point) body += `<p class="path-note" style="margin-top:10px">${esc(sk.handoff_point)}</p>`;
+      if (sk.group_deck) body += `<a class="contact-btn primary" href="${sk.group_deck}" target="_blank" rel="noopener">Cult Group deck</a>`;
+      return `<div class="card skill-card">
+        <span class="mono-tag">${esc(sk.slug)}</span>
+        <h3 class="section-heading">${esc(sk.title)}</h3>
+        ${body}
+        <a class="contact-btn" href="${packBase}${sk.slug}/SKILL.md" target="_blank" rel="noopener">Полный SKILL.md →</a>
+      </div>`;
+    }).join("");
+
+    return `
+      <div class="card">
+        <h2 class="card-title">${esc(meta.title || "Скиллы Cursor")}</h2>
+        <p class="card-intro">${esc(meta.pack_note || "")}</p>
+        <h3 class="section-heading">${esc(meta.install_title || "Установка")}</h3>
+        <ul class="hint-list">${install}</ul>
+        <div style="margin-top:12px">
+          <a class="contact-btn primary" href="${packBase}" target="_blank" rel="noopener">📁 Папка skills_pack</a>
+          <button type="button" class="contact-btn" data-view="decks">📊 Deck-router в презентациях</button>
+        </div>
+      </div>
+      ${cards}`;
+  }
+
   function renderMain() {
     const main = document.getElementById("mainContent");
     if (currentView === "program") main.innerHTML = renderProgram();
@@ -940,6 +1118,8 @@
     else if (currentView === "chats") main.innerHTML = renderChats();
     else if (currentView === "decks") main.innerHTML = renderDecks();
     else if (currentView === "sales") main.innerHTML = renderSales();
+    else if (currentView === "access") main.innerHTML = renderAccess();
+    else if (currentView === "skills") main.innerHTML = renderSkills();
 
     bindMainEvents(main);
     document.getElementById("xpNum").textContent = totalProgress() + "%";
@@ -995,6 +1175,32 @@
     });
 
     bindPathActions(main);
+
+    main.querySelectorAll("[data-access-id]").forEach(cb => {
+      cb.addEventListener("change", () => {
+        accessState[cb.dataset.accessId] = cb.checked;
+        saveAccessState();
+        document.getElementById("xpNum").textContent = totalProgress() + "%";
+        const prog = main.querySelector(".access-progress-num");
+        if (prog && accessChecklist) {
+          const verify = accessChecklist.hiree_verify || [];
+          const doneCount = verify.filter(x => accessState[x.id]).length;
+          prog.textContent = (verify.length ? Math.round((doneCount / verify.length) * 100) : 0) + "%";
+        }
+      });
+    });
+
+    main.querySelector("#copyAccessTemplate")?.addEventListener("click", async () => {
+      const el = document.getElementById("accessTemplate");
+      if (!el) return;
+      try {
+        await navigator.clipboard.writeText(el.textContent);
+        const btn = main.querySelector("#copyAccessTemplate");
+        if (btn) { btn.textContent = "Скопировано ✓"; setTimeout(() => { btn.textContent = "Скопировать текст"; }, 2000); }
+      } catch (_) {
+        alert("Не удалось скопировать — выдели текст вручную");
+      }
+    });
   }
 
   function renderDayNav() {
@@ -1033,7 +1239,7 @@
 
   async function init() {
     try {
-      const [stepsData, teamRes, resRes, chatsRes, decksRes, pathsRes, contactsRes, salesRes] = await Promise.all([
+      const [stepsData, teamRes, resRes, chatsRes, decksRes, pathsRes, contactsRes, salesRes, accessRes, skillsRes] = await Promise.all([
         fetch("data/steps.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
         fetch("data/team.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
         fetch("data/resources.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
@@ -1041,7 +1247,9 @@
         fetch("data/decks.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
         fetch("data/task_paths.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
         fetch("data/contacts.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
-        fetch("data/sales_snapshot.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); })
+        fetch("data/sales_snapshot.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
+        fetch("data/access_checklist.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
+        fetch("data/skills_hub.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); })
       ]);
       steps = stepsData.steps;
       stepsMeta = stepsData.meta || {};
@@ -1052,6 +1260,8 @@
       taskPaths = pathsRes;
       contactsData = contactsRes;
       salesSnapshot = salesRes;
+      accessChecklist = accessRes;
+      skillsHub = skillsRes;
     } catch (_) {
       document.getElementById("loadError").hidden = false;
       return;
@@ -1064,7 +1274,9 @@
     else if (params.has("chats")) currentView = "chats";
     else if (params.has("decks")) currentView = "decks";
     else if (params.has("sales")) currentView = "sales";
-    else if (viewParam && ["program","map","people","chats","decks","sales"].includes(viewParam)) currentView = viewParam;
+    else if (params.has("access")) currentView = "access";
+    else if (params.has("skills")) currentView = "skills";
+    else if (viewParam && ["program","map","people","chats","decks","sales","access","skills"].includes(viewParam)) currentView = viewParam;
 
     const dayParam = params.get("day");
     if (dayParam) {
@@ -1099,6 +1311,7 @@
     });
 
     closeModal();
+    applyUserBranding();
     setView(currentView);
     maybeShowWelcome();
     document.getElementById("footerNote").textContent =

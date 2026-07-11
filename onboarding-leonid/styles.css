@@ -1018,6 +1018,65 @@ body.modal-open { overflow: hidden; }
   border: 1px solid var(--border);
   border-radius: var(--radius-sm);
 }
+
+.access-progress {
+  display: flex;
+  align-items: baseline;
+  gap: 10px;
+  margin-top: 8px;
+}
+.access-progress-num {
+  font-family: Unbounded, sans-serif;
+  font-size: 28px;
+  font-weight: 800;
+  color: var(--lavender);
+}
+.access-progress-label { font-size: 13px; color: var(--muted); }
+
+.access-verify-list { display: flex; flex-direction: column; gap: 8px; }
+.access-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  padding: 10px 12px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--ivory);
+  font-size: 14px;
+  cursor: pointer;
+}
+.access-row input { margin-top: 3px; accent-color: var(--graphite); flex-shrink: 0; }
+
+.copy-template {
+  white-space: pre-wrap;
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  line-height: 1.5;
+  background: var(--ivory);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 14px;
+  margin: 0 0 12px;
+  color: var(--muted);
+  max-height: 280px;
+  overflow: auto;
+}
+
+.access-sys-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+}
+.access-sys-card {
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 12px;
+  background: var(--ivory);
+}
+.access-sys-name { font-weight: 600; font-size: 14px; margin-bottom: 4px; }
+.access-sys-meta { font-size: 12px; color: var(--muted); margin-bottom: 10px; }
+
+.skill-card { margin-bottom: 12px; }
 .sales-mandate { font-weight: 600; }
 
 .sales-table-wrap {
