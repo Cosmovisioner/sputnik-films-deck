@@ -87,7 +87,7 @@
     },
     {
       "id": "drive_techtigers_products",
-      "title": "TechTigers · эксплейнеры продуктов",
+      "title": "ТехноТигры · эксплейнеры продуктов",
       "subtitle": "Папка Drive · phygital, июнь 2026",
       "url": "https://drive.google.com/drive/folders/1czdFxTKXOmHdpSW15ddDDOWGjIkWs-z2?usp=sharing",
       "owner": "kostya",
@@ -104,8 +104,8 @@
     },
     {
       "id": "icrm",
-      "title": "Prodavan · CRM группы",
-      "subtitle": "То же, что iCRM. Демо с Хомичем ~23–24.07",
+      "title": "Prodo.one · CRM группы",
+      "subtitle": "Эксплейнер Prodoone · то же, что Prodavan / iCRM. Демо с Хомичем ~23–24.07",
       "url": null,
       "owner": "homich",
       "unit": "techtigers",
@@ -216,7 +216,7 @@
     {
       "id": "view_org_map",
       "title": "Карта группы",
-      "subtitle": "УК → Cult · Blaster · Sputnik · TechTigers",
+      "subtitle": "УК → Cult · Blaster · Sputnik · ТехноТигры",
       "action": "map",
       "unit": "uk"
     },

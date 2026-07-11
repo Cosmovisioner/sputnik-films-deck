@@ -2,7 +2,7 @@
   "org": {
     "title": "Cult Group",
     "flow": "Клиент → ты или Дима → бриф и оценка → нужный юнит (Cult / Blaster / Sputnik) → договор и предоплата → продюсер",
-    "producers_note": "Продакшн — Cult Group (три студии). TechTigers — IT-студия: CRM и другие продукты. Cult Group их обкатывает первым клиентом.",
+    "producers_note": "Продакшн — Cult Group (три студии). ТехноТигры — IT-студия группы: CRM и другие продукты. Cult Group обкатывает их первым клиентом.",
     "pillars": [
       {
         "id": "cult_group",
@@ -43,7 +43,7 @@
       },
       {
         "id": "techtigers",
-        "name": "TechTigers",
+        "name": "ТехноТигры",
         "tagline": "IT-студия группы",
         "color": "#06B6D4",
         "desc": "Стартап-студия группы. Разработки — здесь; Cult Group тестирует на себе.",
@@ -51,23 +51,18 @@
         "startups": [
           {
             "id": "prodavan",
-            "name": "Prodavan (Prodo.one)",
+            "name": "Prodo.one",
             "short": "CRM",
             "color": "#6366F1",
-            "desc": "CRM группы = iCRM (одно и то же). Хомич, тест на продажах с июля."
-          },
-          {
-            "id": "robots_sons",
-            "name": "Робот и сыновья",
-            "short": "R&S",
-            "color": "#EC4899",
-            "desc": "ИИ и обучение, курс «Оно само». Публичный бренд TechTigers."
+            "explainer": "Prodoone_0806",
+            "desc": "B2B CRM с ИИ для видеопродакшена. Prodavan / iCRM — внутренние названия того же продукта."
           },
           {
             "id": "snubdoc",
             "name": "СнупДок",
             "short": "СнупДок",
             "color": "#14B8A6",
+            "explainer": "SnoopDoc_0806",
             "desc": "Документы и процессы для креативных команд и фрилансеров."
           },
           {
@@ -75,17 +70,35 @@
             "name": "Чечек",
             "short": "Чечек",
             "color": "#F59E0B",
+            "explainer": "4e4ik_0806",
             "desc": "Автосбор чеков от самозанятых."
           },
           {
-            "id": "rollr",
-            "name": "Rollr",
-            "short": "Rollr",
+            "id": "octopus",
+            "name": "Octopus",
+            "short": "Octopus",
             "color": "#0EA5E9",
-            "desc": "Совместная работа над кино-контентом на одном холсте (ИИ)."
+            "explainer": "Octopus_0806",
+            "desc": "Платформа для совместной работы над контентом — смотри эксплейнер Octopus в Drive."
+          },
+          {
+            "id": "mission_control",
+            "name": "Mission Control",
+            "short": "MC",
+            "color": "#8B5CF6",
+            "explainer": "MissionControl_0806",
+            "desc": "Операционный контроль производства — смотри эксплейнер Mission Control в Drive."
+          },
+          {
+            "id": "robots_sons",
+            "name": "Робот и сыновья",
+            "short": "R&S",
+            "color": "#EC4899",
+            "explainer": null,
+            "desc": "Обучение: внедрение ИИ в креативные индустрии, курс «Оно самo». Публичный education-бренд ТехноТигров."
           }
         ],
-        "note": "Полные эксплейнеры — в папке Drive (ссылка в карточке TechTigers). Клиентам продакшена эти продукты на старте не продаём — только если явный запрос через Диму."
+        "note": "Названия продуктов — как в эксплейнерах на Drive (июнь 2026). «Робот и сыновья» — обучение, ролика в той папке нет. Клиентам продакшена эти продукты на старте не продаём — только явный запрос через Диму."
       }
     ],
     "partner_slz": {
@@ -107,7 +120,7 @@
       "initials": "КМ",
       "photo": "assets/avatars/umelnikov_work.jpg",
       "bio_short": "Основатель Cult. Сооснователь Blaster. CEO всей группы.",
-      "lore": "Единственный фаундер Cult; Blaster — сооснователь. Собрал Cult, Blaster, Sputnik и TechTigers. К нему — спор юнитов, крупная сделка, решение «берём или нет».",
+      "lore": "Единственный фаундер Cult; Blaster — сооснователь. Собрал Cult, Blaster, Sputnik и ТехноТигров. К нему — спор юнитов, крупная сделка, решение «берём или нет».",
       "tasks": [
         "Стратегия группы и границы юнитов",
         "Финальное слово в спорных сделках",
@@ -322,13 +335,13 @@
       "id": "egor",
       "category": "staff",
       "name": "Егор Мараев",
-      "role": "Сооснователь Blaster и TechTigers",
+      "role": "Сооснователь Blaster и ТехноТигров",
       "unit": "Blaster",
       "unitId": "blaster",
       "initials": "ЕМ",
       "photo": "assets/avatars/egormaraev.jpg",
       "bio_short": "Из операционки Blaster вышел. Помогает с упаковкой и ИИ-продуктами.",
-      "lore": "Совет по позиционированию Blaster и TechTigers. Не про текущие карточки в Amo — только если нужна упаковка или история юнита.",
+      "lore": "Совет по позиционированию Blaster и ТехноТигров. Не про текущие карточки в Amo — только если нужна упаковка или история юнита.",
       "tasks": [
         "История и позиционирование Blaster",
         "Сложная упаковка оффера"
@@ -362,15 +375,15 @@
       "id": "homich",
       "category": "staff",
       "name": "Саша Хомич",
-      "role": "TechTigers · CRM группы (Prodavan)",
-      "unit": "TechTigers",
+      "role": "ТехноТигры · CRM группы (Prodo.one)",
+      "unit": "ТехноТигры",
       "unitId": "techtigers",
       "initials": "СХ",
       "photo": "assets/avatars/akhomich.jpg",
-      "bio_short": "Делает CRM группы. Prodavan и iCRM — одно и то же, разные названия.",
+      "bio_short": "Делает CRM группы (Prodo.one). Prodavan и iCRM — внутренние названия того же.",
       "lore": "Пишет внутреннюю CRM, дашборды, автоматизацию для коммерции. Демо для sales — около 23–24 июля. Сроки фич клиентам не обещай — только через Диму.",
       "tasks": [
-        "CRM группы (Prodavan / iCRM)",
+        "CRM группы (Prodo.one / Prodavan / iCRM)",
         "Форма приёма брифа",
         "Баги и доработки sales-контура",
         "Демо CRM ~23–24.07"
@@ -756,7 +769,7 @@
       "category": "holding",
       "name": "Женя",
       "role": "Робот и сыновья · AI-first команда",
-      "unit": "TechTigers",
+      "unit": "ТехноТигры",
       "unitId": "techtigers",
       "initials": "Ж",
       "photo": null,
@@ -777,7 +790,7 @@
       "category": "holding",
       "name": "Наташа",
       "role": "Робот и сыновья · AI-first команда",
-      "unit": "TechTigers",
+      "unit": "ТехноТигры",
       "unitId": "techtigers",
       "initials": "Н",
       "photo": null,
@@ -797,8 +810,8 @@
       "id": "tech_ops",
       "category": "holding",
       "name": "Tech ops",
-      "role": "TechTigers · автоматизация и боты",
-      "unit": "TechTigers",
+      "role": "ТехноТигры · автоматизация и боты",
+      "unit": "ТехноТигры",
       "unitId": "techtigers",
       "initials": "TO",
       "photo": null,

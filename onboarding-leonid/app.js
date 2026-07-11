@@ -3,7 +3,7 @@
 
   const STORAGE_KEY = "cult_leonid_daily_v5";
   const WELCOME_KEY = "cult_leonid_welcome_v3";
-  const ASSET_VER = "20260711-v20";
+  const ASSET_VER = "20260711-v21";
 
   function esc(s) {
     if (s == null || s === "") return "";
@@ -27,6 +27,7 @@
     "Blaster": "blaster",
     "Sputnik": "sputnik",
     "TechTigers": "techtigers",
+    "ТехноТигры": "techtigers",
     "Партнёр": "partner_slz",
     "Партнёр · Blaster": "partner_slz",
     "УК + Sputnik": "uk"
@@ -709,10 +710,10 @@
           const ttPeople = u.id === "prodavan" ? peopleForUnit("techtigers") : [];
           detail = `
             <div class="unit-detail card startup-detail">
-              <span class="mono-tag">TechTigers</span>
+              <span class="mono-tag">ТехноТигры</span>
               <h3 class="section-heading">${u.name}</h3>
               <p style="font-size:13px;color:var(--muted)">${u.desc}</p>
-              ${u.id === "prodavan" ? `<p class="path-note" style="margin-top:10px">Prodavan и iCRM — одно и то же. Клиентам наружу не продаём.</p>` : ""}
+              ${u.id === "prodavan" ? `<p class="path-note" style="margin-top:10px">Prodo.one = Prodavan = iCRM. Клиентам наружу на старте не продаём.</p>` : ""}
               ${ttPeople.length ? `<h4 class="mono-tag" style="margin:16px 0 8px">Контакт по продукту</h4>
                 <div class="people-grid">${ttPeople.map(p => personCardHtml(p)).join("")}</div>` : ""}
             </div>`;
@@ -749,7 +750,7 @@
     const filterUnits = [
       { id: "all", name: "Все" },
       ...cultUnits().map(u => ({ id: u.id, name: u.short || u.name })),
-      { id: "techtigers", name: "TechTigers" },
+      { id: "techtigers", name: "ТехноТигры" },
       { id: "holding", name: "Холдинг" },
       { id: "partner_slz", name: "Партнёры" }
     ];

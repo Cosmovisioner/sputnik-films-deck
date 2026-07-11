@@ -36,7 +36,7 @@
   "1.org_map": [
     { "kind": "resource", "id": "view_org_map" },
     { "kind": "resource", "id": "drive_techtigers_products" },
-    { "kind": "step", "text": "Нажми на каждый юнит и продукт TechTigers — посмотри людей и презентации" },
+    { "kind": "step", "text": "Нажми на каждый юнит и продукт ТехноТигров — посмотри людей и презентации" },
     { "kind": "note", "text": "Open Production упразднён — в структуре его нет" }
   ],
   "1.sales_snapshot": [
