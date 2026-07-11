@@ -1,13 +1,14 @@
 {
   "meta": {
     "source": "Экспорты TG июнь 2026 · calendar_contacts.json · матрица доступов",
-    "note": "Юзернеймы проверены по перепискам. Если не пишешь в личку — попроси добавить в рабочий чат."
+    "note": "Юзернеймы проверены по перепискам. Аватарки — публичные фото Telegram (@username)."
   },
   "people": {
     "kostya": {
       "email": "k@cult.team",
       "telegram": "https://t.me/umelnikov_work",
       "telegramLabel": "@umelnikov_work",
+      "avatar": "assets/avatars/umelnikov_work.jpg",
       "howToWrite": "Стратегия и споры юнитов — через чат «Супертопы» или личка после первой недели"
     },
     "dima": {
@@ -15,12 +16,14 @@
       "emailWork": "cosmovisioner@gmail.com",
       "telegram": "https://t.me/cosmovisioner",
       "telegramLabel": "@cosmovisioner",
+      "avatar": "assets/avatars/cosmovisioner.jpg",
       "howToWrite": "Ежедневные вопросы по продажам, CRM, маршрутизация"
     },
     "denis": {
       "email": "denis@cult.team",
       "telegram": "https://t.me/denis_levakov",
       "telegramLabel": "@denis_levakov",
+      "avatar": "assets/avatars/denis_levakov.jpg",
       "howToWrite": "Cult: смета, маржа, бриф под съёмку, Amo Cult"
     },
     "liza": {
@@ -28,38 +31,45 @@
       "emailAlt": "liza@cult.team",
       "telegram": "https://t.me/elivanova",
       "telegramLabel": "@elivanova",
+      "avatar": "assets/avatars/elivanova.jpg",
       "howToWrite": "Blaster: графика, мультимедиа, прайс, презентации"
     },
     "sergey": {
       "email": "hello@kleinsergey.com",
       "telegram": "https://t.me/klein_sergey",
       "telegramLabel": "@klein_sergey",
+      "avatar": "assets/avatars/klein_sergey.jpg",
       "howToWrite": "Sputnik: «берём ли проект», док и спецформаты"
     },
     "homich": {
       "telegram": "https://t.me/akhomich",
       "telegramLabel": "@akhomich",
+      "avatar": "assets/avatars/akhomich.jpg",
       "howToWrite": "iCRM, баги, демо — после согласования с коммерцией"
     },
     "egor": {
       "telegram": "https://t.me/egormaraev",
       "telegramLabel": "@egormaraev",
+      "avatar": "assets/avatars/egormaraev.jpg",
       "howToWrite": "История Blaster и упаковка — не операционка CRM"
     },
     "sasha_a": {
       "email": "sasha@cult.team",
       "telegram": "https://t.me/Skanderbeg",
       "telegramLabel": "@Skanderbeg",
+      "avatar": "assets/avatars/Skanderbeg.jpg",
       "howToWrite": "Legacy-база, как раньше вели Cult/Blaster"
     },
     "taya": {
       "telegram": "https://t.me/tayaprod",
       "telegramLabel": "@tayaprod",
-      "howToWrite": "Тёплая база Sputnik, рекламный контур студии"
+      "avatar": "assets/avatars/tayaprod.jpg",
+      "howToWrite": "Тёплая база Sputnik, рекламный контур студии. В чатах — @tayaprod"
     },
     "dima_soldatov": {
       "telegram": "https://t.me/DiOdz",
       "telegramLabel": "@DiOdz",
+      "avatar": "assets/avatars/DiOdz.jpg",
       "howToWrite": "Партнёрский сейлз-менеджер Blaster — только если он привёл лид; % и источник через коммерцию"
     },
     "max_blaster": {

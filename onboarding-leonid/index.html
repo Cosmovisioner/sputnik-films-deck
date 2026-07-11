@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700;800&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260711-v10" />
+  <link rel="stylesheet" href="styles.css?v=20260711-v11" />
 </head>
 <body>
   <div id="loadError" class="load-error" hidden>
@@ -47,8 +47,24 @@
   <main class="shell" id="mainContent"></main>
 
   <footer class="site-footer">
-    <span id="footerNote">Cult Group · v20260711-v10</span>
+    <span id="footerNote">Cult Group · v20260711-v11</span>
   </footer>
+
+  <div class="welcome-backdrop" id="welcomeBackdrop" hidden aria-hidden="true">
+    <div class="welcome-card" role="dialog" aria-labelledby="welcomeTitle">
+      <div class="welcome-gradient"></div>
+      <p class="mono-tag welcome-tag">Cult Group · онбординг продаж</p>
+      <h2 class="welcome-title" id="welcomeTitle">Привет, Леонид</h2>
+      <p class="welcome-lead">Рады приветствовать тебя в <strong>Cult Group</strong>. Это твоя интерактивная экскурсия — 10 дней погружения в продажи, людей, CRM и продукты группы.</p>
+      <ul class="welcome-list">
+        <li><strong>10 дней</strong> — программа с задачами, ссылками и маршрутами</li>
+        <li><strong>Свой темп</strong> — можно закрыть несколько дней подряд</li>
+        <li><strong>Карта · Люди · Telegram · Презентации</strong> — всегда под рукой</li>
+      </ul>
+      <p class="welcome-note">Старт официально <strong>13 июля</strong>. Можно начать раньше — материалы уже открыты.</p>
+      <button type="button" class="btn primary welcome-go" id="welcomeGo">Поехали →</button>
+    </div>
+  </div>
 
   <div class="modal-backdrop" id="modalBackdrop" hidden aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" id="personModal">
@@ -57,6 +73,6 @@
     </div>
   </div>
 
-  <script src="app.js?v=20260711-v10"></script>
+  <script src="app.js?v=20260711-v11"></script>
 </body>
 </html>

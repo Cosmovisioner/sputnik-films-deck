@@ -2,7 +2,8 @@
   "use strict";
 
   const STORAGE_KEY = "cult_leonid_daily_v5";
-  const ASSET_VER = "20260711-v10";
+  const WELCOME_KEY = "cult_leonid_welcome_v1";
+  const ASSET_VER = "20260711-v11";
 
   let stepsMeta = {};
 
@@ -75,6 +76,49 @@
     return UNIT_ID_MAP[p.unit] || "uk";
   }
 
+  function personPhoto(p) {
+    if (!p) return null;
+    if (p.photo) return p.photo;
+    const c = getContact(p.id);
+    return c.avatar || null;
+  }
+
+  function personAvatarHtml(p, large) {
+    const photo = personPhoto(p);
+    if (photo) {
+      const cls = large ? "modal-avatar-img" : "person-avatar-img";
+      return `<img class="${cls}" src="${photo}" alt="" loading="lazy" width="44" height="44" />`;
+    }
+    const cls = large ? "modal-avatar" : "person-avatar";
+    const partner = p.category === "partner_slz" && !large ? " partner" : "";
+    return `<div class="${cls}${partner}">${p.initials}</div>`;
+  }
+
+  function orgPillars() {
+    return (team && team.org.pillars) || [];
+  }
+
+  function cultUnits() {
+    const p = orgPillars().find(x => x.id === "cult_group");
+    return p ? p.units : [];
+  }
+
+  function techStartups() {
+    const p = orgPillars().find(x => x.id === "techtigers");
+    return p ? p.startups : [];
+  }
+
+  function findOrgItem(id) {
+    const unit = cultUnits().find(u => u.id === id);
+    if (unit) return { kind: "unit", item: unit };
+    const startup = techStartups().find(s => s.id === id);
+    if (startup) return { kind: "startup", item: startup };
+    if (team.org.ai_window && team.org.ai_window.id === id) {
+      return { kind: "overlay", item: team.org.ai_window };
+    }
+    return null;
+  }
+
   function stepComplete(step) {
     const tasks = state["step_" + step.id] || {};
     return step.tasks.every(t => tasks[t.id]);
@@ -117,6 +161,8 @@
   }
 
   function decksForUnit(unitId) {
+    return (decks.decks || []).filter(d => d.unit === unitId);
+  }
     return (decks.decks || []).filter(d => d.unit === unitId);
   }
 
@@ -168,13 +214,34 @@
     document.getElementById("modalBody").innerHTML = "";
   }
 
+  function showWelcome() {
+    const el = document.getElementById("welcomeBackdrop");
+    el.hidden = false;
+    el.classList.add("is-open");
+    el.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+  }
+
+  function closeWelcome() {
+    const el = document.getElementById("welcomeBackdrop");
+    el.hidden = true;
+    el.classList.remove("is-open");
+    el.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+    localStorage.setItem(WELCOME_KEY, "1");
+  }
+
+  function maybeShowWelcome() {
+    if (!localStorage.getItem(WELCOME_KEY)) showWelcome();
+  }
+
   function openPerson(id) {
     if (!team) return;
     const p = findPerson(id);
     if (!p) return;
     const c = getContact(id);
     const body = document.getElementById("modalBody");
-    const unit = team.org.units.find(u => u.id === personUnitId(p));
+    const unit = cultUnits().find(u => u.id === personUnitId(p));
 
     let contactsHtml = "";
     if (c.email) {
@@ -194,7 +261,7 @@
     }
 
     body.innerHTML = `
-      <div class="modal-avatar">${p.initials}</div>
+      ${personAvatarHtml(p, true)}
       <h2 class="modal-name">${p.name}</h2>
       <p class="modal-role">${p.role} · ${p.unit}</p>
       <div class="modal-section">
@@ -364,39 +431,90 @@
   }
 
   function renderMap() {
-    const units = team.org.units;
-    const grid = units.map(u => {
-      const count = peopleForUnit(u.id).length;
-      const sel = selectedUnit === u.id ? "selected" : "";
-      return `<div class="org-unit ${sel}" data-unit="${u.id}" style="--unit-color:${u.color || "#A78BFA"}">
-        <div class="org-unit-name">${u.short || u.name}</div>
-        <div class="org-unit-desc">${u.desc}</div>
-        <div class="org-unit-count">${count} контакт${count === 1 ? "" : count < 5 ? "а" : "ов"}</div>
-      </div>`;
+    const pillars = orgPillars();
+    const aiWindow = team.org.ai_window;
+
+    const pillarHtml = pillars.map(pillar => {
+      const isCult = pillar.id === "cult_group";
+      const items = isCult ? pillar.units : pillar.startups;
+      const itemLabel = isCult ? "юнит" : "продукт";
+      const inner = items.map(item => {
+        const sel = selectedUnit === item.id ? "selected" : "";
+        const count = isCult ? peopleForUnit(item.id).length : (item.id === "icrm" ? peopleForUnit("techtigers").length : 0);
+        const countHtml = count
+          ? `<div class="org-unit-count">${count} контакт${count === 1 ? "" : count < 5 ? "а" : "ов"}</div>`
+          : "";
+        return `<div class="org-unit ${sel}" data-unit="${item.id}" style="--unit-color:${item.color || pillar.color}">
+          <div class="org-unit-name">${item.short || item.name}</div>
+          <div class="org-unit-desc">${item.desc}</div>
+          ${countHtml}
+        </div>`;
+      }).join("");
+
+      return `
+        <section class="pillar-block" style="--pillar-color:${pillar.color}">
+          <div class="pillar-head">
+            <h3 class="pillar-title">${pillar.name}</h3>
+            <p class="pillar-tagline">${pillar.tagline}</p>
+            <p class="pillar-desc">${pillar.desc}</p>
+          </div>
+          <div class="org-grid pillar-units">${inner}</div>
+          <p class="pillar-meta">${items.length} ${itemLabel}${items.length === 1 ? "" : items.length < 5 ? "а" : "ов"}</p>
+        </section>`;
     }).join("");
 
     let detail = "";
     if (selectedUnit) {
-      const u = units.find(x => x.id === selectedUnit);
-      const people = peopleForUnit(selectedUnit);
-      const unitDecks = decksForUnit(selectedUnit);
-      detail = `
-        <div class="unit-detail card">
-          <h3 class="section-heading">${u.name}</h3>
-          <p style="font-size:13px;color:var(--muted)">${u.desc}</p>
-          ${people.length ? `<h4 class="mono-tag" style="margin:16px 0 8px">Люди</h4>
-            <div class="people-grid">${people.map(p => personCardHtml(p)).join("")}</div>` : ""}
-          ${unitDecks.length ? `<h4 class="mono-tag" style="margin:16px 0 8px">Презентации</h4>
-            ${unitDecks.map(d => deckCardHtml(d)).join("")}` : ""}
-        </div>`;
+      const hit = findOrgItem(selectedUnit);
+      if (hit) {
+        const u = hit.item;
+        if (hit.kind === "unit") {
+          const people = peopleForUnit(u.id);
+          const unitDecks = decksForUnit(u.id);
+          detail = `
+            <div class="unit-detail card">
+              <h3 class="section-heading">${u.name}</h3>
+              <p style="font-size:13px;color:var(--muted)">${u.desc}</p>
+              ${people.length ? `<h4 class="mono-tag" style="margin:16px 0 8px">Люди</h4>
+                <div class="people-grid">${people.map(p => personCardHtml(p)).join("")}</div>` : ""}
+              ${unitDecks.length ? `<h4 class="mono-tag" style="margin:16px 0 8px">Презентации</h4>
+                ${unitDecks.map(d => deckCardHtml(d)).join("")}` : ""}
+            </div>`;
+        } else if (hit.kind === "startup") {
+          const ttPeople = u.id === "icrm" ? peopleForUnit("techtigers") : [];
+          detail = `
+            <div class="unit-detail card startup-detail">
+              <span class="mono-tag">TechTigers · продукт</span>
+              <h3 class="section-heading">${u.name}</h3>
+              <p style="font-size:13px;color:var(--muted)">${u.desc}</p>
+              ${ttPeople.length ? `<h4 class="mono-tag" style="margin:16px 0 8px">Контакт по продукту</h4>
+                <div class="people-grid">${ttPeople.map(p => personCardHtml(p)).join("")}</div>` : ""}
+            </div>`;
+        } else {
+          detail = `
+            <div class="unit-detail card">
+              <h3 class="section-heading">${u.name}</h3>
+              <p style="font-size:13px;color:var(--muted)">${u.desc}</p>
+              <p class="path-note" style="margin-top:12px">Подробнее — задача «Окно в ИИ» в день 4 программы</p>
+            </div>`;
+        }
+      }
     }
+
+    const aiSel = selectedUnit === aiWindow.id ? "selected" : "";
+    const aiBanner = aiWindow ? `
+      <div class="ai-window-banner org-unit ${aiSel}" data-unit="${aiWindow.id}" style="--unit-color:${aiWindow.color}">
+        <div class="org-unit-name">${aiWindow.name}</div>
+        <div class="org-unit-desc">${aiWindow.desc}</div>
+      </div>` : "";
 
     return `
       <div class="card">
-        <h2 class="card-title">Карта Cult Group</h2>
+        <h2 class="card-title">Карта холдинга</h2>
         <div class="flow-line">${team.org.flow}</div>
-        <div class="org-grid">${grid}</div>
-        <p style="font-size:12px;color:var(--tertiary)">${team.org.producers_note}</p>
+        <div class="pillar-grid">${pillarHtml}</div>
+        ${aiBanner}
+        <p style="font-size:12px;color:var(--tertiary);margin-top:16px">${team.org.producers_note}</p>
       </div>
       ${detail}`;
   }
@@ -404,7 +522,7 @@
   function personCardHtml(p) {
     const partner = p.category === "partner_slz" ? " partner" : "";
     return `<div class="person-card${partner}" data-person="${p.id}">
-      <div class="person-avatar">${p.initials}</div>
+      ${personAvatarHtml(p, false)}
       <div>
         <div class="person-name">${p.name}</div>
         <div class="person-role">${p.role}</div>
@@ -414,10 +532,15 @@
   }
 
   function renderPeople() {
-    const units = [{ id: "all", name: "Все" }, ...team.org.units];
-    const chips = units.map(u => {
+    const filterUnits = [
+      { id: "all", name: "Все" },
+      ...cultUnits().map(u => ({ id: u.id, name: u.short || u.name })),
+      { id: "techtigers", name: "TechTigers" },
+      { id: "partner_slz", name: "Партнёры" }
+    ];
+    const chips = filterUnits.map(u => {
       const active = peopleFilter === u.id ? "active" : "";
-      return `<button type="button" class="filter-chip ${active}" data-filter="${u.id}">${u.short || u.name}</button>`;
+      return `<button type="button" class="filter-chip ${active}" data-filter="${u.id}">${u.name}</button>`;
     }).join("");
 
     let list = team.people.filter(p => p.id !== "leonid");
@@ -643,11 +766,20 @@
       if (e.target.id === "modalBackdrop") closeModal();
     });
     document.addEventListener("keydown", e => {
-      if (e.key === "Escape") closeModal();
+      if (e.key === "Escape") {
+        if (document.getElementById("welcomeBackdrop").classList.contains("is-open")) closeWelcome();
+        else closeModal();
+      }
+    });
+
+    document.getElementById("welcomeGo").addEventListener("click", closeWelcome);
+    document.getElementById("welcomeBackdrop").addEventListener("click", e => {
+      if (e.target.id === "welcomeBackdrop") closeWelcome();
     });
 
     closeModal();
     setView(currentView);
+    maybeShowWelcome();
     document.getElementById("footerNote").textContent =
       "Cult Group · онбординг продаж · " + steps.length + " дней · v" + ASSET_VER;
   }

@@ -1,63 +1,109 @@
 {
   "org": {
-    "title": "Cult Group — карта контуров",
-    "units": [
+    "title": "Cult Group × TechTigers",
+    "flow": "Клиент → продажи Cult Group → бриф и скоринг → юнит → договор и предоплата → продюсер",
+    "producers_note": "Продакшн — Cult Group. TechTigers — продуктовая разработка; iCRM и автоматизации обкатываются на коммерции группы. «Окно в ИИ» — кросс-слой для крупных прямых клиентов с ИИ-ядром (до 01.2027).",
+    "ai_window": {
+      "id": "ai_window",
+      "name": "Окно в ИИ",
+      "short": "ИИ",
+      "color": "#8B5CF6",
+      "desc": "Единая точка входа для крупных прямых клиентов с ИИ-задачами. Не путать с «лёгким ИИ» в обычном Cult-брифе."
+    },
+    "pillars": [
       {
-        "id": "uk",
-        "name": "Управляющая компания",
-        "short": "УК",
-        "color": "#A78BFA",
-        "desc": "Единые правила, коммерция, CRM, PR-стратегия"
-      },
-      {
-        "id": "cult",
-        "name": "Cult",
-        "short": "Cult",
+        "id": "cult_group",
+        "name": "Cult Group",
+        "tagline": "Продакшн · коммерция · единая точка входа",
         "color": "#2563EB",
-        "desc": "Рекламные ролики, гибрид съёмка + ИИ. Порог от ~5 млн ₽"
-      },
-      {
-        "id": "blaster",
-        "name": "Blaster",
-        "short": "Blaster",
-        "color": "#F97316",
-        "desc": "CG, 2D/3D, motion, мультимедиа. Порог от сотен тысяч ₽"
-      },
-      {
-        "id": "sputnik",
-        "name": "Sputnik Films",
-        "short": "Sputnik",
-        "color": "#10B981",
-        "desc": "Док, спецпроекты, шоу, корп. фильмы. Порог от ~1 млн ₽"
+        "desc": "Три студии + управляющая компания. Сюда приходит клиент — дальше маршрутизация по типу задачи.",
+        "units": [
+          {
+            "id": "uk",
+            "name": "Управляющая компания",
+            "short": "УК",
+            "color": "#A78BFA",
+            "desc": "Единые правила, коммерция, CRM, PR-стратегия"
+          },
+          {
+            "id": "cult",
+            "name": "Cult",
+            "short": "Cult",
+            "color": "#2563EB",
+            "desc": "Рекламные ролики, гибрид съёмка + ИИ. Порог от ~5 млн ₽"
+          },
+          {
+            "id": "blaster",
+            "name": "Blaster",
+            "short": "Blaster",
+            "color": "#F97316",
+            "desc": "CG, 2D/3D, motion, мультимедиа. Порог от сотен тысяч ₽"
+          },
+          {
+            "id": "sputnik",
+            "name": "Sputnik Films",
+            "short": "Sputnik",
+            "color": "#10B981",
+            "desc": "Док, спецпроекты, шоу, корп. фильмы. Порог от ~1 млн ₽"
+          }
+        ]
       },
       {
         "id": "techtigers",
         "name": "TechTigers",
-        "short": "TechTigers",
+        "tagline": "Стартап-студия · продукты и R&D",
         "color": "#06B6D4",
-        "desc": "Стартап-студия разработки: iCRM, формы брифа, автоматизация продаж"
-      },
-      {
-        "id": "ai_window",
-        "name": "Окно в ИИ",
-        "short": "ИИ",
-        "color": "#8B5CF6",
-        "desc": "Единая точка входа для крупных прямых клиентов с ИИ-задачами (до 01.2027)"
-      },
-      {
-        "id": "partner_slz",
-        "name": "Партнёрские сейлз-менеджеры",
-        "short": "Партнёры",
-        "color": "#6B7280",
-        "desc": "Независимые сейлз-менеджеры за % — лиды в группу, CRM и передача через групповые продажи"
+        "desc": "Разработка продуктов группы. Cult Group — первый «клиент» для обкатки: CRM, формы, автоматизация продаж.",
+        "startups": [
+          {
+            "id": "robots_sons",
+            "name": "Робот и сыновья",
+            "short": "R&S",
+            "color": "#EC4899",
+            "desc": "ИИ в креативных индустриях, обучение, курс «Оно само». Публичный бренд продуктов TechTigers."
+          },
+          {
+            "id": "snubdoc",
+            "name": "СнупДок",
+            "short": "СнупДок",
+            "color": "#14B8A6",
+            "desc": "Документы и процессы для креативных команд"
+          },
+          {
+            "id": "chechek",
+            "name": "Чечек",
+            "short": "Чечек",
+            "color": "#F59E0B",
+            "desc": "Автоматический сбор чеков от самозанятых"
+          },
+          {
+            "id": "prodavan",
+            "name": "Prodo.one",
+            "short": "Prodavan",
+            "color": "#6366F1",
+            "desc": "B2B CRM с ИИ: outreach, парсер, автоматизация лидов и продаж"
+          },
+          {
+            "id": "rollr",
+            "name": "Rollr",
+            "short": "Rollr",
+            "color": "#0EA5E9",
+            "desc": "AI-платформа: совместная работа над кино-контентом на одном холсте"
+          },
+          {
+            "id": "icrm",
+            "name": "iCRM",
+            "short": "iCRM",
+            "color": "#06B6D4",
+            "desc": "Кастомная CRM Cult Group — beta, демо с Хомичем ~24–25.07"
+          }
+        ]
       }
     ],
-    "flow": "Клиент → продажи группы → бриф и скоринг → юнит → договор и предоплата → продюсер",
-    "producers_note": "Продюсеры ведут производство после передачи. Хэды юнитов (Денис, Лиза) — якорные клиенты и экономика. Sputnik: рекламный контур студии — Тая; док и спецпроекты «берём ли» — Сергей Клейн. Open Production как юнит закрыт.",
     "partner_slz": {
       "title": "Партнёрские сейлз-менеджеры (не штат)",
-      "desc": "Раньше работали в Cult/Blaster — сейчас сотрудничают за процент. Лиды передают в группу; сделки ведут групповые продажи, в Cult/Blaster — по маршрутизации, без прямой работы с продакшеном.",
-      "routing": "Лид от партнёрского сейлз-менеджера → источник в Amo → ты или Дима → скоринг → хэд юнита → производство. Процент — по их договорённости (не обещай клиенту от их имени)."
+      "desc": "Независимые продавцы за %. Лиды → групповые продажи, источник в Amo.",
+      "routing": "Лид от партнёрского сейлз-менеджера → источник в Amo → ты или Дима → скоринг → хэд юнита. Не на карте — см. раздел «Люди»."
     }
   },
   "people": [
@@ -67,8 +113,9 @@
       "name": "Константин Мельников",
       "role": "CEO Cult Group",
       "unit": "УК",
+      "unitId": "uk",
       "initials": "КМ",
-      "photo": null,
+      "photo": "assets/avatars/umelnikov_work.jpg",
       "clifton_hint": "Стратегия, будущее, катализатор. Любит варианты с плюсами/минусами и фиксацию после разговора.",
       "contact_when": [
         "Конфликт юнитов, финальный арбитраж",
@@ -83,8 +130,9 @@
       "name": "Дмитрий Квашнин",
       "role": "Коммерческий директор группы · CEO Sputnik Films",
       "unit": "УК + Sputnik",
+      "unitId": "uk",
       "initials": "ДК",
-      "photo": null,
+      "photo": "assets/avatars/cosmovisioner.jpg",
       "clifton_hint": "Сосредоточенность, стратегия, значимость. Быстро переходит к решению — давай контекст коротко.",
       "contact_when": [
         "Ежедневный sales-контур, маршрутизация лидов",
@@ -99,8 +147,9 @@
       "name": "Денис Леваков",
       "role": "Head Cult · исполнительный продюсер",
       "unit": "Cult",
+      "unitId": "cult",
       "initials": "ДЛ",
-      "photo": null,
+      "photo": "assets/avatars/denis_levakov.jpg",
       "clifton_hint": "Стабилизатор, доведение, качество. Ценит ясного владельца и срок.",
       "contact_when": [
         "Рекламные ролики, КП Cult, смета и маржа",
@@ -115,8 +164,9 @@
       "name": "Лиза Иванова",
       "role": "Head Blaster",
       "unit": "Blaster",
+      "unitId": "blaster",
       "initials": "ЛИ",
-      "photo": null,
+      "photo": "assets/avatars/elivanova.jpg",
       "clifton_hint": "Коммуникация, люди, упаковка идей. Сначала контекст — потом жёсткое решение.",
       "contact_when": [
         "Графика, анимация, мультимедиа, выставки",
@@ -131,8 +181,9 @@
       "name": "Сергей Клейн",
       "role": "Head of Production Sputnik Films",
       "unit": "Sputnik",
+      "unitId": "sputnik",
       "initials": "СК",
-      "photo": null,
+      "photo": "assets/avatars/klein_sergey.jpg",
       "clifton_hint": "Операционка, регламенты, дожим исполнения.",
       "contact_when": [
         "Спецпроекты, док, неформат — «берём ли проект»",
@@ -147,8 +198,9 @@
       "name": "Егор Мараев",
       "role": "Co-founder Blaster (выход из операционки)",
       "unit": "Blaster",
+      "unitId": "blaster",
       "initials": "ЕМ",
-      "photo": null,
+      "photo": "assets/avatars/egormaraev.jpg",
       "clifton_hint": "Продукт, структура, быстрые гипотезы. Спарринг на архитектуре, не операционка.",
       "contact_when": [
         "История Blaster, позиционирование мультимедиа",
@@ -160,15 +212,16 @@
       "id": "homich",
       "category": "staff",
       "name": "Саша Хомич",
-      "role": "TechTigers · разработка iCRM",
+      "role": "TechTigers · разработка iCRM и продуктов",
       "unit": "TechTigers",
+      "unitId": "techtigers",
       "initials": "СХ",
-      "photo": null,
+      "photo": "assets/avatars/akhomich.jpg",
       "clifton_hint": "Продуктовая разработка, MVP, итерации.",
       "contact_when": [
         "Бета iCRM, форма приёма брифа",
         "Баги и фичи sales-контура",
-        "Демо CRM MVP (25.07)"
+        "Демо CRM MVP (24–25.07)"
       ],
       "avoid": "Обещать клиентам сроки фич без коммерческого директора"
     },
@@ -178,8 +231,9 @@
       "name": "Саша Алексеев",
       "role": "Партнёрский сейлз-менеджер · ex Cult + Blaster",
       "unit": "Партнёр",
+      "unitId": "partner_slz",
       "initials": "СА",
-      "photo": null,
+      "photo": "assets/avatars/Skanderbeg.jpg",
       "clifton_hint": "Знает CRM-дисциплину, базу Blaster и канон передачи дел. Сейчас — партнёр за %, не штат.",
       "contact_when": [
         "Консультация по базе наследия и истории клиентов",
@@ -191,11 +245,12 @@
     {
       "id": "taya",
       "category": "staff",
-      "name": "Тая",
+      "name": "Таина Курковская",
       "role": "Коммерческий лид Sputnik (студия А, рекламный контур)",
       "unit": "Sputnik",
-      "initials": "Т",
-      "photo": null,
+      "unitId": "sputnik",
+      "initials": "ТК",
+      "photo": "assets/avatars/tayaprod.jpg",
       "clifton_hint": "Коммуникация, координация, внешний контур, дожим.",
       "contact_when": [
         "Тёплая база Sputnik, studio commercial",
@@ -209,6 +264,7 @@
       "name": "Леонид Мархашов",
       "role": "Менеджер по продажам / NewBiz",
       "unit": "УК",
+      "unitId": "uk",
       "initials": "ЛМ",
       "photo": null,
       "clifton_hint": "Ex-Sputnik sales, CRM-оператор, вайбкодит инструменты.",
@@ -221,8 +277,9 @@
       "name": "Дима Солдатов",
       "role": "Партнёрский сейлз-менеджер · Blaster",
       "unit": "Партнёр · Blaster",
+      "unitId": "partner_slz",
       "initials": "ДС",
-      "photo": null,
+      "photo": "assets/avatars/DiOdz.jpg",
       "clifton_hint": "Внешний продавец Blaster-контура. Работает с группой за %, не в штате.",
       "contact_when": [
         "Лид пришёл от Димы — зафиксировать источник, согласовать с коммерцией",
@@ -236,6 +293,7 @@
       "name": "Максим",
       "role": "Партнёрский сейлз-менеджер · Blaster",
       "unit": "Партнёр · Blaster",
+      "unitId": "partner_slz",
       "initials": "М",
       "photo": null,
       "clifton_hint": "Внешний продавец Blaster-контура (в т.ч. тендеры/крупные клиенты). Партнёр за %.",
