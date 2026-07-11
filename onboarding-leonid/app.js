@@ -2,7 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "cult_leonid_daily_v5";
-  const ASSET_VER = "20260711-v8";
+  const ASSET_VER = "20260711-v9";
 
   let stepsMeta = {};
 
@@ -300,12 +300,18 @@
     const stepTasks = state["step_" + step.id] || {};
     const allDone = stepComplete(step);
 
-    let tasksHtml = step.tasks.map(task => {
+    let tasksHtml = "";
+    let lastGroup = null;
+    step.tasks.forEach(task => {
+      if (task.group && task.group !== lastGroup) {
+        tasksHtml += `<h4 class="task-group-heading">${task.group}</h4>`;
+        lastGroup = task.group;
+      }
       const key = step.id + "." + task.id;
       const path = taskPaths[key] || [];
       const isOpen = expandedTasks[key];
       const isDone = !!stepTasks[task.id];
-      return `
+      tasksHtml += `
         <div class="task-item ${isOpen ? "open" : ""} ${isDone ? "done" : ""}" data-task-key="${key}">
           <div class="task-head">
             <input type="checkbox" data-step="${step.id}" data-task="${task.id}" ${isDone ? "checked" : ""} />
@@ -314,7 +320,7 @@
           </div>
           ${path.length ? `<div class="task-path">${path.map(p => renderPathItem(p, step.id)).join("")}</div>` : ""}
         </div>`;
-    }).join("");
+    });
 
     const prev = currentDayIdx > 0 ? steps[currentDayIdx - 1] : null;
     const next = currentDayIdx < steps.length - 1 ? steps[currentDayIdx + 1] : null;

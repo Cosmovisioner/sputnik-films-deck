@@ -98,10 +98,22 @@
     { "kind": "resource", "id": "view_decks" },
     { "kind": "note", "text": "Cult от ~5 млн ₽ · Blaster от сотен тысяч · Sputnik от ~1 млн · «берём» Sputnik решает Сергей" }
   ],
+  "4.icp_check": [
+    { "kind": "resource", "id": "doc_icp_checklist" },
+    { "kind": "resource", "id": "doc_rules_summary" },
+    { "kind": "note", "text": "Не наш / стоп-лист — не тратить время на КП, зафиксировать отказ в Amo" }
+  ],
   "4.deck_router": [
     { "kind": "resource", "id": "view_decks" },
     { "kind": "resource", "id": "skills_pack" },
     { "kind": "note", "text": "Скилл выбора презентации — после установки на 6-й день" }
+  ],
+  "4.ai_window": [
+    { "kind": "resource", "id": "doc_ai_window" },
+    { "kind": "section", "id": "chats", "filter": "ai_window" },
+    { "kind": "person", "id": "dima" },
+    { "kind": "deck", "id": "cult_group" },
+    { "kind": "note", "text": "Обычный Cult с лёгким ИИ ≠ «Окно в ИИ» — при сомнении эскалируй" }
   ],
   "4.shadow1": [
     { "kind": "person", "id": "dima" },
@@ -174,7 +186,8 @@
   ],
   "7.objection": [
     { "kind": "person", "id": "dima" },
-    { "kind": "resource", "id": "drive_commerce" }
+    { "kind": "resource", "id": "drive_commerce" },
+    { "kind": "note", "text": "Документ не публичный — Дима выдаёт файл или ссылку в Drive коммерции" }
   ],
   "7.scoring_practice": [
     { "kind": "resource", "id": "skills_pack" },
@@ -187,6 +200,12 @@
   "7.warm_review": [
     { "kind": "person", "id": "dima" },
     { "kind": "resource", "id": "amo_cult" }
+  ],
+  "7.shadow3": [
+    { "kind": "person", "id": "dima" },
+    { "kind": "resource", "id": "amo_cult" },
+    { "kind": "deck", "id": "cult_group" },
+    { "kind": "note", "text": "Опционально — если календарь позволяет на этой неделе" }
   ],
   "7.outreach_plan": [
     { "kind": "resource", "id": "amo_cult" },
@@ -207,7 +226,8 @@
   ],
   "8.daily_cro": [
     { "kind": "person", "id": "dima" },
-    { "kind": "section", "id": "chats", "filter": "commercial_director" }
+    { "kind": "section", "id": "chats", "filter": "commercial_director" },
+    { "kind": "note", "text": "Короткий sync: блокеры, приоритеты, что эскалировать" }
   ],
   "9.qual_brief": [
     { "kind": "resource", "id": "doc_brief_criteria" },
