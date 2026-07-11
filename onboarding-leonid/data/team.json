@@ -182,7 +182,7 @@
       "photo": null,
       "clifton_hint": "Знает CRM-дисциплину, базу Blaster и канон передачи дел. Сейчас — партнёр за %, не штат.",
       "contact_when": [
-        "Консультация по legacy-базе и истории клиентов",
+        "Консультация по базе наследия и истории клиентов",
         "Как раньше вёлся контур Cult/Blaster",
         "Согласование, если он привёл лид (источник в Amo)"
       ],
@@ -192,7 +192,7 @@
       "id": "taya",
       "category": "staff",
       "name": "Тая",
-      "role": "Commercial lead Sputnik (студия А, рекламный контур)",
+      "role": "Коммерческий лид Sputnik (студия А, рекламный контур)",
       "unit": "Sputnik",
       "initials": "Т",
       "photo": null,
@@ -207,7 +207,7 @@
       "id": "leonid",
       "category": "staff",
       "name": "Леонид Мархашов",
-      "role": "Sales / NewBiz Manager",
+      "role": "Менеджер по продажам / NewBiz",
       "unit": "УК",
       "initials": "ЛМ",
       "photo": null,

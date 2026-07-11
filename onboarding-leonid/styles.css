@@ -478,7 +478,11 @@ body {
   background: var(--white);
 }
 .chat-card.required { border-left: 4px solid var(--lavender); }
-.chat-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 12px; margin-bottom: 8px; }
+.excluded-card { border-color: #3f3f46; background: linear-gradient(180deg, #1a1a22 0%, #141418 100%); }
+.excluded-intro { font-size: 12px; margin: -4px 0 12px; color: var(--tertiary); }
+.excluded-list { margin: 0; padding-left: 1.1rem; font-size: 13px; color: var(--muted); }
+.excluded-list li { margin: 6px 0; }
+.excluded-list strong { color: var(--text); font-weight: 600; }
 .chat-name { font-weight: 700; font-size: 14px; }
 .chat-badge {
   font-family: "JetBrains Mono", monospace;

@@ -6,7 +6,14 @@
     "title": "Онбординг продаж · Cult Group",
     "user": "Леонид Мархашов",
     "workdaysOnly": false,
-    "pace": "Можно идти в своём темпе и закрыть несколько дней подряд. Даты — ориентир по рабочему календарю."
+    "pace": "Можно идти в своём темпе и закрыть несколько дней подряд. Даты — ориентир по рабочему календарю.",
+    "excludedForSales": [
+      { "label": "P&L Blaster", "reason": "Финансы юнита — только коммерция и CEO" },
+      { "label": "Декомпозиция 2026 Cult", "reason": "Внутренняя финмодель" },
+      { "label": "financial-dashboard.ru", "reason": "Дашборд УК — не sales-контур" },
+      { "label": "Holst — стратегические холсты", "reason": "По решению CEO" },
+      { "label": "Пароли Amo и закрытые GDoc", "reason": "Только в личке от коммерческого директора" }
+    ]
   },
   "steps": [
     {
@@ -33,7 +40,7 @@
       "tasks": [
         { "id": "org_map", "text": "Изучить карту: УК, Cult, Blaster, Sputnik, TechTigers, «Окно в ИИ» (Open Production закрыт)" },
         { "id": "amo_walk", "text": "Разбор Amo Cult + передача дел от Саши Алексеева (11:00–12:30)" },
-        { "id": "crm_legacy", "text": "Карта действующих CRM: Amo Cult (основная) и Amo Blaster (legacy) — что где велось и зачем две" },
+        { "id": "crm_legacy", "text": "Карта действующих CRM: Amo Cult (основная) и Amo Blaster (наследие) — что где велось и зачем две" },
         { "id": "handoff_doc", "text": "Прочитать документ «Передача дел от Саши Алексеева»" },
         { "id": "tg_join", "text": "Вступить в рабочие чаты продаж и коммерции" },
         { "id": "group_deck", "text": "Посмотреть общую презентацию Cult Group (холод / неясный бриф)" }
@@ -94,6 +101,8 @@
         { "id": "sputnik_rule", "text": "Запомнить: «берём» Sputnik решает Сергей, не один Дима" }
       ],
       "links": [
+        { "label": "Правила · кратко (2 мин)", "url": "rules-summary.html" },
+        { "label": "Коммерческие правила · полная версия", "url": "https://docs.google.com/document/d/1Wd-EIArqDzynvUTRU-u2Gc4mw9feMUjUYOGq9ilEASU/edit" },
         { "label": "Регламент нового бизнеса", "url": "https://docs.google.com/spreadsheets/d/1W0xbSDRQVSYWjCOHPtfNL43Ps9yknejEIaspzu28QU4/edit" },
         { "label": "Стандарты с продакшеном", "url": "https://docs.google.com/document/d/11PqYVrnfjUYAXHVNfXFcARtkoTV-Gqik7VboIKrKGgw/edit" }
       ]
@@ -106,8 +115,8 @@
       "intro": "Три контура: две Amo, которые уже велись, и кастомная iCRM группы. Плюс скиллы и закрытие первой недели.",
       "tasks": [
         { "id": "sales_meet", "text": "Планёрка продаж Cult Group с Димой (понедельник)" },
-        { "id": "crm_landscape", "text": "Схема CRM: Amo Cult · Amo Blaster (legacy) · iCRM (кастомная) — куда писать новые сделки с 13.07" },
-        { "id": "amo_blaster_tour", "text": "Просмотр Amo Blaster (read-only): как велись старые сделки Blaster-only" },
+        { "id": "crm_landscape", "text": "Схема CRM: Amo Cult · Amo Blaster (наследие) · iCRM (кастомная) — куда писать новые сделки с 13.07" },
+        { "id": "amo_blaster_tour", "text": "Просмотр Amo Blaster (только чтение): как велись старые сделки только Blaster" },
         { "id": "icrm_intro", "text": "Знакомство с iCRM: что уже собрано, роль Хомича, план демо" },
         { "id": "amo_reg", "text": "Прочитать регламент Amo CRM" },
         { "id": "skills", "text": "Установить 3 скилла Cursor (архив от Димы): скоринг, проверка брифа, выбор презентации" },

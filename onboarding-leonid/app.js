@@ -2,7 +2,9 @@
   "use strict";
 
   const STORAGE_KEY = "cult_leonid_daily_v5";
-  const ASSET_VER = "20260711-v7";
+  const ASSET_VER = "20260711-v8";
+
+  let stepsMeta = {};
 
   const UNIT_ID_MAP = {
     "УК": "uk",
@@ -239,7 +241,7 @@
           <span>${r.title}<span class="sub">${r.subtitle || ""}</span></span>
         </a>`;
       }
-      return `<div class="path-note">${r.title} — ${r.note || r.subtitle || "запроси у CRO"}</div>`;
+      return `<div class="path-note">${r.title} — ${r.note || r.subtitle || "запроси у Димы"}</div>`;
     }
     if (item.kind === "deck") {
       const d = findDeck(item.id);
@@ -278,6 +280,19 @@
     container.querySelectorAll("[data-view]").forEach(el => {
       el.addEventListener("click", () => setView(el.dataset.view));
     });
+  }
+
+  function renderExcludedCard() {
+    const list = stepsMeta.excludedForSales;
+    if (!list || !list.length) return "";
+    return `
+      <div class="card excluded-card">
+        <h3 class="section-heading">Не входит в онбординг</h3>
+        <p class="card-intro excluded-intro">Sales-safe: без P&amp;L, паролей и внутренних финмоделей.</p>
+        <ul class="excluded-list">
+          ${list.map(x => `<li><strong>${x.label}</strong> — ${x.reason}</li>`).join("")}
+        </ul>
+      </div>`;
   }
 
   function renderProgram() {
@@ -324,7 +339,8 @@
           <button type="button" class="btn" data-view="chats">💬 Telegram</button>
           <button type="button" class="btn" data-view="decks">📊 Презентации</button>
         </div>
-      </div>`;
+      </div>
+      ${currentDayIdx === 0 ? renderExcludedCard() : ""}`;
   }
 
   function renderMap() {
@@ -566,6 +582,7 @@
         fetch("data/contacts.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); })
       ]);
       steps = stepsData.steps;
+      stepsMeta = stepsData.meta || {};
       team = teamRes;
       resources = resRes;
       chats = chatsRes;

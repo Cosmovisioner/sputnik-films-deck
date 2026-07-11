@@ -15,7 +15,7 @@
     {
       "id": "amo_blaster",
       "title": "AmoCRM · Blaster",
-      "subtitle": "Просмотр и совместные сделки — legacy Blaster",
+      "subtitle": "Просмотр и совместные сделки — наследие Blaster",
       "url": "https://blasterstudio.amocrm.ru",
       "owner": "liza",
       "unit": "blaster"
@@ -97,11 +97,11 @@
     {
       "id": "crm_landscape",
       "title": "Карта CRM-систем",
-      "subtitle": "Amo Cult — основная · Amo Blaster — legacy · iCRM — будущая",
+      "subtitle": "Amo Cult — основная · Amo Blaster — наследие · iCRM — будущая",
       "url": null,
       "owner": "dima",
       "unit": "uk",
-      "note": "Новые сделки группы с 13.07 → Amo Cult. Blaster-only legacy → Amo Blaster (read/joint). iCRM — тест, затем миграция (дата TBD)"
+      "note": "Новые сделки группы с 13.07 → Amo Cult. Сделки только Blaster (наследие) → Amo Blaster (просмотр и совместные). iCRM — тест, затем миграция (дата уточняется)"
     }
   ],
   "docs": [
@@ -142,6 +142,14 @@
       "title": "Стандарты работы с продакшеном",
       "subtitle": "Передача в продакшен: договор и предоплата",
       "url": "https://docs.google.com/document/d/11PqYVrnfjUYAXHVNfXFcARtkoTV-Gqik7VboIKrKGgw/edit",
+      "owner": "dima",
+      "unit": "uk"
+    },
+    {
+      "id": "doc_rules_summary",
+      "title": "Коммерческие правила · кратко",
+      "subtitle": "За 2 минуты — роль, юниты, эскалация",
+      "url": "rules-summary.html",
       "owner": "dima",
       "unit": "uk"
     },

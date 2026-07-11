@@ -7,6 +7,7 @@
   ],
   "1.role": [
     { "kind": "step", "text": "Твоя зона: холод, входящие, бриф до договора" },
+    { "kind": "resource", "id": "doc_rules_summary" },
     { "kind": "resource", "id": "doc_commerce_rules" },
     { "kind": "note", "text": "Не продакшен, не PR, не тащить всё в Sputnik по привычке" }
   ],
@@ -46,7 +47,7 @@
     { "kind": "resource", "id": "amo_cult" },
     { "kind": "resource", "id": "amo_blaster" },
     { "kind": "resource", "id": "crm_landscape" },
-    { "kind": "note", "text": "С 13.07 новые сделки группы — Amo Cult. Amo Blaster — legacy и Blaster-only" }
+    { "kind": "note", "text": "С 13.07 новые сделки группы — Amo Cult. Amo Blaster — наследие и сделки только Blaster" }
   ],
   "2.handoff_doc": [
     { "kind": "resource", "id": "doc_handoff_sasha" },
@@ -118,6 +119,7 @@
     { "kind": "section", "id": "chats", "filter": "sputnik_sales" }
   ],
   "5.rules": [
+    { "kind": "resource", "id": "doc_rules_summary" },
     { "kind": "resource", "id": "doc_commerce_rules" },
     { "kind": "resource", "id": "doc_nb_reg" },
     { "kind": "resource", "id": "doc_prod_standards" }
@@ -149,7 +151,7 @@
   "6.amo_blaster_tour": [
     { "kind": "resource", "id": "amo_blaster" },
     { "kind": "person", "id": "liza" },
-    { "kind": "note", "text": "Read-only — смотри историю сделок, не создавай дубли в Cult Amo" }
+    { "kind": "note", "text": "Только просмотр — смотри историю сделок, не создавай дубли в Amo Cult" }
   ],
   "6.icrm_intro": [
     { "kind": "resource", "id": "icrm" },
