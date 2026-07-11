@@ -1,0 +1,165 @@
+{
+  "meta": {
+    "as_of": "2026-05-28",
+    "period_label": "Baseline · янв–апр 2026 (Cult/Blaster) + планы на 2026",
+    "updated_note": "Сводка для онбординга sales. Не полный P&L — агрегаты из декомпозиции Cult и бюджета Blaster (экспорт 28.05). Июль–август уточняй у Димы на еженедельном синке.",
+    "sources": [
+      "artifact_cult_group_ops_corpus_audit_2026_05_28.md",
+      "artifact_cult_group_rules_and_vision_2026_06.md",
+      "artifact_sasha_alekseev_motivation_handoff_full_2026_06_18.md",
+      "note_cult_group_sales_rules_summary_leonid_2026_07.md",
+      "note_meeting_sergey_klein_call_2026_06_08_summary.md"
+    ],
+    "live_refs": [
+      {
+        "label": "NB регламент · KPI и входящие",
+        "url": "https://docs.google.com/spreadsheets/d/1W0xbSDRQVSYWjCOHPtfNL43Ps9yknejEIaspzu28QU4/edit"
+      },
+      {
+        "label": "Amo Cult · актуальная воронка",
+        "url": "https://cultteam.amocrm.ru"
+      }
+    ]
+  },
+  "headline": {
+    "problem": "Много запросов в воронке — мало денег в акте. Конверсия пресейла и чек ниже плана.",
+    "focus_2026": "Тёплая база и якорные клиенты важнее массового холода. Brief-gate + скоринг ≥5. Кросс-продажи между юнитами.",
+    "your_mandate": "Единый sales на группу: Cult + Blaster + Sputnik. KPI — квал. брифы и handoff, не «красивые созвоны»."
+  },
+  "group_targets_2026": {
+    "title": "План группы (коммерция, черновик июнь 2026)",
+    "rows": [
+      { "metric": "Входящие запросы", "baseline": "~56 (Cult YTD) + ~13/мес Blaster", "target": "15–20 / мес на группу" },
+      { "metric": "Winrate", "baseline": "Cult 25% · Blaster ~15%", "target": "+5–10% к baseline" },
+      { "metric": "Тёплая база", "baseline": "56 контактов", "target": "80 к концу года" },
+      { "metric": "CRM-дисциплина", "baseline": "разрозненно", "target": "≥90% карточек с next step" },
+      { "metric": "Кросс-продажи", "baseline": "единичные", "target": "первые системные кейсы в H2" }
+    ]
+  },
+  "leonid_kpi": {
+    "title": "Твои KPI · первые 90 дней",
+    "rows": [
+      { "month": "1", "focus": "Онбординг + CRM", "target": "100% карточек со следующим шагом; N през / встреч (с CRO)" },
+      { "month": "2", "focus": "Пайплайн", "target": "3–5 квал. холодных брифов в производство (скоринг > 5)" },
+      { "month": "3", "focus": "Конверсия", "target": "5–7 новых брифов + 1–2 handoff (договор + предоплата)" }
+    ]
+  },
+  "briefs_plan_monthly": {
+    "title": "Legacy-план брифов NB (Blaster 2026, май–нояб)",
+    "note": "Исторический план Саши А. на Blaster — ориентир нагрузки sales-контура. Групповой план на июль ~16 квал. брифов обсуждался с CEO.",
+    "rows": [
+      { "month": "2026-05", "briefs": 14 },
+      { "month": "2026-06", "briefs": 16 },
+      { "month": "2026-07", "briefs": 16 },
+      { "month": "2026-08", "briefs": 24 },
+      { "month": "2026-09", "briefs": 23 },
+      { "month": "2026-10", "briefs": 25 },
+      { "month": "2026-11", "briefs": 15 }
+    ],
+    "year_total_blaster_legacy": 135
+  },
+  "units": [
+    {
+      "id": "cult",
+      "name": "Cult",
+      "color": "#2563EB",
+      "owner": "Денис Леваков",
+      "threshold": "от ~5 млн ₽",
+      "plan_year": {
+        "revenue": "460 млн ₽",
+        "projects": 51,
+        "requests": "~255 / год",
+        "winrate": "45% (план)",
+        "avg_check": "9 млн ₽"
+      },
+      "ytd_jan_apr_2026": {
+        "revenue": "34,9 млн ₽",
+        "revenue_plan_pct": "~27%",
+        "margin_rub": "6,74 млн ₽",
+        "margin_pct": "19,3%",
+        "margin_plan_pct": "~37% от плана",
+        "avg_check": "3,88 млн ₽",
+        "avg_check_plan_pct": "~43%",
+        "projects_closed": 9,
+        "projects_plan": 15,
+        "requests": 56,
+        "requests_plan": 90,
+        "tenders_active": 44,
+        "winrate": "25%",
+        "conv_request_to_project": "19,6%"
+      },
+      "insights": [
+        "Апрель — пик выручки (~16,7 млн); в файле май = 0 (данные на дату экспорта).",
+        "Конверсия запрос→проект выше плана, но чек и выручка сильно ниже ambition.",
+        "Winrate 25% vs референс 2024 (40%) — боль в пресейле, не в охвате."
+      ]
+    },
+    {
+      "id": "blaster",
+      "name": "Blaster",
+      "color": "#F97316",
+      "owner": "Лиза Иванова",
+      "threshold": "от сотен тысяч ₽",
+      "plan_year": {
+        "revenue": "77,7 млн ₽",
+        "projects": 120,
+        "margin_rub": "34,2 млн ₽",
+        "margin_pct": "44%",
+        "ebitda": "~10,4 млн ₽",
+        "avg_check": "647,5 тыс ₽",
+        "winrate": "50,6% (план)",
+        "briefs_per_month": "19,75"
+      },
+      "ytd_jan_apr_2026": {
+        "note": "Помесячный отчёт 1–4 мес 2026 из бюджета Blaster"
+      },
+      "monthly": [
+        { "month": "2026-02", "revenue": null, "profit": "−621 тыс ₽", "margin_prod": "35–59%", "note": "убыток" },
+        { "month": "2026-03", "revenue": null, "profit": "+138 тыс ₽", "margin_prod": "35–59%", "note": "выход в плюс" },
+        { "month": "2026-04", "revenue": "~7 млн ₽", "profit": "~1,3 млн ₽", "margin_prod": "35–59%", "note": "147% бюджета по выручке" }
+      ],
+      "insights": [
+        "План winrate 50% vs история ~34% — амбициозно.",
+        "Апрель сильный по выручке; производственная маржа 32–38% после бонусов vs 44% план.",
+        "Много мелких проектов — средний чек в плане ниже 2025."
+      ]
+    },
+    {
+      "id": "sputnik",
+      "name": "Sputnik Films",
+      "color": "#10B981",
+      "owner": "Сергей Клейн · коммерция рекламы → Тая",
+      "threshold": "от ~1 млн ₽ · «берём ли» решает Сергей",
+      "plan_year": {
+        "note": "Отдельной декомпозиции 2026 в SB нет — контур в CRM Sputnik + дашборд"
+      },
+      "ytd_context": {
+        "revenue_2025_approx": "~1,5 млн ₽ за год (синк 08.06)",
+        "status": "Не в минусе vs часть юнитов; масштаб меньше Cult/Blaster",
+        "contacts_base": "~2500 (Amo + Silver Mercury + Mark Club)",
+        "commercial_split": "Док/спецпроекты — Сергей · рекламный контур — Таина Курковская"
+      },
+      "insights": [
+        "Не тащи каждый лид в Sputnik по привычке — сначала скоринг и порог юнита.",
+        "CRM Sputnik и group Amo Cult — разные контуры до полной миграции."
+      ]
+    }
+  ],
+  "nb_history_2025": {
+    "title": "NB итоги 2025 (legacy контур до группового sales)",
+    "rows": [
+      { "product": "Основной (реклама)", "briefs": 31, "winrate": "9,7%", "revenue": "13,6 млн ₽" },
+      { "product": "Согласовано", "briefs": 8, "winrate": "12,5%", "revenue": "3,0 млн ₽" },
+      { "product": "ИИ", "briefs": 66, "winrate": "0%", "revenue": "0" },
+      { "product": "Шоу", "briefs": 81, "winrate": "0%", "revenue": "0" },
+      { "product": "Корп. ролики", "briefs": 64, "winrate": "0%", "revenue": "0" },
+      { "product": "Итого sales 2025", "briefs": 51, "winrate": "7,8%", "revenue": "16,6 млн ₽" }
+    ],
+    "note": "С сент. 2025: 35 брифов, winrate 11,4% — лучше, но слабо. Шоу/Корп/ИИ — заморозить до PMF."
+  },
+  "loss_patterns": [
+    "«Дорого» и «проиграл подход/режиссёр» — топ причин в CRM",
+    "Много повторных клиентов в проигрышах — проблема конверсии, не охвата",
+    "Постоплата 60 дней — кассовый риск; в скоринге минус баллы"
+  ]
+}

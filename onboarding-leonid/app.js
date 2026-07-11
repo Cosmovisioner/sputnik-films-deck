@@ -3,7 +3,7 @@
 
   const STORAGE_KEY = "cult_leonid_daily_v5";
   const WELCOME_KEY = "cult_leonid_welcome_v1";
-  const ASSET_VER = "20260711-v12";
+  const ASSET_VER = "20260711-v13";
 
   function esc(s) {
     if (s == null || s === "") return "";
@@ -46,6 +46,7 @@
   let chats = null;
   let decks = null;
   let taskPaths = {};
+  let salesSnapshot = null;
   let state = loadState();
   let currentView = "program";
   let currentDayIdx = 0;
@@ -177,8 +178,6 @@
   function decksForUnit(unitId) {
     return (decks.decks || []).filter(d => d.unit === unitId);
   }
-    return (decks.decks || []).filter(d => d.unit === unitId);
-  }
 
   function chatsFiltered(filter) {
     const list = chats.chats || [];
@@ -195,6 +194,147 @@
     document.getElementById("dayNavWrap").hidden = view !== "program";
     renderMain();
     history.replaceState(null, "", view === "program" ? "?day=" + (currentDayIdx + 1) : "?" + view);
+  }
+
+  function metricCell(val, warn) {
+    if (val == null || val === "") return "—";
+    const cls = warn ? " sales-warn" : "";
+    return `<span class="sales-metric${cls}">${esc(val)}</span>`;
+  }
+
+  function renderSalesTable(headers, rows) {
+    if (!rows || !rows.length) return "";
+    const head = headers.map(h => `<th>${esc(h)}</th>`).join("");
+    const body = rows.map(row => {
+      const cells = row.map(c => {
+        if (c && typeof c === "object" && c.v != null) {
+          return `<td>${metricCell(c.v, c.warn)}</td>`;
+        }
+        return `<td>${metricCell(c)}</td>`;
+      }).join("");
+      return `<tr>${cells}</tr>`;
+    }).join("");
+    return `<div class="sales-table-wrap"><table class="sales-table"><thead><tr>${head}</tr></thead><tbody>${body}</tbody></table></div>`;
+  }
+
+  function renderSales() {
+    if (!salesSnapshot) {
+      return `<div class="card"><h2 class="card-title">Продажи · план и факт</h2><p class="card-intro">Не удалось загрузить данные. Обнови страницу.</p></div>`;
+    }
+    const m = salesSnapshot.meta || {};
+    const hl = salesSnapshot.headline || {};
+
+    let unitsHtml = "";
+    (salesSnapshot.units || []).forEach(u => {
+      const ytd = u.ytd_jan_apr_2026 || u.ytd_context || {};
+      const plan = u.plan_year || {};
+      let unitBody = "";
+
+      if (u.id === "cult" && ytd.revenue) {
+        unitBody += renderSalesTable(
+          ["Метрика", "Факт YTD (янв–апр)", "План / ambition"],
+          [
+            ["Выручка без НДС", { v: ytd.revenue, warn: true }, plan.revenue || "—"],
+            ["Маржа, ₽", ytd.margin_rub, "—"],
+            ["Маржинальность", ytd.margin_pct, plan.margin_pct || "14% план YTD"],
+            ["Средний чек", { v: ytd.avg_check, warn: true }, plan.avg_check || "—"],
+            ["Проектов (акты)", ytd.projects_closed + " / " + ytd.projects_plan, plan.projects || "—"],
+            ["Запросов в воронке", ytd.requests + " / " + ytd.requests_plan, plan.requests || "—"],
+            ["Winrate", ytd.winrate, plan.winrate || "—"],
+            ["Конверсия запрос→проект", ytd.conv_request_to_project, "—"]
+          ]
+        );
+      } else if (u.id === "blaster") {
+        unitBody += `<p class="sales-unit-plan"><strong>План 2026:</strong> выручка ${esc(plan.revenue)} · ${esc(String(plan.projects))} проектов · маржа ${esc(plan.margin_pct)} · winrate ${esc(plan.winrate)} · ~${esc(plan.briefs_per_month)} брифов/мес</p>`;
+        if (u.monthly && u.monthly.length) {
+          unitBody += renderSalesTable(
+            ["Месяц", "Выручка", "Прибыль", "Комментарий"],
+            u.monthly.map(row => [row.month, row.revenue || "—", row.profit, row.note])
+          );
+        }
+      } else if (u.id === "sputnik") {
+        unitBody += renderSalesTable(
+          ["Показатель", "Значение"],
+          [
+            ["Выручка ~2025", ytd.revenue_2025_approx],
+            ["Статус", ytd.status],
+            ["База контактов", ytd.contacts_base],
+            ["Коммерция", ytd.commercial_split]
+          ]
+        );
+      }
+
+      const insights = (u.insights || []).map(x => `<li>${esc(x)}</li>`).join("");
+      unitsHtml += `
+        <div class="sales-unit-card" style="--unit-color:${u.color || "#666"}">
+          <div class="sales-unit-head">
+            <h3 class="sales-unit-name">${esc(u.name)}</h3>
+            <span class="sales-unit-owner">${esc(u.owner)} · порог ${esc(u.threshold)}</span>
+          </div>
+          ${unitBody}
+          ${insights ? `<ul class="sales-insights">${insights}</ul>` : ""}
+        </div>`;
+    });
+
+    const groupRows = (salesSnapshot.group_targets_2026?.rows || []).map(r => [r.metric, r.baseline, r.target]);
+    const leonidRows = (salesSnapshot.leonid_kpi?.rows || []).map(r => ["Месяц " + r.month, r.focus, r.target]);
+    const briefRows = (salesSnapshot.briefs_plan_monthly?.rows || []).map(r => [r.month, String(r.briefs)]);
+    const histRows = (salesSnapshot.nb_history_2025?.rows || []).map(r => [
+      r.product, String(r.briefs), r.winrate, r.revenue
+    ]);
+
+    const liveRefs = (m.live_refs || []).map(r =>
+      `<a class="contact-btn" href="${r.url}" target="_blank" rel="noopener">${esc(r.label)}</a>`
+    ).join("");
+
+    const losses = (salesSnapshot.loss_patterns || []).map(x => `<li>${esc(x)}</li>`).join("");
+
+    return `
+      <div class="card">
+        <div class="card-meta">Baseline · ${esc(m.as_of)} · ${esc(m.period_label || "")}</div>
+        <h2 class="card-title">Продажи · план, факт, воронка</h2>
+        <p class="card-intro">${esc(m.updated_note || "")}</p>
+        <div class="sales-callout">
+          <p><strong>${esc(hl.problem || "")}</strong></p>
+          <p>${esc(hl.focus_2026 || "")}</p>
+          <p class="sales-mandate">${esc(hl.your_mandate || "")}</p>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3 class="section-heading">${esc(salesSnapshot.group_targets_2026?.title || "План группы")}</h3>
+        ${renderSalesTable(["Метрика", "Baseline (май 2026)", "Цель 2026"], groupRows)}
+      </div>
+
+      <div class="card">
+        <h3 class="section-heading">${esc(salesSnapshot.leonid_kpi?.title || "Твои KPI")}</h3>
+        ${renderSalesTable(["Период", "Фокус", "Ориентир"], leonidRows)}
+      </div>
+
+      <div class="card">
+        <h3 class="section-heading">Юниты · план vs факт</h3>
+        ${unitsHtml}
+      </div>
+
+      <div class="card">
+        <h3 class="section-heading">${esc(salesSnapshot.briefs_plan_monthly?.title || "План брифов")}</h3>
+        <p class="card-intro">${esc(salesSnapshot.briefs_plan_monthly?.note || "")}</p>
+        ${renderSalesTable(["Месяц", "План брифов (Blaster legacy)"], briefRows)}
+      </div>
+
+      <div class="card">
+        <h3 class="section-heading">${esc(salesSnapshot.nb_history_2025?.title || "NB 2025")}</h3>
+        <p class="card-intro">${esc(salesSnapshot.nb_history_2025?.note || "")}</p>
+        ${renderSalesTable(["Продукт", "Брифов", "Winrate", "Выручка"], histRows)}
+      </div>
+
+      <div class="card">
+        <h3 class="section-heading">Паттерны проигрышей (CRM)</h3>
+        <ul class="sales-insights">${losses}</ul>
+        <div class="modal-contacts" style="margin-top:16px">${liveRefs}
+          <button type="button" class="contact-btn primary" data-person="dima">Спросить актуальный месяц у CRO</button>
+        </div>
+      </div>`;
   }
 
   function goToDay(idx) {
@@ -340,8 +480,9 @@
       const r = findResource(item.id);
       if (!r) return "";
       if (r.action) {
+        const icon = r.action === "sales" ? "📈" : r.action === "people" ? "👥" : "🗺";
         return `<button type="button" class="path-link" data-view="${r.action}">
-          <span class="icon">🗺</span>
+          <span class="icon">${icon}</span>
           <span>${r.title}<span class="sub">${r.subtitle}</span></span>
         </button>`;
       }
@@ -451,6 +592,7 @@
         <h3 class="section-heading">Быстрые разделы</h3>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
           <button type="button" class="btn" data-view="map">🗺 Карта группы</button>
+          <button type="button" class="btn" data-view="sales">📈 Продажи</button>
           <button type="button" class="btn" data-view="people">👥 Люди</button>
           <button type="button" class="btn" data-view="chats">💬 Telegram</button>
           <button type="button" class="btn" data-view="decks">📊 Презентации</button>
@@ -669,6 +811,7 @@
     else if (currentView === "people") main.innerHTML = renderPeople();
     else if (currentView === "chats") main.innerHTML = renderChats();
     else if (currentView === "decks") main.innerHTML = renderDecks();
+    else if (currentView === "sales") main.innerHTML = renderSales();
 
     bindMainEvents(main);
     document.getElementById("xpNum").textContent = totalProgress() + "%";
@@ -746,14 +889,15 @@
 
   async function init() {
     try {
-      const [stepsData, teamRes, resRes, chatsRes, decksRes, pathsRes, contactsRes] = await Promise.all([
+      const [stepsData, teamRes, resRes, chatsRes, decksRes, pathsRes, contactsRes, salesRes] = await Promise.all([
         fetch("data/steps.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
         fetch("data/team.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
         fetch("data/resources.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
         fetch("data/chats.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
         fetch("data/decks.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
         fetch("data/task_paths.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
-        fetch("data/contacts.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); })
+        fetch("data/contacts.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
+        fetch("data/sales_snapshot.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); })
       ]);
       steps = stepsData.steps;
       stepsMeta = stepsData.meta || {};
@@ -763,6 +907,7 @@
       decks = decksRes;
       taskPaths = pathsRes;
       contactsData = contactsRes;
+      salesSnapshot = salesRes;
     } catch (_) {
       document.getElementById("loadError").hidden = false;
       return;
@@ -774,7 +919,8 @@
     else if (params.has("people")) currentView = "people";
     else if (params.has("chats")) currentView = "chats";
     else if (params.has("decks")) currentView = "decks";
-    else if (viewParam && ["program","map","people","chats","decks"].includes(viewParam)) currentView = viewParam;
+    else if (params.has("sales")) currentView = "sales";
+    else if (viewParam && ["program","map","people","chats","decks","sales"].includes(viewParam)) currentView = viewParam;
 
     const dayParam = params.get("day");
     if (dayParam) {

@@ -208,6 +208,13 @@
   ],
   "internal": [
     {
+      "id": "view_sales",
+      "title": "Продажи · план и факт",
+      "subtitle": "Выручка, маржа, winrate, брифы по юнитам",
+      "action": "sales",
+      "unit": "uk"
+    },
+    {
       "id": "view_org_map",
       "title": "Карта группы",
       "subtitle": "УК → Cult · Blaster · Sputnik · TechTigers · ИИ",

@@ -38,6 +38,13 @@
     { "kind": "step", "text": "Нажми на каждый юнит — посмотри людей и презентации" },
     { "kind": "note", "text": "Open Production упразднён — в структуре его нет" }
   ],
+  "2.sales_snapshot": [
+    { "kind": "resource", "id": "view_sales" },
+    { "kind": "resource", "id": "doc_nb_reg" },
+    { "kind": "resource", "id": "amo_cult" },
+    { "kind": "person", "id": "dima" },
+    { "kind": "note", "text": "Baseline на 28.05.2026 — Cult/Blaster из декомпозиции. Июльский факт — на еженедельном синке с CRO + NB регламент" }
+  ],
   "2.amo_walk": [
     { "kind": "step", "text": "11:00–12:30 — разбор Amo Cult + передача дел от Саши Алексеева" },
     { "kind": "resource", "id": "amo_cult" },

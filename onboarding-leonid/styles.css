@@ -832,3 +832,64 @@ body.modal-open { overflow: hidden; }
   background: var(--ivory);
   border-radius: 8px;
 }
+
+.sales-callout {
+  padding: 14px 16px;
+  border-radius: 10px;
+  background: rgba(37, 99, 235, 0.06);
+  border: 1px solid rgba(37, 99, 235, 0.14);
+  font-size: 13px;
+  line-height: 1.55;
+}
+.sales-callout p { margin: 0 0 8px; }
+.sales-callout p:last-child { margin-bottom: 0; }
+.sales-mandate { font-weight: 600; }
+
+.sales-table-wrap {
+  overflow-x: auto;
+  margin: 12px 0 0;
+}
+.sales-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 13px;
+}
+.sales-table th,
+.sales-table td {
+  text-align: left;
+  padding: 8px 10px;
+  border-bottom: 1px solid var(--border);
+  vertical-align: top;
+}
+.sales-table th {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  text-transform: uppercase;
+  color: var(--muted);
+  font-weight: 700;
+}
+.sales-metric.sales-warn { color: #c2410c; font-weight: 600; }
+
+.sales-unit-card {
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--unit-color, #666);
+  border-radius: 10px;
+  padding: 14px 16px;
+  margin-bottom: 14px;
+}
+.sales-unit-head { margin-bottom: 10px; }
+.sales-unit-name {
+  font-family: Unbounded, sans-serif;
+  font-size: 15px;
+  margin: 0 0 4px;
+}
+.sales-unit-owner { font-size: 12px; color: var(--muted); }
+.sales-unit-plan { font-size: 13px; margin: 0 0 10px; line-height: 1.45; }
+.sales-insights {
+  margin: 10px 0 0;
+  padding-left: 18px;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+.sales-insights li { margin: 4px 0; }
