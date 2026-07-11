@@ -78,12 +78,21 @@
     },
     {
       "id": "clifton",
-      "title": "CliftonStrengths · Gallup",
-      "subtitle": "Ссылку и оплату оформляет Дима — платит компания",
+      "title": "CliftonStrengths · пройти тест",
+      "subtitle": "Redeem access code — компания оплачивает, код от Димы",
+      "url": "https://www.gallup.com/access",
+      "owner": "dima",
+      "unit": "uk",
+      "note": "Access code пришлёт Дима в личку. После прохождения — сверь профиль с таблицей команды. Каталог продуктов Gallup: gallup.com/cliftonstrengths (если нужен контекст)."
+    },
+    {
+      "id": "clifton_store",
+      "title": "CliftonStrengths · каталог Gallup",
+      "subtitle": "Справочно — покупку кодов делает компания, не ты",
       "url": "https://www.gallup.com/cliftonstrengths/en/253868/popular-cliftonstrengths-assessment-products.aspx",
       "owner": "dima",
       "unit": "uk",
-      "note": "Персональная ссылка на тест — в личке от Димы"
+      "note": "Для прохождения нужен access code от CRO, не самостоятельная покупка"
     },
     {
       "id": "icrm",
@@ -182,10 +191,19 @@
     {
       "id": "doc_clifton_team",
       "title": "Clifton · таблица команды",
-      "subtitle": "Сверь свой профиль с коллегами",
+      "subtitle": "Сверь свой профиль с коллегами · ссылка от Кости (май 2026)",
       "url": "https://docs.google.com/spreadsheets/d/1bkfERbO8UlEql6pLS_UIhCrBRiT2R4-YDOqxVeUx__0/edit",
       "owner": "dima",
       "unit": "uk"
+    },
+    {
+      "id": "doc_offer_leonid",
+      "title": "Оффер · Леонид Мархашов",
+      "subtitle": "Согласованные условия · GDoc от Кости 16.06.2026",
+      "url": "https://docs.google.com/document/d/1nteIt04T9s0_dpfq39dFtuaZW86n3jvrpThBqTibtA8/edit?usp=sharing",
+      "owner": "dima",
+      "unit": "uk",
+      "note": "220 000 ₽ + 12% маржи · повторы 6→3→0% · старт 15.07.2026 · ГПХ с ООО «Культ»"
     }
   ],
   "internal": [

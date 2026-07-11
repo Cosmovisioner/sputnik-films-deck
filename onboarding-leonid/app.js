@@ -3,7 +3,21 @@
 
   const STORAGE_KEY = "cult_leonid_daily_v5";
   const WELCOME_KEY = "cult_leonid_welcome_v1";
-  const ASSET_VER = "20260711-v11";
+  const ASSET_VER = "20260711-v12";
+
+  function esc(s) {
+    if (s == null || s === "") return "";
+    return String(s)
+      .replace(/&/g, "&amp;")
+      .replace(/</g, "&lt;")
+      .replace(/>/g, "&gt;")
+      .replace(/"/g, "&quot;");
+  }
+
+  function listSection(title, items) {
+    if (!items || !items.length) return "";
+    return `<div class="modal-section"><h4>${title}</h4><ul class="modal-list">${items.map(x => `<li>${esc(x)}</li>`).join("")}</ul></div>`;
+  }
 
   let stepsMeta = {};
 
@@ -245,42 +259,57 @@
 
     let contactsHtml = "";
     if (c.email) {
-      contactsHtml += `<a class="contact-btn primary" href="mailto:${c.email}">✉ ${c.email}</a>`;
+      contactsHtml += `<a class="contact-btn primary" href="mailto:${esc(c.email)}">✉ ${esc(c.email)}</a>`;
     }
     if (c.emailAlt) {
-      contactsHtml += `<a class="contact-btn" href="mailto:${c.emailAlt}">✉ ${c.emailAlt}</a>`;
+      contactsHtml += `<a class="contact-btn" href="mailto:${esc(c.emailAlt)}">✉ ${esc(c.emailAlt)}</a>`;
     }
     if (c.emailWork && c.emailWork !== c.email) {
-      contactsHtml += `<a class="contact-btn" href="mailto:${c.emailWork}">✉ ${c.emailWork}</a>`;
+      contactsHtml += `<a class="contact-btn" href="mailto:${esc(c.emailWork)}">✉ ${esc(c.emailWork)}</a>`;
     }
     if (c.telegram) {
-      contactsHtml += `<a class="contact-btn" href="${c.telegram}" target="_blank" rel="noopener">💬 ${c.telegramLabel || "Telegram"}</a>`;
+      contactsHtml += `<a class="contact-btn" href="${c.telegram}" target="_blank" rel="noopener">💬 ${esc(c.telegramLabel || "Telegram")}</a>`;
     }
     if (c.howToWrite) {
-      contactsHtml += `<p style="font-size:12px;color:var(--muted);margin:8px 0 0">${c.howToWrite}</p>`;
+      contactsHtml += `<p style="font-size:12px;color:var(--muted);margin:8px 0 0">${esc(c.howToWrite)}</p>`;
     }
+
+    const themes = (p.clifton_themes || []).filter(Boolean);
+    const themesHtml = themes.length
+      ? `<div class="theme-tags">${themes.map(t => `<span class="theme-tag">${esc(t)}</span>`).join("")}</div>`
+      : "";
+    const cliftonLinks = [];
+    if (p.clifton_url) {
+      const label = p.clifton_tab ? `Clifton · ${p.clifton_tab}` : "Clifton · профиль";
+      cliftonLinks.push(`<a class="contact-btn" href="${p.clifton_url}" target="_blank" rel="noopener">📊 ${esc(label)}</a>`);
+    }
+    cliftonLinks.push(`<a class="contact-btn" href="https://docs.google.com/spreadsheets/d/1bkfERbO8UlEql6pLS_UIhCrBRiT2R4-YDOqxVeUx__0/edit" target="_blank" rel="noopener">📋 Таблица команды</a>`);
 
     body.innerHTML = `
       ${personAvatarHtml(p, true)}
-      <h2 class="modal-name">${p.name}</h2>
-      <p class="modal-role">${p.role} · ${p.unit}</p>
+      <h2 class="modal-name">${esc(p.name)}</h2>
+      <p class="modal-role">${esc(p.role)} · ${esc(p.unit)}</p>
+      ${p.bio_short ? `<p class="modal-lead">${esc(p.bio_short)}</p>` : ""}
+      ${p.lore ? `<div class="modal-section"><h4>Контекст</h4><p class="modal-bio">${esc(p.lore)}</p></div>` : ""}
+      ${listSection("Задачи и зона", p.tasks)}
       <div class="modal-section">
-        <h4>Clifton · как общаться</h4>
-        <p style="font-size:13px;margin:0">${p.clifton_hint}</p>
+        <h4>CliftonStrengths</h4>
+        ${themesHtml}
+        <p class="modal-bio" style="margin-top:${themesHtml ? "10px" : "0"}">${esc(p.clifton_hint || "")}</p>
+        <div class="modal-contacts" style="margin-top:10px">${cliftonLinks.join("")}</div>
       </div>
-      <div class="modal-section">
-        <h4>Когда писать</h4>
-        <ul class="modal-list">${(p.contact_when || []).map(x => `<li>${x}</li>`).join("")}</ul>
-      </div>
+      ${listSection("Сильные стороны", p.strengths)}
+      ${listSection("На что смотреть", p.watch_out)}
+      ${listSection("Когда писать", p.contact_when)}
       <div class="modal-section">
         <h4>Избегать</h4>
-        <p style="font-size:13px;margin:0;color:var(--muted)">${p.avoid}</p>
+        <p class="modal-bio">${esc(p.avoid || "")}</p>
       </div>
       <div class="modal-section">
         <h4>Контакты</h4>
         <div class="modal-contacts">${contactsHtml || "<span class='path-note'>Напиши Диме — даст контакт</span>"}</div>
       </div>
-      ${unit ? `<div class="modal-section"><button type="button" class="btn" data-unit="${unit.id}">Юнит: ${unit.name} →</button></div>` : ""}
+      ${unit ? `<div class="modal-section"><button type="button" class="btn" data-unit="${unit.id}">Юнит: ${esc(unit.name)} →</button></div>` : ""}
     `;
 
     body.querySelector("[data-unit]")?.addEventListener("click", e => {
@@ -521,12 +550,14 @@
 
   function personCardHtml(p) {
     const partner = p.category === "partner_slz" ? " partner" : "";
+    const sub = p.bio_short ? `<div class="person-bio">${esc(p.bio_short)}</div>` : "";
     return `<div class="person-card${partner}" data-person="${p.id}">
       ${personAvatarHtml(p, false)}
       <div>
-        <div class="person-name">${p.name}</div>
-        <div class="person-role">${p.role}</div>
-        <span class="person-unit-tag">${p.unit}</span>
+        <div class="person-name">${esc(p.name)}</div>
+        <div class="person-role">${esc(p.role)}</div>
+        ${sub}
+        <span class="person-unit-tag">${esc(p.unit)}</span>
       </div>
     </div>`;
   }
@@ -553,7 +584,7 @@
     return `
       <div class="card">
         <h2 class="card-title">Справочник людей</h2>
-        <p class="card-intro">Кликни карточку — роль, когда писать, контакты для сообщения.</p>
+        <p class="card-intro">Кликни карточку — биография, Clifton, сильные стороны, когда писать и контакты.</p>
         <div class="filter-row">${chips}</div>
         ${staff.length ? `<h3 class="mono-tag" style="margin-bottom:12px">Штат</h3><div class="people-grid">${staff.map(p => personCardHtml(p)).join("")}</div>` : ""}
         ${partners.length ? `<h3 class="mono-tag" style="margin:20px 0 12px">Партнёрские сейлз-менеджеры</h3><p style="font-size:13px;color:var(--muted);margin-bottom:12px">${team.org.partner_slz?.routing || ""}</p><div class="people-grid">${partners.map(p => personCardHtml(p)).join("")}</div>` : ""}

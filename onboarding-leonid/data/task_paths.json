@@ -21,13 +21,15 @@
     { "kind": "note", "text": "Пароли Amo и закрытый документ — только в личке от Димы" }
   ],
   "1.clifton_order": [
-    { "kind": "step", "text": "Напиши Диме — компания оплачивает тест CliftonStrengths" },
+    { "kind": "step", "text": "Напиши Диме — компания оплачивает тест CliftonStrengths (Top 34)" },
     { "kind": "person", "id": "dima" },
     { "kind": "resource", "id": "clifton" },
-    { "kind": "note", "text": "Персональную ссылку Gallup пришлёт Дима" }
+    { "kind": "resource", "id": "doc_clifton_team" },
+    { "kind": "note", "text": "Access code для gallup.com/access пришлёт Дима. Таблица команды — от Кости (созвон 08.05)" }
   ],
   "1.motivation": [
     { "kind": "step", "text": "220 000 ₽ + 12% от плановой маржи · повторы с клиентом: 6% → 3% → 0%" },
+    { "kind": "resource", "id": "doc_offer_leonid" },
     { "kind": "resource", "id": "doc_commerce_rules" },
     { "kind": "person", "id": "dima" }
   ],

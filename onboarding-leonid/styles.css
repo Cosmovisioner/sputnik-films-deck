@@ -750,7 +750,39 @@ body.modal-open { overflow: hidden; }
   font-weight: 700;
   margin: 0 0 4px;
 }
-.modal-role { font-size: 13px; color: var(--muted); margin-bottom: 16px; }
+.modal-role { font-size: 13px; color: var(--muted); margin-bottom: 8px; }
+.modal-lead {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0 0 12px;
+  line-height: 1.45;
+}
+.modal-bio {
+  font-size: 13px;
+  line-height: 1.55;
+  margin: 0;
+  color: var(--graphite);
+}
+.theme-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.theme-tag {
+  display: inline-block;
+  padding: 4px 8px;
+  border-radius: 6px;
+  font-size: 11px;
+  font-family: "JetBrains Mono", monospace;
+  background: rgba(37, 99, 235, 0.08);
+  border: 1px solid rgba(37, 99, 235, 0.18);
+}
+.person-bio {
+  font-size: 12px;
+  color: var(--muted);
+  margin: 4px 0 6px;
+  line-height: 1.4;
+}
 .modal-section { margin-bottom: 16px; }
 .modal-section h4 {
   font-family: "JetBrains Mono", monospace;
