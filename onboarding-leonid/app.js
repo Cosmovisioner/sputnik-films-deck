@@ -3,7 +3,7 @@
 
   const STORAGE_KEY = "cult_leonid_daily_v5";
   const WELCOME_KEY = "cult_leonid_welcome_v3";
-  const ASSET_VER = "20260711-v17";
+  const ASSET_VER = "20260711-v18";
 
   function esc(s) {
     if (s == null || s === "") return "";
@@ -917,16 +917,32 @@
       const short = step.title.split("·").pop().trim();
       const done = stepComplete(step) ? "done" : "";
       const active = i === currentDayIdx && currentView === "program" ? "active" : "";
-      return `<button type="button" class="day-pill ${done} ${active}" data-day="${i}" title="${step.title}">
-        <span class="day-pill-num">День ${step.id}</span>
-        <span class="day-pill-date">${formatDateCompact(step.date)} · ${step.weekday}</span>
-        <span class="day-pill-label">${short}</span>
+      const d = parseDate(step.date);
+      const months = ["янв", "фев", "мар", "апр", "май", "июн", "июл", "авг", "сен", "окт", "ноя", "дек"];
+      const dayNum = d.getDate();
+      const month = months[d.getMonth()];
+      return `<button type="button" class="day-pill ${done} ${active}" data-day="${i}" title="${step.title}" aria-current="${active ? "step" : "false"}">
+        <span class="day-pill-kicker">День ${step.id}</span>
+        <span class="day-pill-date-row">
+          <span class="day-pill-day-num">${dayNum}</span>
+          <span class="day-pill-date-meta">
+            <span class="day-pill-month">${month}</span>
+            <span class="day-pill-weekday">${step.weekday}</span>
+          </span>
+        </span>
+        <span class="day-pill-label">${esc(short)}</span>
+        ${done ? `<span class="day-pill-check" aria-hidden="true">✓</span>` : ""}
       </button>`;
     }).join("");
 
     nav.querySelectorAll(".day-pill").forEach(btn => {
       btn.addEventListener("click", () => goToDay(parseInt(btn.dataset.day, 10)));
     });
+
+    const activePill = nav.querySelector(".day-pill.active");
+    if (activePill) {
+      activePill.scrollIntoView({ behavior: "smooth", block: "nearest", inline: "center" });
+    }
   }
 
   async function init() {
