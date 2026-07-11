@@ -31,14 +31,25 @@
         "id": "ai_window",
         "name": "Окно в ИИ",
         "desc": "Единая точка входа для крупных прямых клиентов с ИИ-задачами (до 01.2027)"
+      },
+      {
+        "id": "partner_slz",
+        "name": "Партнёрские SLZ",
+        "desc": "Независимые селзы за % — лиды в группу, CRM и handoff через group sales"
       }
     ],
-    "flow": "Клиент → Sales → бриф + скоринг → юнит → передача (договор + предоплата) → продюсер",
-    "producers_note": "Продюсеры ведут производство после handoff. Хэды юнитов (Денис, Лиза) — якорные клиенты и экономика. Sputnik: коммерция студии А — Тая; док/спецпроекты «берём ли» — Сергей Клейн. Open Production как юнит упразднён."
+    "flow": "Клиент → Sales группы → бриф + скоринг → юнит → передача (договор + предоплата) → продюсер",
+    "producers_note": "Продюсеры ведут производство после передачи. Хэды юнитов (Денис, Лиза) — якорные клиенты и экономика. Sputnik: коммерция студии А — Тая; док/спецпроекты «берём ли» — Сергей Клейн. Open Production как юнит упразднён.",
+    "partner_slz": {
+      "title": "Партнёрские SLZ (независимые)",
+      "desc": "Не штат УК. Раньше работали в Cult/Blaster — сейчас сотрудничают за %. Лиды передают в группу; сделки ведёт group sales, в Cult/Blaster — по маршрутизации, без прямой работы SLZ с продакшеном.",
+      "routing": "Лид от SLZ → источник в Amo → ты/CRO → скоринг → head юнита → производство. % SLZ — по их договорённости (не обещай клиенту от их имени)."
+    }
   },
   "people": [
     {
       "id": "kostya",
+      "category": "staff",
       "name": "Константин Мельников",
       "role": "CEO Cult Group",
       "unit": "УК",
@@ -54,6 +65,7 @@
     },
     {
       "id": "dima",
+      "category": "staff",
       "name": "Дмитрий Квашнин",
       "role": "Коммерческий директор группы · CEO Sputnik Films",
       "unit": "УК + Sputnik",
@@ -69,6 +81,7 @@
     },
     {
       "id": "denis",
+      "category": "staff",
       "name": "Денис Леваков",
       "role": "Head Cult · исполнительный продюсер",
       "unit": "Cult",
@@ -84,6 +97,7 @@
     },
     {
       "id": "liza",
+      "category": "staff",
       "name": "Лиза Иванова",
       "role": "Head Blaster",
       "unit": "Blaster",
@@ -99,6 +113,7 @@
     },
     {
       "id": "sergey",
+      "category": "staff",
       "name": "Сергей Клейн",
       "role": "Head of Production Sputnik Films",
       "unit": "Sputnik",
@@ -114,6 +129,7 @@
     },
     {
       "id": "egor",
+      "category": "staff",
       "name": "Егор Мараев",
       "role": "Co-founder Blaster (выход из операционки)",
       "unit": "Blaster",
@@ -128,6 +144,7 @@
     },
     {
       "id": "homich",
+      "category": "staff",
       "name": "Саша Хомич",
       "role": "TechTigers · разработка iCRM",
       "unit": "TechTigers",
@@ -143,20 +160,23 @@
     },
     {
       "id": "sasha_a",
+      "category": "partner_slz",
       "name": "Саша Алексеев",
-      "role": "Ex group sales · part-time Blaster",
-      "unit": "—",
+      "role": "Независимый SLZ · ex Cult + Blaster",
+      "unit": "Партнёр",
       "initials": "СА",
       "photo": null,
-      "clifton_hint": "CRM-дисциплина, база Blaster, канон передачи дел.",
+      "clifton_hint": "Знает CRM-дисциплину, базу Blaster и канон передачи дел. Сейчас — партнёр за %, не штат.",
       "contact_when": [
-        "Вопросы по базе Blaster и legacy-процессам",
-        "Как вёлся контур до группового sales"
+        "Консультация по legacy-базе и истории клиентов",
+        "Как раньше вёлся контур Cult/Blaster",
+        "Согласование, если он привёл лид (источник в Amo)"
       ],
-      "avoid": "Считать его владельцем новых сделок группы"
+      "avoid": "Вести сделку напрямую с Денисом/Лизой в обход group sales; считать его владельцем CRM-контура"
     },
     {
       "id": "taya",
+      "category": "staff",
       "name": "Тая",
       "role": "Commercial lead Sputnik (студия А, рекламный контур)",
       "unit": "Sputnik",
@@ -171,6 +191,7 @@
     },
     {
       "id": "leonid",
+      "category": "staff",
       "name": "Леонид Мархашов",
       "role": "Sales / NewBiz Manager",
       "unit": "УК",
@@ -179,6 +200,36 @@
       "clifton_hint": "Ex-Sputnik sales, CRM-оператор, вайбкодит инструменты.",
       "contact_when": ["Ты — владелец холодного контура и нового входящего на уровне группы"],
       "avoid": "Уходить в продакшен, PR и «тащить» всё в Sputnik по привычке"
+    },
+    {
+      "id": "dima_soldatov",
+      "category": "partner_slz",
+      "name": "Дима Солдатов",
+      "role": "Независимый SLZ Blaster",
+      "unit": "Партнёр · Blaster",
+      "initials": "ДС",
+      "photo": null,
+      "clifton_hint": "Внешний продавец Blaster-контура. Работает с группой за %, не в штате.",
+      "contact_when": [
+        "Лид пришёл от Димы — зафиксировать источник, согласовать с CRO",
+        "Вопросы по его клиентам и договорённостям по %"
+      ],
+      "avoid": "Подключать в продакшен без маршрутизации через group sales и head Blaster"
+    },
+    {
+      "id": "max_blaster",
+      "category": "partner_slz",
+      "name": "Максим",
+      "role": "Независимый SLZ Blaster",
+      "unit": "Партнёр · Blaster",
+      "initials": "М",
+      "photo": null,
+      "clifton_hint": "Внешний продавец Blaster-контура (в т.ч. тендеры/крупные клиенты). Партнёр за %.",
+      "contact_when": [
+        "Лид пришёл от Максима — источник в Amo, эскалация CRO",
+        "Спор по владению клиентом или %"
+      ],
+      "avoid": "Дублировать сделку в Amo без метки источника; обещать условия от имени Blaster"
     }
   ]
 }

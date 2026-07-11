@@ -235,7 +235,11 @@
       <div class="level-body">
         <p>Карточки команды — с кем и по каким вопросам. Поле «Не писать» — типичные ошибки.</p>
         <p id="producersNote" class="hint"></p>
+        <h3 style="font-size:14px;margin:16px 0 8px;color:var(--graphite)">Штат группы</h3>
         <div class="team-grid" id="teamGrid"></div>
+        <h3 style="font-size:14px;margin:20px 0 8px;color:var(--graphite)" id="partnerSlzTitle"></h3>
+        <p id="partnerSlzNote" class="warn" style="display:none"></p>
+        <div class="team-grid" id="partnerSlzGrid"></div>
         <p><strong style="color:var(--graphite)">Задача недели 1:</strong> пройти CliftonStrengths (тот же тест, что команда). Ссылку и оплату даёт коммерческий директор. Сверка с <a id="cliftonLink" href="#" target="_blank" rel="noopener">таблицей команды</a>.</p>
         <div class="actions"><button type="button" class="done-btn" data-level="2">Прошёл уровень 2</button></div>
       </div>
@@ -272,6 +276,7 @@
           <li>Передача в производство = договор + предоплата; ты остаёшься в чате наблюдателем</li>
           <li><strong>Не исчезай после КП</strong></li>
           <li>Стоп-лист: казино, букмекеры, алкоголь, политика</li>
+          <li><strong>Партнёрские SLZ</strong> (Саша Алексеев, Дима Солдатов, Максим): лиды → group sales → Cult/Blaster. Не в продакшен напрямую; % — по договорённости с CRO</li>
         </ol>
         <p class="warn"><strong>Лёня + Sputnik:</strong> ты ex-Sputnik sales — не тащи лиды в Sputnik по привычке. Реклама → Cult; графика → Blaster. Sputnik — док/спецпроекты; решение «берём ли» — <strong>Сергей Клейн</strong>, не единолично CRO.</p>
         <p><strong style="color:var(--graphite)">KPI по месяцам:</strong></p>
@@ -455,6 +460,14 @@
         document.getElementById("producersNote").textContent = teamRes.org.producers_note;
       }
 
+      const ps = teamRes.org.partner_slz;
+      if (ps) {
+        document.getElementById("partnerSlzTitle").textContent = ps.title || "Партнёрские SLZ";
+        const pn = document.getElementById("partnerSlzNote");
+        pn.style.display = "block";
+        pn.innerHTML = (ps.desc || "") + (ps.routing ? "<br><strong>Маршрут:</strong> " + ps.routing : "");
+      }
+
       const clifton = linksRes.documents.find(d => d.id === "clifton_team");
       if (clifton) document.getElementById("cliftonLink").href = clifton.url;
 
@@ -472,8 +485,7 @@
           "Полные правила «Окно в ИИ» — у коммерческого директора (файл в SB: " + aiRef.path + ").";
       }
 
-      const grid = document.getElementById("teamGrid");
-      teamRes.people.filter(p => p.id !== "leonid").forEach(p => {
+      function renderPersonCard(p, grid) {
         const card = document.createElement("div");
         card.className = "person-card";
         const avoidBlock = p.avoid
@@ -487,7 +499,13 @@
           "<strong style='font-size:11px'>Когда писать:</strong><ul style='font-size:11px;margin:4px 0 0;padding-left:16px'>" +
           p.contact_when.map(c => "<li>" + c + "</li>").join("") + "</ul>" + avoidBlock;
         grid.appendChild(card);
-      });
+      }
+
+      const grid = document.getElementById("teamGrid");
+      teamRes.people.filter(p => p.id !== "leonid" && (p.category || "staff") === "staff").forEach(p => renderPersonCard(p, grid));
+
+      const partnerGrid = document.getElementById("partnerSlzGrid");
+      teamRes.people.filter(p => p.category === "partner_slz").forEach(p => renderPersonCard(p, partnerGrid));
 
       const docs4 = document.getElementById("docsLevel4");
       linksRes.documents.filter(d => d.level === 4).forEach(d => {
