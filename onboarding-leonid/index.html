@@ -2,7 +2,8 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <meta http-equiv="Pragma" content="no-cache" />
   <title>Cult Group — онбординг Sales</title>
   <meta name="description" content="Онбординг Sales Cult Group — шаги по программе, можно идти в своём темпе." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -234,7 +235,7 @@
 <body>
   <div class="shell">
     <div class="brand-bar"></div>
-    <div id="loadError">Не удалось загрузить программу. Обнови страницу или напиши CRO.</div>
+    <div id="loadError">Не удалось загрузить программу. Обнови страницу (Cmd+Shift+R) или напиши CRO.</div>
 
     <header class="header">
       <div>
@@ -246,18 +247,6 @@
         <div class="progress-label">день</div>
       </div>
     </header>
-
-    <div id="waitView" class="card wait-card" style="display:none">
-      <h2 id="waitTitle">Онбординг скоро</h2>
-      <p id="waitText" class="intro" style="margin:0"></p>
-    </div>
-
-    <div id="weekendView" class="card wait-card" style="display:none">
-      <div class="date-line" style="color:var(--muted)">Выходной</div>
-      <h2 id="weekendTitle" style="font-family:'JetBrains Mono',monospace;font-size:18px;margin:0 0 8px">Отдых</h2>
-      <p id="weekendText" class="intro" style="margin:0 0 16px"></p>
-      <div id="weekendNext" class="mini-card" style="text-align:left"></div>
-    </div>
 
     <div id="todayView">
       <article class="card card-today" id="stepCard">
@@ -283,7 +272,8 @@
   </div>
 
   <script>
-    const STORAGE_KEY = "cult_leonid_daily_v3";
+    const STORAGE_KEY = "cult_leonid_daily_v4";
+    const ASSET_VER = "20260711-open";
 
     let stepsCache = [];
     let teamCache = null;
@@ -405,8 +395,6 @@
     }
 
     function renderStep(step, steps, idx, teamRes, state) {
-      document.getElementById("waitView").style.display = "none";
-      document.getElementById("weekendView").style.display = "none";
       document.getElementById("todayView").style.display = "block";
       document.getElementById("pageTitle").textContent = "Шаг " + step.id;
       document.getElementById("progressNum").textContent = String(step.id);
@@ -487,8 +475,8 @@
       let stepsData, teamRes;
       try {
         [stepsData, teamRes] = await Promise.all([
-          fetch("data/steps.json").then(r => { if (!r.ok) throw new Error(); return r.json(); }),
-          fetch("data/team.json").then(r => { if (!r.ok) throw new Error(); return r.json(); })
+          fetch("data/steps.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
+          fetch("data/team.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); })
         ]);
       } catch (e) {
         document.getElementById("loadError").style.display = "block";
@@ -516,6 +504,8 @@
       document.getElementById("nextDay").addEventListener("click", () => goToStep(currentIdx + 1));
 
       goToStep(idx);
+      document.getElementById("footerNote").textContent =
+        "Открыто · все " + steps.length + " шагов · v" + ASSET_VER;
     }
 
     function updateCompleteBanner(step, state) {
