@@ -367,14 +367,21 @@
 
       const { meta, steps } = stepsData;
       const today = todayLocal();
-      const dayIdx = dayIndexFromStart(meta.startDate, today);
-      const start = parseDate(meta.startDate);
+      const params = new URLSearchParams(location.search);
+      const previewRaw = params.get("preview");
+      const previewStep = previewRaw !== null ? parseInt(previewRaw || "1", 10) - 1 : null;
 
-      if (dayIdx < 0) {
+      let dayIdx = dayIndexFromStart(meta.startDate, today);
+      if (previewStep !== null && !isNaN(previewStep)) {
+        dayIdx = Math.max(0, Math.min(previewStep, steps.length - 1));
+      }
+
+      if (dayIdx < 0 && previewStep === null) {
         document.getElementById("todayView").style.display = "none";
         document.getElementById("waitView").style.display = "block";
         document.getElementById("waitTitle").textContent = "Старт " + formatDateRu(meta.startDate);
-        document.getElementById("waitText").textContent = "Онбординг откроется в первый рабочий день. До встречи!";
+        document.getElementById("waitText").textContent =
+          "Онбординг откроется в первый рабочий день. CRO: ?preview=1 для просмотра.";
         document.getElementById("progressNum").textContent = "0";
         document.getElementById("pageTitle").textContent = "Ждём старт";
         return;
