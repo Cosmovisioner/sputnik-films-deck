@@ -440,6 +440,9 @@
       if (dayIdx >= steps.length) {
         document.getElementById("footerNote").textContent =
           "Программа онбординга завершена. Вопросы — к коммерческому директору.";
+      } else if (previewStep !== null) {
+        document.getElementById("footerNote").textContent =
+          "Режим preview (CRO). Убери ?preview= из URL для боевого режима.";
       } else if (dayIdx > currentIdx) {
         document.getElementById("footerNote").textContent =
           "Ты впереди календаря — показан последний день программы.";
