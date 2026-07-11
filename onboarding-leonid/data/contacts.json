@@ -70,7 +70,12 @@
       "telegram": "https://t.me/DiOdz",
       "telegramLabel": "@DiOdz",
       "avatar": "assets/avatars/DiOdz.jpg",
-      "howToWrite": "Партнёрский сейлз-менеджер Blaster — только если он привёл лид; % и источник через коммерцию"
+      "howToWrite": "Партнёрский sales: Blaster и чат «ДДЛ бизнес» (док Sputnik). Лид → источник в Amo → через коммерцию"
+    },
+    "petrukhin": {
+      "telegram": "https://t.me/Cape_production",
+      "telegramLabel": "@Cape_production",
+      "howToWrite": "Коллаб Blaster по мультимedia — только после сделки, через Лизу. Не sales-контур"
     },
     "max_blaster": {
       "howToWrite": "Партнёрский сейлз-менеджер Blaster — контакт и % только через Диму (коммерция)"

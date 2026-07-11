@@ -35,7 +35,8 @@
   ],
   "1.org_map": [
     { "kind": "resource", "id": "view_org_map" },
-    { "kind": "step", "text": "Нажми на каждый юнит — посмотри людей и презентации" },
+    { "kind": "resource", "id": "drive_techtigers_products" },
+    { "kind": "step", "text": "Нажми на каждый юнит и продукт TechTigers — посмотри людей и презентации" },
     { "kind": "note", "text": "Open Production упразднён — в структуре его нет" }
   ],
   "1.sales_snapshot": [
@@ -121,13 +122,6 @@
     { "kind": "resource", "id": "skills_pack" },
     { "kind": "note", "text": "Скилл выбора презентации — после установки на 6-й день" }
   ],
-  "4.ai_window": [
-    { "kind": "resource", "id": "doc_ai_window" },
-    { "kind": "section", "id": "chats", "filter": "ai_window" },
-    { "kind": "person", "id": "dima" },
-    { "kind": "deck", "id": "cult_group" },
-    { "kind": "note", "text": "Обычный Cult с лёгким ИИ ≠ «Окно в ИИ» — при сомнении эскалируй" }
-  ],
   "4.shadow1": [
     { "kind": "person", "id": "dima" },
     { "kind": "resource", "id": "amo_cult" },
@@ -151,7 +145,12 @@
   ],
   "5.partner_sales": [
     { "kind": "resource", "id": "view_people", "filter": "partner_slz" },
-    { "kind": "note", "text": "Лид от партнёрского сейлз-менеджера → источник в Amo → групповые продажи → хэд юнита" }
+    { "kind": "person", "id": "sasha_a" },
+    { "kind": "person", "id": "dima_soldatov" },
+    { "kind": "person", "id": "max_blaster" },
+    { "kind": "person", "id": "petrukhin" },
+    { "kind": "section", "id": "chats", "filter": "ddl" },
+    { "kind": "note", "text": "Петрухин — коллаборация Blaster, не партнёрский sales. DDL — чат «ДДЛ бизнес» для док Sputnik" }
   ],
   "5.shadow2": [
     { "kind": "person", "id": "dima" },

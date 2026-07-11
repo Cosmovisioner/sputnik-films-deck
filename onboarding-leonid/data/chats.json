@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Telegram · рабочие чаты",
-    "note": "Публичных ссылок на большинство чатов нет — Дима или хэд юнита добавляет вручную. Open Production и «Спутник / Акционеры» на старте не нужны."
+    "note": "Публичных ссылок на большинство чатов нет — Дима или хэд юнита добавляет вручную."
   },
   "chats": [
     {
@@ -25,6 +25,16 @@
       "desc": "Прямая линия с коммерческим директором: приоритеты, блокеры, эскалации"
     },
     {
+      "id": "ddl",
+      "name": "ДДЛ бизнес",
+      "priority": "as_needed",
+      "week": 1,
+      "unit": "sputnik",
+      "whoAdds": "Дима или Лиза",
+      "inviteUrl": null,
+      "desc": "Док-проекты Sputnik: ТГНД, ИРИ, ПФКI. Партнёр — Дима Солдатов (@DiOdz)"
+    },
+    {
       "id": "blaster_sputnik_sales",
       "name": "Blaster x Sputnik / Продажи",
       "priority": "as_needed",
@@ -33,6 +43,16 @@
       "whoAdds": "Лиза или Дима",
       "inviteUrl": null,
       "desc": "Совместные пресейлы, где участвуют и графика, и продакшен"
+    },
+    {
+      "id": "petrukhin_blaster",
+      "name": "Петрухин × Blaster | мультимedia",
+      "priority": "as_needed",
+      "week": 2,
+      "unit": "blaster",
+      "whoAdds": "Лиза",
+      "inviteUrl": null,
+      "desc": "Коллаба по мультимedia на выставках и ивентах — не sales-чат"
     },
     {
       "id": "sputnik_sales",
@@ -49,10 +69,10 @@
       "name": "Техно отдел / ИИ продажи",
       "priority": "week1",
       "week": 1,
-      "unit": "ai_window",
+      "unit": "techtigers",
       "whoAdds": "Дима + Саша Хомич (@akhomich)",
       "inviteUrl": null,
-      "desc": "Бета CRM, ИИ-продукты, формы приёма брифа"
+      "desc": "CRM (Prodavan), ИИ-продукты, формы брифа"
     },
     {
       "id": "techtigers",
@@ -62,17 +82,7 @@
       "unit": "techtigers",
       "whoAdds": "Дима",
       "inviteUrl": null,
-      "desc": "CRM группы и внутренние автоматизации"
-    },
-    {
-      "id": "ai_window",
-      "name": "Окно в ИИ / Культ групп",
-      "priority": "as_needed",
-      "week": 2,
-      "unit": "ai_window",
-      "whoAdds": "Дима",
-      "inviteUrl": null,
-      "desc": "Крупные прямые клиенты с задачами на ИИ"
+      "desc": "Разработка продуктов студии, интеграция с phygital.team"
     },
     {
       "id": "supertops",

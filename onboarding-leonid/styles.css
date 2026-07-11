@@ -407,10 +407,19 @@ body {
   margin: 0;
 }
 
-.ai-window-banner {
-  margin-top: 4px;
-  cursor: pointer;
+.pillar-drive {
+  font-size: 12px;
+  margin: 0 0 12px;
 }
+.pillar-drive a { color: var(--accent); }
+.pillar-footnote {
+  font-size: 11px;
+  color: var(--muted);
+  margin: 8px 0 0;
+  line-height: 1.45;
+}
+.partner-map-card { margin-top: 16px; }
+.map-partner-card { cursor: pointer; }
 
 .org-grid {
   display: grid;

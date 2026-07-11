@@ -3,7 +3,7 @@
 
   const STORAGE_KEY = "cult_leonid_daily_v5";
   const WELCOME_KEY = "cult_leonid_welcome_v3";
-  const ASSET_VER = "20260711-v15";
+  const ASSET_VER = "20260711-v16";
 
   function esc(s) {
     if (s == null || s === "") return "";
@@ -88,6 +88,7 @@
   function personUnitId(p) {
     if (p.unitId) return p.unitId;
     if (p.category === "partner_slz") return "partner_slz";
+    if (p.category === "collaborator") return "partner_slz";
     return UNIT_ID_MAP[p.unit] || "uk";
   }
 
@@ -128,9 +129,6 @@
     if (unit) return { kind: "unit", item: unit };
     const startup = techStartups().find(s => s.id === id);
     if (startup) return { kind: "startup", item: startup };
-    if (team.org.ai_window && team.org.ai_window.id === id) {
-      return { kind: "overlay", item: team.org.ai_window };
-    }
     return null;
   }
 
@@ -633,9 +631,39 @@
       ${currentDayIdx === 0 ? renderExcludedCard() : ""}`;
   }
 
+  function renderPartnerBlock() {
+    const ps = team.org.partner_slz;
+    if (!ps) return "";
+    const ids = ps.member_ids || [];
+    const cards = ids.map(id => {
+      const p = findPerson(id);
+      if (!p) return "";
+      return `<div class="person-card partner map-partner-card" data-person="${p.id}">
+        <div class="person-name">${esc(p.name)}</div>
+        <div class="person-role">${esc(p.bio_short || p.role)}</div>
+      </div>`;
+    }).join("");
+    const collabIds = ps.collaborator_ids || [];
+    const collabCards = collabIds.map(id => {
+      const p = findPerson(id);
+      if (!p) return "";
+      return `<div class="person-card partner map-partner-card" data-person="${p.id}">
+        <div class="person-name">${esc(p.name)}</div>
+        <div class="person-role">${esc(p.bio_short || p.role)}</div>
+        <span class="mono-tag" style="margin-top:6px;display:inline-block">коллаборация · не sales</span>
+      </div>`;
+    }).join("");
+    return `
+      <div class="card partner-map-card">
+        <h3 class="section-heading">${esc(ps.title || "Партнёры")}</h3>
+        <p class="card-intro">${esc(ps.desc || "")}</p>
+        <p style="font-size:12px;color:var(--muted);margin-bottom:12px">${esc(ps.routing || "")}</p>
+        <div class="people-grid">${cards}${collabCards}</div>
+      </div>`;
+  }
+
   function renderMap() {
     const pillars = orgPillars();
-    const aiWindow = team.org.ai_window;
 
     const pillarHtml = pillars.map(pillar => {
       const isCult = pillar.id === "cult_group";
@@ -660,6 +688,7 @@
             <h3 class="pillar-title">${pillar.name}</h3>
             <p class="pillar-tagline">${pillar.tagline}</p>
             <p class="pillar-desc">${pillar.desc}</p>
+            ${pillar.products_ref ? `<p class="pillar-drive"><a href="${pillar.products_ref}" target="_blank" rel="noopener">Эксплейнеры продуктов (Drive)</a></p>` : ""}
           </div>
           <div class="org-grid pillar-units">${inner}</div>
           ${pillar.note ? `<p class="pillar-footnote">${esc(pillar.note)}</p>` : ""}
@@ -695,37 +724,23 @@
               ${ttPeople.length ? `<h4 class="mono-tag" style="margin:16px 0 8px">Контакт по продукту</h4>
                 <div class="people-grid">${ttPeople.map(p => personCardHtml(p)).join("")}</div>` : ""}
             </div>`;
-        } else {
-          detail = `
-            <div class="unit-detail card">
-              <h3 class="section-heading">${u.name}</h3>
-              <p style="font-size:13px;color:var(--muted)">${u.desc}</p>
-              <p class="path-note" style="margin-top:12px">Подробнее — задача «Окно в ИИ» в день 4 программы</p>
-            </div>`;
         }
       }
     }
-
-    const aiSel = selectedUnit === aiWindow.id ? "selected" : "";
-    const aiBanner = aiWindow ? `
-      <div class="ai-window-banner org-unit ${aiSel}" data-unit="${aiWindow.id}" style="--unit-color:${aiWindow.color}">
-        <div class="org-unit-name">${aiWindow.name}</div>
-        <div class="org-unit-desc">${aiWindow.desc}</div>
-      </div>` : "";
 
     return `
       <div class="card">
         <h2 class="card-title">Карта холдинга</h2>
         <div class="flow-line">${team.org.flow}</div>
         <div class="pillar-grid">${pillarHtml}</div>
-        ${aiBanner}
         <p style="font-size:12px;color:var(--tertiary);margin-top:16px">${team.org.producers_note}</p>
       </div>
+      ${renderPartnerBlock()}
       ${detail}`;
   }
 
   function personCardHtml(p) {
-    const partner = p.category === "partner_slz" ? " partner" : "";
+    const partner = p.category === "partner_slz" || p.category === "collaborator" ? " partner" : "";
     const sub = p.bio_short ? `<div class="person-bio">${esc(p.bio_short)}</div>` : "";
     return `<div class="person-card${partner}" data-person="${p.id}">
       ${personAvatarHtml(p, false)}
@@ -754,16 +769,18 @@
     if (peopleFilter !== "all") {
       list = list.filter(p => personUnitId(p) === peopleFilter);
     }
-    const staff = list.filter(p => p.category !== "partner_slz");
+    const staff = list.filter(p => p.category !== "partner_slz" && p.category !== "collaborator");
     const partners = list.filter(p => p.category === "partner_slz");
+    const collaborators = list.filter(p => p.category === "collaborator");
 
     return `
       <div class="card">
         <h2 class="card-title">Справочник людей</h2>
-        <p class="card-intro">Кликни карточку — биография, Clifton, сильные стороны, когда писать и контакты.</p>
+        <p class="card-intro">Кликни карточку — кратко, Clifton, когда писать, контакты.</p>
         <div class="filter-row">${chips}</div>
         ${staff.length ? `<h3 class="mono-tag" style="margin-bottom:12px">Штат</h3><div class="people-grid">${staff.map(p => personCardHtml(p)).join("")}</div>` : ""}
         ${partners.length ? `<h3 class="mono-tag" style="margin:20px 0 12px">Партнёрские сейлз-менеджеры</h3><p style="font-size:13px;color:var(--muted);margin-bottom:12px">${team.org.partner_slz?.routing || ""}</p><div class="people-grid">${partners.map(p => personCardHtml(p)).join("")}</div>` : ""}
+        ${collaborators.length ? `<h3 class="mono-tag" style="margin:20px 0 12px">Коллаборации (не sales)</h3><div class="people-grid">${collaborators.map(p => personCardHtml(p)).join("")}</div>` : ""}
       </div>`;
   }
 

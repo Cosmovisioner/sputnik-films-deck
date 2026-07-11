@@ -65,13 +65,6 @@
   ],
   "internal_refs": [
     {
-      "id": "ai_window_rules",
-      "label": "Окно в ИИ — правила маршрутизации (SB)",
-      "path": "co_sales/artifact_cult_group_ai_window_lead_routing_rules_2026.md",
-      "level": 1,
-      "note": "Крупные прямые клиенты с ИИ-задачами; Open Production упразднён"
-    },
-    {
       "id": "objection_bank",
       "label": "Банк возражений (SB, выдаёт CRO)",
       "path": "40_Artifacts/artifact_sales_objection_bank_2026.md",

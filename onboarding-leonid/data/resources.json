@@ -86,6 +86,14 @@
       "note": "Access code пришлёт Дима в личку. После прохождения — сверь профиль с таблицей команды. Каталог продуктов Gallup: gallup.com/cliftonstrengths (если нужен контекст)."
     },
     {
+      "id": "drive_techtigers_products",
+      "title": "TechTigers · эксплейнеры продуктов",
+      "subtitle": "Папка Drive · phygital, июнь 2026",
+      "url": "https://drive.google.com/drive/folders/1czdFxTKXOmHdpSW15ddDDOWGjIkWs-z2?usp=sharing",
+      "owner": "kostya",
+      "unit": "techtigers"
+    },
+    {
       "id": "clifton_store",
       "title": "CliftonStrengths · каталог Gallup",
       "subtitle": "Справочно — покупку кодов делает компания, не ты",
@@ -164,15 +172,6 @@
       "note": "1) Прямой клиент (бренд/заказчик), не агентство в первом приоритете · 2) Средний и крупный бизнес, Россия + СНГ · 3) Задача в Cult / Blaster / Sputnik, не стоп-лист · 4) Бюджет выше порога юнита или OK Сергея на неформат · 5) Не казино, букмекеры, алкоголь, политика"
     },
     {
-      "id": "doc_ai_window",
-      "title": "Окно в ИИ · когда подключать",
-      "subtitle": "Крупные прямые клиенты с ИИ-ядром задачи",
-      "url": null,
-      "owner": "dima",
-      "unit": "ai_window",
-      "note": "Сигнал: прямой клиент + ИИ — core задачи (съёмка+ИИ, персонажи, креатив+ИИ). Действие: Group deck → эскалация Диме → чат «Окно в ИИ». Если клиент уже у юнита — сначала владелец. Сомневаешься — не маршрутизируй сам, спроси Диму."
-    },
-    {
       "id": "doc_rules_summary",
       "title": "Коммерческие правила · кратко",
       "subtitle": "За 2 минуты — роль, юниты, эскалация",
@@ -217,7 +216,7 @@
     {
       "id": "view_org_map",
       "title": "Карта группы",
-      "subtitle": "УК → Cult · Blaster · Sputnik · TechTigers · ИИ",
+      "subtitle": "УК → Cult · Blaster · Sputnik · TechTigers",
       "action": "map",
       "unit": "uk"
     },
