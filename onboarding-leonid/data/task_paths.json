@@ -180,10 +180,9 @@
   ],
   "6.icrm_intro": [
     { "kind": "resource", "id": "icrm" },
-    { "kind": "person", "id": "homich" },
     { "kind": "person", "id": "dima" },
     { "kind": "section", "id": "chats", "filter": "techtigers" },
-    { "kind": "note", "text": "Пока тест — полное демо на 9-й день. Prodavan = iCRM" }
+    { "kind": "note", "text": "Пока тест — полное демо на 9-й день с CRO. Prodavan = iCRM" }
   ],
   "6.amo_reg": [
     { "kind": "resource", "id": "doc_amo_reg" },
@@ -264,7 +263,6 @@
     { "kind": "note", "text": "На кросс-брифе — сначала соседний юнит группы, потом внешний подряд" }
   ],
   "9.icrm_demo": [
-    { "kind": "person", "id": "homich" },
     { "kind": "person", "id": "dima" },
     { "kind": "resource", "id": "icrm" },
     { "kind": "section", "id": "chats", "filter": "techtigers" }
@@ -275,7 +273,6 @@
     { "kind": "resource", "id": "amo_blaster" },
     { "kind": "resource", "id": "icrm" },
     { "kind": "person", "id": "dima" },
-    { "kind": "person", "id": "homich" },
     { "kind": "note", "text": "Когда все новые сделки переедут на Prodavan — скажет Дима после демо" }
   ],
   "9.retro": [

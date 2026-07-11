@@ -17,7 +17,7 @@
       "telegram": "https://t.me/cosmovisioner",
       "telegramLabel": "@cosmovisioner",
       "avatar": "assets/avatars/cosmovisioner.jpg",
-      "howToWrite": "Ежедневные вопросы по продажам, CRM, маршрутизация"
+      "howToWrite": "Ежедневные вопросы по продажам, CRM (Amo + Prodavan), маршрутизация"
     },
     "denis": {
       "email": "denis@cult.team",
@@ -40,12 +40,6 @@
       "telegramLabel": "@klein_sergey",
       "avatar": "assets/avatars/klein_sergey.jpg",
       "howToWrite": "Sputnik: «берём ли проект», док и спецформаты"
-    },
-    "homich": {
-      "telegram": "https://t.me/akhomich",
-      "telegramLabel": "@akhomich",
-      "avatar": "assets/avatars/akhomich.jpg",
-      "howToWrite": "CRM (Prodavan), баги, демо — после согласования с Димой"
     },
     "egor": {
       "telegram": "https://t.me/egormaraev",

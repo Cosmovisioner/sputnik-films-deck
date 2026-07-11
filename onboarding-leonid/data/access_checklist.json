@@ -9,7 +9,7 @@
   "systems": [
     { "id": "amo_cult", "name": "AmoCRM · Cult Group", "url": "https://cultteam.amocrm.ru", "role": "full sales · новые сделки группы", "who": "Дима Квашнин", "resource": "amo_cult" },
     { "id": "amo_blaster", "name": "AmoCRM · Blaster", "url": "https://blasterstudio.amocrm.ru", "role": "read / joint · наследие Blaster", "who": "Лиза + Дима", "resource": "amo_blaster" },
-    { "id": "icrm", "name": "Prodo.one (Prodavan / iCRM)", "url": null, "role": "beta после демо · 23–24.07", "who": "Дима + Саша Хомич", "resource": "icrm" },
+    { "id": "icrm", "name": "Prodo.one (Prodavan / iCRM)", "url": null, "role": "beta после демо · 23–24.07", "who": "Дима Квашнин (CRO)", "resource": "icrm" },
     { "id": "drive_group", "name": "Google Drive · Культ-группа", "url": "https://drive.google.com/drive/folders/1O89yMg7RCXGIwv_eTQ8Sp6A6oiJiwRmR", "role": "read/edit коммерция", "who": "Дима", "resource": "drive_cult_group" },
     { "id": "drive_commerce", "name": "Google Drive · Коммерция", "url": "https://drive.google.com/drive/folders/1cm50xCY02m_WTNenHbEoKAl-ALZ-Ac_n", "role": "edit · КП и шаблоны", "who": "Дима", "resource": "drive_commerce" },
     { "id": "email", "name": "Почта @cult.team", "url": null, "role": "outbound sales", "who": "CEO / ops Cult", "resource": "email_leonid" },
@@ -46,11 +46,11 @@
   "crm_rules": [
     { "rule": "Новые сделки группы", "where": "Amo Cult", "since": "с 13.07.2026" },
     { "rule": "Blaster-only legacy", "where": "Amo Blaster (read/joint)", "since": "по согласованию с Лизой" },
-    { "rule": "Prodavan / iCRM", "where": "только тест после демо", "since": "23–24.07, слот с Homich" }
+    { "rule": "Prodavan / iCRM", "where": "только тест после демо", "since": "23–24.07, слот с Димой" }
   ],
   "icrm_timeline": [
     { "when": "День 6 (20.07)", "what": "Intro: Prodavan = iCRM = Prodo.one. Пока тест — не дублируй сделки в Amo." },
-    { "when": "День 9 (23–24.07)", "what": "Демо с Сашей Хомичем + Дима. После — адрес, доступ, дата миграции с Amo." },
+    { "when": "День 9 (23–24.07)", "what": "Демо Prodavan с Димой (CRO). После — адрес, доступ, дата миграции с Amo." },
     { "when": "После демо", "what": "Дима сообщит, когда новые сделки переезжают на Prodavan." }
   ]
 }

@@ -4,9 +4,9 @@
   const STORAGE_KEY = "cult_leonid_daily_v5";
   const WELCOME_KEY = "cult_leonid_welcome_v3";
   const ACCESS_KEY = "cult_leonid_access_v1";
-  const ASSET_VER = "20260711-v24";
+  const ASSET_VER = "20260711-v25";
 
-  const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "homich", "taya"]);
+  const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya"]);
 
   const UNIT_ROUTING = [
     { signal: "Реклама, съёмка, TV/digital", unit: "Cult", threshold: "от ~5 млн ₽", person: "denis" },
@@ -819,7 +819,7 @@
               <span class="mono-tag">ТехноТигры</span>
               <h3 class="section-heading">${u.name}</h3>
               <p style="font-size:13px;color:var(--muted)">${u.desc}</p>
-              ${u.id === "prodavan" ? `<p class="path-note" style="margin-top:10px">Prodo.one = Prodavan = iCRM. Клиентам наружу на старте не продаём.</p>` : ""}
+              ${u.id === "prodavan" ? `<p class="path-note" style="margin-top:10px">Prodo.one = Prodavan = iCRM. Клиентам наружу на старте не продаём. CRM для sales — демо, доступ и roadmap только через <button type="button" class="path-link inline-person" data-person="dima">Диму</button>.</p>` : ""}
               ${ttPeople.length ? `<h4 class="mono-tag" style="margin:16px 0 8px">Контакт по продукту</h4>
                 <div class="people-grid">${ttPeople.map(p => personCardHtml(p)).join("")}</div>` : ""}
             </div>`;

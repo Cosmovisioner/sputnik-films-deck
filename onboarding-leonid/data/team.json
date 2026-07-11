@@ -372,49 +372,6 @@
       "avoid": "Операционные вопросы CRM и текущих сделок"
     },
     {
-      "id": "homich",
-      "category": "staff",
-      "name": "Саша Хомич",
-      "role": "ТехноТигры · CRM группы (Prodo.one)",
-      "unit": "ТехноТигры",
-      "unitId": "techtigers",
-      "initials": "СХ",
-      "photo": "assets/avatars/akhomich.jpg",
-      "bio_short": "Делает CRM группы (Prodo.one). Prodavan и iCRM — внутренние названия того же.",
-      "lore": "Пишет внутреннюю CRM, дашборды, автоматизацию для коммерции. Демо для sales — около 23–24 июля. Сроки фич клиентам не обещай — только через Диму.",
-      "tasks": [
-        "CRM группы (Prodo.one / Prodavan / iCRM)",
-        "Форма приёма брифа",
-        "Баги и доработки sales-контура",
-        "Демо CRM ~23–24.07"
-      ],
-      "clifton_themes": [
-        "Генератор идей",
-        "Организатор",
-        "Отношения",
-        "Эмпатия",
-        "Развитие",
-        "Максимизатор"
-      ],
-      "clifton_tab": "Общая",
-      "clifton_url": "https://docs.google.com/spreadsheets/d/1bkfERbO8UlEql6pLS_UIhCrBRiT2R4-YDOqxVeUx__0/edit",
-      "clifton_hint": "Объясни не только задачу, но и зачем людям. Не только «сделай к пятнице».",
-      "strengths": [
-        "Быстро собирает рабочие версии",
-        "Чувствует команду",
-        "Техника под продажи"
-      ],
-      "watch_out": [
-        "Сроки фич — только через Диму",
-        "Может казаться мягким на фоне «катализаторов»"
-      ],
-      "contact_when": [
-        "CRM, баги, демо",
-        "Форма брифа"
-      ],
-      "avoid": "Обещать клиентам сроки разработки"
-    },
-    {
       "id": "sasha_a",
       "category": "partner_slz",
       "name": "Саша Алексеев",
@@ -760,9 +717,9 @@
       "clifton_url": null,
       "clifton_hint": "Профиль в таблице команды — по мере добавления.",
       "strengths": ["Разработка", "Tech-задачи группы"],
-      "watch_out": ["Не CRM Prodavan — это Homich"],
+      "watch_out": ["Не CRM Prodavan — только через Диму"],
       "contact_when": ["Tech-задачи, compliance-проекты — через Диму или Егора"],
-      "avoid": "CRM Prodavan и sales-автоматизация — к Homich через Диму"
+      "avoid": "CRM Prodavan и sales-автоматизация — к Диме"
     },
     {
       "id": "zhenya_gmouse",
@@ -783,7 +740,7 @@
       "strengths": ["AI-first подход", "R&S контур"],
       "watch_out": ["Не sales CRM"],
       "contact_when": ["R&S продукты, обучение, AI-кейсы для клиента"],
-      "avoid": "Продажи CRM — к Диме и Homich"
+      "avoid": "Продажи CRM — к Диме"
     },
     {
       "id": "evgenia_qalista",
