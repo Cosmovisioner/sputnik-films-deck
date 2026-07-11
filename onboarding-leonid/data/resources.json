@@ -96,21 +96,21 @@
     },
     {
       "id": "icrm",
-      "title": "iCRM · кастомная CRM группы",
-      "subtitle": "Бета от TechTigers — демо с Хомичем ~24–25.07",
+      "title": "Prodavan · CRM группы",
+      "subtitle": "То же, что iCRM. Демо с Хомичем ~23–24.07",
       "url": null,
       "owner": "homich",
       "unit": "techtigers",
-      "note": "Адрес и доступ — после демо от Димы и Хомича"
+      "note": "Prodavan (Prodo.one) и iCRM — одно и то же. Адрес и доступ — после демо от Димы и Хомича"
     },
     {
       "id": "crm_landscape",
       "title": "Карта CRM-систем",
-      "subtitle": "Amo Cult — основная · Amo Blaster — наследие · iCRM — будущая",
+      "subtitle": "Amo Cult — рабочая · Amo Blaster — старые сделки · Prodavan — на подходе",
       "url": null,
       "owner": "dima",
       "unit": "uk",
-      "note": "Новые сделки группы с 13.07 → Amo Cult. Сделки только Blaster (наследие) → Amo Blaster (просмотр и совместные). iCRM — тест, затем миграция (дата уточняется)"
+      "note": "Новые сделки с 13.07 → Amo Cult. Старые только Blaster → Amo Blaster (смотреть). Prodavan/iCRM — тест, потом решат, когда переезжаем"
     }
   ],
   "docs": [

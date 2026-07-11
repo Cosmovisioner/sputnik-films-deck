@@ -43,7 +43,7 @@
     { "kind": "resource", "id": "doc_nb_reg" },
     { "kind": "resource", "id": "amo_cult" },
     { "kind": "person", "id": "dima" },
-    { "kind": "note", "text": "Baseline на 28.05.2026. Июльский факт — на еженедельном синке с CRO" }
+    { "kind": "note", "text": "Prodavan и iCRM — одно и то же. Июльский факт — на синке с Димой" }
   ],
   "1.group_deck": [
     { "kind": "deck", "id": "cult_group" },
@@ -183,7 +183,7 @@
     { "kind": "person", "id": "homich" },
     { "kind": "person", "id": "dima" },
     { "kind": "section", "id": "chats", "filter": "techtigers" },
-    { "kind": "note", "text": "Пока тестовые записи — полное демо на 9-й день" }
+    { "kind": "note", "text": "Пока тест — полное демо на 9-й день. Prodavan = iCRM" }
   ],
   "6.amo_reg": [
     { "kind": "resource", "id": "doc_amo_reg" },
@@ -275,7 +275,7 @@
     { "kind": "resource", "id": "icrm" },
     { "kind": "person", "id": "dima" },
     { "kind": "person", "id": "homich" },
-    { "kind": "note", "text": "Дата полного перехода новых сделок на iCRM — согласует Дима после демо" }
+    { "kind": "note", "text": "Когда все новые сделки переедут на Prodavan — скажет Дима после демо" }
   ],
   "9.retro": [
     { "kind": "person", "id": "dima" },

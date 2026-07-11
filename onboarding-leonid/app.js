@@ -2,8 +2,8 @@
   "use strict";
 
   const STORAGE_KEY = "cult_leonid_daily_v5";
-  const WELCOME_KEY = "cult_leonid_welcome_v2";
-  const ASSET_VER = "20260711-v14";
+  const WELCOME_KEY = "cult_leonid_welcome_v3";
+  const ASSET_VER = "20260711-v15";
 
   function esc(s) {
     if (s == null || s === "") return "";
@@ -291,7 +291,7 @@
 
     return `
       <div class="card">
-        <div class="card-meta">Baseline · ${esc(m.as_of)} · ${esc(m.period_label || "")}</div>
+        <div class="card-meta">Срез на ${esc(m.as_of)} · ${esc(m.period_label || "")}</div>
         <h2 class="card-title">Продажи · план, факт, воронка</h2>
         <p class="card-intro">${esc(m.updated_note || "")}</p>
         <div class="sales-callout">
@@ -303,7 +303,7 @@
 
       <div class="card">
         <h3 class="section-heading">${esc(salesSnapshot.group_targets_2026?.title || "План группы")}</h3>
-        ${renderSalesTable(["Метрика", "Baseline (май 2026)", "Цель 2026"], groupRows)}
+        ${renderSalesTable(["Метрика", "Было (май 2026)", "Цель 2026"], groupRows)}
       </div>
 
       <div class="card">
@@ -319,7 +319,7 @@
       <div class="card">
         <h3 class="section-heading">${esc(salesSnapshot.briefs_plan_monthly?.title || "План брифов")}</h3>
         <p class="card-intro">${esc(salesSnapshot.briefs_plan_monthly?.note || "")}</p>
-        ${renderSalesTable(["Месяц", "План брифов (Blaster legacy)"], briefRows)}
+        ${renderSalesTable(["Месяц", "План брифов (старый план Blaster)"], briefRows)}
       </div>
 
       <div class="card">
@@ -391,16 +391,16 @@
     const note = document.querySelector(".welcome-note");
     if (lead && steps.length) {
       const span = stepsMeta.calendarSpan || "13–23 июл";
-      lead.innerHTML = `Рады приветствовать тебя в <strong>Cult Group</strong>. Интерактивная экскурсия — <strong>${steps.length} рабочих дней</strong> (${span}): продажи, люди, CRM и продукты. Структуру можно закрыть уже в первый день.`;
+      lead.innerHTML = `Привет, <strong>Лёня</strong>. Тут всё на первые две недели: куда вести клиента, кто за что отвечает, что открыть в Amo.<br><br><strong>${steps.length} дней</strong> по календарю (${span}). Карту и людей логично закрыть уже в понедельник — после вводной с Димой.`;
     }
     if (list && steps.length) {
       list.innerHTML = `
-        <li><strong>${steps.length} дней с датами</strong> — в названии каждого этапа</li>
-        <li><strong>День 1</strong> — карта, продажи, люди, преза (~4–6 ч после вводной)</li>
-        <li><strong>Карта · Продажи · Люди · Telegram · Презентации</strong> — всегда под рукой</li>`;
+        <li>Каждый день подписан датой — ориентир, не жёсткий дедлайн</li>
+        <li>В шапке всегда: карта, продажи, люди, чаты, презентации</li>
+        <li>Не понял — пиши Диме, не гугли</li>`;
     }
     if (note && stepsMeta.officialStartDate) {
-      note.innerHTML = `Старт официально <strong>${formatDateRu(stepsMeta.officialStartDate, "Пн")}</strong>. Можно начать раньше — материалы открыты.`;
+      note.innerHTML = `Старт — <strong>${formatDateRu(stepsMeta.officialStartDate, "Пн")}</strong>. Материалы уже открыты, можно начать раньше.`;
     }
     if (!localStorage.getItem(WELCOME_KEY)) showWelcome();
   }
@@ -446,7 +446,7 @@
       <h2 class="modal-name">${esc(p.name)}</h2>
       <p class="modal-role">${esc(p.role)} · ${esc(p.unit)}</p>
       ${p.bio_short ? `<p class="modal-lead">${esc(p.bio_short)}</p>` : ""}
-      ${p.lore ? `<div class="modal-section"><h4>Контекст</h4><p class="modal-bio">${esc(p.lore)}</p></div>` : ""}
+      ${p.lore ? `<div class="modal-section"><h4>Кратко</h4><p class="modal-bio">${esc(p.lore)}</p></div>` : ""}
       ${listSection("Задачи и зона", p.tasks)}
       <div class="modal-section">
         <h4>CliftonStrengths</h4>
@@ -557,9 +557,9 @@
       <div class="card pace-card">
         <h3 class="section-heading">Темп программы${esc(span)}</h3>
         ${stepsMeta.pace ? `<p class="card-intro">${esc(stepsMeta.pace)}</p>` : ""}
-        ${r.verdict ? `<p class="pace-verdict"><strong>Реалистичность:</strong> ${esc(r.verdict)}</p>` : ""}
-        ${r.fastTrack ? `<p class="pace-hint"><strong>Быстрее:</strong> ${esc(r.fastTrack)}</p>` : ""}
-        ${r.bottleneck ? `<p class="pace-hint pace-muted"><strong>Якоря:</strong> ${esc(r.bottleneck)}</p>` : ""}
+        ${r.verdict ? `<p class="pace-verdict"><strong>По срокам:</strong> ${esc(r.verdict)}</p>` : ""}
+        ${r.fastTrack ? `<p class="pace-hint"><strong>Можно быстрее:</strong> ${esc(r.fastTrack)}</p>` : ""}
+        ${r.bottleneck ? `<p class="pace-hint pace-muted"><strong>Не переносится:</strong> ${esc(r.bottleneck)}</p>` : ""}
       </div>`;
   }
 
@@ -643,7 +643,7 @@
       const itemLabel = isCult ? "юнит" : "продукт";
       const inner = items.map(item => {
         const sel = selectedUnit === item.id ? "selected" : "";
-        const count = isCult ? peopleForUnit(item.id).length : (item.id === "icrm" ? peopleForUnit("techtigers").length : 0);
+        const count = isCult ? peopleForUnit(item.id).length : (item.id === "prodavan" ? peopleForUnit("techtigers").length : 0);
         const countHtml = count
           ? `<div class="org-unit-count">${count} контакт${count === 1 ? "" : count < 5 ? "а" : "ов"}</div>`
           : "";
@@ -662,6 +662,7 @@
             <p class="pillar-desc">${pillar.desc}</p>
           </div>
           <div class="org-grid pillar-units">${inner}</div>
+          ${pillar.note ? `<p class="pillar-footnote">${esc(pillar.note)}</p>` : ""}
           <p class="pillar-meta">${items.length} ${itemLabel}${items.length === 1 ? "" : items.length < 5 ? "а" : "ов"}</p>
         </section>`;
     }).join("");
@@ -684,12 +685,13 @@
                 ${unitDecks.map(d => deckCardHtml(d)).join("")}` : ""}
             </div>`;
         } else if (hit.kind === "startup") {
-          const ttPeople = u.id === "icrm" ? peopleForUnit("techtigers") : [];
+          const ttPeople = u.id === "prodavan" ? peopleForUnit("techtigers") : [];
           detail = `
             <div class="unit-detail card startup-detail">
-              <span class="mono-tag">TechTigers · продукт</span>
+              <span class="mono-tag">TechTigers</span>
               <h3 class="section-heading">${u.name}</h3>
               <p style="font-size:13px;color:var(--muted)">${u.desc}</p>
+              ${u.id === "prodavan" ? `<p class="path-note" style="margin-top:10px">Prodavan и iCRM — одно и то же. Клиентам наружу не продаём.</p>` : ""}
               ${ttPeople.length ? `<h4 class="mono-tag" style="margin:16px 0 8px">Контакт по продукту</h4>
                 <div class="people-grid">${ttPeople.map(p => personCardHtml(p)).join("")}</div>` : ""}
             </div>`;
