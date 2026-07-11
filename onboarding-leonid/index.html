@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Cult Group — онбординг Sales</title>
-  <meta name="description" content="Ежедневный онбординг Sales Cult Group — один шаг в день." />
+  <meta name="description" content="Онбординг Sales Cult Group — шаги по программе, можно идти в своём темпе." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700;800&display=swap" rel="stylesheet" />
@@ -188,6 +188,38 @@
       display: none;
     }
     .complete-banner.visible { display: block; }
+    .nav-row {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+    .nav-row button {
+      flex: 1;
+      min-width: 120px;
+      border: 1px solid var(--graphite);
+      background: var(--white);
+      color: var(--graphite);
+      padding: 10px 12px;
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px;
+      font-weight: 700;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+    .nav-row button:hover { background: var(--ivory); }
+    .nav-row button.primary {
+      background: var(--graphite);
+      color: var(--white);
+    }
+    .nav-row button.primary:hover { background: var(--muted); }
+    .nav-row button:disabled { opacity: 0.35; cursor: not-allowed; }
+    .dots .dot {
+      cursor: pointer;
+      padding: 0;
+      border: none;
+    }
+    .dots .dot:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
     #loadError {
       display: none;
       background: #FEE2E2;
@@ -239,15 +271,23 @@
         </div>
         <div id="panels"></div>
         <div class="complete-banner" id="completeBanner">Все задачи дня отмечены ✓</div>
+        <div class="nav-row">
+          <button type="button" id="prevDay">← Назад</button>
+          <button type="button" id="nextDay" class="primary">Следующий день →</button>
+        </div>
       </article>
     </div>
 
     <div class="dots" id="progressDots"></div>
-    <p class="footer-note" id="footerNote">10 рабочих дней · пн–пт</p>
+    <p class="footer-note" id="footerNote">Можно закрыть несколько дней подряд · даты — ориентир</p>
   </div>
 
   <script>
-    const STORAGE_KEY = "cult_leonid_daily_v2";
+    const STORAGE_KEY = "cult_leonid_daily_v3";
+
+    let stepsCache = [];
+    let teamCache = null;
+    let currentIdx = 0;
 
     function loadState() {
       try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); }
@@ -267,43 +307,35 @@
       return (weekday ? weekday + " · " : "") + d.getDate() + " " + fix[d.getMonth()];
     }
 
-    function todayLocal() {
-      const n = new Date();
-      return new Date(n.getFullYear(), n.getMonth(), n.getDate());
+    function stepComplete(step, state) {
+      const tasks = state["step_" + step.id] || {};
+      return step.tasks.every(t => tasks[t.id]);
     }
 
-    function isWeekend(d) {
-      const day = d.getDay();
-      return day === 0 || day === 6;
-    }
-
-    function countWorkdays(fromStr, toDate) {
-      const from = parseDate(fromStr);
-      if (toDate < from) return 0;
-      let count = 0;
-      const d = new Date(from);
-      while (d <= toDate) {
-        if (!isWeekend(d)) count++;
-        d.setDate(d.getDate() + 1);
+    function firstIncompleteIndex(steps, state) {
+      for (let i = 0; i < steps.length; i++) {
+        if (!stepComplete(steps[i], state)) return i;
       }
-      return count;
+      return steps.length - 1;
     }
 
-    function workdayIndexFromStart(startDate, today) {
-      return countWorkdays(startDate, today) - 1;
+    function goToStep(idx) {
+      idx = Math.max(0, Math.min(idx, stepsCache.length - 1));
+      currentIdx = idx;
+      const state = loadState();
+      state.currentIdx = idx;
+      saveState(state);
+      renderStep(stepsCache[idx], stepsCache, idx, teamCache, state);
+      updateNav(stepsCache, idx);
     }
 
-    function nextWorkdayAfter(d) {
-      const n = new Date(d);
-      do { n.setDate(n.getDate() + 1); } while (isWeekend(n));
-      return n;
-    }
-
-    function dateToIso(d) {
-      const y = d.getFullYear();
-      const m = String(d.getMonth() + 1).padStart(2, "0");
-      const day = String(d.getDate()).padStart(2, "0");
-      return y + "-" + m + "-" + day;
+    function updateNav(steps, idx) {
+      const prev = document.getElementById("prevDay");
+      const next = document.getElementById("nextDay");
+      prev.disabled = idx <= 0;
+      next.disabled = idx >= steps.length - 1;
+      prev.textContent = idx > 0 ? "← " + steps[idx - 1].title : "← Назад";
+      next.textContent = idx < steps.length - 1 ? steps[idx + 1].title + " →" : "Конец программы";
     }
 
     function renderPanels(panelIds, teamRes) {
@@ -372,12 +404,14 @@
       });
     }
 
-    function renderStep(step, steps, currentIdx, teamRes, state) {
-      document.getElementById("todayView").style.display = "block";
+    function renderStep(step, steps, idx, teamRes, state) {
+      document.getElementById("waitView").style.display = "none";
       document.getElementById("weekendView").style.display = "none";
-      document.getElementById("pageTitle").textContent = "Сегодня";
+      document.getElementById("todayView").style.display = "block";
+      document.getElementById("pageTitle").textContent = "Шаг " + step.id;
       document.getElementById("progressNum").textContent = String(step.id);
-      document.getElementById("dateLine").textContent = formatDateRu(step.date, step.weekday);
+      document.getElementById("dateLine").textContent =
+        formatDateRu(step.date, step.weekday) + " · ориентир";
       document.getElementById("stepTitle").textContent = step.title;
       document.getElementById("stepIntro").textContent = step.intro;
 
@@ -398,7 +432,11 @@
           saveState(s);
           li.classList.toggle("done", cb.checked);
           updateCompleteBanner(step, s);
-          renderDots(steps, currentIdx, s);
+          renderDots(steps, idx, s);
+          if (stepComplete(step, s) && idx < steps.length - 1) {
+            document.getElementById("completeBanner").textContent =
+              "День закрыт ✓ — можно перейти к следующему →";
+          }
         });
         const label = document.createElement("label");
         label.appendChild(cb);
@@ -426,42 +464,21 @@
 
       renderPanels(step.panels, teamRes);
       updateCompleteBanner(step, state);
-      renderDots(steps, currentIdx, state);
+      renderDots(steps, idx, state);
     }
 
-    function showWeekend(steps, currentIdx, state) {
-      document.getElementById("todayView").style.display = "none";
-      document.getElementById("weekendView").style.display = "block";
-      document.getElementById("pageTitle").textContent = "Выходной";
-      const nextIdx = Math.min(currentIdx + 1, steps.length - 1);
-      const next = steps[nextIdx];
-      document.getElementById("progressNum").textContent = "—";
-      document.getElementById("weekendTitle").textContent = "Сегодня выходной";
-      document.getElementById("weekendText").textContent =
-        "План онбординга идёт только по рабочим дням (пн–пт). Можно отдохнуть или закрыть хвосты прошлого дня.";
-      if (currentIdx >= steps.length - 1) {
-        document.getElementById("weekendNext").innerHTML =
-          "<strong>Программа завершена</strong><span> Вопросы — коммерческому директору.</span>";
-      } else {
-        document.getElementById("weekendNext").innerHTML =
-          "<strong>Следующий шаг</strong><span> · " + formatDateRu(next.date, next.weekday) +
-          "<br>" + next.title + "</span>";
-      }
-      renderDots(steps, currentIdx, state);
-    }
-
-    function renderDots(steps, currentIdx, state) {
+    function renderDots(steps, idx, state) {
       const dots = document.getElementById("progressDots");
       dots.innerHTML = "";
       steps.forEach((step, i) => {
-        const d = document.createElement("div");
+        const d = document.createElement("button");
+        d.type = "button";
         d.className = "dot";
-        d.title = "День " + step.id;
-        const tasks = state["step_" + step.id] || {};
-        const allDone = step.tasks.every(t => tasks[t.id]);
-        if (allDone) d.classList.add("done");
-        if (i === currentIdx) d.classList.add("today");
-        if (i > currentIdx) d.classList.add("future");
+        d.title = step.title;
+        d.setAttribute("aria-label", step.title);
+        if (stepComplete(step, state)) d.classList.add("done");
+        if (i === idx) d.classList.add("today");
+        d.addEventListener("click", () => goToStep(i));
         dots.appendChild(d);
       });
     }
@@ -478,66 +495,38 @@
         return;
       }
 
-      const { meta, steps } = stepsData;
-      const today = todayLocal();
+      const { steps } = stepsData;
+      stepsCache = steps;
+      teamCache = teamRes;
+
       const params = new URLSearchParams(location.search);
-      const previewRaw = params.get("preview");
-      const previewStep = previewRaw !== null ? parseInt(previewRaw || "1", 10) - 1 : null;
-
-      let dayIdx = workdayIndexFromStart(meta.startDate, today);
-      if (previewStep !== null && !isNaN(previewStep)) {
-        dayIdx = Math.max(0, Math.min(previewStep, steps.length - 1));
-      }
-
-      if (dayIdx < 0 && previewStep === null) {
-        document.getElementById("todayView").style.display = "none";
-        document.getElementById("weekendView").style.display = "none";
-        document.getElementById("waitView").style.display = "block";
-        document.getElementById("waitTitle").textContent = "Старт " + formatDateRu(meta.startDate, "Пн");
-        document.getElementById("waitText").textContent =
-          "Онбординг откроется в первый рабочий день. CRO: ?preview=1 для просмотра.";
-        document.getElementById("progressNum").textContent = "0";
-        document.getElementById("pageTitle").textContent = "Ждём старт";
-        document.getElementById("footerNote").textContent = "10 рабочих дней · без сб и вс";
-        return;
-      }
-
       const state = loadState();
+      let idx;
 
-      if (isWeekend(today) && previewStep === null && dayIdx >= 0) {
-        const friIdx = dayIdx;
-        showWeekend(steps, friIdx, state);
-        document.getElementById("footerNote").textContent = "Выходные не считаются · следующий шаг в пн";
-        return;
+      const dayParam = params.get("day");
+      if (dayParam) {
+        idx = Math.max(0, Math.min(parseInt(dayParam, 10) - 1, steps.length - 1));
+      } else if (typeof state.currentIdx === "number" && state.currentIdx >= 0) {
+        idx = Math.min(state.currentIdx, steps.length - 1);
+      } else {
+        idx = firstIncompleteIndex(steps, state);
       }
 
-      if (dayIdx >= steps.length) {
-        document.getElementById("todayView").style.display = "none";
-        document.getElementById("weekendView").style.display = "block";
-        document.getElementById("pageTitle").textContent = "Готово";
-        document.getElementById("progressNum").textContent = "✓";
-        document.getElementById("weekendTitle").textContent = "Онбординг пройден";
-        document.getElementById("weekendText").textContent = "10 рабочих дней закрыты. Дальше — рабочий контур с CRO.";
-        document.getElementById("weekendNext").innerHTML = "";
-        renderDots(steps, steps.length - 1, state);
-        document.getElementById("footerNote").textContent = "Вопросы — коммерческому директору";
-        return;
-      }
+      document.getElementById("prevDay").addEventListener("click", () => goToStep(currentIdx - 1));
+      document.getElementById("nextDay").addEventListener("click", () => goToStep(currentIdx + 1));
 
-      const currentIdx = dayIdx;
-      const step = steps[currentIdx];
-      renderStep(step, steps, currentIdx, teamRes, state);
-
-      document.getElementById("footerNote").textContent =
-        previewStep !== null
-          ? "Режим preview (CRO). Убери ?preview= из URL."
-          : "Только рабочие дни (пн–пт) · шаг " + step.id + " из " + steps.length;
+      goToStep(idx);
     }
 
     function updateCompleteBanner(step, state) {
-      const tasks = state["step_" + step.id] || {};
-      const allDone = step.tasks.every(t => tasks[t.id]);
-      document.getElementById("completeBanner").classList.toggle("visible", allDone);
+      const allDone = stepComplete(step, state);
+      const el = document.getElementById("completeBanner");
+      el.classList.toggle("visible", allDone);
+      el.textContent = allDone
+        ? (currentIdx < stepsCache.length - 1
+          ? "День закрыт ✓ — можно перейти к следующему →"
+          : "Онбординг пройден 🎯")
+        : "Все задачи дня отмечены ✓";
     }
 
     init();

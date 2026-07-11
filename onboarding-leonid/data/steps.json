@@ -3,7 +3,8 @@
     "startDate": "2026-07-13",
     "title": "Онбординг Sales · Cult Group",
     "user": "Леонид Мархашов",
-    "workdaysOnly": true
+    "workdaysOnly": false,
+    "pace": "Свободный темп — можно закрыть несколько шагов за день. Даты в шагах — ориентир (рабочий календарь)."
   },
   "steps": [
     {
