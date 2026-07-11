@@ -1,0 +1,186 @@
+{
+  "meta": {
+    "title": "Справочник ресурсов Sales",
+    "note": "Все ссылки sales-safe. Пароли и инвайты — только от CRO в личку."
+  },
+  "systems": [
+    {
+      "id": "amo_cult",
+      "title": "AmoCRM · Cult Group",
+      "subtitle": "Основная CRM для новых сделок группы",
+      "url": "https://cultteam.amocrm.ru",
+      "owner": "dima",
+      "unit": "uk"
+    },
+    {
+      "id": "amo_blaster",
+      "title": "AmoCRM · Blaster",
+      "subtitle": "Read / joint — legacy Blaster-only сделки",
+      "url": "https://blasterstudio.amocrm.ru",
+      "owner": "liza",
+      "unit": "blaster"
+    },
+    {
+      "id": "drive_cult_group",
+      "title": "Google Drive · Культ-группа",
+      "subtitle": "Общие материалы холдинга",
+      "url": "https://drive.google.com/drive/folders/1O89yMg7RCXGIwv_eTQ8Sp6A6oiJiwRmR",
+      "owner": "dima",
+      "unit": "uk"
+    },
+    {
+      "id": "drive_commerce",
+      "title": "Google Drive · Коммерция",
+      "subtitle": "КП, шаблоны, sales-артефакты — edit",
+      "url": "https://drive.google.com/drive/folders/1cm50xCY02m_WTNenHbEoKAl-ALZ-Ac_n",
+      "owner": "dima",
+      "unit": "uk"
+    },
+    {
+      "id": "drive_blaster_sales",
+      "title": "Google Drive · Продажи Blaster",
+      "subtitle": "Прайс, кейсы, презы Blaster",
+      "url": "https://drive.google.com/drive/folders/1j-ARZnroEcDoSQnr-1Rr-urwUq4izNxb",
+      "owner": "liza",
+      "unit": "blaster"
+    },
+    {
+      "id": "drive_hiring",
+      "title": "Папка найма · чеклист доступов",
+      "subtitle": "GDoc с паролями — только CRO выдаёт доступ",
+      "url": "https://drive.google.com/drive/folders/1O8LAI2ZzqPPqrW11BitrB5fGaA9tl8SY",
+      "owner": "dima",
+      "unit": "uk"
+    },
+    {
+      "id": "email_leonid",
+      "title": "Почта · leonid@cult.team",
+      "subtitle": "Рабочий ящик Sales (создаёт ops / CRO)",
+      "url": "mailto:leonid@cult.team",
+      "owner": "dima",
+      "unit": "uk"
+    },
+    {
+      "id": "email_sales",
+      "title": "Почта · sales@cult.team",
+      "subtitle": "Общий sales-контур группы",
+      "url": "mailto:sales@cult.team",
+      "owner": "dima",
+      "unit": "uk"
+    },
+    {
+      "id": "clifton",
+      "title": "CliftonStrengths · Gallup",
+      "subtitle": "Ссылку и оплату оформляет CRO — компания платит",
+      "url": "https://www.gallup.com/cliftonstrengths/en/253868/popular-cliftonstrengths-assessment-products.aspx",
+      "owner": "dima",
+      "unit": "uk",
+      "note": "Персональная ссылка на тест — в личке от CRO"
+    },
+    {
+      "id": "icrm",
+      "title": "iCRM MVP (beta)",
+      "subtitle": "Демо с Хомичем — слот ~24–25.07",
+      "url": null,
+      "owner": "homich",
+      "unit": "techtigers",
+      "note": "URL выдаёт CRO + Хомич после demo"
+    }
+  ],
+  "docs": [
+    {
+      "id": "doc_handoff_sasha",
+      "title": "Передача дел · Саша Алексеев",
+      "subtitle": "Legacy CRM, база, как вёлся контур",
+      "url": "https://docs.google.com/document/d/1TgX68T03X0_Tk8KW4QHraXVyJMFi-TGW/edit",
+      "owner": "sasha_a",
+      "unit": "uk"
+    },
+    {
+      "id": "doc_brief_criteria",
+      "title": "Критерии брифа",
+      "subtitle": "Что должно быть до передачи в продакшен",
+      "url": "https://docs.google.com/document/d/1cSkBD_Zx6Oo2RRaDGtv7n2LxW-QglW_rk6hhw9FaF38/edit",
+      "owner": "dima",
+      "unit": "uk"
+    },
+    {
+      "id": "doc_amo_reg",
+      "title": "Регламент Amo CRM",
+      "subtitle": "Поля, этапы, next step, дисциплина карточек",
+      "url": "https://docs.google.com/document/d/1MwlLD2ZVtKXDeH8FUBOa33VjhAcExHga3ZmwTVYhszI/edit",
+      "owner": "dima",
+      "unit": "uk"
+    },
+    {
+      "id": "doc_nb_reg",
+      "title": "NB · регламент New Business",
+      "subtitle": "Spreadsheet — процесс входящего и исходящего",
+      "url": "https://docs.google.com/spreadsheets/d/1W0xbSDRQVSYWjCOHPtfNL43Ps9yknejEIaspzu28QU4/edit",
+      "owner": "dima",
+      "unit": "uk"
+    },
+    {
+      "id": "doc_prod_standards",
+      "title": "Стандарты работы с продакшеном",
+      "subtitle": "Handoff, договор, предоплата",
+      "url": "https://docs.google.com/document/d/11PqYVrnfjUYAXHVNfXFcARtkoTV-Gqik7VboIKrKGgw/edit",
+      "owner": "dima",
+      "unit": "uk"
+    },
+    {
+      "id": "doc_commerce_rules",
+      "title": "Коммерческие правила (полные)",
+      "subtitle": "Воронка, маржа, стоп-лист, internal first",
+      "url": "https://docs.google.com/document/d/1Wd-EIArqDzynvUTRU-u2Gc4mw9feMUjUYOGq9ilEASU/edit",
+      "owner": "dima",
+      "unit": "uk"
+    },
+    {
+      "id": "doc_clifton_team",
+      "title": "Clifton · таблица команды",
+      "subtitle": "Сверь свой профиль с коллегами",
+      "url": "https://docs.google.com/spreadsheets/d/1bkfERbO8UlEql6pLS_UIhCrBRiT2R4-YDOqxVeUx__0/edit",
+      "owner": "dima",
+      "unit": "uk"
+    }
+  ],
+  "internal": [
+    {
+      "id": "view_org_map",
+      "title": "Интерактивная карта группы",
+      "subtitle": "УК → Cult · Blaster · Sputnik · TechTigers · ИИ",
+      "action": "map",
+      "unit": "uk"
+    },
+    {
+      "id": "view_people",
+      "title": "Справочник людей",
+      "subtitle": "Карточки, контакты, когда писать",
+      "action": "people",
+      "unit": "uk"
+    },
+    {
+      "id": "view_chats",
+      "title": "Telegram · рабочие чаты",
+      "subtitle": "Структура коммуникаций Cult Group",
+      "action": "chats",
+      "unit": "uk"
+    },
+    {
+      "id": "view_decks",
+      "title": "Хаб презентаций",
+      "subtitle": "Какую презу показать и у кого запросить",
+      "action": "decks",
+      "unit": "uk"
+    },
+    {
+      "id": "skills_pack",
+      "title": "Cursor skills pack (3 шт.)",
+      "subtitle": "lead-scoring · brief-gate · deck-router — zip от CRO",
+      "url": null,
+      "owner": "dima",
+      "note": "CRO пришлёт архив или доступ к папке"
+    }
+  ]
+}

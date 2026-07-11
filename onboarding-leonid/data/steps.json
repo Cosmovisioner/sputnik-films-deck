@@ -22,9 +22,7 @@
         { "id": "clifton_order", "text": "Заказать CliftonStrengths (оплачивает компания)" },
         { "id": "motivation", "text": "Прочитать мотивацию: 220k + 12% маржи, лестница повторов 6→3→0" }
       ],
-      "links": [
-        { "label": "Матрица доступов (SB, для CRO)", "url": "https://github.com/Cosmovisioner/SecondBrain/blob/main/20_Business_Projects/sputnik_films/operations/cult_group/note_cult_group_sales_access_matrix_2026_07.md", "note": "пароли — отдельно от CRO" }
-      ]
+      "links": []
     },
     {
       "id": 2,

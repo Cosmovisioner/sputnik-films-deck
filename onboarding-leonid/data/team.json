@@ -5,36 +5,50 @@
       {
         "id": "uk",
         "name": "Управляющая компания",
+        "short": "УК",
+        "color": "#A78BFA",
         "desc": "Единые правила, коммерция, CRM, PR-стратегия"
       },
       {
         "id": "cult",
         "name": "Cult",
+        "short": "Cult",
+        "color": "#2563EB",
         "desc": "Рекламные ролики, гибрид съёмка + ИИ. Порог от ~5 млн ₽"
       },
       {
         "id": "blaster",
         "name": "Blaster",
+        "short": "Blaster",
+        "color": "#F97316",
         "desc": "CG, 2D/3D, motion, мультимедиа. Порог от сотен тысяч ₽"
       },
       {
         "id": "sputnik",
         "name": "Sputnik Films",
+        "short": "Sputnik",
+        "color": "#10B981",
         "desc": "Док, спецпроекты, шоу, корп. фильмы. Порог от ~1 млн ₽"
       },
       {
         "id": "techtigers",
         "name": "TechTigers",
+        "short": "TechTigers",
+        "color": "#06B6D4",
         "desc": "Стартап-студия разработки: iCRM, формы брифа, автоматизация продаж"
       },
       {
         "id": "ai_window",
         "name": "Окно в ИИ",
+        "short": "ИИ",
+        "color": "#8B5CF6",
         "desc": "Единая точка входа для крупных прямых клиентов с ИИ-задачами (до 01.2027)"
       },
       {
         "id": "partner_slz",
         "name": "Партнёрские SLZ",
+        "short": "SLZ",
+        "color": "#6B7280",
         "desc": "Независимые селзы за % — лиды в группу, CRM и handoff через group sales"
       }
     ],

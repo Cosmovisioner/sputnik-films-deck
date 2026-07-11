@@ -1,0 +1,93 @@
+{
+  "meta": {
+    "title": "Telegram · Cult Group",
+    "note": "Инвайт без ссылки — попроси добавить указанного человека. Open Production и «акционеры» на старте не нужны."
+  },
+  "chats": [
+    {
+      "id": "group_sales",
+      "name": "Группа / Продажи",
+      "priority": "required",
+      "week": 1,
+      "unit": "uk",
+      "whoAdds": "CRO (Дима)",
+      "inviteUrl": "https://t.me/+5ZBnpaU65rAxY2M6",
+      "desc": "Общий sales-контур: лиды, статусы, координация между юнитами"
+    },
+    {
+      "id": "commercial_director",
+      "name": "Коммерческий директор · Cult Group",
+      "priority": "required",
+      "week": 1,
+      "unit": "uk",
+      "whoAdds": "CRO",
+      "inviteUrl": null,
+      "desc": "Прямой канал с коммерческим директором — эскалации, приоритеты, блокеры"
+    },
+    {
+      "id": "blaster_sales",
+      "name": "Blaster · продажи",
+      "priority": "as_needed",
+      "week": 1,
+      "unit": "blaster",
+      "whoAdds": "Лиза или CRO",
+      "inviteUrl": null,
+      "desc": "Сделки Blaster: CG, motion, мультимедиа, выставки"
+    },
+    {
+      "id": "sputnik_sales",
+      "name": "Спутник · продажи",
+      "priority": "as_needed",
+      "week": 1,
+      "unit": "sputnik",
+      "whoAdds": "CRO или Сергей",
+      "inviteUrl": null,
+      "desc": "Док, спецпроекты, «берём ли» Sputnik"
+    },
+    {
+      "id": "ai_sales",
+      "name": "Техно отдел · ИИ продажи",
+      "priority": "week1",
+      "week": 1,
+      "unit": "ai_window",
+      "whoAdds": "CRO + Хомич",
+      "inviteUrl": null,
+      "desc": "CRM beta, AI-продукты, формы брифа"
+    },
+    {
+      "id": "techtigers",
+      "name": "Systems · TechTigers",
+      "priority": "week1",
+      "week": 1,
+      "unit": "techtigers",
+      "whoAdds": "CRO",
+      "inviteUrl": null,
+      "desc": "Разработка iCRM и автоматизаций sales"
+    },
+    {
+      "id": "ai_window",
+      "name": "Окно в ИИ · Культ групп",
+      "priority": "as_needed",
+      "week": 2,
+      "unit": "ai_window",
+      "whoAdds": "CRO",
+      "inviteUrl": null,
+      "desc": "Крупные прямые клиенты с ИИ-задачами"
+    },
+    {
+      "id": "supertops",
+      "name": "Супертопы · весь холдинг",
+      "priority": "after_week1",
+      "week": 2,
+      "unit": "uk",
+      "whoAdds": "CRO + CEO (Костя)",
+      "inviteUrl": null,
+      "desc": "Стратегический контур — только после первой недели"
+    }
+  ],
+  "skip": [
+    "Спутник / Акционеры",
+    "Holst",
+    "Внутренние финансы / P&L"
+  ]
+}

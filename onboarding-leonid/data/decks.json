@@ -1,0 +1,53 @@
+{
+  "meta": {
+    "title": "Презентации · маршрутизация",
+    "rule": "Неясный бриф → Cult Group. Явный юнит → преза head'а. Не обещай deck, которого нет — запроси у владельца."
+  },
+  "decks": [
+    {
+      "id": "cult_group",
+      "title": "Cult Group · общая преза",
+      "when": "Холод, первый контакт, непонятно Cult vs Blaster vs Sputnik",
+      "url": "https://cosmovisioner.github.io/sputnik-films-deck/cult-group/",
+      "status": "live",
+      "owner": "dima",
+      "unit": "uk"
+    },
+    {
+      "id": "cult_unit",
+      "title": "Cult · реклама и съёмка",
+      "when": "Явный рекламный ролик, гибрид съёмка + ИИ, бюджет от ~5 млн ₽",
+      "url": null,
+      "status": "request",
+      "owner": "denis",
+      "unit": "cult",
+      "requestVia": "Денис Леваков или CRO"
+    },
+    {
+      "id": "blaster_unit",
+      "title": "Blaster · CG / motion / мультимедиа",
+      "when": "Графика, анимация, инсталляции, выставки",
+      "url": null,
+      "status": "request",
+      "owner": "liza",
+      "unit": "blaster",
+      "requestVia": "Лиза Иванова — папка продаж Blaster на Drive"
+    },
+    {
+      "id": "sputnik_unit",
+      "title": "Sputnik Films · док и спецпроекты",
+      "when": "Док, шоу, корп. фильм — после OK Сергея «берём»",
+      "url": null,
+      "status": "request",
+      "owner": "sergey",
+      "unit": "sputnik",
+      "requestVia": "Сергей Клейн или CRO"
+    }
+  ],
+  "routing": [
+    { "signal": "Неясно / холод", "deck": "cult_group" },
+    { "signal": "Реклама, TV/digital ролик", "deck": "cult_unit" },
+    { "signal": "CG, 2D/3D, motion", "deck": "blaster_unit" },
+    { "signal": "Док, спецпроект, шоу", "deck": "sputnik_unit" }
+  ]
+}
