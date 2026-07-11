@@ -2,7 +2,8 @@
   "meta": {
     "startDate": "2026-07-13",
     "title": "Онбординг Sales · Cult Group",
-    "user": "Леонид Мархашов"
+    "user": "Леонид Мархашов",
+    "workdaysOnly": true
   },
   "steps": [
     {
@@ -100,15 +101,15 @@
     },
     {
       "id": 6,
-      "date": "2026-07-18",
-      "weekday": "Сб",
+      "date": "2026-07-20",
+      "weekday": "Пн",
       "title": "День 6 · CRM + скиллы",
-      "intro": "Инструменты и закрытие первой недели.",
+      "intro": "Первый день второй недели — инструменты и закрытие блока «неделя 1».",
       "tasks": [
-        { "id": "sales_meet", "text": "Планёрка продаж Cult Group (12:00–13:00)" },
+        { "id": "sales_meet", "text": "Планёрка продаж Cult Group с CRO (слот на пн)" },
         { "id": "amo_reg", "text": "Прочитать регламент Amo CRM" },
         { "id": "skills", "text": "Установить 3 Cursor-скилла (zip от CRO): scoring, brief-gate, deck-router" },
-        { "id": "shadow3", "text": "Shadowing #3 (если есть слот)" },
+        { "id": "shadow3", "text": "Shadowing #3 (если не успел на прошлой неделе)" },
         { "id": "amo_100", "text": "100% карточек Amo Cult — следующий шаг заполнен" }
       ],
       "links": [
@@ -163,12 +164,12 @@
     },
     {
       "id": 10,
-      "date": "2026-07-25",
+      "date": "2026-07-24",
       "weekday": "Пт",
       "title": "День 10 · iCRM + итог",
-      "intro": "Демо CRM MVP и фиксация итогов двух недель.",
+      "intro": "Демо CRM MVP и фиксация итогов двух недель (10 рабочих дней).",
       "tasks": [
-        { "id": "icrm_demo", "text": "Demo CRM MVP с Сашей Хомичем (25.07)" },
+        { "id": "icrm_demo", "text": "Demo CRM MVP с Сашей Хомичем (слот с CRO, ориентир 24–25.07)" },
         { "id": "retro", "text": "Retro с CRO: что понятно / что ещё мутно" },
         { "id": "month_plan", "text": "План на месяц 2: 3–5 брифов в производство" },
         { "id": "quest_done", "text": "Отметить онбординг-kвест пройденным 🎯" }
