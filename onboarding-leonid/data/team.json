@@ -562,7 +562,7 @@
       "unit": "Blaster",
       "unitId": "blaster",
       "initials": "ИП",
-      "photo": null,
+      "photo": "assets/avatars/Cape_production.jpg",
       "bio_short": "Не штат и не sales. Эксперт по мультимedia на выставках и ивентах.",
       "lore": "Коллаба с Blaster (лето 2026): Blaster продаёт и ведёт клиента, делает master-ролик; Илья — техзона (TouchDesigner, LED, инженерка на площадке). Лето — сезон ивентов, цель — зайти в август. У Кости своя линия по Илье — не путать. Экономику и % — только через Лизу и Диму.",
       "tasks": [
