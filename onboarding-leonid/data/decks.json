@@ -1,53 +1,80 @@
 {
   "meta": {
-    "title": "Презентации · маршрутизация",
-    "rule": "Неясный бриф → Cult Group. Явный юнит → преза head'а. Не обещай deck, которого нет — запроси у владельца."
+    "title": "Презентации · куда вести клиента",
+    "rule": "Если непонятно, куда отнести бриф — показываем Cult Group. Если формат ясен — презентацию юнита. Не обещай то, чего нет в списке — запроси у владельца."
   },
   "decks": [
     {
       "id": "cult_group",
-      "title": "Cult Group · общая преза",
-      "when": "Холод, первый контакт, непонятно Cult vs Blaster vs Sputnik",
+      "title": "Cult Group · общая презентация",
+      "when": "Холод, первый контакт, не ясно Cult / Blaster / Sputnik",
       "url": "https://cosmovisioner.github.io/sputnik-films-deck/cult-group/",
       "status": "live",
       "owner": "dima",
       "unit": "uk"
     },
     {
-      "id": "cult_unit",
-      "title": "Cult · реклама и съёмка",
-      "when": "Явный рекламный ролик, гибрид съёмка + ИИ, бюджет от ~5 млн ₽",
-      "url": null,
-      "status": "request",
+      "id": "cult_main_cases",
+      "title": "Cult · главные кейсы",
+      "when": "Явная реклама, съёмка, гибрид с ИИ",
+      "url": "https://docs.google.com/presentation/d/10aKFDGsyj3zShmsfStjj5DZPpxaHJvc4VqqfOPJcj1s/edit",
+      "status": "live",
       "owner": "denis",
-      "unit": "cult",
-      "requestVia": "Денис Леваков или CRO"
+      "unit": "cult"
     },
     {
-      "id": "blaster_unit",
-      "title": "Blaster · CG / motion / мультимедиа",
-      "when": "Графика, анимация, инсталляции, выставки",
-      "url": null,
-      "status": "request",
+      "id": "cult_production",
+      "title": "Cult · продакшен-подход",
+      "when": "Часть стандартного КП: как снимаем и собираем ролик",
+      "url": "https://docs.google.com/presentation/d/1t8ll1rX1MxF8jZZKVl3vezw--qoRLgIGlxYAhi6XZNM",
+      "status": "live",
+      "owner": "denis",
+      "unit": "cult"
+    },
+    {
+      "id": "cult_directors",
+      "title": "Cult · подборка режиссёров",
+      "when": "КП с вариантами режиссёра под бриф",
+      "url": "https://docs.google.com/presentation/d/1JUQsqkRka2eMW_MDe8EnR5LBPMF8FLMHhQauEpWmlio/edit",
+      "status": "live",
+      "owner": "denis",
+      "unit": "cult"
+    },
+    {
+      "id": "blaster_master",
+      "title": "Blaster · master portfolio",
+      "when": "Графика, motion, 3D, мультимедиа, выставки",
+      "url": "https://docs.google.com/presentation/d/1ictZgIQMCCY1zv-CRP48adtiz6RRMB_fqO4Mojmh_vw/edit",
+      "status": "live",
       "owner": "liza",
-      "unit": "blaster",
-      "requestVia": "Лиза Иванова — папка продаж Blaster на Drive"
+      "unit": "blaster"
+    },
+    {
+      "id": "blaster_cross",
+      "title": "Blaster + Sputnik · портфолио (кросс)",
+      "when": "Совместные пресейлы Blaster × Sputnik",
+      "url": "https://docs.google.com/presentation/d/1VvWBqzaKPosBuoJAvYMYoJ8CfCXP9_WG-_lyChcWoK8/edit",
+      "status": "live",
+      "owner": "liza",
+      "unit": "blaster"
     },
     {
       "id": "sputnik_unit",
       "title": "Sputnik Films · док и спецпроекты",
-      "when": "Док, шоу, корп. фильм — после OK Сергея «берём»",
+      "when": "Док, шоу, корпоративный фильм — только после «берём» от Сергея",
       "url": null,
       "status": "request",
       "owner": "sergey",
       "unit": "sputnik",
-      "requestVia": "Сергей Клейн или CRO"
+      "requestVia": "Сергей Клейн (@klein_sergey) или Дима"
     }
   ],
   "routing": [
-    { "signal": "Неясно / холод", "deck": "cult_group" },
-    { "signal": "Реклама, TV/digital ролик", "deck": "cult_unit" },
-    { "signal": "CG, 2D/3D, motion", "deck": "blaster_unit" },
+    { "signal": "Не ясен формат / холод", "deck": "cult_group" },
+    { "signal": "Рекламный ролик, TV/digital", "deck": "cult_main_cases" },
+    { "signal": "Нужен продакшен-подход в КП", "deck": "cult_production" },
+    { "signal": "CG, 2D/3D, motion, мультимедиа", "deck": "blaster_master" },
+    { "signal": "Кросс: графика + продакшен", "deck": "blaster_cross" },
     { "signal": "Док, спецпроект, шоу", "deck": "sputnik_unit" }
   ]
 }

@@ -1,0 +1,69 @@
+{
+  "meta": {
+    "source": "Экспорты TG июнь 2026 · calendar_contacts.json · матрица доступов",
+    "note": "Юзернеймы проверены по перепискам. Если не пишешь в личку — попроси добавить в рабочий чат."
+  },
+  "people": {
+    "kostya": {
+      "email": "k@cult.team",
+      "telegram": "https://t.me/umelnikov_work",
+      "telegramLabel": "@umelnikov_work",
+      "howToWrite": "Стратегия и споры юнитов — через чат «Супертопы» или личка после первой недели"
+    },
+    "dima": {
+      "email": "cosmovisioner@gmail.com",
+      "emailWork": "cosmovisioner@gmail.com",
+      "telegram": "https://t.me/cosmovisioner",
+      "telegramLabel": "@cosmovisioner",
+      "howToWrite": "Ежедневные вопросы по продажам, CRM, маршрутизация"
+    },
+    "denis": {
+      "email": "denis@cult.team",
+      "telegram": "https://t.me/denis_levakov",
+      "telegramLabel": "@denis_levakov",
+      "howToWrite": "Cult: смета, маржа, бриф под съёмку, Amo Cult"
+    },
+    "liza": {
+      "email": "liza@blasterstudio.ru",
+      "emailAlt": "liza@cult.team",
+      "telegram": "https://t.me/elivanova",
+      "telegramLabel": "@elivanova",
+      "howToWrite": "Blaster: графика, мультимедиа, прайс, презентации"
+    },
+    "sergey": {
+      "email": "hello@kleinsergey.com",
+      "telegram": "https://t.me/klein_sergey",
+      "telegramLabel": "@klein_sergey",
+      "howToWrite": "Sputnik: «берём ли проект», док и спецформаты"
+    },
+    "homich": {
+      "telegram": "https://t.me/akhomich",
+      "telegramLabel": "@akhomich",
+      "howToWrite": "iCRM, баги, демо — после согласования с коммерцией"
+    },
+    "egor": {
+      "telegram": "https://t.me/egormaraev",
+      "telegramLabel": "@egormaraev",
+      "howToWrite": "История Blaster и упаковка — не операционка CRM"
+    },
+    "sasha_a": {
+      "email": "sasha@cult.team",
+      "telegram": "https://t.me/Skanderbeg",
+      "telegramLabel": "@Skanderbeg",
+      "howToWrite": "Legacy-база, как раньше вели Cult/Blaster"
+    },
+    "taya": {
+      "telegram": "https://t.me/tayaprod",
+      "telegramLabel": "@tayaprod",
+      "howToWrite": "Тёплая база Sputnik, рекламный контур студии"
+    },
+    "dima_soldatov": {
+      "telegram": "https://t.me/DiOdz",
+      "telegramLabel": "@DiOdz",
+      "howToWrite": "Партнёр Blaster — только если он привёл лид; % и источник через коммерцию"
+    },
+    "max_blaster": {
+      "howToWrite": "Партнёр Blaster — контакт и % только через Диму (коммерция)"
+    }
+  }
+}

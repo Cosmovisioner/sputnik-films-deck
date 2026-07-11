@@ -2,21 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "cult_leonid_daily_v5";
-  const ASSET_VER = "20260711-v5";
-
-  const CONTACTS = {
-    kostya: { email: "k@cult.team", tgNote: "TG — через CRO или чат «Супертопы»" },
-    dima: { email: "cosmovisioner@gmail.com", tg: "https://t.me/cosmovisioner", tgLabel: "@cosmovisioner" },
-    denis: { email: "denis@cult.team", tgNote: "TG — попроси CRO или напиши в чат «Коммерческий директор»" },
-    liza: { email: "liza@blasterstudio.ru", emailAlt: "liza@cult.team", tgNote: "TG — Лиза добавит на созвоне или через CRO" },
-    sergey: { email: "hello@kleinsergey.com", tgNote: "TG — через CRO или чат «Спутник · продажи»" },
-    sasha_a: { email: "sasha@cult.team", tg: "https://t.me/Skanderbeg", tgLabel: "@Skanderbeg" },
-    homich: { tgNote: "TG — чат Systems · TechTigers" },
-    egor: { tgNote: "Не операционка — только через CRO" },
-    taya: { tgNote: "TG — через CRO или чат Sputnik продажи" },
-    dima_soldatov: { tgNote: "Контакт через CRO · лид с меткой источника" },
-    max_blaster: { tgNote: "Контакт через CRO · лид с меткой источника" }
-  };
+  const ASSET_VER = "20260711-v6";
 
   const UNIT_ID_MAP = {
     "УК": "uk",
@@ -30,12 +16,13 @@
   };
 
   const PRIORITY_LABELS = {
-    required: "Обязательно",
-    week1: "Неделя 1",
+    required: "С первого дня",
+    week1: "Первая неделя",
     as_needed: "По сделкам",
-    after_week1: "После нед. 1"
+    after_week1: "После 1-й недели"
   };
 
+  let contactsData = { people: {} };
   let steps = [];
   let team = null;
   let resources = null;
@@ -158,10 +145,14 @@
     renderDayNav();
   }
 
+  function getContact(id) {
+    return contactsData.people[id] || {};
+  }
+
   function openPerson(id) {
     const p = findPerson(id);
     if (!p) return;
-    const c = CONTACTS[id] || {};
+    const c = getContact(id);
     const body = document.getElementById("modalBody");
     const unit = team.org.units.find(u => u.id === personUnitId(p));
 
@@ -172,11 +163,14 @@
     if (c.emailAlt) {
       contactsHtml += `<a class="contact-btn" href="mailto:${c.emailAlt}">✉ ${c.emailAlt}</a>`;
     }
-    if (c.tg) {
-      contactsHtml += `<a class="contact-btn" href="${c.tg}" target="_blank" rel="noopener">💬 ${c.tgLabel || "Telegram"}</a>`;
+    if (c.emailWork && c.emailWork !== c.email) {
+      contactsHtml += `<a class="contact-btn" href="mailto:${c.emailWork}">✉ ${c.emailWork}</a>`;
     }
-    if (c.tgNote && !c.tg) {
-      contactsHtml += `<span class="path-note">${c.tgNote}</span>`;
+    if (c.telegram) {
+      contactsHtml += `<a class="contact-btn" href="${c.telegram}" target="_blank" rel="noopener">💬 ${c.telegramLabel || "Telegram"}</a>`;
+    }
+    if (c.howToWrite) {
+      contactsHtml += `<p style="font-size:12px;color:var(--muted);margin:8px 0 0">${c.howToWrite}</p>`;
     }
 
     body.innerHTML = `
@@ -197,7 +191,7 @@
       </div>
       <div class="modal-section">
         <h4>Контакты</h4>
-        <div class="modal-contacts">${contactsHtml || "<span class='path-note'>Контакт через CRO</span>"}</div>
+        <div class="modal-contacts">${contactsHtml || "<span class='path-note'>Напиши Диме — даст контакт</span>"}</div>
       </div>
       ${unit ? `<div class="modal-section"><button type="button" class="btn" data-unit="${unit.id}">Юнит: ${unit.name} →</button></div>` : ""}
     `;
@@ -316,7 +310,7 @@
         <h2 class="card-title">${step.title}</h2>
         <p class="card-intro">${step.intro}</p>
         ${tasksHtml}
-        ${allDone ? `<div class="complete-banner">${currentDayIdx < steps.length - 1 ? "День закрыт ✓ — следующий шаг →" : "Онбординг пройден 🎯"}</div>` : ""}
+        ${allDone ? `<div class="complete-banner">${currentDayIdx < steps.length - 1 ? "День закрыт — можно идти дальше →" : "Онбординг пройден"}</div>` : ""}
         <div class="nav-row">
           <button type="button" class="btn" id="prevDay" ${!prev ? "disabled" : ""}>${prev ? "← " + prev.title : "← Назад"}</button>
           <button type="button" class="btn primary" id="nextDay" ${!next ? "disabled" : ""}>${next ? next.title + " →" : "Конец"}</button>
@@ -403,7 +397,7 @@
         <p class="card-intro">Кликни карточку — роль, когда писать, контакты для сообщения.</p>
         <div class="filter-row">${chips}</div>
         ${staff.length ? `<h3 class="mono-tag" style="margin-bottom:12px">Штат</h3><div class="people-grid">${staff.map(p => personCardHtml(p)).join("")}</div>` : ""}
-        ${partners.length ? `<h3 class="mono-tag" style="margin:20px 0 12px">Партнёрские SLZ</h3><p style="font-size:13px;color:var(--muted);margin-bottom:12px">${team.org.partner_slz?.routing || ""}</p><div class="people-grid">${partners.map(p => personCardHtml(p)).join("")}</div>` : ""}
+        ${partners.length ? `<h3 class="mono-tag" style="margin:20px 0 12px">Партнёрские продавцы</h3><p style="font-size:13px;color:var(--muted);margin-bottom:12px">${team.org.partner_slz?.routing || ""}</p><div class="people-grid">${partners.map(p => personCardHtml(p)).join("")}</div>` : ""}
       </div>`;
   }
 
@@ -414,7 +408,7 @@
     if (ch.inviteUrl) {
       actions = `<a class="contact-btn primary" href="${ch.inviteUrl}" target="_blank" rel="noopener">Вступить в чат</a>`;
     } else {
-      actions = `<span class="path-note">Инвайт — попроси ${ch.whoAdds}</span>`;
+      actions = `<span class="path-note">Попроси добавить: ${ch.whoAdds}</span>`;
     }
     return `
       <div class="chat-card${req}">
@@ -435,7 +429,7 @@
       <div class="card">
         <h2 class="card-title">Telegram · рабочие чаты</h2>
         <p class="card-intro">${chats.meta?.note || ""}</p>
-        <h3 class="mono-tag" style="margin-bottom:12px">Обязательные на старте</h3>
+        <h3 class="mono-tag" style="margin-bottom:12px">Обязательные с первого дня</h3>
         ${required.map(chatCardHtml).join("")}
         <h3 class="mono-tag" style="margin:20px 0 12px">По мере работы</h3>
         ${rest.map(chatCardHtml).join("")}
@@ -562,13 +556,14 @@
 
   async function init() {
     try {
-      const [stepsData, teamRes, resRes, chatsRes, decksRes, pathsRes] = await Promise.all([
+      const [stepsData, teamRes, resRes, chatsRes, decksRes, pathsRes, contactsRes] = await Promise.all([
         fetch("data/steps.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
         fetch("data/team.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
         fetch("data/resources.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
         fetch("data/chats.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
         fetch("data/decks.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
-        fetch("data/task_paths.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); })
+        fetch("data/task_paths.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
+        fetch("data/contacts.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); })
       ]);
       steps = stepsData.steps;
       team = teamRes;
@@ -576,6 +571,7 @@
       chats = chatsRes;
       decks = decksRes;
       taskPaths = pathsRes;
+      contactsData = contactsRes;
     } catch (_) {
       document.getElementById("loadError").hidden = false;
       return;
@@ -607,7 +603,7 @@
 
     setView(currentView);
     document.getElementById("footerNote").textContent =
-      "Cult Group Sales Quest · " + steps.length + " дней · v" + ASSET_VER;
+      "Cult Group · онбординг продаж · " + steps.length + " дней · v" + ASSET_VER;
   }
 
   init();

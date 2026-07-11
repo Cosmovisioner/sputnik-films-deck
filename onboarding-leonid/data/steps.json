@@ -3,10 +3,10 @@
     "startDate": "2026-07-11",
     "officialStartDate": "2026-07-13",
     "openNow": true,
-    "title": "Онбординг Sales · Cult Group",
+    "title": "Онбординг продаж · Cult Group",
     "user": "Леонид Мархашов",
     "workdaysOnly": false,
-    "pace": "Свободный темп — можно закрыть несколько шагов за день. Даты в шагах — ориентир (рабочий календарь)."
+    "pace": "Можно идти в своём темпе и закрыть несколько дней подряд. Даты — ориентир по рабочему календарю."
   },
   "steps": [
     {
@@ -14,13 +14,13 @@
       "date": "2026-07-13",
       "weekday": "Пн",
       "title": "День 1 · Старт",
-      "intro": "Первый день — роль, доступы и знакомство с контуром. Не пытайся прочитать всё сразу: только задачи ниже.",
+      "intro": "Роль, доступы, знакомство с контуром. Не читай всё подряд — только задачи ниже.",
       "tasks": [
-        { "id": "walkthrough", "text": "Walkthrough с коммерческим директором (10:00–13:00)" },
-        { "id": "role", "text": "Зафиксировать роль: холод + входящий + бриф до договора. Не продакшен, не PR" },
-        { "id": "access", "text": "Получить доступы: Amo Cult, Drive, почта, TG-чаты (список от CRO)" },
-        { "id": "clifton_order", "text": "Заказать CliftonStrengths (оплачивает компания)" },
-        { "id": "motivation", "text": "Прочитать мотивацию: 220k + 12% маржи, лестница повторов 6→3→0" }
+        { "id": "walkthrough", "text": "Вводная сессия с коммерческим директором (10:00–13:00)" },
+        { "id": "role", "text": "Зафиксировать роль: холод + входящие + бриф до договора. Не продакшен, не PR" },
+        { "id": "access", "text": "Получить доступы: Amo Cult, Drive, почта, чаты Telegram (список от Димы)" },
+        { "id": "clifton_order", "text": "Заказать CliftonStrengths — оплачивает компания" },
+        { "id": "motivation", "text": "Прочитать схему мотивации: 220 000 ₽ + 12% маржи, повторы 6→3→0%" }
       ],
       "links": []
     },
@@ -28,136 +28,133 @@
       "id": 2,
       "date": "2026-07-14",
       "weekday": "Вт",
-      "title": "День 2 · Карта группы + Amo",
-      "intro": "Понять, куда ведётся клиент. Сегодня — структура холдинга и CRM.",
+      "title": "День 2 · Карта группы и Amo",
+      "intro": "Понять, куда вести клиента. Сегодня — структура холдинга и CRM.",
       "tasks": [
-        { "id": "org_map", "text": "Изучить карту: УК, Cult, Blaster, Sputnik, TechTigers, «Окно в ИИ» (Open Production упразднён)" },
-        { "id": "amo_walk", "text": "Amo walkthrough + handoff Саши Алексеева (11:00–12:30)" },
-        { "id": "handoff_doc", "text": "Прочитать «Передача дел от Саши Алексеева»" },
-        { "id": "tg_join", "text": "Вступить во все рабочие TG-чаты продаж/коммерции" },
-        { "id": "group_deck", "text": "Просмотреть презу Cult Group (холод / неясный бриф)" }
+        { "id": "org_map", "text": "Изучить карту: УК, Cult, Blaster, Sputnik, TechTigers, «Окно в ИИ» (Open Production закрыт)" },
+        { "id": "amo_walk", "text": "Разбор Amo + передача дел от Саши Алексеева (11:00–12:30)" },
+        { "id": "handoff_doc", "text": "Прочитать документ «Передача дел от Саши Алексеева»" },
+        { "id": "tg_join", "text": "Вступить в рабочие чаты продаж и коммерции" },
+        { "id": "group_deck", "text": "Посмотреть общую презентацию Cult Group (холод / неясный бриф)" }
       ],
       "links": [
-        { "label": "Преза Cult Group", "url": "https://cosmovisioner.github.io/sputnik-films-deck/cult-group/" },
-        { "label": "Передача дел Саши", "url": "https://docs.google.com/document/d/1TgX68T03X0_Tk8KW4QHraXVyJMFi-TGW/edit" },
-        { "label": "Amo Cult", "url": "https://cultteam.amocrm.ru" },
-        { "label": "Drive Культ-группа", "url": "https://drive.google.com/drive/folders/1O89yMg7RCXGIwv_eTQ8Sp6A6oiJiwRmR" }
+        { "label": "Презентация Cult Group", "url": "https://cosmovisioner.github.io/sputnik-films-deck/cult-group/" },
+        { "label": "Передача дел · Саша Алексеев", "url": "https://docs.google.com/document/d/1TgX68T03X0_Tk8KW4QHraXVyJMFi-TGW/edit" },
+        { "label": "AmoCRM · Cult", "url": "https://cultteam.amocrm.ru" },
+        { "label": "Drive · Культ-группа", "url": "https://drive.google.com/drive/folders/1O89yMg7RCXGIwv_eTQ8Sp6A6oiJiwRmR" }
       ]
     },
     {
       "id": 3,
       "date": "2026-07-15",
       "weekday": "Ср",
-      "title": "День 3 · Cult + команда",
-      "intro": "Cult — реклама и съёмка. Плюс карточки людей (штат).",
+      "title": "День 3 · Cult и команда",
+      "intro": "Cult — реклама и съёмка. Плюс карточки людей из штата.",
       "tasks": [
-        { "id": "denis_call", "text": "Созвон с Денисом Леваковым — Cult, преза, Amo, маржа (11:00–12:00)" },
-        { "id": "team_staff", "text": "Просмотреть карточки штата: CRO, хэды, TechTigers, Sputnik" },
-        { "id": "clifton_test", "text": "Пройти CliftonStrengths (если ещё не сделал)" },
-        { "id": "sasha_sync", "text": "Синк с Сашей Алексеевым по контактам (15:00–16:00)" },
+        { "id": "denis_call", "text": "Созвон с Денисом Леваковым — Cult, презентации, Amo, маржа (11:00–12:00)" },
+        { "id": "team_staff", "text": "Просмотреть карточки штата: коммерция, хэды юнитов, TechTigers, Sputnik" },
+        { "id": "clifton_test", "text": "Пройти CliftonStrengths, если ещё не сделал" },
+        { "id": "sasha_sync", "text": "Синхрон с Сашей Алексеевым по контактам (15:00–16:00)" },
         { "id": "clifton_table", "text": "Сверить свой Clifton с таблицей команды" }
       ],
       "links": [
-        { "label": "Clifton — таблица команды", "url": "https://docs.google.com/spreadsheets/d/1bkfERbO8UlEql6pLS_UIhCrBRiT2R4-YDOqxVeUx__0/edit" },
+        { "label": "Clifton · таблица команды", "url": "https://docs.google.com/spreadsheets/d/1bkfERbO8UlEql6pLS_UIhCrBRiT2R4-YDOqxVeUx__0/edit" },
         { "label": "Критерии брифа", "url": "https://docs.google.com/document/d/1cSkBD_Zx6Oo2RRaDGtv7n2LxW-QglW_rk6hhw9FaF38/edit" }
-      ],
-      "panels": ["team_staff"]
+      ]
     },
     {
       "id": 4,
       "date": "2026-07-16",
       "weekday": "Чт",
-      "title": "День 4 · Blaster + продукты",
+      "title": "День 4 · Blaster и продукты",
       "intro": "Куда вести лид по типу задачи. Blaster — графика и мультимедиа.",
       "tasks": [
         { "id": "liza_call", "text": "Созвон с Лизой Ивановой — Blaster, мультимедиа, прайс (11:00–12:00)" },
-        { "id": "products", "text": "Запомнить пороги: Cult ~5M · Blaster сотни k · Sputnik ~1M" },
-        { "id": "deck_router", "text": "Правило през: неясно → group deck; явный юнит → преза хэда" },
-        { "id": "shadow1", "text": "Shadowing: совместный пресейл #1 с CRO" },
-        { "id": "amo_next", "text": "Все свои карточки Amo — следующий шаг + дата" }
+        { "id": "products", "text": "Запомнить пороги: Cult ~5 млн ₽ · Blaster сотни тысяч · Sputnik ~1 млн ₽" },
+        { "id": "deck_router", "text": "Правило презентаций: неясно → Cult Group; явный юнит → преза хэда" },
+        { "id": "shadow1", "text": "Совместный пресейл №1 с коммерческим директором" },
+        { "id": "amo_next", "text": "Во всех своих карточках Amo — следующий шаг и дата" }
       ],
       "links": [
-        { "label": "Папка продаж Blaster", "url": "https://drive.google.com/drive/folders/1j-ARZnroEcDoSQnr-1Rr-urwUq4izNxb" }
-      ],
-      "panels": ["products"]
+        { "label": "Drive · продажи Blaster", "url": "https://drive.google.com/drive/folders/1j-ARZnroEcDoSQnr-1Rr-urwUq4izNxb" }
+      ]
     },
     {
       "id": 5,
       "date": "2026-07-17",
       "weekday": "Пт",
-      "title": "День 5 · Sputnik + правила",
-      "intro": "Sputnik — док и спецпроекты. Жёстко: не тащить всё в Sputnik по привычке.",
+      "title": "День 5 · Sputnik и правила",
+      "intro": "Sputnik — док и спецпроекты. Не тащи всё в Sputnik по привычке.",
       "tasks": [
-        { "id": "sergey_call", "text": "Созвон с Сергеем Клейном — «берём ли» Sputnik (11:00–12:00)" },
-        { "id": "rules", "text": "Прочитать summary коммерческих правил (воронка, handoff, стоп-лист)" },
-        { "id": "partner_slz", "text": "Изучить партнёрских SLZ: лиды → group sales, не в продакшен напрямую" },
-        { "id": "shadow2", "text": "Shadowing: совместный пресейл #2" },
-        { "id": "sputnik_rule", "text": "Зафиксировать: решение Sputnik «берём» — Сергей, не solo CRO" }
+        { "id": "sergey_call", "text": "Созвон с Сергеем Клейном — «берём ли» проект в Sputnik (11:00–12:00)" },
+        { "id": "rules", "text": "Прочитать краткие коммерческие правила (воронка, передача в продакшен, стоп-лист)" },
+        { "id": "partner_slz", "text": "Разобраться с партнёрскими продавцами: лиды → групповые продажи, не напрямую в продакшен" },
+        { "id": "shadow2", "text": "Совместный пресейл №2" },
+        { "id": "sputnik_rule", "text": "Запомнить: «берём» Sputnik решает Сергей, не один Дима" }
       ],
       "links": [
-        { "label": "Регламент NB", "url": "https://docs.google.com/spreadsheets/d/1W0xbSDRQVSYWjCOHPtfNL43Ps9yknejEIaspzu28QU4/edit" },
+        { "label": "Регламент нового бизнеса", "url": "https://docs.google.com/spreadsheets/d/1W0xbSDRQVSYWjCOHPtfNL43Ps9yknejEIaspzu28QU4/edit" },
         { "label": "Стандарты с продакшеном", "url": "https://docs.google.com/document/d/11PqYVrnfjUYAXHVNfXFcARtkoTV-Gqik7VboIKrKGgw/edit" }
-      ],
-      "panels": ["partner_slz", "rules_short"]
+      ]
     },
     {
       "id": 6,
       "date": "2026-07-20",
       "weekday": "Пн",
-      "title": "День 6 · CRM + скиллы",
+      "title": "День 6 · CRM и скиллы",
       "intro": "Первый день второй недели — инструменты и закрытие блока «неделя 1».",
       "tasks": [
-        { "id": "sales_meet", "text": "Планёрка продаж Cult Group с CRO (слот на пн)" },
+        { "id": "sales_meet", "text": "Планёрка продаж Cult Group с Димой (понедельник)" },
         { "id": "amo_reg", "text": "Прочитать регламент Amo CRM" },
-        { "id": "skills", "text": "Установить 3 Cursor-скилла (zip от CRO): scoring, brief-gate, deck-router" },
-        { "id": "shadow3", "text": "Shadowing #3 (если не успел на прошлой неделе)" },
-        { "id": "amo_100", "text": "100% карточек Amo Cult — следующий шаг заполнен" }
+        { "id": "skills", "text": "Установить 3 скилла Cursor (архив от Димы): скоринг, проверка брифа, выбор презентации" },
+        { "id": "shadow3", "text": "Совместный пресейл №3, если не успел на прошлой неделе" },
+        { "id": "amo_100", "text": "100% карточек Amo Cult — заполнен следующий шаг" }
       ],
       "links": [
         { "label": "Регламент Amo", "url": "https://docs.google.com/document/d/1MwlLD2ZVtKXDeH8FUBOa33VjhAcExHga3ZmwTVYhszI/edit" },
-        { "label": "Drive Коммерция", "url": "https://drive.google.com/drive/folders/1cm50xCY02m_WTNenHbEoKAl-ALZ-Ac_n" }
+        { "label": "Drive · Коммерция", "url": "https://drive.google.com/drive/folders/1cm50xCY02m_WTNenHbEoKAl-ALZ-Ac_n" }
       ]
     },
     {
       "id": 7,
       "date": "2026-07-21",
-      "weekday": "Пн",
-      "title": "День 7 · Неделя 2 — старт",
-      "intro": "Практика на инструментах. Банк возражений и тёплая база — с review CRO.",
+      "weekday": "Вт",
+      "title": "День 7 · Вторая неделя",
+      "intro": "Практика на инструментах. Банк возражений и тёплая база — разбор с Димой.",
       "tasks": [
-        { "id": "objection", "text": "Получить банк возражений у CRO, прочитать top-10" },
-        { "id": "scoring_practice", "text": "Прогнать skill lead-scoring на 2 тестовых брифах" },
-        { "id": "brief_gate", "text": "Прогнать brief-gate на одном реальном входящем" },
-        { "id": "warm_review", "text": "Review тёплой базы с CRO — с чего начать касания" },
-        { "id": "outreach_plan", "text": "Составить план 5 касаний на неделю в Amo" }
+        { "id": "objection", "text": "Получить у Димы банк возражений, прочитать топ-10" },
+        { "id": "scoring_practice", "text": "Прогнать скоринг лида на 2 тестовых брифах" },
+        { "id": "brief_gate", "text": "Проверить один реальный входящий бриф по чеклисту" },
+        { "id": "warm_review", "text": "Разбор тёплой базы с Димой — с чего начать касания" },
+        { "id": "outreach_plan", "text": "План 5 касаний на неделю в Amo" }
       ],
       "links": []
     },
     {
       "id": 8,
       "date": "2026-07-22",
-      "weekday": "Вт",
-      "title": "День 8 · Пайплайн",
+      "weekday": "Ср",
+      "title": "День 8 · Воронка",
       "intro": "Первые самостоятельные действия в воронке.",
       "tasks": [
-        { "id": "cold_touch", "text": "3 исходящих касания (холод или re-activation) — зафиксировать в Amo" },
-        { "id": "incoming", "text": "Разобрать всё входящее за день: бриф → скоринг → маршрут" },
-        { "id": "deck_practice", "text": "deck-router: для 2 лидов выбрать презу и контакт на созвон" },
-        { "id": "daily_cro", "text": "Короткий sync с CRO — блокеры и приоритеты" }
+        { "id": "cold_touch", "text": "3 исходящих касания (холод или реактивация) — зафиксировать в Amo" },
+        { "id": "incoming", "text": "Разобрать входящее за день: бриф → скоринг → маршрут" },
+        { "id": "deck_practice", "text": "Для 2 лидов выбрать презентацию и контакт на созвон" },
+        { "id": "daily_cro", "text": "Короткий созвон с Димой — блокеры и приоритеты" }
       ],
       "links": []
     },
     {
       "id": 9,
       "date": "2026-07-23",
-      "weekday": "Ср",
+      "weekday": "Чт",
       "title": "День 9 · Квалификация",
-      "intro": "KPI месяца 2: 3–5 квал. брифов. Сегодня — качество, не количество.",
+      "intro": "Цель 2-го месяца: 3–5 квал. брифов. Сегодня — качество, не количество.",
       "tasks": [
-        { "id": "qual_brief", "text": "Довести 1 бриф до «квалифицированного» (все поля + скоринг ≥5)" },
-        { "id": "unit_route", "text": "Согласовать маршрут с head юнита (Денис / Лиза / Сергей)" },
+        { "id": "qual_brief", "text": "Довести 1 бриф до «квалифицированного» (все поля + скоринг ≥ 5)" },
+        { "id": "unit_route", "text": "Согласовать маршрут с хэдом юнита (Денис / Лиза / Сергей)" },
         { "id": "no_kp_ghost", "text": "Проверить: нет карточек «отправил КП и пропал»" },
-        { "id": "internal_first", "text": "На кросс-брифе — зафиксировать internal first в комментарии Amo" }
+        { "id": "internal_first", "text": "На кросс-брифе — зафиксировать в Amo: сначала юнит группы" }
       ],
       "links": [
         { "label": "Коммерческие правила (полные)", "url": "https://docs.google.com/document/d/1Wd-EIArqDzynvUTRU-u2Gc4mw9feMUjUYOGq9ilEASU/edit" }
@@ -167,16 +164,16 @@
       "id": 10,
       "date": "2026-07-24",
       "weekday": "Пт",
-      "title": "День 10 · iCRM + итог",
-      "intro": "Демо CRM MVP и фиксация итогов двух недель (10 рабочих дней).",
+      "title": "День 10 · iCRM и итог",
+      "intro": "Демо CRM и итоги двух недель (10 рабочих дней).",
       "tasks": [
-        { "id": "icrm_demo", "text": "Demo CRM MVP с Сашей Хомичем (слот с CRO, ориентир 24–25.07)" },
-        { "id": "retro", "text": "Retro с CRO: что понятно / что ещё мутно" },
-        { "id": "month_plan", "text": "План на месяц 2: 3–5 брифов в производство" },
-        { "id": "quest_done", "text": "Отметить онбординг-kвест пройденным 🎯" }
+        { "id": "icrm_demo", "text": "Демо iCRM с Сашей Хомичем (слот с Димой, ориентир 24–25.07)" },
+        { "id": "retro", "text": "Итоговый разговор с Димой: что понятно, что ещё мутно" },
+        { "id": "month_plan", "text": "План на 2-й месяц: 3–5 брифов в производство" },
+        { "id": "quest_done", "text": "Отметить онбординг пройденным" }
       ],
       "links": [
-        { "label": "Amo Blaster (read)", "url": "https://blasterstudio.amocrm.ru" }
+        { "label": "AmoCRM · Blaster (просмотр)", "url": "https://blasterstudio.amocrm.ru" }
       ]
     }
   ]
