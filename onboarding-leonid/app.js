@@ -3,7 +3,16 @@
 
   const STORAGE_KEY = "cult_leonid_daily_v5";
   const WELCOME_KEY = "cult_leonid_welcome_v3";
-  const ASSET_VER = "20260711-v22";
+  const ASSET_VER = "20260711-v23";
+
+  const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "homich", "taya"]);
+
+  const UNIT_ROUTING = [
+    { signal: "Реклама, съёмка, TV/digital", unit: "Cult", threshold: "от ~5 млн ₽", person: "denis" },
+    { signal: "CG, motion, 3D, мультимедиа", unit: "Blaster", threshold: "от сотен тысяч", person: "liza" },
+    { signal: "Док, шоу, спецпроект", unit: "Sputnik", threshold: "от ~1 млн · «берём» решает Сергей", person: "sergey" },
+    { signal: "Не ясен формат / холод", unit: "Cult Group (общая)", threshold: "любой", person: "dima" }
+  ];
 
   function esc(s) {
     if (s == null || s === "") return "";
@@ -300,10 +309,16 @@
         <div class="card-meta">Срез на ${esc(m.as_of)} · ${esc(m.period_label || "")}</div>
         <h2 class="card-title">Продажи · план, факт, воронка</h2>
         <p class="card-intro">${esc(m.updated_note || "")}</p>
-        <div class="sales-callout">
+        <div class="sales-callout sales-tldr">
+          <p class="sales-tldr-label">Твой мандат (прочитай первым)</p>
           <p><strong>${esc(hl.problem || "")}</strong></p>
           <p>${esc(hl.focus_2026 || "")}</p>
           <p class="sales-mandate">${esc(hl.your_mandate || "")}</p>
+          <ul class="sales-tldr-list">
+            <li>Считается <strong>квал. бриф</strong> и передача в юнит — не «красивый созвон»</li>
+            <li>Новые сделки → <strong>Amo Cult</strong> · следующий шаг в каждой карточке</li>
+            <li>Sputnik «берём» → только после <strong>Сергея Клейна</strong></li>
+          </ul>
         </div>
       </div>
 
@@ -316,6 +331,8 @@
         <h3 class="section-heading">${esc(salesSnapshot.leonid_kpi?.title || "Твои KPI")}</h3>
         ${renderSalesTable(["Период", "Фокус", "Ориентир"], leonidRows)}
       </div>
+
+      ${renderUnitRoutingCard("Роутинг клиента — до детальных таблиц ниже.")}
 
       <div class="card">
         <h3 class="section-heading">Юниты · план vs факт</h3>
@@ -402,6 +419,7 @@
     if (list && steps.length) {
       list.innerHTML = `
         <li>Каждый день подписан датой — ориентир, не жёсткий дедлайн</li>
+        <li><strong>Нажми на задачу</strong> — под ней ссылки и контакты</li>
         <li>В шапке всегда: карта, продажи, люди, чаты, презентации</li>
         <li>Не понял — пиши Диме, не гугли</li>`;
     }
@@ -514,7 +532,9 @@
           <span>${r.title}<span class="sub">${r.subtitle || ""}</span></span>
         </a>`;
       }
-      return `<div class="path-note">${r.title} — ${r.note || r.subtitle || "запроси у Димы"}</div>`;
+      const noteBody = r.note || r.subtitle || "запроси у Димы";
+      const noteCls = noteBody.length > 120 ? " path-note-rich" : "";
+      return `<div class="path-note${noteCls}"><strong>${esc(r.title)}</strong>${noteBody.length > 120 ? `<p>${esc(noteBody)}</p>` : ` — ${esc(noteBody)}`}</div>`;
     }
     if (item.kind === "deck") {
       const d = findDeck(item.id);
@@ -555,6 +575,53 @@
     });
   }
 
+  function renderUnitRoutingCard(intro) {
+    const rows = UNIT_ROUTING.map(r => {
+      const p = findPerson(r.person);
+      const who = p
+        ? `<button type="button" class="path-link inline-person" data-person="${p.id}">${esc(p.name.split(" ")[0])}</button>`
+        : esc(r.person);
+      return `<tr><td>${esc(r.signal)}</td><td><strong>${esc(r.unit)}</strong><br><span class="routing-threshold">${esc(r.threshold)}</span></td><td>${who}</td></tr>`;
+    }).join("");
+    return `
+      <div class="card unit-routing-card">
+        <h3 class="section-heading">Куда вести клиента</h3>
+        <p class="card-intro">${intro || "Быстрый роутинг до созвона с хэдом юнита. Сомневаешься — Cult Group + Дима."}</p>
+        <div class="sales-table-wrap">
+          <table class="sales-table routing-table">
+            <thead><tr><th>Сигнал в брифе</th><th>Юнит</th><th>Кому</th></tr></thead>
+            <tbody>${rows}</tbody>
+          </table>
+        </div>
+        <div style="margin-top:12px">
+          <button type="button" class="btn" data-view="decks">📊 Какую презу показать →</button>
+        </div>
+      </div>`;
+  }
+
+  function renderProgramHint(step) {
+    if (step.id !== 1) return "";
+    const r = stepsMeta.realism || {};
+    return `
+      <div class="card hint-card">
+        <h3 class="section-heading">Как пользоваться квестом</h3>
+        <ul class="hint-list">
+          <li><strong>Нажми на задачу</strong> — раскроются ссылки, люди и документы (не только галочка)</li>
+          <li><strong>Галочка</strong> — отметил, что сделал; прогресс в шапке</li>
+          <li><strong>Даты</strong> — ориентир календаря, не жёсткий дедлайн</li>
+          <li><strong>Застрял</strong> — пиши Диме, не гугли структуру группы</li>
+        </ul>
+        ${r.hoursWeek1 ? `<p class="path-note" style="margin-top:12px">Нагрузка: ~${esc(r.hoursWeek1)} в 1-й неделе · узкое место — ${esc(r.bottleneck || "созвоны с хэдами")}</p>` : ""}
+      </div>`;
+  }
+
+  function ensureFirstTaskExpanded(step) {
+    const anyOpen = step.tasks.some(t => expandedTasks[step.id + "." + t.id]);
+    if (anyOpen) return;
+    const first = step.tasks.find(t => (taskPaths[step.id + "." + t.id] || []).length);
+    if (first) expandedTasks[step.id + "." + first.id] = true;
+  }
+
   function renderExcludedCard() {
     const list = stepsMeta.excludedForSales;
     if (!list || !list.length) return "";
@@ -570,6 +637,7 @@
 
   function renderProgram() {
     const step = steps[currentDayIdx];
+    ensureFirstTaskExpanded(step);
     const stepTasks = state["step_" + step.id] || {};
     const allDone = stepComplete(step);
 
@@ -589,7 +657,7 @@
           <div class="task-head">
             <input type="checkbox" data-step="${step.id}" data-task="${task.id}" ${isDone ? "checked" : ""} />
             <span class="task-text">${task.text}</span>
-            <span class="task-chevron">${path.length ? "▼" : ""}</span>
+            <span class="task-chevron">${path.length ? (isOpen ? "▲" : "▼ ссылки") : ""}</span>
           </div>
           ${path.length ? `<div class="task-path">${path.map(p => renderPathItem(p, step.id)).join("")}</div>` : ""}
         </div>`;
@@ -605,12 +673,14 @@
         <h2 class="card-title">${step.title}</h2>
         <p class="card-intro">${step.intro}</p>
         ${tasksHtml}
-        ${allDone ? `<div class="complete-banner">${currentDayIdx < steps.length - 1 ? "День закрыт — можно идти дальше →" : "Онбординг пройден"}</div>` : ""}
+        ${allDone ? `<div class="complete-banner${currentDayIdx >= steps.length - 1 ? " complete-banner-final" : ""}">${currentDayIdx < steps.length - 1 ? "День закрыт — можно идти дальше →" : `<p><strong>Онбординг пройден.</strong> Напиши Диме в Telegram. Дальше — ежедневный sync, CRM-дисциплина и 3–5 квал. брифов во 2-м месяце.</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button type="button" class="btn primary" data-person="dima">Написать Диме</button><button type="button" class="btn" data-view="sales">📈 KPI на 90 дней</button><button type="button" class="btn" data-view="map">🗺 Карта группы</button></div>`}</div>` : ""}
         <div class="nav-row">
           <button type="button" class="btn" id="prevDay" ${!prev ? "disabled" : ""}>${prev ? "← " + prev.title : "← Назад"}</button>
           <button type="button" class="btn primary" id="nextDay" ${!next ? "disabled" : ""}>${next ? next.title + " →" : "Конец"}</button>
         </div>
       </article>
+      ${renderProgramHint(step)}
+      ${step.id === 4 ? renderUnitRoutingCard("После созвона с Лизой — держи эту таблицу под рукой на пресейлах.") : ""}
       <div class="card">
         <h3 class="section-heading">Быстрые разделы</h3>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -724,12 +794,14 @@
     return `
       <div class="card">
         <h2 class="card-title">Карта холдинга</h2>
+        <p class="card-intro">Нажми на юнит или продукт ТехноТигров — справа появятся люди и презентации. Open Production упразднён.</p>
         <div class="flow-line">${team.org.flow}</div>
         <div class="pillar-grid">${pillarHtml}</div>
         <p style="font-size:12px;color:var(--tertiary);margin-top:16px">${team.org.producers_note}</p>
       </div>
       ${renderPartnerBlock()}
-      ${detail}`;
+      ${detail}
+      ${renderUnitRoutingCard("Если клиент уже на созвоне — быстрый роутинг по типу задачи.")}`;
   }
 
   function personCardHtml(p) {
@@ -749,6 +821,7 @@
   function renderPeople() {
     const filterUnits = [
       { id: "all", name: "Все" },
+      { id: "sales_core", name: "Sales-контур" },
       ...cultUnits().map(u => ({ id: u.id, name: u.short || u.name })),
       { id: "techtigers", name: "ТехноТигры" },
       { id: "holding", name: "Холдинг" },
@@ -762,6 +835,8 @@
     let list = team.people.filter(p => p.id !== "leonid");
     if (peopleFilter === "holding") {
       list = list.filter(p => p.category === "holding");
+    } else if (peopleFilter === "sales_core") {
+      list = list.filter(p => SALES_CORE_IDS.has(p.id));
     } else if (peopleFilter !== "all") {
       list = list.filter(p => personUnitId(p) === peopleFilter);
     }
@@ -773,10 +848,10 @@
     return `
       <div class="card">
         <h2 class="card-title">Справочник людей</h2>
-        <p class="card-intro">Кликни карточку — кратко, Clifton, когда писать, контакты.</p>
+        <p class="card-intro">Кликни карточку — кратко, Clifton, когда писать, контакты. Фильтр <strong>Sales-контур</strong> — кого пинговать в первую неделю.</p>
         <div class="filter-row">${chips}</div>
-        ${staff.length ? `<h3 class="mono-tag" style="margin-bottom:12px">Штат</h3><div class="people-grid">${staff.map(p => personCardHtml(p)).join("")}</div>` : ""}
-        ${holding.length ? `<h3 class="mono-tag" style="margin:20px 0 12px">Супертопы · контур группы</h3><p style="font-size:13px;color:var(--muted);margin-bottom:12px">Финансы, офис, продюсеры, IT и R&amp;S — знакомство по мере погружения в холдинг</p><div class="people-grid">${holding.map(p => personCardHtml(p)).join("")}</div>` : ""}
+        ${staff.length ? `<h3 class="mono-tag" style="margin-bottom:12px">${peopleFilter === "sales_core" ? "Sales-контур · первая неделя" : "Штат"}</h3><div class="people-grid">${staff.map(p => personCardHtml(p)).join("")}</div>` : ""}
+        ${holding.length ? `<h3 class="mono-tag" style="margin:20px 0 12px">Супертопы · контур группы</h3><p style="font-size:13px;color:var(--muted);margin-bottom:12px">Финансы, SnubDoc, PR, ops — не первый контакт на пресейле. Знакомство по мере погружения.</p><div class="people-grid">${holding.map(p => personCardHtml(p)).join("")}</div>` : ""}
         ${partners.length ? `<h3 class="mono-tag" style="margin:20px 0 12px">Партнёрские сейлз-менеджеры</h3><p style="font-size:13px;color:var(--muted);margin-bottom:12px">${team.org.partner_slz?.routing || ""}</p><div class="people-grid">${partners.map(p => personCardHtml(p)).join("")}</div>` : ""}
         ${collaborators.length ? `<h3 class="mono-tag" style="margin:20px 0 12px">Коллаборации (не sales)</h3><div class="people-grid">${collaborators.map(p => personCardHtml(p)).join("")}</div>` : ""}
       </div>`;
@@ -845,11 +920,15 @@
       <div class="card">
         <h2 class="card-title">Хаб презентаций</h2>
         <p class="card-intro">${decks.meta?.rule || ""}</p>
+        <div class="card deck-routing-first">
+          <h3 class="section-heading">Быстрый выбор</h3>
+          <table class="routing-table">
+            <thead><tr><th>Сигнал в брифе</th><th>Какую презу</th></tr></thead>
+            <tbody>${routingRows}</tbody>
+          </table>
+          <p class="path-note" style="margin-top:10px">Неясно → <strong>Cult Group</strong>. Sputnik — только после «берём» от Сергея.</p>
+        </div>
         ${(decks.decks || []).map(deckCardHtml).join("")}
-        <table class="routing-table">
-          <thead><tr><th>Сигнал в брифе</th><th>Какую презу</th></tr></thead>
-          <tbody>${routingRows}</tbody>
-        </table>
       </div>`;
   }
 

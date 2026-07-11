@@ -344,10 +344,13 @@ body {
 .task-text { flex: 1; font-size: 14px; font-weight: 500; }
 .task-item.done .task-text { text-decoration: line-through; color: var(--tertiary); }
 .task-chevron {
-  font-size: 12px;
-  color: var(--tertiary);
+  font-size: 11px;
+  font-family: "JetBrains Mono", monospace;
+  color: var(--lavender);
   transition: transform 0.2s;
   padding-top: 2px;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 .task-item.open .task-chevron { transform: rotate(180deg); }
 
@@ -956,6 +959,65 @@ body.modal-open { overflow: hidden; }
 }
 .sales-callout p { margin: 0 0 8px; }
 .sales-callout p:last-child { margin-bottom: 0; }
+.sales-tldr-label {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: var(--lavender);
+  margin: 0 0 10px;
+}
+.sales-tldr-list {
+  margin: 12px 0 0;
+  padding-left: 1.1rem;
+  font-size: 13px;
+  color: var(--muted);
+}
+.sales-tldr-list li { margin: 6px 0; }
+
+.hint-card {
+  border-color: var(--lavender);
+  background: linear-gradient(180deg, rgba(167,139,250,0.08) 0%, var(--ivory) 100%);
+}
+.hint-list {
+  margin: 0;
+  padding-left: 1.1rem;
+  font-size: 13px;
+  color: var(--muted);
+}
+.hint-list li { margin: 8px 0; }
+
+.unit-routing-card { border-left: 3px solid var(--lavender); }
+.routing-threshold { font-size: 11px; color: var(--tertiary); }
+.path-link.inline-person {
+  display: inline-flex;
+  padding: 2px 8px;
+  margin: 0;
+  font-size: 13px;
+}
+.path-note-rich {
+  font-size: 12px;
+  line-height: 1.45;
+  padding: 10px 12px;
+  background: var(--ivory);
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+.path-note-rich p { margin: 8px 0 0; color: var(--muted); white-space: pre-wrap; }
+
+.complete-banner-final {
+  background: linear-gradient(135deg, rgba(34,197,94,0.12) 0%, var(--ivory) 100%);
+  border-color: #22c55e;
+}
+.complete-banner-final p { margin: 0; font-size: 14px; }
+
+.deck-routing-first {
+  margin-bottom: 16px;
+  padding: 14px;
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+}
 .sales-mandate { font-weight: 600; }
 
 .sales-table-wrap {
