@@ -492,7 +492,9 @@
         li.innerHTML = d.label + ": " + d.url;
         packLinks.appendChild(li);
       });
-      packLinks.innerHTML += "<li>Преза группы: https://cosmovisioner.github.io/sputnik-films-deck/cult-group/</li>";
+      const extra = document.createElement("li");
+      extra.textContent = "Преза группы: https://cosmovisioner.github.io/sputnik-films-deck/cult-group/";
+      packLinks.appendChild(extra);
 
       const packContacts = document.getElementById("packContacts");
       teamRes.people.filter(p => p.id !== "leonid").forEach(p => {
