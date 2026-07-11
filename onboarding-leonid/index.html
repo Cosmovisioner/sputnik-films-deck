@@ -178,7 +178,7 @@
   <div class="app">
     <div class="topbar">
       <div>
-        <div class="kicker"><span class="dot"></span>Cult Group · Sales Quest</div>
+        <div class="kicker"><span class="dot"></span>Cult Group · Sales-квест</div>
         <h1>Онбординг Лёни</h1>
         <p style="margin:0">7 уровней · от роли до первых сделок</p>
       </div>
@@ -188,6 +188,8 @@
       </div>
     </div>
 
+    <div id="loadError" class="warn" style="display:none">Не удалось загрузить данные команды и ссылок. Обнови страницу или напиши коммерческому директору.</div>
+
     <div class="progress-wrap">
       <strong style="font-size:13px">Путь: Старт → Люди → Продукт → Правила → CRM → Миссии → Пакет</strong>
       <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
@@ -195,7 +197,7 @@
 
     <!-- LEVEL 0 -->
     <details class="level" id="level-0" open>
-      <summary><span>Level 0 · Старт</span><span class="badge" id="badge-0">0/1</span></summary>
+      <summary><span>Уровень 0 · Старт</span><span class="badge" id="badge-0">0/1</span></summary>
       <div class="level-body">
         <p><strong style="color:var(--graphite)">Ты — Sales / NewBiz на уровне всей Cult Group.</strong></p>
         <ul>
@@ -204,46 +206,49 @@
         </ul>
         <table>
           <tr><th>Фикс</th><td>220 000 ₽/мес</td></tr>
-          <tr><th>Бонус</th><td>12% от плановой маржи (фиксирует продюсер при handoff)</td></tr>
+          <tr><th>Бонус</th><td>12% от плановой маржи (фиксирует продюсер при передаче в производство)</td></tr>
           <tr><th>Повторы</th><td>2-я сделка 6% · 3-я 3% · с 4-й — 0%</td></tr>
           <tr><th>Старт</th><td>13 июля 2026</td></tr>
         </table>
-        <p><strong style="color:var(--graphite)">Первые 90 дней:</strong> CRM без дыр → shadowing → тёплая база → холод → самостоятельный поток.</p>
-        <div class="actions"><button type="button" class="done-btn" data-level="0">Прошёл Level 0</button></div>
+        <p><strong style="color:var(--graphite)">Первые 90 дней:</strong> CRM без дыр → совместные пресейлы с CRO → тёплая база → холод → самостоятельный поток.</p>
+        <div class="actions"><button type="button" class="done-btn" data-level="0">Прошёл уровень 0</button></div>
       </div>
     </details>
 
     <!-- LEVEL 1 -->
     <details class="level" id="level-1">
-      <summary><span>Level 1 · Карта группы</span><span class="badge badge-lock" id="badge-1">🔒</span></summary>
+      <summary><span>Уровень 1 · Карта группы</span><span class="badge badge-lock" id="badge-1">🔒</span></summary>
       <div class="level-body">
         <p>Клиент заходит в <strong style="color:var(--graphite)">группу целиком</strong>, не в один продакшен.</p>
         <div class="org-pills" id="orgPills"></div>
-        <p class="warn">Поток: <strong>Клиент → Sales → бриф + скоринг (≥5) → юнит → handoff (договор + предоплата) → продюсер</strong></p>
-        <p>TechTigers (Саша Хомич) — разработка iCRM и форм брифа. «Окно в ИИ» — отдельный вход для крупных прямых клиентов с AI-задачами.</p>
-        <div class="actions"><button type="button" class="done-btn" data-level="1">Прошёл Level 1</button></div>
+        <p class="warn" id="orgFlow"></p>
+        <p>TechTigers (Саша Хомич) — разработка iCRM и форм брифа.</p>
+        <p class="warn"><strong>«Окно в ИИ»</strong> — единая точка входа для крупных прямых клиентов с ИИ-задачами (до 01.2027). <strong>Open Production</strong> как отдельный юнит упразднён — не маршрутизируй туда.</p>
+        <p id="aiWindowNote" style="font-size:12px"></p>
+        <div class="actions"><button type="button" class="done-btn" data-level="1">Прошёл уровень 1</button></div>
       </div>
     </details>
 
     <!-- LEVEL 2 -->
     <details class="level" id="level-2">
-      <summary><span>Level 2 · Люди</span><span class="badge badge-lock" id="badge-2">🔒</span></summary>
+      <summary><span>Уровень 2 · Люди</span><span class="badge badge-lock" id="badge-2">🔒</span></summary>
       <div class="level-body">
-        <p>Карточки команды — с кем и по каким вопросам.</p>
+        <p>Карточки команды — с кем и по каким вопросам. Поле «Не писать» — типичные ошибки.</p>
+        <p id="producersNote" class="hint"></p>
         <div class="team-grid" id="teamGrid"></div>
-        <p><strong style="color:var(--graphite)">Задача недели 1:</strong> пройти CliftonStrengths (тот же тест, что команда). Ссылку и оплату даёт CRO.</p>
-        <div class="actions"><button type="button" class="done-btn" data-level="2">Прошёл Level 2</button></div>
+        <p><strong style="color:var(--graphite)">Задача недели 1:</strong> пройти CliftonStrengths (тот же тест, что команда). Ссылку и оплату даёт коммерческий директор. Сверка с <a id="cliftonLink" href="#" target="_blank" rel="noopener">таблицей команды</a>.</p>
+        <div class="actions"><button type="button" class="done-btn" data-level="2">Прошёл уровень 2</button></div>
       </div>
     </details>
 
     <!-- LEVEL 3 -->
     <details class="level" id="level-3">
-      <summary><span>Level 3 · Продукты</span><span class="badge badge-lock" id="badge-3">🔒</span></summary>
+      <summary><span>Уровень 3 · Продукты</span><span class="badge badge-lock" id="badge-3">🔒</span></summary>
       <div class="level-body">
         <table>
           <tr><th>Юнит</th><th>Фокус</th><th>Не берём</th><th>Порог</th></tr>
           <tr><td><strong>Cult</strong></td><td>Реклама, съёмка + ИИ</td><td>Чистая графика</td><td>от ~5 млн ₽</td></tr>
-          <tr><td><strong>Blaster</strong></td><td>CG, motion, 2D/3D</td><td>ИИ-ролики как core</td><td>от ~300k ₽</td></tr>
+          <tr><td><strong>Blaster</strong></td><td>CG, motion, 2D/3D</td><td>ИИ-ролики как core</td><td>от сотен тысяч ₽</td></tr>
           <tr><td><strong>Sputnik</strong></td><td>Док, спецпроекты, шоу</td><td>Реклама (кроме legacy)</td><td>от ~1 млн ₽</td></tr>
         </table>
         <p><strong style="color:var(--graphite)">Когда какую презу:</strong></p>
@@ -253,73 +258,78 @@
           <li>Графика, анимация, мультимедиа → Blaster (Лиза)</li>
           <li>Док, спецпроект, шоу → Sputnik (согласовать с Сергеем)</li>
         </ul>
-        <div class="actions"><button type="button" class="done-btn" data-level="3">Прошёл Level 3</button></div>
+        <div class="actions"><button type="button" class="done-btn" data-level="3">Прошёл уровень 3</button></div>
       </div>
     </details>
 
     <!-- LEVEL 4 -->
     <details class="level" id="level-4">
-      <summary><span>Level 4 · Правила и воронка</span><span class="badge badge-lock" id="badge-4">🔒</span></summary>
+      <summary><span>Уровень 4 · Правила и воронка</span><span class="badge badge-lock" id="badge-4">🔒</span></summary>
       <div class="level-body">
         <ol>
-          <li>Разделение юнитов + <strong>internal first</strong> на кросс-проектах</li>
+          <li>Разделение юнитов + <strong>сначала внутри группы</strong> на кросс-проектах (internal first)</li>
           <li><strong>Квалифицированный бриф</strong> → <strong>квалифицированный лид</strong> (скоринг ≥ 5)</li>
-          <li>Handoff = договор + предоплата; ты остаёшься в чате наблюдателем</li>
+          <li>Передача в производство = договор + предоплата; ты остаёшься в чате наблюдателем</li>
           <li><strong>Не исчезай после КП</strong></li>
           <li>Стоп-лист: казино, букмекеры, алкоголь, политика</li>
         </ol>
+        <p class="warn"><strong>Лёня + Sputnik:</strong> ты ex-Sputnik sales — не тащи лиды в Sputnik по привычке. Реклама → Cult; графика → Blaster. Sputnik — док/спецпроекты; решение «берём ли» — <strong>Сергей Клейн</strong>, не единолично CRO.</p>
         <p><strong style="color:var(--graphite)">KPI по месяцам:</strong></p>
         <table>
           <tr><th>Месяц</th><th>Фокус</th></tr>
-          <tr><td>1</td><td>CRM 100%, встречи, shadowing</td></tr>
+          <tr><td>1</td><td>CRM 100%, встречи, совместные пресейлы</td></tr>
           <tr><td>2</td><td>3–5 квал. брифов в производство</td></tr>
-          <tr><td>3</td><td>5–7 брифов + 1–2 handoff</td></tr>
+          <tr><td>3</td><td>5–7 брифов + 1–2 передачи (договор/предоплата)</td></tr>
         </table>
         <p><strong style="color:var(--graphite)">Документы:</strong></p>
         <ul class="link-list" id="docsLevel4"></ul>
-        <div class="actions"><button type="button" class="done-btn" data-level="4">Прошёл Level 4</button></div>
+        <p><strong style="color:var(--graphite)">Не входит в sales-пакет:</strong></p>
+        <ul id="excludedList"></ul>
+        <div class="actions"><button type="button" class="done-btn" data-level="4">Прошёл уровень 4</button></div>
       </div>
     </details>
 
     <!-- LEVEL 5 -->
     <details class="level" id="level-5">
-      <summary><span>Level 5 · CRM и скиллы</span><span class="badge badge-lock" id="badge-5">🔒</span></summary>
+      <summary><span>Уровень 5 · CRM и скиллы</span><span class="badge badge-lock" id="badge-5">🔒</span></summary>
       <div class="level-body">
         <table>
           <tr><th>Система</th><th>URL</th><th>Роль</th></tr>
-          <tr><td>Amo Cult</td><td><a href="https://cultteam.amocrm.ru" target="_blank" rel="noopener">cultteam.amocrm.ru</a></td><td>full sales</td></tr>
-          <tr><td>Amo Blaster</td><td><a href="https://blasterstudio.amocrm.ru" target="_blank" rel="noopener">blasterstudio.amocrm.ru</a></td><td>read / joint</td></tr>
-          <tr><td>iCRM MVP</td><td>beta с Хомичем</td><td>после demo</td></tr>
+          <tr><td>Amo Cult</td><td><a href="https://cultteam.amocrm.ru" target="_blank" rel="noopener">cultteam.amocrm.ru</a></td><td>полный sales</td></tr>
+          <tr><td>Amo Blaster</td><td><a href="https://blasterstudio.amocrm.ru" target="_blank" rel="noopener">blasterstudio.amocrm.ru</a></td><td>чтение / совместные сделки</td></tr>
+          <tr><td>iCRM MVP</td><td>beta с Хомичем</td><td>после демо 25.07</td></tr>
         </table>
         <p><strong style="color:var(--graphite)">Правила Amo (кратко):</strong></p>
         <ul>
           <li>Компания уникальна, сделка только с компанией</li>
-          <li>Каждая карточка — next step и дата</li>
+          <li>Каждая карточка — следующий шаг и дата</li>
           <li>Новые сделки группы → Amo Cult (до переключения на iCRM)</li>
         </ul>
-        <p><strong style="color:var(--graphite)">Cursor-скиллы</strong> (получишь zip от CRO):</p>
+        <p><strong style="color:var(--graphite)">Cursor-скиллы</strong> (получишь zip от коммерческого директора):</p>
         <ul>
           <li><code>cult-group-lead-scoring</code> — скоринг лида</li>
           <li><code>cult-group-brief-gate</code> — чеклист брифа</li>
           <li><code>cult-group-deck-router</code> — какую презу показать</li>
         </ul>
         <ul class="link-list" id="docsLevel5"></ul>
-        <div class="actions"><button type="button" class="done-btn" data-level="5">Прошёл Level 5</button></div>
+        <div class="actions"><button type="button" class="done-btn" data-level="5">Прошёл уровень 5</button></div>
       </div>
     </details>
 
     <!-- LEVEL 6 -->
     <details class="level" id="level-6">
-      <summary><span>Level 6 · Миссии недели 1</span><span class="badge badge-lock" id="badge-6">🔒</span></summary>
+      <summary><span>Уровень 6 · Миссии недели 1</span><span class="badge badge-lock" id="badge-6">🔒</span></summary>
       <div class="level-body">
         <ul id="missionsList">
           <li><label><input type="checkbox" data-mission="clifton" /> Пройти CliftonStrengths (оплачивает компания)</label></li>
           <li><label><input type="checkbox" data-mission="access" /> Получить все доступы (Amo, Drive, TG, почта)</label></li>
+          <li><label><input type="checkbox" data-mission="tg" /> Вступить в TG-чаты продаж и коммерции (список от CRO)</label></li>
           <li><label><input type="checkbox" data-mission="denis" /> Созвон с Денисом (Cult) — 15.07</label></li>
           <li><label><input type="checkbox" data-mission="liza" /> Созвон с Лизой (Blaster) — 16.07</label></li>
           <li><label><input type="checkbox" data-mission="sergey" /> Созвон с Сергеем (Sputnik) — 17.07</label></li>
-          <li><label><input type="checkbox" data-mission="shadow" /> Shadowing 2–3 пресейла с CRO</label></li>
-          <li><label><input type="checkbox" data-mission="amo" /> 100% карточек Amo с next step</label></li>
+          <li><label><input type="checkbox" data-mission="shadow" /> Совместные пресейлы 2–3 с коммерческим директором</label></li>
+          <li><label><input type="checkbox" data-mission="amo" /> 100% карточек Amo со следующим шагом</label></li>
+          <li><label><input type="checkbox" data-mission="objection" /> Получить банк возражений у CRO</label></li>
           <li><label><input type="checkbox" data-mission="skills" /> Установить 3 Cursor-скилла</label></li>
         </ul>
         <div class="actions"><button type="button" class="done-btn" data-level="6">Завершить квест</button></div>
@@ -327,7 +337,7 @@
     </details>
 
     <div class="pack-screen" id="packScreen">
-      <h2>Пакет артеfactов</h2>
+      <h2>Пакет артефактов</h2>
       <p>Квест пройден. Сохрани этот список — всё, что нужно для работы.</p>
       <h3>Ссылки</h3>
       <ul class="link-list" id="packLinks"></ul>
@@ -339,7 +349,7 @@
         <li>cult-group-brief-gate</li>
         <li>cult-group-deck-router</li>
       </ul>
-      <p class="hint">Пароли и инвайты — отдельным сообщением от CRO. Не на этом сайте.</p>
+      <p class="hint">Пароли и инвайты — отдельным сообщением от коммерческого директора. Не на этом сайте.</p>
       <div class="actions">
         <button type="button" id="copyPack">Скопировать список</button>
         <button type="button" class="secondary" id="resetQuest">Сбросить прогресс</button>
@@ -434,9 +444,19 @@
 
     async function loadData() {
       const [teamRes, linksRes] = await Promise.all([
-        fetch("data/team.json").then(r => r.json()),
-        fetch("data/links.json").then(r => r.json())
+        fetch("data/team.json").then(r => { if (!r.ok) throw new Error("team.json"); return r.json(); }),
+        fetch("data/links.json").then(r => { if (!r.ok) throw new Error("links.json"); return r.json(); })
       ]);
+
+      document.getElementById("orgFlow").innerHTML =
+        "Поток: <strong>" + teamRes.org.flow + "</strong>";
+
+      if (teamRes.org.producers_note) {
+        document.getElementById("producersNote").textContent = teamRes.org.producers_note;
+      }
+
+      const clifton = linksRes.documents.find(d => d.id === "clifton_team");
+      if (clifton) document.getElementById("cliftonLink").href = clifton.url;
 
       const orgPills = document.getElementById("orgPills");
       teamRes.org.units.forEach(u => {
@@ -446,17 +466,26 @@
         orgPills.appendChild(d);
       });
 
+      const aiRef = (linksRes.internal_refs || []).find(r => r.id === "ai_window_rules");
+      if (aiRef) {
+        document.getElementById("aiWindowNote").textContent =
+          "Полные правила «Окно в ИИ» — у коммерческого директора (файл в SB: " + aiRef.path + ").";
+      }
+
       const grid = document.getElementById("teamGrid");
       teamRes.people.filter(p => p.id !== "leonid").forEach(p => {
         const card = document.createElement("div");
         card.className = "person-card";
+        const avoidBlock = p.avoid
+          ? "<strong style='font-size:11px;color:var(--graphite)'>Не писать:</strong><p style='font-size:11px;margin:4px 0 0'>" + p.avoid + "</p>"
+          : "";
         card.innerHTML =
           '<div class="avatar">' + p.initials + '</div>' +
           "<h3>" + p.name + "</h3>" +
           '<div class="role">' + p.role + " · " + p.unit + "</div>" +
           "<p style='font-size:12px;margin:0 0 8px'>" + p.clifton_hint + "</p>" +
           "<strong style='font-size:11px'>Когда писать:</strong><ul style='font-size:11px;margin:4px 0 0;padding-left:16px'>" +
-          p.contact_when.map(c => "<li>" + c + "</li>").join("") + "</ul>";
+          p.contact_when.map(c => "<li>" + c + "</li>").join("") + "</ul>" + avoidBlock;
         grid.appendChild(card);
       });
 
@@ -465,6 +494,18 @@
         const li = document.createElement("li");
         li.innerHTML = '<a href="' + d.url + '" target="_blank" rel="noopener">' + d.label + "</a> — " + (d.note || "");
         docs4.appendChild(li);
+      });
+      (linksRes.internal_refs || []).filter(r => r.level === 4).forEach(r => {
+        const li = document.createElement("li");
+        li.textContent = r.label + " — " + (r.note || "запросить у CRO");
+        docs4.appendChild(li);
+      });
+
+      const excluded = document.getElementById("excludedList");
+      (linksRes.excluded_for_sales || []).forEach(e => {
+        const li = document.createElement("li");
+        li.textContent = e.label + " — " + e.reason;
+        excluded.appendChild(li);
       });
 
       const docs5 = document.getElementById("docsLevel5");
@@ -476,7 +517,7 @@
         });
       linksRes.systems.forEach(s => {
         const li = document.createElement("li");
-        li.innerHTML = '<a href="' + s.url + '" target="_blank" rel="noopener">' + s.label + "</a>";
+        li.innerHTML = '<a href="' + s.url + '" target="_blank" rel="noopener">' + s.label + "</a> — " + (s.access || "");
         docs5.appendChild(li);
       });
 
@@ -505,11 +546,15 @@
 
       document.getElementById("copyPack")?.addEventListener("click", () => {
         const text = Array.from(packLinks.querySelectorAll("li")).map(li => li.textContent).join("\n");
-        navigator.clipboard.writeText(text).then(() => alert("Список скопирован."));
+        navigator.clipboard.writeText(text).then(() => alert("Список скопирован.")).catch(() => alert("Не удалось скопировать — выдели список вручную."));
       });
     }
 
-    loadData().catch(console.error);
+    loadData().catch(err => {
+      console.error(err);
+      const el = document.getElementById("loadError");
+      if (el) el.style.display = "block";
+    });
     updateUI();
   </script>
 </body>

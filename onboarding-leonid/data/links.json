@@ -2,7 +2,8 @@
   "meta": {
     "title": "Cult Group — sales-safe ссылки для онбординга",
     "audience": "Леонид Мархашов, Sales / NewBiz",
-    "updated": "2026-07-12"
+    "updated": "2026-07-12",
+    "note_commerce_drive": "Канон папки «Коммерция»: 1cm50xCY02m_WTNenHbEoKAl-ALZ-Ac_n (README cult_group). ID 1TpAPO58 — из старого doc CRO, не дублировать."
   },
   "documents": [
     {
@@ -17,7 +18,7 @@
       "label": "Передача дел от Саши Алексеева",
       "url": "https://docs.google.com/document/d/1TgX68T03X0_Tk8KW4QHraXVyJMFi-TGW/edit",
       "level": 4,
-      "note": "CRM-дисциплина, база Blaster, правила handoff"
+      "note": "CRM-дисциплина, база Blaster, правила передачи"
     },
     {
       "id": "brief_criteria",
@@ -38,7 +39,7 @@
       "label": "Регламент работы с Amo CRM",
       "url": "https://docs.google.com/document/d/1MwlLD2ZVtKXDeH8FUBOa33VjhAcExHga3ZmwTVYhszI/edit",
       "level": 5,
-      "note": "Cult Amo — основной рабочий инструмент"
+      "note": "Amo Cult — основной рабочий инструмент"
     },
     {
       "id": "clifton_team",
@@ -48,11 +49,11 @@
       "note": "После своего теста — сверка с картой команды"
     },
     {
-      "id": "ai_brief_principles",
-      "label": "Базовые принципы работы с ИИ-брифами",
+      "id": "ai_brief_onboarding_ref",
+      "label": "Форма брифа / онбординг продюсера (референс полей)",
       "url": "https://docs.google.com/document/d/1QPtrwfzD3dl8HU94JuXnlUwPF3FYQpuU/edit",
       "level": 5,
-      "note": "Шаблон онбординга продюсера — полезен для формы брифа"
+      "note": "Полный регламент ИИ-брифа — в коммерческих правилах §7 + iCRM с Хомичем"
     },
     {
       "id": "commercial_rules_gdoc",
@@ -62,13 +63,23 @@
       "note": "Читать summary в квесте, полный — по необходимости"
     }
   ],
-  "drive_folders": [
+  "internal_refs": [
     {
-      "id": "commerce_cg",
-      "label": "Папка коммерции Cult Group",
-      "url": "https://drive.google.com/drive/folders/1TpAPO58bvQN13RQUwd1NnTbGBoOl9We0",
-      "level": 5
+      "id": "ai_window_rules",
+      "label": "Окно в ИИ — правила маршрутизации (SB)",
+      "path": "co_sales/artifact_cult_group_ai_window_lead_routing_rules_2026.md",
+      "level": 1,
+      "note": "Крупные прямые клиенты с ИИ-задачами; Open Production упразднён"
     },
+    {
+      "id": "objection_bank",
+      "label": "Банк возражений (SB, выдаёт CRO)",
+      "path": "40_Artifacts/artifact_sales_objection_bank_2026.md",
+      "level": 4,
+      "note": "Не публичный — запросить у коммерческого директора"
+    }
+  ],
+  "drive_folders": [
     {
       "id": "cult_group_root",
       "label": "Google Drive — Культ-группа",
@@ -77,7 +88,7 @@
     },
     {
       "id": "commerce_sub",
-      "label": "Google Drive — Коммерция (sub)",
+      "label": "Google Drive — Коммерция",
       "url": "https://drive.google.com/drive/folders/1cm50xCY02m_WTNenHbEoKAl-ALZ-Ac_n",
       "level": 5
     },
@@ -100,14 +111,14 @@
       "label": "AmoCRM Cult",
       "url": "https://cultteam.amocrm.ru",
       "level": 5,
-      "access": "full sales"
+      "access": "полный sales"
     },
     {
       "id": "amo_blaster",
       "label": "AmoCRM Blaster",
       "url": "https://blasterstudio.amocrm.ru",
       "level": 5,
-      "access": "read / joint deals"
+      "access": "чтение / совместные сделки"
     }
   ],
   "presentations": [
