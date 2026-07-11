@@ -1,0 +1,183 @@
+{
+  "org": {
+    "title": "Cult Group — карта контуров",
+    "units": [
+      {
+        "id": "uk",
+        "name": "Управляющая компания",
+        "desc": "Единые правила, коммерция, CRM, PR-стратегия"
+      },
+      {
+        "id": "cult",
+        "name": "Cult",
+        "desc": "Рекламные ролики, гибрид съёмка + ИИ. Порог от ~5 млн ₽"
+      },
+      {
+        "id": "blaster",
+        "name": "Blaster",
+        "desc": "CG, 2D/3D, motion, мультимедиа. Порог от сотен тысяч ₽"
+      },
+      {
+        "id": "sputnik",
+        "name": "Sputnik Films",
+        "desc": "Док, спецпроекты, шоу, корп. фильмы. Порог от ~1 млн ₽"
+      },
+      {
+        "id": "techtigers",
+        "name": "TechTigers",
+        "desc": "Стартап-студия разработки: iCRM, формы брифа, автоматизация продаж"
+      },
+      {
+        "id": "ai_window",
+        "name": "Окно в ИИ",
+        "desc": "Единая точка входа для крупных прямых клиентов с ИИ-задачами"
+      }
+    ],
+    "flow": "Клиент → Sales → бриф + скоринг → юнит → handoff (договор + предоплата) → продюсер"
+  },
+  "people": [
+    {
+      "id": "kostya",
+      "name": "Константин Мельников",
+      "role": "CEO Cult Group",
+      "unit": "УК",
+      "initials": "КМ",
+      "photo": null,
+      "clifton_hint": "Стратегия, будущее, катализатор. Любит варианты с trade-off и фиксацию после разговора.",
+      "contact_when": [
+        "Конфликт юнитов, финальный арбитраж",
+        "VIP и стратегические сделки",
+        "Решения уровня группы (не операционка CRM)"
+      ],
+      "avoid": "Длинный пересказ документов без вопроса на решение"
+    },
+    {
+      "id": "dima",
+      "name": "Дмитрий Квашнин",
+      "role": "CRO Cult Group · CEO Sputnik Films",
+      "unit": "УК + Sputnik",
+      "initials": "ДК",
+      "photo": null,
+      "clifton_hint": "Сосредоточенность, стратегия, значимость. Быстро переходит к решению — давай контекст коротко.",
+      "contact_when": [
+        "Ежедневный sales-контур, маршрутизация лидов",
+        "CRM, скоринг, эскалация",
+        "Кросс-сделки и спорные брифы"
+      ],
+      "avoid": "Обещать клиенту условия без согласования"
+    },
+    {
+      "id": "denis",
+      "name": "Денис Леваков",
+      "role": "Head Cult · исполнительный продюсер",
+      "unit": "Cult",
+      "initials": "ДЛ",
+      "photo": null,
+      "clifton_hint": "Стабилизатор, доведение, качество. Ценит ясный owner и срок.",
+      "contact_when": [
+        "Рекламные ролики, КП Cult, смета и маржа",
+        "Amo Cult, handoff в производство Cult",
+        "Review качества брифа под съёмку"
+      ],
+      "avoid": "Передавать в продакшен без заполненного брифа"
+    },
+    {
+      "id": "liza",
+      "name": "Лиза Иванова",
+      "role": "Head Blaster",
+      "unit": "Blaster",
+      "initials": "ЛИ",
+      "photo": null,
+      "clifton_hint": "Коммуникация, люди, упаковка идей. Сначала контекст — потом жёсткое решение.",
+      "contact_when": [
+        "Графика, анимация, мультимедиа, выставки",
+        "Blaster Amo, преза и прайс Blaster",
+        "Как решение сядет на команду Blaster"
+      ],
+      "avoid": "Давить только логикой, игнорируя relational-контекст"
+    },
+    {
+      "id": "sergey",
+      "name": "Сергей Клейн",
+      "role": "Head of Production Sputnik Films",
+      "unit": "Sputnik",
+      "initials": "СК",
+      "photo": null,
+      "clifton_hint": "Операционка, регламенты, дожим исполнения.",
+      "contact_when": [
+        "Спецпроекты, док, неформат — «берём ли проект»",
+        "Маршрутизация лидов в Sputnik после скоринга",
+        "Производственный контур Sputnik"
+      ],
+      "avoid": "Продавать Sputnik-формат без его OK на тип проекта"
+    },
+    {
+      "id": "egor",
+      "name": "Егор Мараев",
+      "role": "Co-founder Blaster (выход из операционки)",
+      "unit": "Blaster",
+      "initials": "ЕМ",
+      "photo": null,
+      "clifton_hint": "Продукт, структура, быстрые гипотезы. Sparring на архитектуре, не ops.",
+      "contact_when": [
+        "История Blaster, позиционирование мультимедиа",
+        "Сложная упаковка оффера Blaster"
+      ],
+      "avoid": "Операционные вопросы CRM и текущих сделок"
+    },
+    {
+      "id": "homich",
+      "name": "Саша Хомич",
+      "role": "TechTigers · разработка iCRM",
+      "unit": "TechTigers",
+      "initials": "СХ",
+      "photo": null,
+      "clifton_hint": "Продуктовая разработка, MVP, итерации.",
+      "contact_when": [
+        "Бета iCRM, форма приёма брифа",
+        "Баги и фичи sales-контура",
+        "Демо CRM MVP"
+      ],
+      "avoid": "Обещать клиентам сроки фич без CRO"
+    },
+    {
+      "id": "sasha_a",
+      "name": "Саша Алексеев",
+      "role": "Ex group sales · part-time Blaster",
+      "unit": "—",
+      "initials": "СА",
+      "photo": null,
+      "clifton_hint": "CRM-дисциплина, база Blaster, handoff-канон.",
+      "contact_when": [
+        "Вопросы по базе Blaster и legacy-процессам",
+        "Как вёлся контур до группового sales"
+      ],
+      "avoid": "Считать его owner новых сделок группы"
+    },
+    {
+      "id": "taya",
+      "name": "Тая",
+      "role": "Commercial lead Sputnik",
+      "unit": "Sputnik",
+      "initials": "Т",
+      "photo": null,
+      "clifton_hint": "Коммуникация, координация, внешний контур.",
+      "contact_when": [
+        "Тёплая база Sputnik, studio commercial",
+        "Клиенты с историей только в Sputnik"
+      ],
+      "avoid": "Абстрактная стратегия без формата done"
+    },
+    {
+      "id": "leonid",
+      "name": "Леонид Мархашов",
+      "role": "Sales / NewBiz Manager",
+      "unit": "УК",
+      "initials": "ЛМ",
+      "photo": null,
+      "clifton_hint": "Ex-Sputnik sales, CRM-оператор, вайбкодит инструменты.",
+      "contact_when": ["Ты — owner холодного контура и нового входящего"],
+      "avoid": "Уходить в продакшен и PR"
+    }
+  ]
+}

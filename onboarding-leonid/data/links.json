@@ -1,0 +1,140 @@
+{
+  "meta": {
+    "title": "Cult Group — sales-safe ссылки для онбординга",
+    "audience": "Леонид Мархашов, Sales / NewBiz",
+    "updated": "2026-07-12"
+  },
+  "documents": [
+    {
+      "id": "nb_reglament",
+      "label": "Регламент New Business Manager",
+      "url": "https://docs.google.com/spreadsheets/d/1W0xbSDRQVSYWjCOHPtfNL43Ps9yknejEIaspzu28QU4/edit",
+      "level": 4,
+      "note": "Результаты и KPI sales-контура"
+    },
+    {
+      "id": "sasha_handoff",
+      "label": "Передача дел от Саши Алексеева",
+      "url": "https://docs.google.com/document/d/1TgX68T03X0_Tk8KW4QHraXVyJMFi-TGW/edit",
+      "level": 4,
+      "note": "CRM-дисциплина, база Blaster, правила handoff"
+    },
+    {
+      "id": "brief_criteria",
+      "label": "Критерии оценки качества брифа",
+      "url": "https://docs.google.com/document/d/1cSkBD_Zx6Oo2RRaDGtv7n2LxW-QglW_rk6hhw9FaF38/edit",
+      "level": 4,
+      "note": "Brief-gate: обязательные поля"
+    },
+    {
+      "id": "production_standards",
+      "label": "Стандарты взаимодействия с продакшеном",
+      "url": "https://docs.google.com/document/d/11PqYVrnfjUYAXHVNfXFcARtkoTV-Gqik7VboIKrKGgw/edit",
+      "level": 4,
+      "note": "Граница sales ↔ production"
+    },
+    {
+      "id": "amo_reglament",
+      "label": "Регламент работы с Amo CRM",
+      "url": "https://docs.google.com/document/d/1MwlLD2ZVtKXDeH8FUBOa33VjhAcExHga3ZmwTVYhszI/edit",
+      "level": 5,
+      "note": "Cult Amo — основной рабочий инструмент"
+    },
+    {
+      "id": "clifton_team",
+      "label": "Clifton — сводная таблица команды",
+      "url": "https://docs.google.com/spreadsheets/d/1bkfERbO8UlEql6pLS_UIhCrBRiT2R4-YDOqxVeUx__0/edit",
+      "level": 2,
+      "note": "После своего теста — сверка с картой команды"
+    },
+    {
+      "id": "ai_brief_principles",
+      "label": "Базовые принципы работы с ИИ-брифами",
+      "url": "https://docs.google.com/document/d/1QPtrwfzD3dl8HU94JuXnlUwPF3FYQpuU/edit",
+      "level": 5,
+      "note": "Шаблон онбординга продюсера — полезен для формы брифа"
+    },
+    {
+      "id": "commercial_rules_gdoc",
+      "label": "Коммерческие правила Cult Group (полная версия)",
+      "url": "https://docs.google.com/document/d/1Wd-EIArqDzynvUTRU-u2Gc4mw9feMUjUYOGq9ilEASU/edit",
+      "level": 4,
+      "note": "Читать summary в квесте, полный — по необходимости"
+    }
+  ],
+  "drive_folders": [
+    {
+      "id": "commerce_cg",
+      "label": "Папка коммерции Cult Group",
+      "url": "https://drive.google.com/drive/folders/1TpAPO58bvQN13RQUwd1NnTbGBoOl9We0",
+      "level": 5
+    },
+    {
+      "id": "cult_group_root",
+      "label": "Google Drive — Культ-группа",
+      "url": "https://drive.google.com/drive/folders/1O89yMg7RCXGIwv_eTQ8Sp6A6oiJiwRmR",
+      "level": 1
+    },
+    {
+      "id": "commerce_sub",
+      "label": "Google Drive — Коммерция (sub)",
+      "url": "https://drive.google.com/drive/folders/1cm50xCY02m_WTNenHbEoKAl-ALZ-Ac_n",
+      "level": 5
+    },
+    {
+      "id": "sales_blaster",
+      "label": "Папка продаж Blaster",
+      "url": "https://drive.google.com/drive/folders/1j-ARZnroEcDoSQnr-1Rr-urwUq4izNxb",
+      "level": 3
+    },
+    {
+      "id": "sales_cult_legacy",
+      "label": "Папка продаж Cult (legacy)",
+      "url": "https://drive.google.com/drive/folders/1veiUtmQ-TOWNLADaSNtFL1WltpCiu_0J",
+      "level": 3
+    }
+  ],
+  "systems": [
+    {
+      "id": "amo_cult",
+      "label": "AmoCRM Cult",
+      "url": "https://cultteam.amocrm.ru",
+      "level": 5,
+      "access": "full sales"
+    },
+    {
+      "id": "amo_blaster",
+      "label": "AmoCRM Blaster",
+      "url": "https://blasterstudio.amocrm.ru",
+      "level": 5,
+      "access": "read / joint deals"
+    }
+  ],
+  "presentations": [
+    {
+      "id": "group_deck",
+      "label": "Презентация Cult Group (HTML)",
+      "url": "https://cosmovisioner.github.io/sputnik-films-deck/cult-group/",
+      "level": 3,
+      "note": "Канон для переопыления и холодных встреч"
+    }
+  ],
+  "excluded_for_sales": [
+    {
+      "label": "P&L Blaster",
+      "reason": "Финансы юнита — только CRO/CEO"
+    },
+    {
+      "label": "Декомпозиция 2026 Cult",
+      "reason": "Внутренняя финмодель"
+    },
+    {
+      "label": "financial-dashboard.ru",
+      "reason": "Дашборд УК — не sales-контур"
+    },
+    {
+      "label": "Holst — стратегические холсты",
+      "reason": "По решению CEO"
+    }
+  ]
+}

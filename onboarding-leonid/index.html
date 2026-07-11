@@ -1,0 +1,514 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Cult Group — онбординг Sales</title>
+  <meta name="description" content="Интерактивный квест онбординга для Sales Cult Group — Леонид Мархашов." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ivory: #f7f7f6;
+      --graphite: #1a1a1a;
+      --muted: #6b6b6b;
+      --lime: #bfff00;
+      --line: rgba(26, 26, 26, 0.14);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: "JetBrains Mono", monospace;
+      background:
+        radial-gradient(1200px 500px at 110% -20%, rgba(167, 139, 250, 0.22), transparent 55%),
+        radial-gradient(1000px 500px at -20% 120%, rgba(37, 99, 235, 0.16), transparent 52%),
+        var(--ivory);
+      color: var(--graphite);
+      line-height: 1.45;
+    }
+    .app { max-width: 900px; margin: 0 auto; padding: 20px 20px 80px; }
+    h1, h2, h3 { margin: 0; font-weight: 800; letter-spacing: -0.03em; }
+    h1 { font-size: clamp(28px, 5vw, 48px); margin-bottom: 8px; }
+    p, li { font-size: 14px; color: var(--muted); }
+    ul, ol { margin: 0 0 12px; padding-left: 20px; }
+    li { margin-bottom: 6px; }
+    a { color: var(--graphite); }
+    button {
+      border: 2px solid var(--graphite);
+      background: var(--graphite);
+      color: var(--ivory);
+      padding: 10px 16px;
+      font-family: inherit;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button:hover { background: var(--ivory); color: var(--graphite); }
+    button.secondary { background: var(--ivory); color: var(--graphite); }
+    button.done-btn { background: rgba(191, 255, 0, 0.5); color: var(--graphite); }
+    .topbar {
+      border: 2px solid var(--graphite);
+      background: #fff;
+      box-shadow: 4px 4px 0 var(--graphite);
+      padding: 14px;
+      margin-bottom: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      border: 1px solid var(--graphite);
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 700;
+      margin-bottom: 10px;
+    }
+    .dot { width: 8px; height: 8px; background: var(--lime); border: 1px solid var(--graphite); border-radius: 50%; }
+    .progress-wrap {
+      border: 2px solid var(--graphite);
+      background: #fff;
+      box-shadow: 4px 4px 0 var(--graphite);
+      padding: 12px;
+      margin-bottom: 16px;
+    }
+    .progress-bar {
+      height: 12px;
+      border: 1px solid var(--graphite);
+      background: #eee;
+      margin-top: 8px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: var(--lime);
+      width: 0%;
+      transition: width 0.3s ease;
+    }
+    .level {
+      border: 2px solid var(--graphite);
+      background: #fff;
+      box-shadow: 4px 4px 0 var(--graphite);
+      margin-bottom: 12px;
+    }
+    .level summary {
+      padding: 14px 16px;
+      cursor: pointer;
+      font-weight: 800;
+      font-size: 15px;
+      list-style: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .level summary::-webkit-details-marker { display: none; }
+    .level summary::after { content: "+"; font-size: 20px; }
+    .level[open] summary::after { content: "−"; }
+    .level-body { padding: 0 16px 16px; border-top: 1px solid var(--line); }
+    .badge {
+      font-size: 10px;
+      font-weight: 700;
+      padding: 3px 8px;
+      border: 1px solid var(--graphite);
+      border-radius: 4px;
+    }
+    .badge-done { background: rgba(191, 255, 0, 0.6); }
+    .badge-lock { background: #eee; color: var(--muted); }
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 12px;
+      margin: 12px 0;
+    }
+    .person-card {
+      border: 1px solid var(--graphite);
+      padding: 12px;
+      background: #fcfcfb;
+    }
+    .avatar {
+      width: 48px;
+      height: 48px;
+      border: 2px solid var(--graphite);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 14px;
+      background: rgba(191, 255, 0, 0.35);
+      margin-bottom: 8px;
+    }
+    .person-card h3 { font-size: 14px; margin-bottom: 4px; color: var(--graphite); }
+    .person-card .role { font-size: 11px; color: var(--muted); margin-bottom: 8px; }
+    .link-list { list-style: none; padding: 0; }
+    .link-list li { margin-bottom: 8px; }
+    .link-list a { font-weight: 600; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; margin: 12px 0; }
+    th, td { border: 1px solid var(--line); padding: 8px; text-align: left; }
+    th { background: #f4f4f4; font-weight: 700; color: var(--graphite); }
+    .org-pills { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0; }
+    .org-pill {
+      border: 1px solid var(--graphite);
+      padding: 8px 12px;
+      font-size: 12px;
+      background: #fff;
+    }
+    .org-pill strong { display: block; color: var(--graphite); }
+    .pack-screen {
+      display: none;
+      border: 2px solid var(--graphite);
+      background: linear-gradient(135deg, rgba(191,255,0,0.25), #fff);
+      box-shadow: 6px 6px 0 var(--graphite);
+      padding: 24px;
+      margin-top: 20px;
+    }
+    .pack-screen.visible { display: block; }
+    .pack-screen h2 { color: var(--graphite); margin-bottom: 12px; }
+    .actions { margin-top: 12px; display: flex; gap: 8px; flex-wrap: wrap; }
+    .hint { font-size: 11px; color: var(--muted); margin-top: 8px; }
+    .warn { background: rgba(255, 200, 0, 0.2); border: 1px solid var(--graphite); padding: 10px; font-size: 13px; margin: 10px 0; }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <div class="topbar">
+      <div>
+        <div class="kicker"><span class="dot"></span>Cult Group · Sales Quest</div>
+        <h1>Онбординг Лёни</h1>
+        <p style="margin:0">7 уровней · от роли до первых сделок</p>
+      </div>
+      <div style="text-align:right">
+        <div id="progressPct" style="font-size:28px;font-weight:800">0%</div>
+        <small style="color:var(--muted)">прогресс</small>
+      </div>
+    </div>
+
+    <div class="progress-wrap">
+      <strong style="font-size:13px">Путь: Старт → Люди → Продукт → Правила → CRM → Миссии → Пакет</strong>
+      <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    </div>
+
+    <!-- LEVEL 0 -->
+    <details class="level" id="level-0" open>
+      <summary><span>Level 0 · Старт</span><span class="badge" id="badge-0">0/1</span></summary>
+      <div class="level-body">
+        <p><strong style="color:var(--graphite)">Ты — Sales / NewBiz на уровне всей Cult Group.</strong></p>
+        <ul>
+          <li><strong>Делаешь:</strong> холод, новый входящий, бриф, переговоры, доведение до договора</li>
+          <li><strong>Не делаешь:</strong> продакшен, PR, кейсы, брендинг</li>
+        </ul>
+        <table>
+          <tr><th>Фикс</th><td>220 000 ₽/мес</td></tr>
+          <tr><th>Бонус</th><td>12% от плановой маржи (фиксирует продюсер при handoff)</td></tr>
+          <tr><th>Повторы</th><td>2-я сделка 6% · 3-я 3% · с 4-й — 0%</td></tr>
+          <tr><th>Старт</th><td>13 июля 2026</td></tr>
+        </table>
+        <p><strong style="color:var(--graphite)">Первые 90 дней:</strong> CRM без дыр → shadowing → тёплая база → холод → самостоятельный поток.</p>
+        <div class="actions"><button type="button" class="done-btn" data-level="0">Прошёл Level 0</button></div>
+      </div>
+    </details>
+
+    <!-- LEVEL 1 -->
+    <details class="level" id="level-1">
+      <summary><span>Level 1 · Карта группы</span><span class="badge badge-lock" id="badge-1">🔒</span></summary>
+      <div class="level-body">
+        <p>Клиент заходит в <strong style="color:var(--graphite)">группу целиком</strong>, не в один продакшен.</p>
+        <div class="org-pills" id="orgPills"></div>
+        <p class="warn">Поток: <strong>Клиент → Sales → бриф + скоринг (≥5) → юнит → handoff (договор + предоплата) → продюсер</strong></p>
+        <p>TechTigers (Саша Хомич) — разработка iCRM и форм брифа. «Окно в ИИ» — отдельный вход для крупных прямых клиентов с AI-задачами.</p>
+        <div class="actions"><button type="button" class="done-btn" data-level="1">Прошёл Level 1</button></div>
+      </div>
+    </details>
+
+    <!-- LEVEL 2 -->
+    <details class="level" id="level-2">
+      <summary><span>Level 2 · Люди</span><span class="badge badge-lock" id="badge-2">🔒</span></summary>
+      <div class="level-body">
+        <p>Карточки команды — с кем и по каким вопросам.</p>
+        <div class="team-grid" id="teamGrid"></div>
+        <p><strong style="color:var(--graphite)">Задача недели 1:</strong> пройти CliftonStrengths (тот же тест, что команда). Ссылку и оплату даёт CRO.</p>
+        <div class="actions"><button type="button" class="done-btn" data-level="2">Прошёл Level 2</button></div>
+      </div>
+    </details>
+
+    <!-- LEVEL 3 -->
+    <details class="level" id="level-3">
+      <summary><span>Level 3 · Продукты</span><span class="badge badge-lock" id="badge-3">🔒</span></summary>
+      <div class="level-body">
+        <table>
+          <tr><th>Юнит</th><th>Фокус</th><th>Не берём</th><th>Порог</th></tr>
+          <tr><td><strong>Cult</strong></td><td>Реклама, съёмка + ИИ</td><td>Чистая графика</td><td>от ~5 млн ₽</td></tr>
+          <tr><td><strong>Blaster</strong></td><td>CG, motion, 2D/3D</td><td>ИИ-ролики как core</td><td>от ~300k ₽</td></tr>
+          <tr><td><strong>Sputnik</strong></td><td>Док, спецпроекты, шоу</td><td>Реклама (кроме legacy)</td><td>от ~1 млн ₽</td></tr>
+        </table>
+        <p><strong style="color:var(--graphite)">Когда какую презу:</strong></p>
+        <ul>
+          <li>Холод / переопыление / неясный бриф → <a href="https://cosmovisioner.github.io/sputnik-films-deck/cult-group/" target="_blank" rel="noopener">преза Cult Group</a></li>
+          <li>Явная реклама, съёмка → Cult (Денис)</li>
+          <li>Графика, анимация, мультимедиа → Blaster (Лиза)</li>
+          <li>Док, спецпроект, шоу → Sputnik (согласовать с Сергеем)</li>
+        </ul>
+        <div class="actions"><button type="button" class="done-btn" data-level="3">Прошёл Level 3</button></div>
+      </div>
+    </details>
+
+    <!-- LEVEL 4 -->
+    <details class="level" id="level-4">
+      <summary><span>Level 4 · Правила и воронка</span><span class="badge badge-lock" id="badge-4">🔒</span></summary>
+      <div class="level-body">
+        <ol>
+          <li>Разделение юнитов + <strong>internal first</strong> на кросс-проектах</li>
+          <li><strong>Квалифицированный бриф</strong> → <strong>квалифицированный лид</strong> (скоринг ≥ 5)</li>
+          <li>Handoff = договор + предоплата; ты остаёшься в чате наблюдателем</li>
+          <li><strong>Не исчезай после КП</strong></li>
+          <li>Стоп-лист: казино, букмекеры, алкоголь, политика</li>
+        </ol>
+        <p><strong style="color:var(--graphite)">KPI по месяцам:</strong></p>
+        <table>
+          <tr><th>Месяц</th><th>Фокус</th></tr>
+          <tr><td>1</td><td>CRM 100%, встречи, shadowing</td></tr>
+          <tr><td>2</td><td>3–5 квал. брифов в производство</td></tr>
+          <tr><td>3</td><td>5–7 брифов + 1–2 handoff</td></tr>
+        </table>
+        <p><strong style="color:var(--graphite)">Документы:</strong></p>
+        <ul class="link-list" id="docsLevel4"></ul>
+        <div class="actions"><button type="button" class="done-btn" data-level="4">Прошёл Level 4</button></div>
+      </div>
+    </details>
+
+    <!-- LEVEL 5 -->
+    <details class="level" id="level-5">
+      <summary><span>Level 5 · CRM и скиллы</span><span class="badge badge-lock" id="badge-5">🔒</span></summary>
+      <div class="level-body">
+        <table>
+          <tr><th>Система</th><th>URL</th><th>Роль</th></tr>
+          <tr><td>Amo Cult</td><td><a href="https://cultteam.amocrm.ru" target="_blank" rel="noopener">cultteam.amocrm.ru</a></td><td>full sales</td></tr>
+          <tr><td>Amo Blaster</td><td><a href="https://blasterstudio.amocrm.ru" target="_blank" rel="noopener">blasterstudio.amocrm.ru</a></td><td>read / joint</td></tr>
+          <tr><td>iCRM MVP</td><td>beta с Хомичем</td><td>после demo</td></tr>
+        </table>
+        <p><strong style="color:var(--graphite)">Правила Amo (кратко):</strong></p>
+        <ul>
+          <li>Компания уникальна, сделка только с компанией</li>
+          <li>Каждая карточка — next step и дата</li>
+          <li>Новые сделки группы → Amo Cult (до переключения на iCRM)</li>
+        </ul>
+        <p><strong style="color:var(--graphite)">Cursor-скиллы</strong> (получишь zip от CRO):</p>
+        <ul>
+          <li><code>cult-group-lead-scoring</code> — скоринг лида</li>
+          <li><code>cult-group-brief-gate</code> — чеклист брифа</li>
+          <li><code>cult-group-deck-router</code> — какую презу показать</li>
+        </ul>
+        <ul class="link-list" id="docsLevel5"></ul>
+        <div class="actions"><button type="button" class="done-btn" data-level="5">Прошёл Level 5</button></div>
+      </div>
+    </details>
+
+    <!-- LEVEL 6 -->
+    <details class="level" id="level-6">
+      <summary><span>Level 6 · Миссии недели 1</span><span class="badge badge-lock" id="badge-6">🔒</span></summary>
+      <div class="level-body">
+        <ul id="missionsList">
+          <li><label><input type="checkbox" data-mission="clifton" /> Пройти CliftonStrengths (оплачивает компания)</label></li>
+          <li><label><input type="checkbox" data-mission="access" /> Получить все доступы (Amo, Drive, TG, почта)</label></li>
+          <li><label><input type="checkbox" data-mission="denis" /> Созвон с Денисом (Cult) — 15.07</label></li>
+          <li><label><input type="checkbox" data-mission="liza" /> Созвон с Лизой (Blaster) — 16.07</label></li>
+          <li><label><input type="checkbox" data-mission="sergey" /> Созвон с Сергеем (Sputnik) — 17.07</label></li>
+          <li><label><input type="checkbox" data-mission="shadow" /> Shadowing 2–3 пресейла с CRO</label></li>
+          <li><label><input type="checkbox" data-mission="amo" /> 100% карточек Amo с next step</label></li>
+          <li><label><input type="checkbox" data-mission="skills" /> Установить 3 Cursor-скилла</label></li>
+        </ul>
+        <div class="actions"><button type="button" class="done-btn" data-level="6">Завершить квест</button></div>
+      </div>
+    </details>
+
+    <div class="pack-screen" id="packScreen">
+      <h2>Пакет артеfactов</h2>
+      <p>Квест пройден. Сохрани этот список — всё, что нужно для работы.</p>
+      <h3>Ссылки</h3>
+      <ul class="link-list" id="packLinks"></ul>
+      <h3>Контакты</h3>
+      <ul id="packContacts"></ul>
+      <h3>Скиллы</h3>
+      <ul>
+        <li>cult-group-lead-scoring</li>
+        <li>cult-group-brief-gate</li>
+        <li>cult-group-deck-router</li>
+      </ul>
+      <p class="hint">Пароли и инвайты — отдельным сообщением от CRO. Не на этом сайте.</p>
+      <div class="actions">
+        <button type="button" id="copyPack">Скопировать список</button>
+        <button type="button" class="secondary" id="resetQuest">Сбросить прогресс</button>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const STORAGE_KEY = "cult_leonid_quest_v1";
+    const TOTAL_LEVELS = 7;
+
+    function loadState() {
+      try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || "{}"); }
+      catch { return {}; }
+    }
+    function saveState(s) { localStorage.setItem(STORAGE_KEY, JSON.stringify(s)); }
+
+    function getCompletedLevels(state) {
+      return Array.from({ length: TOTAL_LEVELS }, (_, i) => !!state["level_" + i]);
+    }
+
+    function updateUI() {
+      const state = loadState();
+      const done = getCompletedLevels(state);
+      const count = done.filter(Boolean).length;
+      const pct = Math.round((count / TOTAL_LEVELS) * 100);
+      document.getElementById("progressPct").textContent = pct + "%";
+      document.getElementById("progressFill").style.width = pct + "%";
+
+      for (let i = 0; i < TOTAL_LEVELS; i++) {
+        const badge = document.getElementById("badge-" + i);
+        const levelEl = document.getElementById("level-" + i);
+        if (!badge) continue;
+        if (done[i]) {
+          badge.textContent = "✓";
+          badge.className = "badge badge-done";
+        } else if (i === 0 || done[i - 1]) {
+          badge.textContent = "→";
+          badge.className = "badge";
+        } else {
+          badge.textContent = "🔒";
+          badge.className = "badge badge-lock";
+        }
+        if (levelEl && i > 0 && !done[i - 1] && !done[i]) {
+          levelEl.removeAttribute("open");
+        }
+      }
+
+      const missions = state.missions || {};
+      document.querySelectorAll("[data-mission]").forEach(cb => {
+        cb.checked = !!missions[cb.dataset.mission];
+      });
+
+      document.getElementById("packScreen").classList.toggle("visible", count === TOTAL_LEVELS);
+    }
+
+    document.querySelectorAll(".done-btn").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const n = parseInt(btn.dataset.level, 10);
+        const state = loadState();
+        const done = getCompletedLevels(state);
+        if (n > 0 && !done[n - 1]) {
+          alert("Сначала пройди предыдущий уровень.");
+          return;
+        }
+        state["level_" + n] = true;
+        saveState(state);
+        updateUI();
+        const next = document.getElementById("level-" + (n + 1));
+        if (next) { next.setAttribute("open", ""); next.scrollIntoView({ behavior: "smooth" }); }
+        if (n === TOTAL_LEVELS - 1) {
+          document.getElementById("packScreen").scrollIntoView({ behavior: "smooth" });
+        }
+      });
+    });
+
+    document.querySelectorAll("[data-mission]").forEach(cb => {
+      cb.addEventListener("change", () => {
+        const state = loadState();
+        state.missions = state.missions || {};
+        state.missions[cb.dataset.mission] = cb.checked;
+        saveState(state);
+      });
+    });
+
+    document.getElementById("resetQuest")?.addEventListener("click", () => {
+      if (confirm("Сбросить весь прогресс?")) {
+        localStorage.removeItem(STORAGE_KEY);
+        location.reload();
+      }
+    });
+
+    async function loadData() {
+      const [teamRes, linksRes] = await Promise.all([
+        fetch("data/team.json").then(r => r.json()),
+        fetch("data/links.json").then(r => r.json())
+      ]);
+
+      const orgPills = document.getElementById("orgPills");
+      teamRes.org.units.forEach(u => {
+        const d = document.createElement("div");
+        d.className = "org-pill";
+        d.innerHTML = "<strong>" + u.name + "</strong>" + u.desc;
+        orgPills.appendChild(d);
+      });
+
+      const grid = document.getElementById("teamGrid");
+      teamRes.people.filter(p => p.id !== "leonid").forEach(p => {
+        const card = document.createElement("div");
+        card.className = "person-card";
+        card.innerHTML =
+          '<div class="avatar">' + p.initials + '</div>' +
+          "<h3>" + p.name + "</h3>" +
+          '<div class="role">' + p.role + " · " + p.unit + "</div>" +
+          "<p style='font-size:12px;margin:0 0 8px'>" + p.clifton_hint + "</p>" +
+          "<strong style='font-size:11px'>Когда писать:</strong><ul style='font-size:11px;margin:4px 0 0;padding-left:16px'>" +
+          p.contact_when.map(c => "<li>" + c + "</li>").join("") + "</ul>";
+        grid.appendChild(card);
+      });
+
+      const docs4 = document.getElementById("docsLevel4");
+      linksRes.documents.filter(d => d.level === 4).forEach(d => {
+        const li = document.createElement("li");
+        li.innerHTML = '<a href="' + d.url + '" target="_blank" rel="noopener">' + d.label + "</a> — " + (d.note || "");
+        docs4.appendChild(li);
+      });
+
+      const docs5 = document.getElementById("docsLevel5");
+      [...linksRes.documents.filter(d => d.level === 5), ...linksRes.drive_folders.filter(d => d.level >= 3)]
+        .forEach(d => {
+          const li = document.createElement("li");
+          li.innerHTML = '<a href="' + d.url + '" target="_blank" rel="noopener">' + d.label + "</a>";
+          docs5.appendChild(li);
+        });
+      linksRes.systems.forEach(s => {
+        const li = document.createElement("li");
+        li.innerHTML = '<a href="' + s.url + '" target="_blank" rel="noopener">' + s.label + "</a>";
+        docs5.appendChild(li);
+      });
+
+      const packLinks = document.getElementById("packLinks");
+      const allLinks = [
+        ...linksRes.documents,
+        ...linksRes.drive_folders,
+        ...linksRes.systems,
+        ...linksRes.presentations
+      ];
+      allLinks.forEach(d => {
+        const li = document.createElement("li");
+        li.innerHTML = d.label + ": " + d.url;
+        packLinks.appendChild(li);
+      });
+      packLinks.innerHTML += "<li>Преза группы: https://cosmovisioner.github.io/sputnik-films-deck/cult-group/</li>";
+
+      const packContacts = document.getElementById("packContacts");
+      teamRes.people.filter(p => p.id !== "leonid").forEach(p => {
+        const li = document.createElement("li");
+        li.textContent = p.name + " — " + p.contact_when[0];
+        packContacts.appendChild(li);
+      });
+
+      document.getElementById("copyPack")?.addEventListener("click", () => {
+        const text = Array.from(packLinks.querySelectorAll("li")).map(li => li.textContent).join("\n");
+        navigator.clipboard.writeText(text).then(() => alert("Список скопирован."));
+      });
+    }
+
+    loadData().catch(console.error);
+    updateUI();
+  </script>
+</body>
+</html>
