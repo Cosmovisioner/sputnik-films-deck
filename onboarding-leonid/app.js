@@ -2,7 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "cult_leonid_daily_v5";
-  const ASSET_VER = "20260711-v6";
+  const ASSET_VER = "20260711-v7";
 
   const UNIT_ID_MAP = {
     "УК": "uk",
@@ -397,7 +397,7 @@
         <p class="card-intro">Кликни карточку — роль, когда писать, контакты для сообщения.</p>
         <div class="filter-row">${chips}</div>
         ${staff.length ? `<h3 class="mono-tag" style="margin-bottom:12px">Штат</h3><div class="people-grid">${staff.map(p => personCardHtml(p)).join("")}</div>` : ""}
-        ${partners.length ? `<h3 class="mono-tag" style="margin:20px 0 12px">Партнёрские продавцы</h3><p style="font-size:13px;color:var(--muted);margin-bottom:12px">${team.org.partner_slz?.routing || ""}</p><div class="people-grid">${partners.map(p => personCardHtml(p)).join("")}</div>` : ""}
+        ${partners.length ? `<h3 class="mono-tag" style="margin:20px 0 12px">Партнёрские сейлз-менеджеры</h3><p style="font-size:13px;color:var(--muted);margin-bottom:12px">${team.org.partner_slz?.routing || ""}</p><div class="people-grid">${partners.map(p => personCardHtml(p)).join("")}</div>` : ""}
       </div>`;
   }
 

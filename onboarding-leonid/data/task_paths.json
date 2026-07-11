@@ -36,11 +36,17 @@
     { "kind": "note", "text": "Open Production упразднён — в структуре его нет" }
   ],
   "2.amo_walk": [
-    { "kind": "step", "text": "11:00–12:30 — разбор Amo + передача дел от Саши Алексеева" },
+    { "kind": "step", "text": "11:00–12:30 — разбор Amo Cult + передача дел от Саши Алексеева" },
     { "kind": "resource", "id": "amo_cult" },
     { "kind": "person", "id": "dima" },
     { "kind": "person", "id": "sasha_a" },
     { "kind": "resource", "id": "doc_handoff_sasha" }
+  ],
+  "2.crm_legacy": [
+    { "kind": "resource", "id": "amo_cult" },
+    { "kind": "resource", "id": "amo_blaster" },
+    { "kind": "resource", "id": "crm_landscape" },
+    { "kind": "note", "text": "С 13.07 новые сделки группы — Amo Cult. Amo Blaster — legacy и Blaster-only" }
   ],
   "2.handoff_doc": [
     { "kind": "resource", "id": "doc_handoff_sasha" },
@@ -116,9 +122,9 @@
     { "kind": "resource", "id": "doc_nb_reg" },
     { "kind": "resource", "id": "doc_prod_standards" }
   ],
-  "5.partner_slz": [
+  "5.partner_sales": [
     { "kind": "resource", "id": "view_people", "filter": "partner_slz" },
-    { "kind": "note", "text": "Лид от партнёра → источник в Amo → групповые продажи → хэд юнита" }
+    { "kind": "note", "text": "Лид от партнёрского сейлз-менеджера → источник в Amo → групповые продажи → хэд юнита" }
   ],
   "5.shadow2": [
     { "kind": "person", "id": "dima" },
@@ -133,6 +139,25 @@
     { "kind": "section", "id": "chats", "filter": "group_sales" },
     { "kind": "person", "id": "dima" }
   ],
+  "6.crm_landscape": [
+    { "kind": "resource", "id": "crm_landscape" },
+    { "kind": "resource", "id": "amo_cult" },
+    { "kind": "resource", "id": "amo_blaster" },
+    { "kind": "resource", "id": "icrm" },
+    { "kind": "person", "id": "dima" }
+  ],
+  "6.amo_blaster_tour": [
+    { "kind": "resource", "id": "amo_blaster" },
+    { "kind": "person", "id": "liza" },
+    { "kind": "note", "text": "Read-only — смотри историю сделок, не создавай дубли в Cult Amo" }
+  ],
+  "6.icrm_intro": [
+    { "kind": "resource", "id": "icrm" },
+    { "kind": "person", "id": "homich" },
+    { "kind": "person", "id": "dima" },
+    { "kind": "section", "id": "chats", "filter": "techtigers" },
+    { "kind": "note", "text": "Пока тестовые записи — после демо на 10-й день" }
+  ],
   "6.amo_reg": [
     { "kind": "resource", "id": "doc_amo_reg" },
     { "kind": "resource", "id": "amo_cult" }
@@ -140,10 +165,6 @@
   "6.skills": [
     { "kind": "resource", "id": "skills_pack" },
     { "kind": "person", "id": "dima" }
-  ],
-  "6.shadow3": [
-    { "kind": "person", "id": "dima" },
-    { "kind": "resource", "id": "amo_cult" }
   ],
   "6.amo_100": [
     { "kind": "resource", "id": "amo_cult" },
@@ -211,6 +232,15 @@
     { "kind": "person", "id": "dima" },
     { "kind": "resource", "id": "icrm" },
     { "kind": "section", "id": "chats", "filter": "techtigers" }
+  ],
+  "10.crm_compare": [
+    { "kind": "resource", "id": "crm_landscape" },
+    { "kind": "resource", "id": "amo_cult" },
+    { "kind": "resource", "id": "amo_blaster" },
+    { "kind": "resource", "id": "icrm" },
+    { "kind": "person", "id": "dima" },
+    { "kind": "person", "id": "homich" },
+    { "kind": "note", "text": "Дата полного перехода новых сделок на iCRM — согласует Дима после демо" }
   ],
   "10.retro": [
     { "kind": "person", "id": "dima" },

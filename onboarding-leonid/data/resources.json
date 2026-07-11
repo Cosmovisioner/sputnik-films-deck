@@ -87,12 +87,21 @@
     },
     {
       "id": "icrm",
-      "title": "iCRM · бета",
-      "subtitle": "Демо с Хомичем — ориентир 24–25.07",
+      "title": "iCRM · кастомная CRM группы",
+      "subtitle": "Бета от TechTigers — демо с Хомичем ~24–25.07",
       "url": null,
       "owner": "homich",
       "unit": "techtigers",
-      "note": "Адрес сервиса выдадут Дима и Саша Хомич после демо"
+      "note": "Адрес и доступ — после демо от Димы и Хомича"
+    },
+    {
+      "id": "crm_landscape",
+      "title": "Карта CRM-систем",
+      "subtitle": "Amo Cult — основная · Amo Blaster — legacy · iCRM — будущая",
+      "url": null,
+      "owner": "dima",
+      "unit": "uk",
+      "note": "Новые сделки группы с 13.07 → Amo Cult. Blaster-only legacy → Amo Blaster (read/joint). iCRM — тест, затем миграция (дата TBD)"
     }
   ],
   "docs": [
