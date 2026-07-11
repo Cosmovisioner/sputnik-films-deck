@@ -3,7 +3,7 @@
 
   const STORAGE_KEY = "cult_leonid_daily_v5";
   const WELCOME_KEY = "cult_leonid_welcome_v3";
-  const ASSET_VER = "20260711-v16";
+  const ASSET_VER = "20260711-v17";
 
   function esc(s) {
     if (s == null || s === "") return "";
@@ -77,6 +77,12 @@
   function parseDate(s) {
     const [y, m, d] = s.split("-").map(Number);
     return new Date(y, m - 1, d);
+  }
+
+  function formatDateCompact(dateStr) {
+    const d = parseDate(dateStr);
+    const months = ["янв", "фев", "мар", "апр", "май", "июн", "июл", "авг", "сен", "окт", "ноя", "дек"];
+    return d.getDate() + " " + months[d.getMonth()];
   }
 
   function formatDateRu(dateStr, weekday) {
@@ -547,20 +553,6 @@
     });
   }
 
-  function renderPaceCard() {
-    const r = stepsMeta.realism || {};
-    if (!stepsMeta.pace && !r.verdict) return "";
-    const span = stepsMeta.calendarSpan ? ` · ${stepsMeta.calendarSpan}` : "";
-    return `
-      <div class="card pace-card">
-        <h3 class="section-heading">Темп программы${esc(span)}</h3>
-        ${stepsMeta.pace ? `<p class="card-intro">${esc(stepsMeta.pace)}</p>` : ""}
-        ${r.verdict ? `<p class="pace-verdict"><strong>По срокам:</strong> ${esc(r.verdict)}</p>` : ""}
-        ${r.fastTrack ? `<p class="pace-hint"><strong>Можно быстрее:</strong> ${esc(r.fastTrack)}</p>` : ""}
-        ${r.bottleneck ? `<p class="pace-hint pace-muted"><strong>Не переносится:</strong> ${esc(r.bottleneck)}</p>` : ""}
-      </div>`;
-  }
-
   function renderExcludedCard() {
     const list = stepsMeta.excludedForSales;
     if (!list || !list.length) return "";
@@ -606,7 +598,6 @@
 
     const phaseMeta = step.phase ? `${step.phase} · ` : "";
     return `
-      ${renderPaceCard()}
       <article class="card card-hero">
         <div class="card-meta">${phaseMeta}${formatDateRu(step.date, step.weekday)} · день ${step.id} из ${steps.length}</div>
         <h2 class="card-title">${step.title}</h2>
@@ -927,8 +918,8 @@
       const done = stepComplete(step) ? "done" : "";
       const active = i === currentDayIdx && currentView === "program" ? "active" : "";
       return `<button type="button" class="day-pill ${done} ${active}" data-day="${i}" title="${step.title}">
-        <span class="day-pill-num">${step.id}</span>
-        <span class="day-pill-date">${formatDateRu(step.date, step.weekday).split(" · ")[0]}</span>
+        <span class="day-pill-num">День ${step.id}</span>
+        <span class="day-pill-date">${formatDateCompact(step.date)} · ${step.weekday}</span>
         <span class="day-pill-label">${short}</span>
       </button>`;
     }).join("");
