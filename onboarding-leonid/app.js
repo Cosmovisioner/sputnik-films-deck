@@ -3,7 +3,7 @@
 
   const STORAGE_KEY = "cult_leonid_daily_v5";
   const WELCOME_KEY = "cult_leonid_welcome_v3";
-  const ASSET_VER = "20260711-v21";
+  const ASSET_VER = "20260711-v22";
 
   function esc(s) {
     if (s == null || s === "") return "";
