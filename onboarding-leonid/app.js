@@ -2,7 +2,7 @@
   "use strict";
 
   const STORAGE_KEY = "cult_leonid_daily_v5";
-  const ASSET_VER = "20260711-v9";
+  const ASSET_VER = "20260711-v10";
 
   let stepsMeta = {};
 
@@ -151,7 +151,25 @@
     return contactsData.people[id] || {};
   }
 
+  function showModal() {
+    const backdrop = document.getElementById("modalBackdrop");
+    backdrop.hidden = false;
+    backdrop.classList.add("is-open");
+    backdrop.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+  }
+
+  function closeModal() {
+    const backdrop = document.getElementById("modalBackdrop");
+    backdrop.hidden = true;
+    backdrop.classList.remove("is-open");
+    backdrop.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+    document.getElementById("modalBody").innerHTML = "";
+  }
+
   function openPerson(id) {
+    if (!team) return;
     const p = findPerson(id);
     if (!p) return;
     const c = getContact(id);
@@ -200,15 +218,11 @@
 
     body.querySelector("[data-unit]")?.addEventListener("click", e => {
       closeModal();
-      selectedUnit = e.target.dataset.unit;
+      selectedUnit = e.currentTarget.dataset.unit;
       setView("map");
     });
 
-    document.getElementById("modalBackdrop").hidden = false;
-  }
-
-  function closeModal() {
-    document.getElementById("modalBackdrop").hidden = true;
+    showModal();
   }
 
   function renderPathItem(item, stepId) {
@@ -619,11 +633,20 @@
       btn.addEventListener("click", () => setView(btn.dataset.view));
     });
 
-    document.getElementById("modalClose").addEventListener("click", closeModal);
+    document.getElementById("modalClose").addEventListener("click", e => {
+      e.preventDefault();
+      e.stopPropagation();
+      closeModal();
+    });
+    document.getElementById("personModal").addEventListener("click", e => e.stopPropagation());
     document.getElementById("modalBackdrop").addEventListener("click", e => {
       if (e.target.id === "modalBackdrop") closeModal();
     });
+    document.addEventListener("keydown", e => {
+      if (e.key === "Escape") closeModal();
+    });
 
+    closeModal();
     setView(currentView);
     document.getElementById("footerNote").textContent =
       "Cult Group · онбординг продаж · " + steps.length + " дней · v" + ASSET_VER;
