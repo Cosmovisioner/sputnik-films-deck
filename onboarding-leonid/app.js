@@ -3,7 +3,7 @@
 
   const STORAGE_KEY = "cult_leonid_daily_v5";
   const WELCOME_KEY = "cult_leonid_welcome_v3";
-  const ASSET_VER = "20260711-v19";
+  const ASSET_VER = "20260711-v20";
 
   function esc(s) {
     if (s == null || s === "") return "";
@@ -36,7 +36,8 @@
     required: "С первого дня",
     week1: "Первая неделя",
     as_needed: "По сделкам",
-    after_week1: "После 1-й недели"
+    after_week1: "После 1-й недели",
+    optional: "По желанию"
   };
 
   let contactsData = { people: {} };
@@ -749,6 +750,7 @@
       { id: "all", name: "Все" },
       ...cultUnits().map(u => ({ id: u.id, name: u.short || u.name })),
       { id: "techtigers", name: "TechTigers" },
+      { id: "holding", name: "Холдинг" },
       { id: "partner_slz", name: "Партнёры" }
     ];
     const chips = filterUnits.map(u => {
@@ -757,10 +759,13 @@
     }).join("");
 
     let list = team.people.filter(p => p.id !== "leonid");
-    if (peopleFilter !== "all") {
+    if (peopleFilter === "holding") {
+      list = list.filter(p => p.category === "holding");
+    } else if (peopleFilter !== "all") {
       list = list.filter(p => personUnitId(p) === peopleFilter);
     }
-    const staff = list.filter(p => p.category !== "partner_slz" && p.category !== "collaborator");
+    const staff = list.filter(p => p.category !== "partner_slz" && p.category !== "collaborator" && p.category !== "holding");
+    const holding = list.filter(p => p.category === "holding");
     const partners = list.filter(p => p.category === "partner_slz");
     const collaborators = list.filter(p => p.category === "collaborator");
 
@@ -770,6 +775,7 @@
         <p class="card-intro">Кликни карточку — кратко, Clifton, когда писать, контакты.</p>
         <div class="filter-row">${chips}</div>
         ${staff.length ? `<h3 class="mono-tag" style="margin-bottom:12px">Штат</h3><div class="people-grid">${staff.map(p => personCardHtml(p)).join("")}</div>` : ""}
+        ${holding.length ? `<h3 class="mono-tag" style="margin:20px 0 12px">Супертопы · контур группы</h3><p style="font-size:13px;color:var(--muted);margin-bottom:12px">Финансы, офис, продюсеры, IT и R&amp;S — знакомство по мере погружения в холдинг</p><div class="people-grid">${holding.map(p => personCardHtml(p)).join("")}</div>` : ""}
         ${partners.length ? `<h3 class="mono-tag" style="margin:20px 0 12px">Партнёрские сейлз-менеджеры</h3><p style="font-size:13px;color:var(--muted);margin-bottom:12px">${team.org.partner_slz?.routing || ""}</p><div class="people-grid">${partners.map(p => personCardHtml(p)).join("")}</div>` : ""}
         ${collaborators.length ? `<h3 class="mono-tag" style="margin:20px 0 12px">Коллаборации (не sales)</h3><div class="people-grid">${collaborators.map(p => personCardHtml(p)).join("")}</div>` : ""}
       </div>`;

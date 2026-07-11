@@ -80,6 +80,57 @@
     },
     "max_blaster": {
       "howToWrite": "Партнёрский сейлз-менеджер Blaster — контакт и % только через Диму (коммерция)"
+    },
+    "anastasia_kobrova": {
+      "telegram": "https://t.me/AnastasiaKobrova",
+      "telegramLabel": "@AnastasiaKobrova",
+      "howToWrite": "Финансы и кредитование между юнитами — после согласования с Димой или Костей"
+    },
+    "tatiana_cota": {
+      "telegram": "https://t.me/tatiana_cota",
+      "telegramLabel": "@tatiana_cota",
+      "avatar": "assets/avatars/tatiana_cota.jpg",
+      "howToWrite": "Офис, аренда, операционка УК"
+    },
+    "anna_borisova": {
+      "telegram": "https://t.me/borisovaaaan",
+      "telegramLabel": "@borisovaaaan",
+      "avatar": "assets/avatars/borisovaaaan.jpg",
+      "howToWrite": "PR и ивенты холдинга"
+    },
+    "eva_prod": {
+      "telegram": "https://t.me/Eva_prod",
+      "telegramLabel": "@Eva_prod",
+      "avatar": "assets/avatars/Eva_prod.jpg",
+      "howToWrite": "Сметы, тендеры, продюсерский чат — после маршрутизации через Диму"
+    },
+    "se_leverk": {
+      "telegram": "https://t.me/se_leverk",
+      "telegramLabel": "@se_leverk",
+      "avatar": "assets/avatars/se_leverk.jpg",
+      "howToWrite": "Календарь, созвоны хэдов, продюсерский чат Sputnik"
+    },
+    "daria_kiryukhina": {
+      "telegram": "https://t.me/KiryukhinaD",
+      "telegramLabel": "@KiryukhinaD",
+      "avatar": "assets/avatars/KiryukhinaD.jpg",
+      "howToWrite": "IT, почта cult.team, домены — не CRM"
+    },
+    "zhenya_gmouse": {
+      "telegram": "https://t.me/gmouse90",
+      "telegramLabel": "@gmouse90",
+      "howToWrite": "R&S и вайбкодинг — через Егора или Диму"
+    },
+    "natasha_qalista": {
+      "telegram": "https://t.me/qalista",
+      "telegramLabel": "@qalista",
+      "howToWrite": "R&S команда, вайб-кружок"
+    },
+    "tech_ops": {
+      "howToWrite": "Автоматизация и amo — через Диму или @akhomich"
+    },
+    "vasiliisa": {
+      "howToWrite": "Исп. продюсер Sputnik — тендеры, через sales-чат или Диму"
     }
   }
 }
