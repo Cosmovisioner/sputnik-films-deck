@@ -3,7 +3,7 @@
     { "kind": "step", "text": "10:00–13:00 — вводная сессия с Димой Квашниным (коммерческий директор)" },
     { "kind": "person", "id": "dima" },
     { "kind": "resource", "id": "view_org_map" },
-    { "kind": "note", "text": "Запиши вопросы — вернёшься к ним в дни 2–5" }
+    { "kind": "note", "text": "Запиши вопросы — структуру закрываешь сегодня после сессии" }
   ],
   "1.role": [
     { "kind": "step", "text": "Твоя зона: холод, входящие, бриф до договора" },
@@ -33,17 +33,25 @@
     { "kind": "resource", "id": "doc_commerce_rules" },
     { "kind": "person", "id": "dima" }
   ],
-  "2.org_map": [
+  "1.org_map": [
     { "kind": "resource", "id": "view_org_map" },
     { "kind": "step", "text": "Нажми на каждый юнит — посмотри людей и презентации" },
     { "kind": "note", "text": "Open Production упразднён — в структуре его нет" }
   ],
-  "2.sales_snapshot": [
+  "1.sales_snapshot": [
     { "kind": "resource", "id": "view_sales" },
     { "kind": "resource", "id": "doc_nb_reg" },
     { "kind": "resource", "id": "amo_cult" },
     { "kind": "person", "id": "dima" },
-    { "kind": "note", "text": "Baseline на 28.05.2026 — Cult/Blaster из декомпозиции. Июльский факт — на еженедельном синке с CRO + NB регламент" }
+    { "kind": "note", "text": "Baseline на 28.05.2026. Июльский факт — на еженедельном синке с CRO" }
+  ],
+  "1.group_deck": [
+    { "kind": "deck", "id": "cult_group" },
+    { "kind": "resource", "id": "view_decks" }
+  ],
+  "1.team_preview": [
+    { "kind": "resource", "id": "view_people" },
+    { "kind": "step", "text": "Открой карточки штата — пробегись, не углубляйся (детали — день 3)" }
   ],
   "2.amo_walk": [
     { "kind": "step", "text": "11:00–12:30 — разбор Amo Cult + передача дел от Саши Алексеева" },
@@ -67,10 +75,6 @@
     { "kind": "section", "id": "chats", "filter": "required" },
     { "kind": "person", "id": "dima" },
     { "kind": "note", "text": "Ссылок нет — попроси добавить в чат" }
-  ],
-  "2.group_deck": [
-    { "kind": "deck", "id": "cult_group" },
-    { "kind": "resource", "id": "view_decks" }
   ],
   "3.denis_call": [
     { "kind": "step", "text": "11:00–12:00 — созвон: Cult, презентации, Amo, маржа" },
@@ -179,7 +183,7 @@
     { "kind": "person", "id": "homich" },
     { "kind": "person", "id": "dima" },
     { "kind": "section", "id": "chats", "filter": "techtigers" },
-    { "kind": "note", "text": "Пока тестовые записи — после демо на 10-й день" }
+    { "kind": "note", "text": "Пока тестовые записи — полное демо на 9-й день" }
   ],
   "6.amo_reg": [
     { "kind": "resource", "id": "doc_amo_reg" },
@@ -220,51 +224,51 @@
     { "kind": "resource", "id": "amo_cult" },
     { "kind": "resource", "id": "doc_nb_reg" }
   ],
-  "8.cold_touch": [
+  "7.cold_touch": [
     { "kind": "resource", "id": "amo_cult" },
     { "kind": "resource", "id": "doc_nb_reg" }
   ],
-  "8.incoming": [
+  "7.incoming": [
     { "kind": "resource", "id": "doc_brief_criteria" },
     { "kind": "resource", "id": "view_decks" },
     { "kind": "resource", "id": "amo_cult" }
   ],
-  "8.deck_practice": [
+  "7.deck_practice": [
     { "kind": "resource", "id": "view_decks" },
     { "kind": "resource", "id": "skills_pack" }
   ],
-  "8.daily_cro": [
+  "7.daily_cro": [
     { "kind": "person", "id": "dima" },
     { "kind": "section", "id": "chats", "filter": "commercial_director" },
     { "kind": "note", "text": "Короткий sync: блокеры, приоритеты, что эскалировать" }
   ],
-  "9.qual_brief": [
+  "8.qual_brief": [
     { "kind": "resource", "id": "doc_brief_criteria" },
     { "kind": "resource", "id": "amo_cult" },
     { "kind": "resource", "id": "skills_pack" }
   ],
-  "9.unit_route": [
+  "8.unit_route": [
     { "kind": "resource", "id": "view_people" },
     { "kind": "person", "id": "denis" },
     { "kind": "person", "id": "liza" },
     { "kind": "person", "id": "sergey" }
   ],
-  "9.no_kp_ghost": [
+  "8.no_kp_ghost": [
     { "kind": "resource", "id": "amo_cult" },
     { "kind": "resource", "id": "doc_amo_reg" }
   ],
-  "9.internal_first": [
+  "8.internal_first": [
     { "kind": "resource", "id": "doc_commerce_rules" },
     { "kind": "resource", "id": "amo_cult" },
     { "kind": "note", "text": "На кросс-брифе — сначала соседний юнит группы, потом внешний подряд" }
   ],
-  "10.icrm_demo": [
+  "9.icrm_demo": [
     { "kind": "person", "id": "homich" },
     { "kind": "person", "id": "dima" },
     { "kind": "resource", "id": "icrm" },
     { "kind": "section", "id": "chats", "filter": "techtigers" }
   ],
-  "10.crm_compare": [
+  "9.crm_compare": [
     { "kind": "resource", "id": "crm_landscape" },
     { "kind": "resource", "id": "amo_cult" },
     { "kind": "resource", "id": "amo_blaster" },
@@ -273,16 +277,16 @@
     { "kind": "person", "id": "homich" },
     { "kind": "note", "text": "Дата полного перехода новых сделок на iCRM — согласует Дима после демо" }
   ],
-  "10.retro": [
+  "9.retro": [
     { "kind": "person", "id": "dima" },
     { "kind": "note", "text": "Что понятно / что мутно — списком в Amo или в Telegram" }
   ],
-  "10.month_plan": [
+  "9.month_plan": [
     { "kind": "resource", "id": "doc_commerce_rules" },
     { "kind": "resource", "id": "amo_cult" },
     { "kind": "note", "text": "Цель 2-го месяца: 3–5 квалифицированных брифов в производство" }
   ],
-  "10.quest_done": [
+  "9.quest_done": [
     { "kind": "step", "text": "Отметь все галочки · напиши Диме «онбординг пройден»" },
     { "kind": "person", "id": "dima" }
   ]

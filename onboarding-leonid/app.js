@@ -2,8 +2,8 @@
   "use strict";
 
   const STORAGE_KEY = "cult_leonid_daily_v5";
-  const WELCOME_KEY = "cult_leonid_welcome_v1";
-  const ASSET_VER = "20260711-v13";
+  const WELCOME_KEY = "cult_leonid_welcome_v2";
+  const ASSET_VER = "20260711-v14";
 
   function esc(s) {
     if (s == null || s === "") return "";
@@ -386,6 +386,22 @@
   }
 
   function maybeShowWelcome() {
+    const lead = document.querySelector(".welcome-lead");
+    const list = document.querySelector(".welcome-list");
+    const note = document.querySelector(".welcome-note");
+    if (lead && steps.length) {
+      const span = stepsMeta.calendarSpan || "13–23 июл";
+      lead.innerHTML = `Рады приветствовать тебя в <strong>Cult Group</strong>. Интерактивная экскурсия — <strong>${steps.length} рабочих дней</strong> (${span}): продажи, люди, CRM и продукты. Структуру можно закрыть уже в первый день.`;
+    }
+    if (list && steps.length) {
+      list.innerHTML = `
+        <li><strong>${steps.length} дней с датами</strong> — в названии каждого этапа</li>
+        <li><strong>День 1</strong> — карта, продажи, люди, преза (~4–6 ч после вводной)</li>
+        <li><strong>Карта · Продажи · Люди · Telegram · Презентации</strong> — всегда под рукой</li>`;
+    }
+    if (note && stepsMeta.officialStartDate) {
+      note.innerHTML = `Старт официально <strong>${formatDateRu(stepsMeta.officialStartDate, "Пн")}</strong>. Можно начать раньше — материалы открыты.`;
+    }
     if (!localStorage.getItem(WELCOME_KEY)) showWelcome();
   }
 
@@ -533,6 +549,20 @@
     });
   }
 
+  function renderPaceCard() {
+    const r = stepsMeta.realism || {};
+    if (!stepsMeta.pace && !r.verdict) return "";
+    const span = stepsMeta.calendarSpan ? ` · ${stepsMeta.calendarSpan}` : "";
+    return `
+      <div class="card pace-card">
+        <h3 class="section-heading">Темп программы${esc(span)}</h3>
+        ${stepsMeta.pace ? `<p class="card-intro">${esc(stepsMeta.pace)}</p>` : ""}
+        ${r.verdict ? `<p class="pace-verdict"><strong>Реалистичность:</strong> ${esc(r.verdict)}</p>` : ""}
+        ${r.fastTrack ? `<p class="pace-hint"><strong>Быстрее:</strong> ${esc(r.fastTrack)}</p>` : ""}
+        ${r.bottleneck ? `<p class="pace-hint pace-muted"><strong>Якоря:</strong> ${esc(r.bottleneck)}</p>` : ""}
+      </div>`;
+  }
+
   function renderExcludedCard() {
     const list = stepsMeta.excludedForSales;
     if (!list || !list.length) return "";
@@ -576,9 +606,11 @@
     const prev = currentDayIdx > 0 ? steps[currentDayIdx - 1] : null;
     const next = currentDayIdx < steps.length - 1 ? steps[currentDayIdx + 1] : null;
 
+    const phaseMeta = step.phase ? `${step.phase} · ` : "";
     return `
+      ${renderPaceCard()}
       <article class="card card-hero">
-        <div class="card-meta">${formatDateRu(step.date, step.weekday)} · день ${step.id} из ${steps.length}</div>
+        <div class="card-meta">${phaseMeta}${formatDateRu(step.date, step.weekday)} · день ${step.id} из ${steps.length}</div>
         <h2 class="card-title">${step.title}</h2>
         <p class="card-intro">${step.intro}</p>
         ${tasksHtml}
@@ -872,7 +904,7 @@
   function renderDayNav() {
     const nav = document.getElementById("dayNav");
     nav.innerHTML = steps.map((step, i) => {
-      const short = step.title.replace(/^День \d+ · /, "");
+      const short = step.title.split("·").pop().trim();
       const done = stepComplete(step) ? "done" : "";
       const active = i === currentDayIdx && currentView === "program" ? "active" : "";
       return `<button type="button" class="day-pill ${done} ${active}" data-day="${i}" title="${step.title}">
