@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260712-v45" />
+  <link rel="stylesheet" href="styles.css?v=20260712-v63" />
 </head>
 <body>
   <div id="loadError" class="load-error" hidden>
@@ -64,6 +64,18 @@
     </div>
   </div>
 
+  <div class="welcome-backdrop grad-backdrop" id="gradBackdrop" hidden aria-hidden="true">
+    <div class="welcome-card grad-card" role="dialog" aria-labelledby="gradTitle" aria-describedby="gradBody">
+      <div class="welcome-gradient grad-gradient"></div>
+      <div class="welcome-progress" id="gradProgress" aria-hidden="true"></div>
+      <div id="gradBody"></div>
+      <div class="welcome-nav">
+        <button type="button" class="btn welcome-back" id="gradBack" hidden>← Назад</button>
+        <button type="button" class="btn primary welcome-go" id="gradGo">Дальше →</button>
+      </div>
+    </div>
+  </div>
+
   <div class="modal-backdrop" id="modalBackdrop" hidden aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" id="personModal">
       <button type="button" class="modal-close" id="modalClose" aria-label="Закрыть">×</button>
@@ -71,6 +83,6 @@
     </div>
   </div>
 
-  <script src="app.js?v=20260712-v45"></script>
+  <script src="app.js?v=20260712-v63"></script>
 </body>
 </html>

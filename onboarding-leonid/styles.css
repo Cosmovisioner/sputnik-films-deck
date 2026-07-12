@@ -1288,6 +1288,23 @@ body::after {
   padding: 14px 20px;
 }
 
+.grad-backdrop {
+  z-index: 310;
+}
+.grad-card {
+  border-color: rgba(249, 116, 190, 0.35);
+  box-shadow: 0 24px 64px rgba(20, 20, 20, 0.28), 0 0 0 1px rgba(249, 116, 190, 0.12);
+}
+.grad-gradient {
+  background:
+    radial-gradient(ellipse 80% 60% at 20% 0%, rgba(249, 116, 190, 0.28), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 90% 100%, rgba(90, 140, 255, 0.18), transparent 50%);
+}
+.grad-tag {
+  color: var(--accent);
+  letter-spacing: 0.04em;
+}
+
 body.modal-open { overflow: hidden; }
 .modal-avatar {
   width: 56px;

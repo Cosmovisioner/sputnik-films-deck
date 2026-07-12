@@ -4,11 +4,13 @@
   // localStorage ids (not secrets) — named to avoid secret-scanner false positives
   const STORAGE_KEY = "sb-onboarding-leonid-progress";
   const WELCOME_KEY = "sb-onboarding-leonid-welcome-v3";
+  const GRAD_KEY = "sb-onboarding-leonid-grad-v1";
+  const GRAD_DAY_IDX = 6; /* день 7: старт реальной работы */
   const ACCESS_KEY = "sb-onboarding-leonid-access";
   const QUEST_KEY = "sb-onboarding-leonid-quest-step";
   const MODE_KEY = "sb-onboarding-leonid-program-mode";
   const QUIZ_KEY = "sb-onboarding-leonid-quiz";
-  const ASSET_VER = "20260712-v62";
+  const ASSET_VER = "20260712-v63";
   /** Временно: проверка онбординга без обязательной сдачи теста. Перед стартом Лёни вернуть false. */
   const QUIZ_GATE_ENABLED = false;
 
@@ -308,6 +310,7 @@
     currentDayIdx = path[currentQuestIdx].dayIdx;
     saveQuestIdx();
     setView("program");
+    maybeShowGraduation();
   }
 
   function questProgressLabel() {
@@ -556,6 +559,7 @@
       saveQuestIdx();
     }
     setView("program");
+    maybeShowGraduation();
   }
 
   function getContact(id) {
@@ -596,6 +600,7 @@
     el.setAttribute("aria-hidden", "true");
     document.body.classList.remove("modal-open");
     localStorage.setItem(WELCOME_KEY, "1");
+    maybeShowGraduation();
   }
 
   let welcomeStep = 0;
@@ -687,6 +692,115 @@
 
   function maybeShowWelcome() {
     if (!localStorage.getItem(WELCOME_KEY)) showWelcome();
+    else maybeShowGraduation();
+  }
+
+  let gradStep = 0;
+
+  function gradCards() {
+    const u = userProfile();
+    return [
+      {
+        kicker: "Финиш онбординга · 1/",
+        title: "Онбординг пройден, " + u.first + "!",
+        lead: "Ты дошёл до конца вводной программы. Все шаги, правила, доступы и база — позади. Красавчик: это уже не «почитать», это ты реально закрыл.",
+        chips: ["Онбординг ✓", "Знания на месте", "Ты в игре"]
+      },
+      {
+        kicker: "Финиш онбординга · 2/",
+        title: "Теперь начинается реальная работа",
+        lead: "С сегодняшнего дня — живые задачи: тёплая база, CRM, планы, документы, самостоятельный старт. Мы рассчитываем, что работа будет продуктивной и эффективной — и что планы будут выполняться.",
+        chips: ["Живые клиенты", "Планы в деле", "Темп продаж"]
+      },
+      {
+        kicker: "Финиш онбординга · 3/",
+        title: "Сайт всегда под рукой",
+        lead: "Забыл правило, ссылку или «куда писать» — возвращайся сюда и освежи знания. Это не разовый квест, а шпаргалка на каждый день.",
+        chips: ["Вернуться в любой день", "Люди · презы · скиллы", "Шпаргалка 24/7"]
+      },
+      {
+        kicker: "Финиш онбординга · 4/",
+        title: "Поехали в день 7",
+        lead: "Впереди старт реальной работы. Закрой карточки — и ныряй в задачи дня. Удачи, " + u.first + ". Мы рядом.",
+        chips: ["День 7 открыт", "Реальная работа", "Удачи"]
+      }
+    ].map((c, i, arr) => ({
+      ...c,
+      kicker: "Финиш онбординга · " + (i + 1) + "/" + arr.length
+    }));
+  }
+
+  function showGraduation() {
+    const el = document.getElementById("gradBackdrop");
+    if (!el) return;
+    gradStep = 0;
+    renderGradStep();
+    el.hidden = false;
+    el.classList.add("is-open");
+    el.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+  }
+
+  function closeGraduation() {
+    const el = document.getElementById("gradBackdrop");
+    if (!el) return;
+    el.hidden = true;
+    el.classList.remove("is-open");
+    el.setAttribute("aria-hidden", "true");
+    document.body.classList.remove("modal-open");
+    localStorage.setItem(GRAD_KEY, "1");
+  }
+
+  function renderGradStep() {
+    const cards = gradCards();
+    const card = cards[gradStep] || cards[0];
+    const body = document.getElementById("gradBody");
+    const progress = document.getElementById("gradProgress");
+    const go = document.getElementById("gradGo");
+    const back = document.getElementById("gradBack");
+    if (!body || !go) return;
+
+    if (progress) {
+      progress.innerHTML = cards.map((_, i) =>
+        `<span class="welcome-dot ${i === gradStep ? "active" : i < gradStep ? "done" : ""}"></span>`
+      ).join("");
+    }
+
+    body.innerHTML = `
+      <p class="mono-tag welcome-tag grad-tag">${esc(card.kicker)}</p>
+      <h2 class="welcome-title" id="gradTitle">${esc(card.title)}</h2>
+      <p class="welcome-lead">${esc(card.lead)}</p>
+      <div class="welcome-chips">${(card.chips || []).map(c => `<span class="welcome-chip">${esc(c)}</span>`).join("")}</div>
+    `;
+
+    if (back) back.hidden = gradStep === 0;
+    const last = gradStep >= cards.length - 1;
+    go.textContent = last ? "К реальной работе →" : "Дальше →";
+  }
+
+  function advanceGrad() {
+    const cards = gradCards();
+    if (gradStep >= cards.length - 1) {
+      closeGraduation();
+      return;
+    }
+    gradStep += 1;
+    renderGradStep();
+  }
+
+  function retreatGrad() {
+    if (gradStep <= 0) return;
+    gradStep -= 1;
+    renderGradStep();
+  }
+
+  function maybeShowGraduation() {
+    if (localStorage.getItem(GRAD_KEY)) return;
+    if (currentDayIdx !== GRAD_DAY_IDX) return;
+    if (currentView !== "program") return;
+    const welcomeOpen = document.getElementById("welcomeBackdrop");
+    if (welcomeOpen && !welcomeOpen.hidden) return;
+    showGraduation();
   }
 
   function openPerson(id) {
@@ -2028,7 +2142,8 @@
     });
     document.addEventListener("keydown", e => {
       if (e.key === "Escape") {
-        if (document.getElementById("welcomeBackdrop").classList.contains("is-open")) closeWelcome();
+        if (document.getElementById("gradBackdrop")?.classList.contains("is-open")) closeGraduation();
+        else if (document.getElementById("welcomeBackdrop").classList.contains("is-open")) closeWelcome();
         else closeModal();
       }
     });
@@ -2037,6 +2152,12 @@
     document.getElementById("welcomeBack")?.addEventListener("click", retreatWelcome);
     document.getElementById("welcomeBackdrop").addEventListener("click", e => {
       if (e.target.id === "welcomeBackdrop") closeWelcome();
+    });
+
+    document.getElementById("gradGo")?.addEventListener("click", advanceGrad);
+    document.getElementById("gradBack")?.addEventListener("click", retreatGrad);
+    document.getElementById("gradBackdrop")?.addEventListener("click", e => {
+      if (e.target.id === "gradBackdrop") closeGraduation();
     });
 
     bindHeaderCompactOnScroll();
