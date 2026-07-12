@@ -1154,3 +1154,134 @@ body.modal-open { overflow: hidden; }
   margin: 8px 0 0;
 }
 .pace-muted { color: var(--tertiary); }
+
+
+/* —— Quest step-by-step —— */
+.quest-mode-bar {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.quest-mode-btn {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  border: 1.5px solid var(--graphite);
+  background: var(--white);
+  color: var(--graphite);
+  border-radius: 999px;
+  padding: 8px 14px;
+  cursor: pointer;
+}
+.quest-mode-btn.active {
+  background: var(--graphite);
+  color: var(--lime);
+}
+.quest-progress-card { padding: 16px 18px; }
+.quest-progress-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+.quest-progress-pct {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--accent);
+}
+.quest-progress-track {
+  height: 10px;
+  background: var(--ivory);
+  border: 1.5px solid var(--graphite);
+  border-radius: 999px;
+  overflow: hidden;
+}
+.quest-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--accent), #60A5FA);
+  transition: width 0.35s ease;
+}
+.quest-progress-day {
+  margin: 10px 0 0;
+  font-size: 12px;
+  color: var(--muted);
+}
+.quest-focus .quest-kicker {
+  font-family: "JetBrains Mono", monospace;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--accent);
+  margin: 0 0 6px;
+}
+.quest-task-title { margin-bottom: 8px; }
+.quest-focus.quest-done { outline: 2px solid #16A34A; }
+.quest-rail {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin: 14px 0 18px;
+}
+.quest-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  border: 1.5px solid var(--graphite);
+  background: var(--white);
+  padding: 0;
+  cursor: pointer;
+}
+.quest-dot.done { background: #16A34A; border-color: #16A34A; }
+.quest-dot.active {
+  background: var(--accent);
+  border-color: var(--graphite);
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.25);
+  transform: scale(1.25);
+}
+.quest-do-box {
+  background: var(--ivory);
+  border: 1.5px solid var(--border);
+  border-radius: var(--radius-sm);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.quest-check-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-weight: 600;
+  font-size: 15px;
+  margin: 12px 0 16px;
+  cursor: pointer;
+}
+.quest-check-row input {
+  width: 22px;
+  height: 22px;
+  accent-color: var(--graphite);
+}
+.quest-actions-title {
+  font-size: 13px;
+  margin: 0 0 8px;
+  color: var(--muted);
+}
+.quest-actions .path-link,
+.quest-actions .path-step,
+.quest-actions .path-note { margin-left: 0; }
+.quest-day-links { margin-top: 14px; }
+.quest-nav { gap: 8px; flex-wrap: wrap; }
+.quest-jump-btn {
+  font-size: 11px !important;
+  padding: 4px 8px !important;
+  flex-shrink: 0;
+}
+.xp-block { min-width: 72px; }
+@media (max-width: 560px) {
+  .quest-nav .btn { flex: 1 1 40%; }
+  .quest-task-title { font-size: 1.15rem; }
+}
