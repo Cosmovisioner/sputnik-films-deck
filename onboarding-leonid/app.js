@@ -10,7 +10,7 @@
   const QUEST_KEY = "sb-onboarding-leonid-quest-step";
   const MODE_KEY = "sb-onboarding-leonid-program-mode";
   const QUIZ_KEY = "sb-onboarding-leonid-quiz";
-  const ASSET_VER = "20260712-v66";
+  const ASSET_VER = "20260712-v67";
   /** Ворота теста: без сдачи (≥18/20) дни после теста закрыты */
   const QUIZ_GATE_ENABLED = true;
 
@@ -1420,6 +1420,7 @@
             <span class="quest-focus-day">${esc(step.title)}</span>
           </div>
           <h2 class="card-title quest-task-title">${esc(q.task.text)}</h2>
+          ${q.task.why ? `<p class="quest-task-why">${esc(q.task.why)}</p>` : ""}
           ${q.task.hint ? `<p class="quest-task-hint">${esc(q.task.hint)}</p>` : ""}
         </header>
         <div class="quest-do-box">
@@ -1453,7 +1454,7 @@
       tasksHtml += `
         <div class="task-item ${isOpen ? "open" : ""} ${isDone ? "done" : ""}" data-task-key="${key}">
           <div class="task-head">
-            <span class="task-text">${esc(task.text)}${task.hint ? `<span class="task-hint">${esc(task.hint)}</span>` : ""}</span>
+            <span class="task-text">${esc(task.text)}${task.why ? `<span class="task-why">${esc(task.why)}</span>` : ""}${task.hint ? `<span class="task-hint">${esc(task.hint)}</span>` : ""}</span>
             <button type="button" class="btn quest-jump-btn" data-quest-idx="${qIdx}" title="Открыть как шаг">Шаг</button>
             <span class="task-chevron">${path.length ? (isOpen ? "▲" : "▼") : ""}</span>
           </div>

@@ -1790,12 +1790,29 @@ body.modal-open { overflow: hidden; }
   color: var(--graphite);
   box-shadow: 0 0 0 3px rgba(249, 116, 190, 0.28);
 }
+.quest-task-why {
+  margin: 10px 0 0;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--graphite);
+  line-height: 1.55;
+  max-width: 42rem;
+}
 .quest-task-hint {
-  margin: 0;
-  font-size: 14px;
+  margin: 8px 0 0;
+  font-size: 13px;
   color: var(--muted);
   line-height: 1.5;
   max-width: 42rem;
+}
+.task-why {
+  display: block;
+  margin-top: 6px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--graphite);
+  line-height: 1.45;
+  text-decoration: none;
 }
 .task-hint {
   display: block;
@@ -1805,7 +1822,8 @@ body.modal-open { overflow: hidden; }
   color: var(--muted);
   text-decoration: none;
 }
-.task-item.done .task-hint { text-decoration: none; }
+.task-item.done .task-hint,
+.task-item.done .task-why { text-decoration: none; }
 .quest-do-box {
   background: transparent;
   border: none;
