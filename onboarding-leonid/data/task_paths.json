@@ -29,9 +29,11 @@
     { "kind": "note", "text": "Access code для gallup.com/access пришлёт Дима. Таблица команды — от Кости (созвон 08.05)" }
   ],
   "1.motivation": [
-    { "kind": "step", "text": "220 000 ₽ + 12% от плановой маржи · повторы с клиентом: 6% → 3% → 0%" },
+    { "kind": "step", "text": "Сначала PDF-оффер (канон) · 220к + 12% · повторы 6→3→0% · бонус 50к за юнит в пул · старт 13.07 · выплата 13-го" },
     { "kind": "resource", "id": "doc_offer_leonid" },
+    { "kind": "resource", "id": "doc_motivation_extended" },
     { "kind": "resource", "id": "doc_commerce_rules" },
+    { "kind": "note", "text": "Расширенный GDoc — про % после ухода и ownership базы. Если что-то спорит с PDF — верить PDF." },
     { "kind": "person", "id": "dima" }
   ],
   "1.org_map": [

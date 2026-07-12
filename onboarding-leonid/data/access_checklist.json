@@ -21,7 +21,8 @@
     { "id": "brief", "name": "Критерии брифа", "url": "https://docs.google.com/document/d/1cSkBD_Zx6Oo2RRaDGtv7n2LxW-QglW_rk6hhw9FaF38/edit", "resource": "doc_brief_criteria" },
     { "id": "amo_reg", "name": "Регламент Amo CRM", "url": "https://docs.google.com/document/d/1MwlLD2ZVtKXDeH8FUBOa33VjhAcExHga3ZmwTVYhszI/edit", "resource": "doc_amo_reg" },
     { "id": "commerce", "name": "Коммерческие правила (полные)", "url": "https://docs.google.com/document/d/1Wd-EIArqDzynvUTRU-u2Gc4mw9feMUjUYOGq9ilEASU/edit", "resource": "doc_commerce_rules" },
-    { "id": "offer", "name": "Оффер (условия)", "url": "https://docs.google.com/document/d/1nteIt04T9s0_dpfq39dFtuaZW86n3jvrpThBqTibtA8/edit?usp=sharing", "resource": "doc_offer_leonid" }
+    { "id": "offer", "name": "Оффер · Леонид (PDF, канон)", "url": "assets/docs/offer_cult_group_leonid_markhashov_2026_06_18.pdf", "resource": "doc_offer_leonid" },
+    { "id": "motivation_ext", "name": "Мотивация · расширенная версия (дополнение)", "url": "https://docs.google.com/document/d/1nteIt04T9s0_dpfq39dFtuaZW86n3jvrpThBqTibtA8/edit?usp=sharing", "resource": "doc_motivation_extended" }
   ],
   "telegram_required": [
     { "id": "group_sales", "chatId": "group_sales" },
