@@ -155,6 +155,24 @@
       "owner": "dima",
       "unit": "uk",
       "note": "Новые сделки с 13.07 → Amo Cult. Старые только Blaster → Amo Blaster (смотреть). Prodavan/iCRM — тест, потом решат, когда переезжаем"
+    },
+    {
+      "id": "doc_sales_context",
+      "title": "Контекст продаж · HTML",
+      "subtitle": "Как было · что изменилось · люди · тактика · пулы",
+      "url": "sales_context.html",
+      "owner": "dima",
+      "unit": "uk",
+      "note": "День 2 · обязательно. Источник: SB + чат Группа/Продажи 30.06"
+    },
+    {
+      "id": "doc_client_pools",
+      "title": "Пулы клиентов · JSON",
+      "subtitle": "Cult / Blaster / Sputnik — тёплые бренды на 30.06.2026",
+      "url": "data/client_pools.json",
+      "owner": "dima",
+      "unit": "uk",
+      "note": "Снимок списков Дениса, Лизы, Димы. Не колл-лист для перехвата."
     }
   ],
   "docs": [

@@ -1017,5 +1017,71 @@
       "kind": "note",
       "text": "Сверь с чеклистом доступов и списком cro_gaps с пятницы недели 1. Открытое — в план дозакрытия с датой."
     }
+  ],
+  "2.sales_context": [
+    {
+      "kind": "resource",
+      "id": "doc_sales_context"
+    },
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "step",
+      "text": "Открой sales_context.html — прочитай блоки 01–04 и 07 целиком"
+    },
+    {
+      "kind": "note",
+      "text": "Это не «ещё один GDoc». Карта: как жили продажи → зачем ты → что делать на этой неделе."
+    }
+  ],
+  "2.client_pools": [
+    {
+      "kind": "resource",
+      "id": "doc_sales_context"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_client_pools"
+    },
+    {
+      "kind": "person",
+      "id": "denis"
+    },
+    {
+      "kind": "person",
+      "id": "liza"
+    },
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "step",
+      "text": "В том же HTML — раздел «Действующие пулы». Запомни: Cult / Blaster / Sputnik"
+    },
+    {
+      "kind": "note",
+      "text": "Правило Димы 30.06: контакты не забираем. Пишет держатель отношений. Ты — свою базу."
+    }
+  ],
+  "7.hyp_test_plan": [
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "deck",
+      "id": "cult_group"
+    },
+    {
+      "kind": "step",
+      "text": "После своей тёплой — созвон с CRO: какие категории гипотез тестируем первыми"
+    },
+    {
+      "kind": "note",
+      "text": "Уже на столе по Cult: FMCG · топ-30 · топ-100 рекламодателей (пример: WB, Магнит). Полный список — отдельный сбор, не угадывать."
+    }
   ]
 }

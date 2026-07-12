@@ -1,0 +1,345 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+  <title>Контекст продаж · Cult Group</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --ivory: #F4F3F0;
+      --paper: #FFFFFF;
+      --ink: #141414;
+      --muted: #5C5C5C;
+      --soft: #949494;
+      --line: #E2E2DE;
+      --blue: #2563EB;
+      --lime: #C8FF00;
+      --cult: #2563EB;
+      --blaster: #E11D48;
+      --sputnik: #0D9488;
+      --shadow: 4px 4px 0 #141414;
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; padding: 0; }
+    body {
+      font-family: Inter, system-ui, sans-serif;
+      background:
+        radial-gradient(ellipse 80% 50% at 10% -10%, rgba(37, 99, 235, 0.08), transparent 50%),
+        radial-gradient(ellipse 60% 40% at 100% 0%, rgba(200, 255, 0, 0.12), transparent 45%),
+        var(--ivory);
+      color: var(--ink);
+      line-height: 1.55;
+      letter-spacing: -0.02em;
+    }
+    .wrap { max-width: 820px; margin: 0 auto; padding: 28px 18px 72px; }
+    .back {
+      display: inline-flex; align-items: center; gap: 6px;
+      font-size: 14px; color: var(--blue); text-decoration: none; font-weight: 600;
+      margin-bottom: 20px;
+    }
+    .back:hover { text-decoration: underline; }
+    .mono {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase;
+      color: var(--blue); font-weight: 700;
+    }
+    h1 {
+      font-family: Unbounded, sans-serif;
+      font-size: clamp(1.55rem, 4vw, 2.1rem);
+      line-height: 1.15; margin: 8px 0 12px; font-weight: 800;
+    }
+    .lede { font-size: 1.05rem; color: var(--muted); max-width: 38em; margin: 0 0 28px; }
+    .hero {
+      background: var(--paper);
+      border: 2px solid var(--ink);
+      box-shadow: var(--shadow);
+      border-radius: 16px;
+      padding: 22px 22px 18px;
+      margin-bottom: 28px;
+    }
+    .hero-grid {
+      display: grid; gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      margin-top: 16px;
+    }
+    .chip {
+      border: 1.5px solid var(--ink);
+      border-radius: 12px;
+      padding: 12px 14px;
+      background: var(--ivory);
+    }
+    .chip strong { display: block; font-size: 13px; margin-bottom: 4px; }
+    .chip span { font-size: 13px; color: var(--muted); }
+    section { margin: 36px 0; }
+    h2 {
+      font-family: Unbounded, sans-serif;
+      font-size: 1.15rem; margin: 0 0 14px; font-weight: 700;
+      display: flex; align-items: baseline; gap: 10px; flex-wrap: wrap;
+    }
+    h2 .n {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 12px; color: var(--soft); font-weight: 700;
+    }
+    h3 { font-size: 0.95rem; margin: 18px 0 8px; }
+    .card {
+      background: var(--paper);
+      border: 1.5px solid var(--line);
+      border-radius: 14px;
+      padding: 18px 18px 14px;
+      margin: 12px 0;
+    }
+    .card.ink {
+      border-color: var(--ink);
+      box-shadow: 3px 3px 0 var(--ink);
+    }
+    ul, ol { margin: 0; padding-left: 1.2rem; }
+    li { margin: 7px 0; }
+    p { margin: 0 0 10px; }
+    .note { font-size: 13px; color: var(--muted); }
+    .callout {
+      border-left: 4px solid var(--lime);
+      background: #fff;
+      border: 1.5px solid var(--ink);
+      border-left-width: 6px;
+      border-radius: 12px;
+      padding: 14px 16px;
+      margin: 14px 0;
+    }
+    .callout.warn { border-left-color: #F59E0B; }
+    .callout.do { border-left-color: var(--blue); }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 10px 0 4px; }
+    th, td { border: 1px solid var(--line); padding: 9px 10px; text-align: left; vertical-align: top; }
+    th { background: var(--ivory); font-weight: 600; font-size: 12px; text-transform: uppercase; letter-spacing: 0.04em; color: var(--muted); }
+    .unit-head {
+      display: flex; align-items: center; justify-content: space-between; gap: 10px; flex-wrap: wrap;
+      margin-bottom: 8px;
+    }
+    .badge {
+      font-family: "JetBrains Mono", monospace;
+      font-size: 11px; font-weight: 700; padding: 4px 8px; border-radius: 999px;
+      border: 1.5px solid var(--ink); color: #fff;
+    }
+    .badge.cult { background: var(--cult); }
+    .badge.blaster { background: var(--blaster); }
+    .badge.sputnik { background: var(--sputnik); }
+    .tags { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0 0; }
+    .tag {
+      font-size: 13px; padding: 6px 10px; border-radius: 999px;
+      border: 1px solid var(--line); background: var(--ivory);
+    }
+    .tag em { font-style: normal; color: var(--muted); font-size: 12px; margin-left: 4px; }
+    .timeline { list-style: none; padding: 0; margin: 0; }
+    .timeline li {
+      position: relative; padding: 0 0 16px 18px; margin: 0;
+      border-left: 2px solid var(--line);
+    }
+    .timeline li:last-child { border-left-color: transparent; padding-bottom: 0; }
+    .timeline li::before {
+      content: ""; position: absolute; left: -5px; top: 6px;
+      width: 8px; height: 8px; border-radius: 50%; background: var(--blue);
+      border: 2px solid var(--paper);
+    }
+    .timeline strong { display: block; font-size: 14px; }
+    .timeline span { font-size: 13px; color: var(--muted); }
+    a { color: var(--blue); }
+    footer { margin-top: 40px; padding-top: 16px; border-top: 1px solid var(--line); font-size: 13px; color: var(--muted); }
+    @media (max-width: 560px) {
+      .wrap { padding: 20px 14px 56px; }
+      .hero { padding: 16px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="index.html">← Вернуться в онбординг</a>
+
+    <div class="hero">
+      <p class="mono">Cult Group · для Леонида · день 2</p>
+      <h1>Контекст продаж: как было и что делать сейчас</h1>
+      <p class="lede">
+        Собрано из Second Brain, коммерческих правил и чата «Группа / Продажи»
+        (списки Дениса, Лизы и Димы · 30.06–01.07). Читай целиком — это карта поля перед твоей первой неделей.
+      </p>
+      <div class="hero-grid">
+        <div class="chip"><strong>Было</strong><span>Герои + юниты, Саша вёл NB</span></div>
+        <div class="chip"><strong>Стало</strong><span>Один group sales под CRO</span></div>
+        <div class="chip"><strong>Сейчас</strong><span>Хэды пишут свою тёплую · ты — свою</span></div>
+        <div class="chip"><strong>Потом</strong><span>Гипотезы: FMCG, топ-30/100</span></div>
+      </div>
+    </div>
+
+    <section>
+      <h2><span class="n">01</span> Как продажи были устроены до тебя</h2>
+      <div class="card ink">
+        <p>Группа долго жила в модели <strong>«герои + юниты»</strong>, а не единого group sales:</p>
+        <table>
+          <tr><th>Контур</th><th>Кто вёл</th><th>CRM</th></tr>
+          <tr><td><strong>Cult NB</strong></td><td>Саша Алексеев → передача Денису</td><td>Amo Cult</td></tr>
+          <tr><td><strong>Blaster NB</strong></td><td>Саша → Лиза + партнёры</td><td>Amo Blaster</td></tr>
+          <tr><td><strong>Sputnik</strong></td><td>Дима + Сергей (реклама — Тая)</td><td>Отдельный контур</td></tr>
+          <tr><td><strong>Партнёры</strong></td><td>Саша А., Дима Солдатов, Максим</td><td>% · лид в group sales</td></tr>
+        </table>
+        <p class="note">Пороги: Cult ~от 5 млн · Blaster от сотен тысяч · Sputnik док/спец ~от 1 млн («берём» — Сергей).</p>
+      </div>
+      <div class="callout warn">
+        <strong>Боль мая 2026:</strong> много запросов → мало денег в акте; CRM-дисциплина слабая;
+        sales «исчезал» после КП; winrate Cult около 25%. Отсюда пакет правил 08–12.05 и найм group sales.
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="n">02</span> Что изменилось за последние месяцы</h2>
+      <ul class="timeline">
+        <li><strong>Апр–май</strong><span>Передача клиентов Саши: Cult → Денис, Blaster → Лиза. Пустота group NewBiz.</span></li>
+        <li><strong>07–08.05</strong><span>Ретро с тобой · handoff · синк с Костей, Денисом, Лизой. Brief-gate, «не исчезай после КП», % на повторах.</span></li>
+        <li><strong>12.05</strong><span>«Совет» по коммерции: Amo = статусы; Prodavan/iCRM — параллельно, не big-bang.</span></li>
+        <li><strong>16–18.06</strong><span>Оффер: 220к + 12% · повторы 6→3→0% · бонус 50к за пул · старт 13.07.</span></li>
+        <li><strong>30.06–01.07</strong><span>Хэды сдали списки тёплых брендов. Тактика: контакты не забираем — пишет держатель отношений.</span></li>
+        <li><strong>Июль</strong><span>Amo Cult = основная с 13.07. Ты — единая точка входа в группу. Саша А. — партнёрский SLZ за %.</span></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2><span class="n">03</span> Люди: как выстроены отношения</h2>
+      <div class="card">
+        <table>
+          <tr><th>Кто</th><th>Как с ним</th><th>Ловушка</th></tr>
+          <tr><td><strong>Дима</strong> · CRO</td><td>Коротко, next step в Amo/TG. Доступы, маршрут, блокеры.</td><td>У обоих Sputnik-привычка — не тащить всё «домой».</td></tr>
+          <tr><td><strong>Денис</strong> · Cult</td><td>Owner + срок. Без нормального брифа — нет.</td><td>Не давить темпом; он тормозит сырые развороты.</td></tr>
+          <tr><td><strong>Лиза</strong> · Blaster</td><td>Сначала «как сядет на людей».</td><td>«Готово» = команда приняла, не только логика.</td></tr>
+          <tr><td><strong>Сергей</strong> · Sputnik</td><td>Практик: «берём ли» док/неформат.</td><td>Не продавать Sputnik-формат без его OK.</td></tr>
+          <tr><td><strong>Саша А.</strong></td><td>Партнёрский % · legacy-база. Источник в Amo.</td><td>Не владелец текущей CRM.</td></tr>
+          <tr><td><strong>Костя</strong> · CEO</td><td>VIP, спор юнитов. 2–3 варианта + фиксация.</td><td>Не дублировать роль CRO.</td></tr>
+        </table>
+        <p class="note">Clifton-карта команды — в разделе «Люди» квеста. Ты закрываешь пробел: системный group NewBiz, а не «ещё один герой в юните».</p>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="n">04</span> Тактика сейчас · две волны</h2>
+      <div class="callout do">
+        <p><strong>Волна 1 (сейчас).</strong> Денис, Лиза и Дима (+ Сергей) сами заходят по <em>своей</em> тёплой базе — рассылка / касания с презой группы. Контакты не перехватываем.</p>
+        <p style="margin:10px 0 0"><strong>Твоя параллельная задача №1:</strong> собрать и активировать <em>свою</em> тёплую базу — кому уместна презентация Cult Group.</p>
+      </div>
+      <div class="callout">
+        <p><strong>Волна 2 (следующая).</strong> Тестирование гипотез и поиск ключевых контактов под группы. Категории CRO и ты соберёте отдельно. Уже известно по Cult:</p>
+        <div class="tags">
+          <span class="tag">FMCG</span>
+          <span class="tag">Топ-30 рекламодателей РФ</span>
+          <span class="tag">Топ-100 рекламодателей РФ</span>
+          <span class="tag">Примеры <em>WB · Магнит</em></span>
+        </div>
+        <p class="note" style="margin-top:10px">Полный список и приоритет — не угадывать. Сначала своя база → потом гипотезы с Димой.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="n">05</span> Действующие пулы · с кем уже работаем</h2>
+      <p class="note">Источник: чат «Группа / Продажи», 30.06.2026. Это бренды для тёплой волны хэдов — не твой холодный колл-лист.</p>
+
+      <div class="card ink" id="cult-pool">
+        <div class="unit-head">
+          <h3 style="margin:0">Cult · Денис</h3>
+          <span class="badge cult">Cult</span>
+        </div>
+        <div class="tags" id="cult-tags"></div>
+      </div>
+
+      <div class="card ink" id="blaster-pool">
+        <div class="unit-head">
+          <h3 style="margin:0">Blaster · Лиза</h3>
+          <span class="badge blaster">Blaster</span>
+        </div>
+        <p class="note" style="margin-top:0">Прямые клиенты</p>
+        <div class="tags" id="blaster-tags"></div>
+        <p class="note">Агентства / продакшны</p>
+        <div class="tags" id="blaster-agencies"></div>
+        <p class="note">Отдельно</p>
+        <div class="tags" id="blaster-extra"></div>
+      </div>
+
+      <div class="card ink" id="sputnik-pool">
+        <div class="unit-head">
+          <h3 style="margin:0">Sputnik · Дима (+ Сергей)</h3>
+          <span class="badge sputnik">Sputnik</span>
+        </div>
+        <div class="tags" id="sputnik-tags"></div>
+      </div>
+
+      <p class="note">Бонус Кости (01.07, не юнитный пул): ЦИАН · Wildberries · Манго Телеком — без его OK не писать.</p>
+    </section>
+
+    <section>
+      <h2><span class="n">06</span> Твои KPI · коротко</h2>
+      <div class="card">
+        <table>
+          <tr><th>Месяц</th><th>Фокус</th></tr>
+          <tr><td>1</td><td>Онбординг + CRM: 100% карточек с next step</td></tr>
+          <tr><td>2</td><td>3–5 квал. брифов в прод (скоринг ≥ 5)</td></tr>
+          <tr><td>3</td><td>5–7 новых брифов + 1–2 handoff (договор + предоплата)</td></tr>
+        </table>
+        <p class="note">KPI = квалифицированный бриф и handoff, не «красивый созвон». Handoff = договор + предоплата → продюсер; ты остаёшься в контуре.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="n">07</span> Ловушки</h2>
+      <div class="card">
+        <ol>
+          <li><strong>Sputnik-bias</strong> — не уводить каждый лид в Sputnik. Сначала скоринг и порог юнита.</li>
+          <li><strong>Ghost КП</strong> — не пропадать после КП. Вести до handoff.</li>
+          <li><strong>Сырой бриф</strong> — без полей/скоринга ≥5 Денис и Лиза отрежут.</li>
+          <li><strong>Чужие тёплые</strong> — не перехватывать контакты хэдов. Своя база + гипотезы с CRO.</li>
+          <li><strong>Две CRM</strong> — новые сделки группы с 13.07 → Amo Cult. Prodavan — после демо.</li>
+        </ol>
+      </div>
+    </section>
+
+    <section>
+      <h2><span class="n">08</span> Что открыть следом</h2>
+      <div class="card">
+        <ul>
+          <li><a href="rules-summary.html">Коммерческие правила · кратко</a></li>
+          <li><a href="index.html">Квест · программа по дням</a> — день 2 (CRM) · день 4–7 (своя база) · день 7 (разбор с CRO)</li>
+          <li><a href="https://cosmovisioner.github.io/sputnik-films-deck/cult-group/" target="_blank" rel="noopener">Презентация Cult Group</a> — то, что шлёшь тёплой базе</li>
+          <li>GDoc: передача дел Саши · критерии брифа · полный коммерческий документ — ссылки в квесте</li>
+        </ul>
+      </div>
+    </section>
+
+    <footer>
+      Собрано для онбординга Леонида Мархашова · Cult Group · июль 2026.<br />
+      Списки пулов — снимок на 30.06.2026; актуальный статус уточняй у CRO.
+    </footer>
+  </div>
+
+  <script>
+    (async function () {
+      function tags(el, items) {
+        if (!el || !items) return;
+        el.innerHTML = items.map(function (c) {
+          var note = c.note ? " <em>· " + c.note + "</em>" : "";
+          return '<span class="tag">' + c.name + note + "</span>";
+        }).join("");
+      }
+      try {
+        var r = await fetch("data/client_pools.json?v=20260712-v30");
+        var d = await r.json();
+        var by = {};
+        (d.units || []).forEach(function (u) { by[u.id] = u; });
+        tags(document.getElementById("cult-tags"), by.cult && by.cult.clients);
+        tags(document.getElementById("blaster-tags"), by.blaster && by.blaster.clients);
+        tags(document.getElementById("blaster-agencies"), by.blaster && by.blaster.agencies);
+        tags(document.getElementById("blaster-extra"), by.blaster && by.blaster.extra);
+        tags(document.getElementById("sputnik-tags"), by.sputnik && by.sputnik.clients);
+      } catch (e) {
+        document.getElementById("cult-tags").innerHTML = "<span class=\"note\">Не загрузился список — обнови страницу или открой data/client_pools.json</span>";
+      }
+    })();
+  </script>
+</body>
+</html>
