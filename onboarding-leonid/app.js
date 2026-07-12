@@ -7,7 +7,7 @@
   const ACCESS_KEY = "sb-onboarding-leonid-access";
   const QUEST_KEY = "sb-onboarding-leonid-quest-step";
   const MODE_KEY = "sb-onboarding-leonid-program-mode";
-  const ASSET_VER = "20260712-v49";
+  const ASSET_VER = "20260712-v50";
 
   const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya", "alya_dudenkova"]);
 
@@ -865,8 +865,8 @@
     return `
       <div class="nav-row quest-nav quest-decision">
         ${showBack ? `<button type="button" class="btn" id="${backId || "prevQuest"}">← Назад</button>` : ""}
-        <button type="button" class="btn btn-done ${isDone ? "is-active" : ""}" data-quest-done data-step="${stepId}" data-task="${taskId}">Сделано</button>
         <button type="button" class="btn btn-skip" data-quest-skip data-step="${stepId}" data-task="${taskId}">Пропустить</button>
+        <button type="button" class="btn btn-done ${isDone ? "is-active" : ""}" data-quest-done data-step="${stepId}" data-task="${taskId}">Сделано</button>
       </div>`;
   }
 
@@ -962,8 +962,8 @@
           </div>
           ${path.length ? `<div class="task-path">${path.map(p => renderPathItem(p, step.id)).join("")}</div>` : ""}
           <div class="task-decision">
-            <button type="button" class="btn btn-done ${isDone ? "is-active" : ""}" data-quest-done data-step="${step.id}" data-task="${task.id}">Сделано</button>
             <button type="button" class="btn btn-skip" data-quest-skip data-step="${step.id}" data-task="${task.id}" data-quest-idx="${qIdx}">Пропустить</button>
+            <button type="button" class="btn btn-done ${isDone ? "is-active" : ""}" data-quest-done data-step="${step.id}" data-task="${task.id}">Сделано</button>
           </div>
         </div>`;
     });
