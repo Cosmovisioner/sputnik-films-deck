@@ -86,12 +86,6 @@
       "avatar": "assets/avatars/tatiana_cota.jpg",
       "howToWrite": "CEO СнупДок (snoop-doc.ru), офис и площадки холдинга"
     },
-    "nadezhda_belyakova": {
-      "telegram": "https://t.me/borisovaaaan",
-      "telegramLabel": "@borisovaaaan",
-      "avatar": "assets/avatars/borisovaaaan.jpg",
-      "howToWrite": "PR и ивенты холдинга"
-    },
     "eva_prod": {
       "telegram": "https://t.me/Eva_prod",
       "telegramLabel": "@Eva_prod",
@@ -103,22 +97,6 @@
       "telegramLabel": "@se_leverk",
       "avatar": "assets/avatars/se_leverk.jpg",
       "howToWrite": "Елизавета Никонова (@se_leverk) — Production Assistant cult.team: календарь, созвоны хэдов. В чатах могут звать по нику профиля; для слотов Денис/Лиза/Сергей — пиши ей или Диме."
-    },
-    "daria_kiryukhina": {
-      "telegram": "https://t.me/KiryukhinaD",
-      "telegramLabel": "@KiryukhinaD",
-      "avatar": "assets/avatars/KiryukhinaD.jpg",
-      "howToWrite": "Developer — tech-задачи группы, не CRM"
-    },
-    "zhenya_gmouse": {
-      "telegram": "https://t.me/gmouse90",
-      "telegramLabel": "@gmouse90",
-      "howToWrite": "R&S и вайбкодинг — через Егора или Диму"
-    },
-    "evgenia_qalista": {
-      "telegram": "https://t.me/qalista",
-      "telegramLabel": "@qalista",
-      "howToWrite": "R&S команда, вайб-кружок"
     },
     "alya_dudenkova": {
       "telegram": "https://t.me/DudenkovaA",
