@@ -7,7 +7,8 @@
   const ACCESS_KEY = "sb-onboarding-leonid-access";
   const QUEST_KEY = "sb-onboarding-leonid-quest-step";
   const MODE_KEY = "sb-onboarding-leonid-program-mode";
-  const ASSET_VER = "20260712-v59";
+  const QUIZ_KEY = "sb-onboarding-leonid-quiz";
+  const ASSET_VER = "20260712-v60";
 
   const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya", "alya_dudenkova"]);
 
@@ -40,6 +41,7 @@
     "Cult": "cult",
     "Blaster": "blaster",
     "Sputnik": "sputnik",
+    "Sputnik Films": "sputnik",
     "TechTigers": "techtigers",
     "ТехноТигры": "techtigers",
     "Партнёр": "partner_slz",
@@ -67,7 +69,9 @@
   let accessChecklist = null;
   let skillsHub = null;
   let clientPools = null;
+  let rulesQuiz = null;
   let accessState = loadAccessState();
+  let quizState = loadQuizState();
   let state = loadState();
   let currentView = "program";
   let currentDayIdx = 0;
@@ -87,6 +91,43 @@
 
   function saveAccessState() {
     localStorage.setItem(ACCESS_KEY, JSON.stringify(accessState));
+  }
+
+  function loadQuizState() {
+    try {
+      const raw = localStorage.getItem(QUIZ_KEY);
+      if (raw) return JSON.parse(raw);
+    } catch (_) {}
+    return {};
+  }
+
+  function saveQuizState() {
+    localStorage.setItem(QUIZ_KEY, JSON.stringify(quizState));
+  }
+
+  function isQuizPassed(quizId) {
+    return !!(quizState[quizId] && quizState[quizId].passed);
+  }
+
+  function quizGateIdx() {
+    return buildQuestPath().findIndex(q => q.taskId === "rules_quiz");
+  }
+
+  function blockPastQuiz(targetIdx) {
+    const qIdx = quizGateIdx();
+    if (qIdx < 0) return false;
+    return targetIdx > qIdx && !isQuizPassed("rules_day6");
+  }
+
+  function canCompleteTask(stepId, taskId) {
+    if (String(stepId) === "6" && taskId === "rules_quiz") {
+      return isQuizPassed("rules_day6");
+    }
+    return true;
+  }
+
+  function quizGateMessage() {
+    return "Сначала сдай тест по правилам: нужно ≥18 из 20. Пока тест не сдан — дальше нельзя.";
   }
 
   function userProfile() {
@@ -253,7 +294,13 @@
   function goToQuest(idx) {
     const path = buildQuestPath();
     if (!path.length) return;
-    currentQuestIdx = Math.max(0, Math.min(idx, path.length - 1));
+    let next = Math.max(0, Math.min(idx, path.length - 1));
+    if (blockPastQuiz(next)) {
+      const qIdx = quizGateIdx();
+      next = qIdx >= 0 ? qIdx : next;
+      window.alert(quizGateMessage());
+    }
+    currentQuestIdx = next;
     currentDayIdx = path[currentQuestIdx].dayIdx;
     saveQuestIdx();
     setView("program");
@@ -487,6 +534,15 @@
 
   function goToDay(idx) {
     if (idx < 0 || idx >= steps.length) return;
+    if (idx > 5 && !isQuizPassed("rules_day6")) {
+      window.alert(quizGateMessage());
+      const qIdx = quizGateIdx();
+      if (qIdx >= 0) {
+        goToQuest(qIdx);
+        return;
+      }
+      idx = 5;
+    }
     currentDayIdx = idx;
     const path = buildQuestPath();
     const firstOfDay = path.findIndex(q => q.dayIdx === idx);
@@ -822,12 +878,115 @@
     </div>`;
   }
 
+  function renderQuizHtml(quizId) {
+    const quiz = rulesQuiz && rulesQuiz.id === quizId ? rulesQuiz : rulesQuiz;
+    if (!quiz || !quiz.questions) {
+      return `<p class="path-empty">Тест не загрузился — обнови страницу или напиши Диме.</p>`;
+    }
+    const passed = isQuizPassed(quiz.id);
+    const prev = quizState[quiz.id] || {};
+    if (passed) {
+      return `<div class="quiz-wrap quiz-passed">
+        <p class="path-callout">Тест сдан: ${prev.score || quiz.pass_score}/${quiz.questions.length}. Можно идти дальше.</p>
+        <button type="button" class="btn" data-quiz-retry="${esc(quiz.id)}">Пройти ещё раз</button>
+      </div>`;
+    }
+    const qs = quiz.questions.map((q, qi) => {
+      const opts = (q.options || []).map((opt, oi) =>
+        `<label class="quiz-option"><input type="radio" name="quiz_${esc(quiz.id)}_${qi}" value="${oi}" /><span>${esc(opt)}</span></label>`
+      ).join("");
+      return `<fieldset class="quiz-q" data-q-idx="${qi}">
+        <legend>${qi + 1}. ${esc(q.text)}</legend>
+        ${opts}
+        <div class="quiz-feedback" hidden></div>
+      </fieldset>`;
+    }).join("");
+    return `<div class="quiz-wrap" data-quiz-id="${esc(quiz.id)}">
+      <p class="path-callout">${esc(quiz.intro || "")}</p>
+      <p class="path-note">Проходной балл: <strong>≥${quiz.pass_score}</strong> из ${quiz.questions.length}.</p>
+      <form class="quiz-form">${qs}
+        <button type="submit" class="btn btn-done">Проверить ответы</button>
+      </form>
+      <div class="quiz-result" hidden></div>
+    </div>`;
+  }
+
+  function bindQuiz(container) {
+    container.querySelectorAll("[data-quiz-retry]").forEach(btn => {
+      btn.addEventListener("click", () => {
+        const id = btn.dataset.quizRetry;
+        delete quizState[id];
+        saveQuizState();
+        if (state["step_6"]) delete state["step_6"].rules_quiz;
+        saveState();
+        renderMain();
+      });
+    });
+    container.querySelectorAll(".quiz-form").forEach(form => {
+      form.addEventListener("submit", e => {
+        e.preventDefault();
+        const wrap = form.closest(".quiz-wrap");
+        const quizId = wrap && wrap.dataset.quizId;
+        const quiz = rulesQuiz;
+        if (!quiz || quiz.id !== quizId) return;
+        let score = 0;
+        const details = [];
+        quiz.questions.forEach((q, qi) => {
+          const checked = form.querySelector(`input[name="quiz_${quiz.id}_${qi}"]:checked`);
+          const chosen = checked ? parseInt(checked.value, 10) : -1;
+          const ok = chosen === q.answer;
+          if (ok) score += 1;
+          const field = form.querySelector(`.quiz-q[data-q-idx="${qi}"]`);
+          const fb = field && field.querySelector(".quiz-feedback");
+          if (fb) {
+            fb.hidden = false;
+            if (ok) {
+              fb.className = "quiz-feedback quiz-ok";
+              fb.textContent = "Верно.";
+            } else {
+              fb.className = "quiz-feedback quiz-bad";
+              const correct = q.options[q.answer];
+              fb.innerHTML = `<strong>Неверно.</strong> Правильно: ${esc(correct)}<br/><span class="quiz-source">Где взять: ${esc(q.source || "")}</span><br/><span class="quiz-explain">${esc(q.explain || "")}</span>`;
+            }
+          }
+          details.push({ id: q.id, ok, chosen });
+        });
+        const pass = score >= (quiz.pass_score || 18);
+        quizState[quiz.id] = { passed: pass, score, at: Date.now(), details };
+        saveQuizState();
+        const result = wrap.querySelector(".quiz-result");
+        if (result) {
+          result.hidden = false;
+          result.className = "quiz-result " + (pass ? "quiz-ok" : "quiz-bad");
+          result.innerHTML = pass
+            ? `<strong>Сдано: ${score}/${quiz.questions.length}.</strong> Можно нажать «Сделано» и идти дальше.`
+            : `<strong>Не сдано: ${score}/${quiz.questions.length}.</strong> Нужно ≥${quiz.pass_score}. Исправь ошибки (подсказки выше) и попробуй снова.`;
+        }
+        if (pass) {
+          setTaskDone(6, "rules_quiz", true);
+          renderMain();
+        }
+      });
+    });
+  }
+
   function renderPathItem(item, stepId) {
     if (item.kind === "step") {
       return "";
     }
     if (item.kind === "note") {
       return `<div class="path-callout">${esc(item.text)}</div>`;
+    }
+    if (item.kind === "quiz") {
+      return renderQuizHtml(item.id || "rules_day6");
+    }
+    if (item.kind === "view") {
+      return pathCtaHtml({
+        title: item.title || "Открыть раздел",
+        cta: item.cta || "Открыть",
+        attrs: ` data-view="${esc(item.view || "")}"`,
+        tag: "button"
+      });
     }
     if (item.kind === "questions") {
       const items = item.items || [];
@@ -1047,11 +1206,16 @@
 
   function renderQuestDecisionBar(opts) {
     const { stepId, taskId, isDone, showBack, backId } = opts;
+    const gated = !canCompleteTask(stepId, taskId);
+    const gateHint = gated
+      ? `<p class="path-note quiz-gate-hint">${esc(quizGateMessage())}</p>`
+      : "";
     return `
+      ${gateHint}
       <div class="nav-row quest-nav quest-decision">
         ${showBack ? `<button type="button" class="btn" id="${backId || "prevQuest"}">← Назад</button>` : ""}
-        <button type="button" class="btn btn-skip" data-quest-skip data-step="${stepId}" data-task="${taskId}">Пропустить</button>
-        <button type="button" class="btn btn-done ${isDone ? "is-active" : ""}" data-quest-done data-step="${stepId}" data-task="${taskId}">Сделано</button>
+        <button type="button" class="btn btn-skip" data-quest-skip data-step="${stepId}" data-task="${taskId}" ${gated ? "disabled" : ""}>Пропустить</button>
+        <button type="button" class="btn btn-done ${isDone ? "is-active" : ""}" data-quest-done data-step="${stepId}" data-task="${taskId}" ${gated ? "disabled" : ""}>Сделано</button>
       </div>`;
   }
 
@@ -1117,6 +1281,7 @@
       const isOpen = expandedTasks[key];
       const isDone = !!stepTasks[task.id];
       const qIdx = buildQuestPath().findIndex(q => q.key === key);
+      const gated = !canCompleteTask(step.id, task.id);
       tasksHtml += `
         <div class="task-item ${isOpen ? "open" : ""} ${isDone ? "done" : ""}" data-task-key="${key}">
           <div class="task-head">
@@ -1126,8 +1291,9 @@
           </div>
           ${path.length ? `<div class="task-path">${renderPathBlocks(path, step.id)}</div>` : ""}
           <div class="task-decision">
-            <button type="button" class="btn btn-skip" data-quest-skip data-step="${step.id}" data-task="${task.id}" data-quest-idx="${qIdx}">Пропустить</button>
-            <button type="button" class="btn btn-done ${isDone ? "is-active" : ""}" data-quest-done data-step="${step.id}" data-task="${task.id}">Сделано</button>
+            ${gated ? `<p class="path-note quiz-gate-hint">${esc(quizGateMessage())}</p>` : ""}
+            <button type="button" class="btn btn-skip" data-quest-skip data-step="${step.id}" data-task="${task.id}" data-quest-idx="${qIdx}" ${gated ? "disabled" : ""}>Пропустить</button>
+            <button type="button" class="btn btn-done ${isDone ? "is-active" : ""}" data-quest-done data-step="${step.id}" data-task="${task.id}" ${gated ? "disabled" : ""}>Сделано</button>
           </div>
         </div>`;
     });
@@ -1541,6 +1707,16 @@
     const skillsFolder = basePath + "skills_pack/";
     const packFolder = basePath + (meta.pack_folder || "agent_pack_leonid_sales/");
 
+    const faq = (meta.faq || []).map(f =>
+      `<div class="faq-item"><h4 class="faq-q">${esc(f.q)}</h4><p class="faq-a">${esc(f.a)}</p></div>`
+    ).join("");
+    const skillsCat = (meta.skills_catalog || []).map(s =>
+      `<tr><td><code>${esc(s.name)}</code></td><td>${esc(s.use)}</td></tr>`
+    ).join("");
+    const rolesCat = (meta.roles_catalog || []).map(s =>
+      `<tr><td><code>${esc(s.name)}</code></td><td>${esc(s.use)}</td></tr>`
+    ).join("");
+
     const cards = (skillsHub.skills || []).map(sk => {
       let body = `<p class="card-intro">${esc(sk.summary)}</p>`;
       body += `<p class="path-note"><strong>Триггеры:</strong> ${esc(sk.triggers)}</p>`;
@@ -1572,14 +1748,19 @@
         <h2 class="card-title">${esc(meta.title || "Скиллы Cursor")}</h2>
         <p class="card-intro">${esc(meta.pack_note || "")}</p>
         ${meta.help_note ? `<p class="path-note">${esc(meta.help_note)}</p>` : ""}
-        <h3 class="section-heading">${esc(meta.install_title || "Установка")}</h3>
+        <h3 class="section-heading">${esc(meta.faq_title || "FAQ")}</h3>
+        <div class="faq-list">${faq}</div>
+        <h3 class="section-heading" style="margin-top:18px">${esc(meta.install_title || "Установка")}</h3>
         <ul class="hint-list">${install}</ul>
         <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:8px">
           <a class="contact-btn primary" href="${zipUrl}" download>⬇️ Agent-pack ZIP</a>
           <a class="contact-btn" href="${packFolder}README.md" target="_blank" rel="noopener">README установки</a>
-          <a class="contact-btn" href="${skillsFolder}" target="_blank" rel="noopener">skills_pack (3 Cult)</a>
-          <button type="button" class="contact-btn" data-view="decks">Deck-router в презентациях</button>
+          <button type="button" class="contact-btn" data-person="dima">Написать Диме</button>
         </div>
+        ${skillsCat ? `<h3 class="section-heading" style="margin-top:18px">Скиллы в пакете</h3>
+        <div class="sales-table-wrap"><table class="sales-table"><thead><tr><th>Скилл</th><th>Зачем</th></tr></thead><tbody>${skillsCat}</tbody></table></div>` : ""}
+        ${rolesCat ? `<h3 class="section-heading" style="margin-top:18px">Роли в пакете</h3>
+        <div class="sales-table-wrap"><table class="sales-table"><thead><tr><th>Роль</th><th>Зачем</th></tr></thead><tbody>${rolesCat}</tbody></table></div>` : ""}
       </div>
       ${cards}`;
   }
@@ -1630,6 +1811,10 @@
     main.querySelectorAll("[data-quest-done]").forEach(btn => {
       btn.addEventListener("click", e => {
         e.stopPropagation();
+        if (!canCompleteTask(btn.dataset.step, btn.dataset.task)) {
+          window.alert(quizGateMessage());
+          return;
+        }
         setTaskDone(btn.dataset.step, btn.dataset.task, true);
         if (programMode === "focus") advanceQuestAfterAction();
         else renderMain();
@@ -1639,6 +1824,10 @@
     main.querySelectorAll("[data-quest-skip]").forEach(btn => {
       btn.addEventListener("click", e => {
         e.stopPropagation();
+        if (!canCompleteTask(btn.dataset.step, btn.dataset.task)) {
+          window.alert(quizGateMessage());
+          return;
+        }
         setTaskDone(btn.dataset.step, btn.dataset.task, false);
         if (programMode === "focus") {
           advanceQuestAfterAction();
@@ -1711,6 +1900,7 @@
     });
 
     bindPathActions(main);
+    bindQuiz(main);
 
     main.querySelectorAll("[data-access-id]").forEach(cb => {
       cb.addEventListener("change", () => {
@@ -1757,7 +1947,7 @@
 
   async function init() {
     try {
-      const [stepsData, teamRes, resRes, chatsRes, decksRes, pathsRes, contactsRes, salesRes, accessRes, skillsRes, poolsRes] = await Promise.all([
+      const [stepsData, teamRes, resRes, chatsRes, decksRes, pathsRes, contactsRes, salesRes, accessRes, skillsRes, poolsRes, quizRes] = await Promise.all([
         fetch("data/steps.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
         fetch("data/team.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
         fetch("data/resources.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
@@ -1768,7 +1958,8 @@
         fetch("data/sales_snapshot.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
         fetch("data/access_checklist.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
         fetch("data/skills_hub.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
-        fetch("data/client_pools.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); })
+        fetch("data/client_pools.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
+        fetch("data/rules_quiz.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); })
       ]);
       steps = stepsData.steps;
       stepsMeta = stepsData.meta || {};
@@ -1782,6 +1973,7 @@
       accessChecklist = accessRes;
       skillsHub = skillsRes;
       clientPools = poolsRes;
+      rulesQuiz = quizRes;
     } catch (_) {
       document.getElementById("loadError").hidden = false;
       return;

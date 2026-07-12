@@ -648,50 +648,20 @@
       "avoid": "Sales Sputnik и CRM — к Диме"
     },
     {
-      "id": "nadezhda_belyakova",
-      "category": "holding",
-      "name": "Надежда Белякова",
-      "role": "PR и ивенты · холдинг",
-      "unit": "Холдинг",
-      "unitId": "uk",
-      "initials": "НБ",
-      "photo": "assets/avatars/borisovaaaan.jpg",
-      "bio_short": "PR, публичные мероприятия, представительство на ивентах.",
-      "lore": "Публичный профиль @borisovaaaan — Надежда Белякова. Тегают в «Супертопах» на публичные активности — ярмарка non/fiction, PR-контур группы.",
-      "tasks": [
-        "PR и ивенты",
-        "Публичное представительство"
-      ],
-      "clifton_themes": [],
-      "clifton_tab": null,
-      "clifton_url": null,
-      "clifton_hint": "Профиль в таблице команды — по мере добавления.",
-      "strengths": [
-        "PR и ивенты"
-      ],
-      "watch_out": [
-        "Не sales-операционка"
-      ],
-      "contact_when": [
-        "PR, ивенты, публичные активности группы"
-      ],
-      "avoid": "Коммерческие условия сделок"
-    },
-    {
       "id": "eva_prod",
-      "category": "holding",
-      "name": "Ева Koz",
-      "role": "Junior продюсер · Prod / AI",
-      "unit": "Холдинг",
-      "unitId": "uk",
+      "category": "staff",
+      "name": "Ева",
+      "role": "Младший продюсер · ассистент Кати Тюриной",
+      "unit": "Sputnik Films",
+      "unitId": "sputnik",
       "initials": "ЕK",
       "photo": "assets/avatars/Eva_prod.jpg",
-      "bio_short": "Junior продюсер штата УК: сметы, тендеры, AI-инструменты на пресейлах.",
-      "lore": "Профиль @Eva_prod — Prod / AI. По правилам группы (июнь 2026): junior продюсер в штате УК, перепыление 60% Blaster / 20% Cult / 20% Sputnik. Активна в «Blaster × Sputnik / Продажи» и продюсерском чате.",
+      "bio_short": "Sputnik Films: ассистент Кати Тюриной и младший продюсер.",
+      "lore": "Ева (@Eva_prod) — в Sputnik Films: ассистент Кати Тюриной и младший продюсер. Не R&S / не холдинговый junior УК.",
       "tasks": [
-        "Сметы и тендеры",
-        "Пресейлы Blaster × Sputnik",
-        "Prod / AI на пресейлах"
+        "Ассистирование Кате Тюриной",
+        "Младшее продюсирование Sputnik",
+        "Операционка продакшена Sputnik"
       ],
       "clifton_themes": [],
       "clifton_tab": null,
@@ -702,10 +672,11 @@
         "Кросс-юнитные пресейлы"
       ],
       "watch_out": [
-        "Не заменяет sales-контур — маршрут через Диму и Amo"
+        "Не sales-лид — маршрут сделок через Диму и Amo"
       ],
       "contact_when": [
-        "Смета, тендер, продюсерский статус по Sputnik/Blaster"
+        "Продюсерские вопросы Sputnik через Катю / Еву",
+        "Статус по продакшену Sputnik"
       ],
       "avoid": "Обещать клиенту условия без Димы и хэда юнита"
     },
@@ -774,101 +745,6 @@
         "Только до 01.08 и только через Диму — если CRO явно скажет подключить"
       ],
       "avoid": "Писать Хомичу напрямую по сделкам; строить процесс «через Хомича» после 1 августа"
-    },
-    {
-      "id": "daria_kiryukhina",
-      "category": "holding",
-      "name": "Дарья",
-      "role": "Developer",
-      "unit": "Холдинг",
-      "unitId": "uk",
-      "initials": "Д",
-      "photo": "assets/avatars/KiryukhinaD.jpg",
-      "bio_short": "Разработчик в tech-контуре группы (@KiryukhinaD).",
-      "lore": "Публичный профиль @KiryukhinaD — Developer. Тегают в tech-чатах по почте, доменам и compliance (Gmail → российские провайдеры) вместе с Таней Захаровой.",
-      "tasks": [
-        "Разработка",
-        "Tech-задачи группы",
-        "Compliance-проекты"
-      ],
-      "clifton_themes": [],
-      "clifton_tab": null,
-      "clifton_url": null,
-      "clifton_hint": "Профиль в таблице команды — по мере добавления.",
-      "strengths": [
-        "Разработка",
-        "Tech-задачи группы"
-      ],
-      "watch_out": [
-        "Не CRM Prodavan — только через Диму"
-      ],
-      "contact_when": [
-        "Tech-задачи, compliance-проекты — через Диму или Егора"
-      ],
-      "avoid": "CRM Prodavan и sales-автоматизация — к Диме"
-    },
-    {
-      "id": "zhenya_gmouse",
-      "category": "holding",
-      "name": "Женя",
-      "role": "Робот и сыновья · AI-first команда",
-      "unit": "ТехноТигры",
-      "unitId": "techtigers",
-      "initials": "Ж",
-      "photo": null,
-      "bio_short": "Команда R&S: вайбкодинг, агенты, курс «Оно само».",
-      "lore": "Добавлен в «Вайб-кружок» как AI-first из Robots & Sons. Обсуждает агентов и автоматизацию вместе с Егором.",
-      "tasks": [
-        "R&S продукты",
-        "Вайб-кружок",
-        "AI-внедрения"
-      ],
-      "clifton_themes": [],
-      "clifton_tab": null,
-      "clifton_url": null,
-      "clifton_hint": "Профиль в таблице команды — по мере добавления.",
-      "strengths": [
-        "AI-first подход",
-        "R&S контур"
-      ],
-      "watch_out": [
-        "Не sales CRM"
-      ],
-      "contact_when": [
-        "R&S продукты, обучение, AI-кейсы для клиента"
-      ],
-      "avoid": "Продажи CRM — к Диме"
-    },
-    {
-      "id": "evgenia_qalista",
-      "category": "holding",
-      "name": "Евгения",
-      "role": "Робот и сыновья · AI-first команда",
-      "unit": "ТехноТигры",
-      "unitId": "techtigers",
-      "initials": "Е",
-      "photo": null,
-      "bio_short": "Команда R&S в «Вайб-кружке» — агенты и автоматизация.",
-      "lore": "Профиль @qalista — Евгения. Вместе с Женей (@gmouse90) и Евой — core-команда R&S в кружке вайбкодинга.",
-      "tasks": [
-        "R&S",
-        "Вайб-кружок",
-        "AI-автоматизация"
-      ],
-      "clifton_themes": [],
-      "clifton_tab": null,
-      "clifton_url": null,
-      "clifton_hint": "Профиль в таблице команды — по мере добавления.",
-      "strengths": [
-        "AI и автоматизация"
-      ],
-      "watch_out": [
-        "Не sales-контур"
-      ],
-      "contact_when": [
-        "R&S, AI-продукты, вайбкодинг"
-      ],
-      "avoid": "Коммерция сделки — через Диму"
     },
     {
       "id": "alya_dudenkova",

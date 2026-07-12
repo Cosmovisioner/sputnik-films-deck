@@ -1,6 +1,6 @@
 {
   "meta": {
-    "title": "Агентный пакет · скиллы и роли",
+    "title": "Скиллы и роли · FAQ",
     "install_title": "Как установить в Cursor / Codex",
     "install_steps": [
       "Скачай ZIP agent_pack (кнопка / ссылка ниже) — один архив со всем нужным",
@@ -13,7 +13,130 @@
     "pack_url": "assets/agent_pack_leonid_sales_2026_07.zip",
     "pack_folder": "agent_pack_leonid_sales/",
     "pack_note": "Полный пакет: 14 скиллов · 11 ролей · лекции · банк возражений · токены · ТЗ парсера/рассылки. Без паролей. Презентации юнитов — запроси у команды отдельно.",
-    "help_note": "Помощь с установкой агентов, нейросетями и workflow — отдельные звонки с CRO."
+    "help_note": "Помощь с установкой агентов, нейросетями и workflow — отдельные звонки с CRO.",
+    "faq_title": "FAQ · что есть и как пользоваться",
+    "faq": [
+      {
+        "q": "С чего начать?",
+        "a": "Скачай ZIP → закинь в Cursor или Codex → попроси распаковать skills/ и roles/. Триггеры: «скоринг лида», «brief gate», «какую презу»."
+      },
+      {
+        "q": "Чем скилл отличается от роли?",
+        "a": "Скилл — конкретный процесс (скоринг, бриф, deck). Роль — режим мышления («работай как sales-newbiz / CRO»)."
+      },
+      {
+        "q": "Что ставить первым?",
+        "a": "cult-group-lead-scoring, cult-group-brief-gate, cult-group-deck-router, затем sales-newbiz и роль коммерческого директора для Лёни."
+      },
+      {
+        "q": "Не встаёт / агент не видит файлы?",
+        "a": "Напиши Диме. Отдельный созвон по установке — норма."
+      }
+    ],
+    "skills_catalog": [
+      {
+        "name": "cult-group-lead-scoring",
+        "use": "Оценка лида, порог ≥5"
+      },
+      {
+        "name": "cult-group-brief-gate",
+        "use": "8 полей брифа перед handoff"
+      },
+      {
+        "name": "cult-group-deck-router",
+        "use": "Какую презу и кому звонить"
+      },
+      {
+        "name": "cult-group-deck",
+        "use": "Сборка HTML-дека Cult Group"
+      },
+      {
+        "name": "sales-newbiz",
+        "use": "Аутрич, воронка, CRM-гигиена"
+      },
+      {
+        "name": "crm-company-dossier",
+        "use": "Досье на компанию"
+      },
+      {
+        "name": "crm-contact-factcheck",
+        "use": "Проверка контактов без выдумок"
+      },
+      {
+        "name": "call-prep",
+        "use": "Подготовка к созвону"
+      },
+      {
+        "name": "meeting-report-prod",
+        "use": "Отчёт о встрече"
+      },
+      {
+        "name": "meeting-transcript-pipeline",
+        "use": "Транскрипт → саммари"
+      },
+      {
+        "name": "sputnik-films-deck",
+        "use": "Деки Sputnik"
+      },
+      {
+        "name": "google-slides-builder",
+        "use": "Google Slides"
+      },
+      {
+        "name": "sales-top-performer-digitize",
+        "use": "Оцифровка сильных продаж"
+      },
+      {
+        "name": "vtb-invoice-bot",
+        "use": "Счета (служебно)"
+      }
+    ],
+    "roles_catalog": [
+      {
+        "name": "role_sales_newbiz",
+        "use": "Базовая роль sales / newbiz"
+      },
+      {
+        "name": "role_commercial_director_cult_group_for_leonid",
+        "use": "Как думать рядом с CRO"
+      },
+      {
+        "name": "role_account_manager_client_producer",
+        "use": "Клиент ↔ продакшен"
+      },
+      {
+        "name": "role_strategic_partner",
+        "use": "Приоритеты и фокус"
+      },
+      {
+        "name": "role_coo_operating_director",
+        "use": "Операционка и handoff"
+      },
+      {
+        "name": "role_brand_director",
+        "use": "Позиционирование"
+      },
+      {
+        "name": "role_marketer",
+        "use": "Маркетинг (по запросу)"
+      },
+      {
+        "name": "role_graphic_designer",
+        "use": "Визуал / слайды"
+      },
+      {
+        "name": "role_ai_trendwatcher_automation_specialist",
+        "use": "AI-стек"
+      },
+      {
+        "name": "role_grounded_coach_isionism",
+        "use": "Фокус, антираспыление"
+      },
+      {
+        "name": "role_meeting_analyst",
+        "use": "Разбор встреч"
+      }
+    ]
   },
   "skills": [
     {
@@ -62,10 +185,30 @@
       "triggers": "«какую презу показать», «deck для клиента», «маршрутизация лида»",
       "summary": "Тип лида → юнит → презентация → кого звать на созвон.",
       "routes": [
-        { "signal": "Реклама, ролик, съёмка", "unit": "Cult", "deck": "Преза Cult + шоурил", "who": "Денис" },
-        { "signal": "CG, motion, 3D, мультимедиа", "unit": "Blaster", "deck": "Преза Blaster", "who": "Лиза" },
-        { "signal": "Док, спецпроект, шоу", "unit": "Sputnik", "deck": "One-pager Sputnik", "who": "Сергей (+ Тая)" },
-        { "signal": "Неясно / холод", "unit": "Группа", "deck": "Cult Group deck", "who": "Sales / Дима" }
+        {
+          "signal": "Реклама, ролик, съёмка",
+          "unit": "Cult",
+          "deck": "Преза Cult + шоурил",
+          "who": "Денис"
+        },
+        {
+          "signal": "CG, motion, 3D, мультимедиа",
+          "unit": "Blaster",
+          "deck": "Преза Blaster",
+          "who": "Лиза"
+        },
+        {
+          "signal": "Док, спецпроект, шоу",
+          "unit": "Sputnik",
+          "deck": "One-pager Sputnik",
+          "who": "Сергей (+ Тая)"
+        },
+        {
+          "signal": "Неясно / холод",
+          "unit": "Группа",
+          "deck": "Cult Group deck",
+          "who": "Sales / Дима"
+        }
       ],
       "group_deck": "https://cosmovisioner.github.io/sputnik-films-deck/cult-group/"
     },
