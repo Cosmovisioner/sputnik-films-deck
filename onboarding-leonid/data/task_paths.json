@@ -38,7 +38,7 @@
       "kind": "telegram",
       "personId": "dima",
       "label": "Написать Диме · запрос доступов",
-      "prefill": "Привет, Дима! Стартую онбординг (день 1). Проверь / выдай доступы:\n\n☐ Drive Культ-группа + Коммерция\n☐ Почта @cult.team\n☐ Telegram: Группа / Продажи\n☐ Telegram: Сейлз-менеджер | Культ Груп\n☐ Telegram: Коммерческий директор\n☐ Clifton access code\n☐ Cursor или Codex (инвайт/оплата)\n☐ MacWhisper или Handy\n\nAmoCRM — не сегодня, день 3.\nСпасибо!"
+      "prefill": "Привет, Дима! Стартую онбординг (день 1). Проверь / выдай доступы:\n\n☐ Drive Культ-группа + Коммерция\n☐ Почта @cult.team\n☐ Telegram: Группа / Продажи\n☐ Telegram: Сейлз | Культ Груп (ссылка в квесте)\n☐ Telegram: Коммерческий директор\n☐ Clifton access code\n☐ Cursor или Codex (инвайт/оплата)\n☐ MacWhisper или Handy\n\nAmoCRM — не сегодня, день 3.\nСпасибо!"
     },
     {
       "kind": "step",
@@ -95,6 +95,14 @@
     {
       "kind": "step",
       "text": "Чаты Telegram — отдельным шагом ниже. AmoCRM — день 3, не сегодня."
+    },
+    {
+      "kind": "step",
+      "text": "Отметь, что уже работает:"
+    },
+    {
+      "kind": "access_verify",
+      "phase": "day1"
     }
   ],
   "1.tg_join": [
@@ -244,6 +252,10 @@
     {
       "kind": "step",
       "text": "Проверь вход под своим логином"
+    },
+    {
+      "kind": "access_verify",
+      "phase": "day3"
     }
   ],
   "4.rules_nb": [

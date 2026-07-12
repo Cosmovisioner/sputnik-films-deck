@@ -7,7 +7,7 @@
   const ACCESS_KEY = "sb-onboarding-leonid-access";
   const QUEST_KEY = "sb-onboarding-leonid-quest-step";
   const MODE_KEY = "sb-onboarding-leonid-program-mode";
-  const ASSET_VER = "20260712-v52";
+  const ASSET_VER = "20260712-v53";
 
   const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya", "alya_dudenkova"]);
 
@@ -782,6 +782,16 @@
         return `<div class="path-note">TG · ${ch.name} — попроси ${ch.whoAdds} добавить</div>`;
       }).join("");
     }
+    if (item.kind === "access_verify") {
+      const phase = item.phase || "day1";
+      const verify = (accessChecklist && accessChecklist.hiree_verify) || [];
+      const items = verify.filter(x => (x.phase || "day1") === phase);
+      if (!items.length) return "";
+      return `<div class="access-verify-list path-verify">${items.map(v => {
+        const checked = accessState[v.id] ? "checked" : "";
+        return `<label class="access-row"><input type="checkbox" data-access-id="${esc(v.id)}" ${checked} /><span>${esc(v.text)}</span></label>`;
+      }).join("")}</div>`;
+    }
     return "";
   }
 
@@ -1249,7 +1259,7 @@
     return `
       <div class="card">
         <h2 class="card-title">Telegram · рабочие чаты</h2>
-        <p class="card-intro">${chats.meta?.note || ""} <button type="button" class="btn" data-view="access" style="margin-top:8px">Чеклист доступов + шаблон для Димы</button></p>
+        <p class="card-intro">${chats.meta?.note || ""} <button type="button" class="btn" data-view="access" style="margin-top:8px">Все доступы →</button></p>
         <h3 class="mono-tag" style="margin-bottom:12px">Обязательные с первого дня</h3>
         ${required.map(chatCardHtml).join("")}
         <h3 class="mono-tag" style="margin:20px 0 12px">По мере работы</h3>
@@ -1298,139 +1308,58 @@
       </div>`;
   }
 
+  function accessCardHtml(s) {
+    const res = s.resource ? findResource(s.resource) : null;
+    let link = "";
+    if (s.url) {
+      link = `<a class="contact-btn" href="${s.url}" target="_blank" rel="noopener">Открыть</a>`;
+    } else if (res && res.url) {
+      link = `<a class="contact-btn" href="${res.url}" target="_blank" rel="noopener">Открыть</a>`;
+    } else if (res && res.action) {
+      link = `<button type="button" class="contact-btn" data-view="${res.action}">Открыть раздел</button>`;
+    } else {
+      link = `<button type="button" class="contact-btn" data-person="dima">Запросить у Димы</button>`;
+    }
+    return `<div class="access-sys-card">
+      <div class="access-sys-name">${esc(s.name)}</div>
+      <div class="access-sys-meta">${esc(s.role || "")}${s.who ? " · выдаёт " + esc(s.who) : ""}</div>
+      <div class="chat-actions">${link}</div>
+    </div>`;
+  }
+
   function renderAccess() {
     if (!accessChecklist) {
-      return `<div class="card"><h2 class="card-title">Доступы</h2><p class="card-intro">Не удалось загрузить чеклист.</p></div>`;
+      return `<div class="card"><h2 class="card-title">Доступы</h2><p class="card-intro">Не удалось загрузить список.</p></div>`;
     }
-    const u = userProfile();
     const meta = accessChecklist.meta || {};
-    const verify = accessChecklist.hiree_verify || [];
-    const doneCount = verify.filter(x => accessState[x.id]).length;
-    const pct = verify.length ? Math.round((doneCount / verify.length) * 100) : 0;
-
-    const phaseOrder = ["day1", "day3", "week1", "week2"];
-    const phaseLabel = {
-      day1: "День 1 · старт",
-      day3: "День 3 · Amo",
-      week1: "Неделя 1",
-      week2: "Неделя 2 / итог"
-    };
-    let verifyHtml = "";
-    phaseOrder.forEach(phase => {
-      const items = verify.filter(x => (x.phase || "day1") === phase);
-      if (!items.length) return;
-      verifyHtml += `<h4 class="task-group-heading">${phaseLabel[phase] || phase}</h4>`;
-      verifyHtml += items.map(item => {
-        const checked = accessState[item.id] ? "checked" : "";
-        return `<label class="access-row"><input type="checkbox" data-access-id="${item.id}" ${checked} /><span>${esc(item.text)}</span></label>`;
-      }).join("");
-    });
-    const leftover = verify.filter(x => !phaseOrder.includes(x.phase || "day1"));
-    if (leftover.length) {
-      verifyHtml += leftover.map(item => {
-        const checked = accessState[item.id] ? "checked" : "";
-        return `<label class="access-row"><input type="checkbox" data-access-id="${item.id}" ${checked} /><span>${esc(item.text)}</span></label>`;
-      }).join("");
-    }
-
-    const systemsHtml = (accessChecklist.systems || []).map(s => {
-      const res = s.resource ? findResource(s.resource) : null;
-      let link = "";
-      if (s.url) {
-        link = `<a class="contact-btn" href="${s.url}" target="_blank" rel="noopener">Открыть</a>`;
-      } else if (res && res.url) {
-        link = `<a class="contact-btn" href="${res.url}" target="_blank" rel="noopener">Открыть</a>`;
-      } else if (res && res.action) {
-        link = `<button type="button" class="contact-btn" data-view="${res.action}">Открыть раздел</button>`;
-      } else {
-        link = `<button type="button" class="contact-btn" data-person="dima">Запросить у Димы</button>`;
-      }
-      const resBtn = res && res.action && s.url
-        ? `<button type="button" class="contact-btn" data-view="${res.action}">Раздел квеста →</button>`
-        : "";
+    const systemsHtml = (accessChecklist.systems || []).map(accessCardHtml).join("");
+    const docsHtml = (accessChecklist.docs || []).map(d =>
+      accessCardHtml({
+        id: d.id,
+        name: d.name,
+        url: d.url,
+        role: "документ",
+        who: "",
+        resource: d.resource
+      })
+    ).join("");
+    const tgHtml = (accessChecklist.telegram_required || []).map(t => {
+      const ch = (chats.chats || []).find(c => c.id === t.chatId);
+      if (!ch) return "";
       return `<div class="access-sys-card">
-        <div class="access-sys-name">${esc(s.name)}</div>
-        <div class="access-sys-meta">${esc(s.role)} · выдаёт ${esc(s.who)}</div>
-        <div class="chat-actions">${link}${resBtn}</div>
+        <div class="access-sys-name">${esc(ch.name)}</div>
+        <div class="access-sys-meta">Telegram · ${esc(ch.desc || "рабочий чат")}</div>
+        <div class="chat-actions">${ch.inviteUrl
+          ? `<a class="contact-btn primary" href="${ch.inviteUrl}" target="_blank" rel="noopener">Вступить</a>`
+          : `<button type="button" class="contact-btn" data-person="dima">Попросить добавить</button>`}</div>
       </div>`;
     }).join("");
 
-    const docsHtml = (accessChecklist.docs || []).map(d =>
-      `<a class="path-link" href="${d.url}" target="_blank" rel="noopener"><span class="icon">D</span><span>${esc(d.name)}</span></a>`
-    ).join("");
-
-    const crmHtml = (accessChecklist.crm_rules || []).map(r =>
-      `<tr><td>${esc(r.rule)}</td><td><strong>${esc(r.where)}</strong></td><td>${esc(r.since)}</td></tr>`
-    ).join("");
-
-    const icrmHtml = (accessChecklist.icrm_timeline || []).map(t =>
-      `<li><strong>${esc(t.when)}</strong> — ${esc(t.what)}</li>`
-    ).join("");
-
-    const tgRequired = (accessChecklist.telegram_required || []).map(t => {
-      const ch = (chats.chats || []).find(c => c.id === t.chatId);
-      if (!ch) return "";
-      return chatCardHtml(ch);
-    }).join("");
-
-    const tpl = (accessChecklist.tg_request_template || "").replace("@cult.team", u.email);
-    const preflight = accessChecklist.cro_preflight_items || [];
-    const preflightHtml = preflight.length
-      ? `<div class="card preflight-card">
-        <h3 class="section-heading">Preflight CRO · до 13.07</h3>
-        <p class="card-intro">${esc(meta.cro_preflight || "Что должно быть готово до старта.")}</p>
-        <ul class="hint-list">${preflight.map(p => `<li>${esc(p.text)}</li>`).join("")}</ul>
-        <p class="path-note">Если пункт закрыт — отметь в чеклисте ниже. Если нет — одним сообщением по шаблону.</p>
-      </div>`
-      : "";
-
     return `
       <div class="card">
-        <div class="card-meta">Чеклист по фазам · ${esc(u.name)}</div>
         <h2 class="card-title">${esc(meta.title || "Доступы")}</h2>
-        <p class="card-intro">${esc(accessChecklist.hiree_intro || meta.note || "")}</p>
-        <div class="access-progress">
-          <span class="access-progress-num">${pct}%</span>
-          <span class="access-progress-label">доступов проверено (${doneCount}/${verify.length})</span>
-        </div>
-      </div>
-
-      ${preflightHtml}
-
-      <div class="card">
-        <h3 class="section-heading">Твой чеклист</h3>
-        <div class="access-verify-list">${verifyHtml}</div>
-      </div>
-
-      <div class="card">
-        <h3 class="section-heading">Шаблон для Димы</h3>
-        <p class="card-intro">Скопируй и отправь одним сообщением в Telegram, если чего-то не хватает.</p>
-        <pre class="copy-template" id="accessTemplate">${esc(tpl)}</pre>
-        <button type="button" class="btn primary" id="copyAccessTemplate">Скопировать текст</button>
-        <button type="button" class="btn" data-person="dima" style="margin-left:8px">Написать Диме →</button>
-      </div>
-
-      <div class="card">
-        <h3 class="section-heading">Системы</h3>
-        <div class="access-sys-grid">${systemsHtml}</div>
-      </div>
-
-      <div class="card">
-        <h3 class="section-heading">Google Docs</h3>
-        ${docsHtml}
-      </div>
-
-      <div class="card">
-        <h3 class="section-heading">Telegram · обязательные</h3>
-        ${tgRequired || "<p class='path-note'>Список чатов — в разделе Telegram</p>"}
-      </div>
-
-      <div class="card">
-        <h3 class="section-heading">Правило CRM (до миграции на Prodavan)</h3>
-        <div class="sales-table-wrap">
-          <table class="sales-table"><thead><tr><th>Тип</th><th>Куда</th><th>Когда</th></tr></thead><tbody>${crmHtml}</tbody></table>
-        </div>
-        <ul class="sales-tldr-list" style="margin-top:14px">${icrmHtml}</ul>
+        <p class="card-intro">${esc(meta.note || "Постоянный справочник доступов.")}</p>
+        <div class="access-sys-grid">${systemsHtml}${tgHtml}${docsHtml}</div>
       </div>`;
   }
 
@@ -1618,25 +1547,7 @@
         accessState[cb.dataset.accessId] = cb.checked;
         saveAccessState();
         document.getElementById("xpNum").textContent = totalProgress() + "%";
-        const prog = main.querySelector(".access-progress-num");
-        if (prog && accessChecklist) {
-          const verify = accessChecklist.hiree_verify || [];
-          const doneCount = verify.filter(x => accessState[x.id]).length;
-          prog.textContent = (verify.length ? Math.round((doneCount / verify.length) * 100) : 0) + "%";
-        }
       });
-    });
-
-    main.querySelector("#copyAccessTemplate")?.addEventListener("click", async () => {
-      const el = document.getElementById("accessTemplate");
-      if (!el) return;
-      try {
-        await navigator.clipboard.writeText(el.textContent);
-        const btn = main.querySelector("#copyAccessTemplate");
-        if (btn) { btn.textContent = "Скопировано ✓"; setTimeout(() => { btn.textContent = "Скопировать текст"; }, 2000); }
-      } catch (_) {
-        alert("Не удалось скопировать — выдели текст вручную");
-      }
     });
   }
 

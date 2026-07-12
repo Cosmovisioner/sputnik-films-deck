@@ -1297,6 +1297,7 @@ body.modal-open { overflow: hidden; }
 .access-progress-label { font-size: 13px; color: var(--muted); }
 
 .access-verify-list { display: flex; flex-direction: column; gap: 8px; }
+.path-verify { margin-top: 10px; }
 .access-row {
   display: flex;
   align-items: flex-start;

@@ -17,14 +17,14 @@
     },
     {
       "id": "sales_manager_cult",
-      "name": "Сейлз-менеджер | Культ Груп",
+      "name": "Сейлз | Культ Груп",
       "priority": "required",
       "week": 1,
       "unit": "uk",
       "whoAdds": "Дима Квашнин (@cosmovisioner)",
-      "inviteUrl": null,
+      "inviteUrl": "https://t.me/+iK0kFij8L4FjOTgy",
       "tg_id": "-1003759381467",
-      "desc": "Рабочий чат продаж с CRO. Состав: Лёня + Костя (+ Дима) — открывает CRO. Пока состав закрыт: пиши Диме в личку или в «Коммерческий директор». Галочку «добавлен» ставь только после факта."
+      "desc": "Рабочий чат продаж Cult Group. Вступай по ссылке."
     },
     {
       "id": "commercial_director",
