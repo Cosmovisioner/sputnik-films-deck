@@ -144,6 +144,13 @@
     { "kind": "resource", "id": "doc_nb_reg" },
     { "kind": "resource", "id": "doc_prod_standards" }
   ],
+  "5.docs_alya": [
+    { "kind": "step", "text": "Напиши @DudenkovaA или попроси Диму представить — 30–40 мин разбор документооборота" },
+    { "kind": "person", "id": "alya_dudenkova" },
+    { "kind": "person", "id": "dima" },
+    { "kind": "resource", "id": "doc_prod_standards" },
+    { "kind": "note", "text": "Спроси: акт+счёт после закрытия · реквизиты Контур · кто утверждает документ на оплату · NDA с печатью · куда слать пакет клиенту. Не путать с коммерческим «берём/не берём»" }
+  ],
   "5.partner_sales": [
     { "kind": "resource", "id": "view_people", "filter": "partner_slz" },
     { "kind": "person", "id": "sasha_a" },

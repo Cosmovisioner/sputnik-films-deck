@@ -4,9 +4,9 @@
   const STORAGE_KEY = "cult_leonid_daily_v5";
   const WELCOME_KEY = "cult_leonid_welcome_v3";
   const ACCESS_KEY = "cult_leonid_access_v1";
-  const ASSET_VER = "20260711-v25";
+  const ASSET_VER = "20260712-v26";
 
-  const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya"]);
+  const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya", "alya_dudenkova"]);
 
   const UNIT_ROUTING = [
     { signal: "Реклама, съёмка, TV/digital", unit: "Cult", threshold: "от ~5 млн ₽", person: "denis" },
@@ -887,7 +887,7 @@
         <p class="card-intro">Кликни карточку — кратко, Clifton, когда писать, контакты. Фильтр <strong>Sales-контур</strong> — кого пинговать в первую неделю.</p>
         <div class="filter-row">${chips}</div>
         ${staff.length ? `<h3 class="mono-tag" style="margin-bottom:12px">${peopleFilter === "sales_core" ? "Sales-контур · первая неделя" : "Штат"}</h3><div class="people-grid">${staff.map(p => personCardHtml(p)).join("")}</div>` : ""}
-        ${holding.length ? `<h3 class="mono-tag" style="margin:20px 0 12px">Супертопы · контур группы</h3><p style="font-size:13px;color:var(--muted);margin-bottom:12px">Финансы, SnubDoc, PR, ops — не первый контакт на пресейле. Знакомство по мере погружения.</p><div class="people-grid">${holding.map(p => personCardHtml(p)).join("")}</div>` : ""}
+        ${holding.length ? `<h3 class="mono-tag" style="margin:20px 0 12px">Супертопы · контур группы</h3><p style="font-size:13px;color:var(--muted);margin-bottom:12px">Финансы, документооборот (Аля), SnubDoc, PR, ops. Аля — обязательный контакт sales по актам/счетам/Контуру.</p><div class="people-grid">${holding.map(p => personCardHtml(p)).join("")}</div>` : ""}
         ${partners.length ? `<h3 class="mono-tag" style="margin:20px 0 12px">Партнёрские сейлз-менеджеры</h3><p style="font-size:13px;color:var(--muted);margin-bottom:12px">${team.org.partner_slz?.routing || ""}</p><div class="people-grid">${partners.map(p => personCardHtml(p)).join("")}</div>` : ""}
         ${collaborators.length ? `<h3 class="mono-tag" style="margin:20px 0 12px">Коллаборации (не sales)</h3><div class="people-grid">${collaborators.map(p => personCardHtml(p)).join("")}</div>` : ""}
       </div>`;

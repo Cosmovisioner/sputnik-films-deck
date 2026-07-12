@@ -119,6 +119,11 @@
       "telegram": "https://t.me/qalista",
       "telegramLabel": "@qalista",
       "howToWrite": "R&S команда, вайб-кружок"
+    },
+    "alya_dudenkova": {
+      "telegram": "https://t.me/DudenkovaA",
+      "telegramLabel": "@DudenkovaA",
+      "howToWrite": "Документооборот: акты, счета, Контур, NDA с печатью, утверждение документов на оплату. Не sales-условия — только бумаги"
     }
   }
 }
