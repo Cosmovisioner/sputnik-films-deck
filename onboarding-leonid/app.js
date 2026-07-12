@@ -10,7 +10,7 @@
   const QUEST_KEY = "sb-onboarding-leonid-quest-step";
   const MODE_KEY = "sb-onboarding-leonid-program-mode";
   const QUIZ_KEY = "sb-onboarding-leonid-quiz";
-  const ASSET_VER = "20260712-v64";
+  const ASSET_VER = "20260712-v65";
   /** Временно: проверка онбординга без обязательной сдачи теста. Перед стартом Лёни вернуть false. */
   const QUIZ_GATE_ENABLED = false;
 
@@ -607,7 +607,7 @@
 
   function welcomeCards() {
     const u = userProfile();
-    const n = steps.length || 9;
+    const n = steps.length || 7;
     return [
       {
         kicker: "Инструкция · 1/" ,
