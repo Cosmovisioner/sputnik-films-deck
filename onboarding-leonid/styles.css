@@ -1438,7 +1438,7 @@ body.modal-open { overflow: hidden; }
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin: 14px 0 18px;
+  margin: 0 0 16px;
 }
 .quest-step-num {
   min-width: 28px;
@@ -1485,21 +1485,7 @@ body.modal-open { overflow: hidden; }
   border: 1.5px solid var(--border);
   border-radius: var(--radius-sm);
   padding: 16px;
-  margin-bottom: 16px;
-}
-.quest-check-row {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-weight: 600;
-  font-size: 15px;
-  margin: 12px 0 16px;
-  cursor: pointer;
-}
-.quest-check-row input {
-  width: 22px;
-  height: 22px;
-  accent-color: var(--graphite);
+  margin: 0 0 16px;
 }
 .quest-actions-title {
   font-size: 13px;
@@ -1510,6 +1496,44 @@ body.modal-open { overflow: hidden; }
 .quest-actions .path-step,
 .quest-actions .path-note { margin-left: 0; }
 .quest-day-links { margin-top: 14px; }
+.quest-decision {
+  margin-top: 4px;
+}
+.quest-decision .btn-done,
+.quest-decision .btn-skip,
+.task-decision .btn-done,
+.task-decision .btn-skip {
+  flex: 1 1 140px;
+  font-weight: 700;
+  border-width: 1.5px;
+}
+.btn-done {
+  background: #16A34A;
+  border-color: #15803D;
+  color: #fff;
+}
+.btn-done:hover,
+.btn-done.is-active {
+  background: #15803D;
+  border-color: #166534;
+  color: #fff;
+}
+.btn-skip {
+  background: #DC2626;
+  border-color: #B91C1C;
+  color: #fff;
+}
+.btn-skip:hover {
+  background: #B91C1C;
+  border-color: #991B1B;
+  color: #fff;
+}
+.task-decision {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 0 12px 12px;
+}
 .quest-nav { gap: 8px; flex-wrap: wrap; }
 .quest-jump-btn {
   font-size: 11px !important;
@@ -1522,21 +1546,6 @@ body.modal-open { overflow: hidden; }
   .quest-task-title { font-size: 1.15rem; }
 }
 
-
-.day-outcome {
-  margin: 0 0 16px;
-  padding: 12px 14px;
-  border-radius: var(--radius-sm);
-  background: var(--accent-soft);
-  border: 1px solid var(--accent-mid);
-}
-.day-outcome p {
-  margin: 6px 0 0;
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--ink);
-  line-height: 1.45;
-}
 
 .buddy-box,
 .cadence-box,

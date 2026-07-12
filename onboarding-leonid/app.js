@@ -7,7 +7,7 @@
   const ACCESS_KEY = "sb-onboarding-leonid-access";
   const QUEST_KEY = "sb-onboarding-leonid-quest-step";
   const MODE_KEY = "sb-onboarding-leonid-program-mode";
-  const ASSET_VER = "20260712-v47";
+  const ASSET_VER = "20260712-v48";
 
   const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya", "alya_dudenkova"]);
 
@@ -843,6 +843,29 @@
       </div>`;
   }
 
+  function setTaskDone(stepId, taskId, done) {
+    state["step_" + stepId] = state["step_" + stepId] || {};
+    if (done) state["step_" + stepId][taskId] = true;
+    else delete state["step_" + stepId][taskId];
+    saveState();
+  }
+
+  function advanceQuestAfterAction() {
+    const path = buildQuestPath();
+    if (currentQuestIdx < path.length - 1) goToQuest(currentQuestIdx + 1);
+    else renderMain();
+  }
+
+  function renderQuestDecisionBar(opts) {
+    const { stepId, taskId, isDone, showBack, backId } = opts;
+    return `
+      <div class="nav-row quest-nav quest-decision">
+        ${showBack ? `<button type="button" class="btn" id="${backId || "prevQuest"}">← Назад</button>` : ""}
+        <button type="button" class="btn btn-done ${isDone ? "is-active" : ""}" data-quest-done data-step="${stepId}" data-task="${taskId}">Сделано</button>
+        <button type="button" class="btn btn-skip" data-quest-skip data-step="${stepId}" data-task="${taskId}">Пропустить</button>
+      </div>`;
+  }
+
   function renderProgramFocus() {
     const path = buildQuestPath();
     if (!path.length) return `<div class="card"><p>Нет задач</p></div>`;
@@ -866,7 +889,7 @@
 
     const actionsHint = pathItems.length
       ? pathItems.map(p => renderPathItem(p, step.id)).join("")
-      : `<div class="path-note">Отметь галочкой, когда сделаешь. Если нужны ссылки — попроси Диму или открой разделы в шапке.</div>`;
+      : `<div class="path-note">Открой нужный раздел в шапке или напиши Диме в отчёте дня.</div>`;
 
     return `
       ${renderModeToggle()}
@@ -879,31 +902,20 @@
         <p class="quest-progress-day">${esc(step.phase || "")} · день ${step.id}: ${dayDoneCount}/${step.tasks.length} сегодня</p>
       </div>
       <article class="card card-hero quest-focus ${isDone ? "quest-done" : ""}">
+        ${renderQuestRail(path, currentQuestIdx)}
         <div class="card-meta">${formatDateRu(step.date, step.weekday)} · ${esc(step.title)}</div>
-        <p class="quest-kicker">Сейчас сделай</p>
         <h2 class="card-title quest-task-title">${esc(q.task.text)}</h2>
         ${q.task.hint ? `<p class="quest-task-hint">${esc(q.task.hint)}</p>` : ""}
-        ${q.task.group ? `<p class="mono-tag" style="margin-bottom:12px">${esc(q.task.group)}</p>` : ""}
-        ${firstOfDay ? `<p class="card-intro">${esc(step.intro)}</p>` : ""}
-        ${firstOfDay && step.outcome ? `<div class="day-outcome"><span class="mono-tag">Исход дня</span><p>${esc(step.outcome)}</p></div>` : ""}
-        ${renderQuestRail(path, currentQuestIdx)}
+        ${firstOfDay && step.intro ? `<p class="card-intro">${esc(step.intro)}</p>` : ""}
         <div class="quest-do-box">
-          <label class="quest-check-row">
-            <input type="checkbox" data-step="${q.stepId}" data-task="${q.taskId}" ${isDone ? "checked" : ""} />
-            <span>${isDone ? "Выполнено — жми «Дальше»" : "Отметь, когда сделаешь"}</span>
-          </label>
           <div class="quest-actions">
             <h4 class="quest-actions-title">Открыть</h4>
             ${actionsHint}
           </div>
           ${linksBlock}
         </div>
-        <div class="nav-row quest-nav">
-          <button type="button" class="btn" id="prevQuest" ${!prev ? "disabled" : ""}>← Назад</button>
-          <button type="button" class="btn" id="jumpDayList">Список дня</button>
-          <button type="button" class="btn primary" id="nextQuest" ${!next && !isDone ? "disabled" : ""}>${next ? (isDone ? "Дальше →" : "Пропустить без галочки →") : (isDone ? "Финиш ✓" : "Конец")}</button>
-        </div>
-        ${!next && isDone ? `<div class="complete-banner complete-banner-final"><p><strong>Онбординг пройден.</strong> Напиши Диме. Дальше — weekly 1:1 с CRO. Месяц 2: <strong>1–2 квал. брифа</strong>.</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button type="button" class="btn primary" data-person="dima">Написать Диме</button><button type="button" class="btn" data-view="sales">KPI на 90 дней</button></div></div>` : ""}
+        ${renderQuestDecisionBar({ stepId: q.stepId, taskId: q.taskId, isDone, showBack: prev, backId: "prevQuest" })}
+        ${!next && isDone ? `<div class="complete-banner complete-banner-final"><p><strong>Онбординг пройден.</strong> Напиши Диме. Дальше — weekly 1:1 с CRO. Месяц 2: <strong>1–2 квал. брифа</strong>.</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><a class="btn primary" href="https://t.me/cosmovisioner" target="_blank" rel="noopener">Написать Диме</a><button type="button" class="btn" data-view="sales">KPI на 90 дней</button></div></div>` : ""}
       </article>
       <div class="card">
         <h3 class="section-heading">Быстрые разделы</h3>
@@ -927,7 +939,7 @@
 
     let tasksHtml = "";
     let lastGroup = null;
-    step.tasks.forEach((task, taskIdx) => {
+    step.tasks.forEach((task) => {
       if (task.group && task.group !== lastGroup) {
         tasksHtml += `<h4 class="task-group-heading">${task.group}</h4>`;
         lastGroup = task.group;
@@ -940,12 +952,15 @@
       tasksHtml += `
         <div class="task-item ${isOpen ? "open" : ""} ${isDone ? "done" : ""}" data-task-key="${key}">
           <div class="task-head">
-            <input type="checkbox" data-step="${step.id}" data-task="${task.id}" ${isDone ? "checked" : ""} />
             <span class="task-text">${esc(task.text)}${task.hint ? `<span class="task-hint">${esc(task.hint)}</span>` : ""}</span>
             <button type="button" class="btn quest-jump-btn" data-quest-idx="${qIdx}" title="Открыть как шаг">Шаг</button>
             <span class="task-chevron">${path.length ? (isOpen ? "▲" : "▼") : ""}</span>
           </div>
           ${path.length ? `<div class="task-path">${path.map(p => renderPathItem(p, step.id)).join("")}</div>` : ""}
+          <div class="task-decision">
+            <button type="button" class="btn btn-done ${isDone ? "is-active" : ""}" data-quest-done data-step="${step.id}" data-task="${task.id}">Сделано</button>
+            <button type="button" class="btn btn-skip" data-quest-skip data-step="${step.id}" data-task="${task.id}" data-quest-idx="${qIdx}">Пропустить</button>
+          </div>
         </div>`;
     });
 
@@ -958,7 +973,6 @@
         <div class="card-meta">${phaseMeta}${formatDateRu(step.date, step.weekday)} · день ${step.id} из ${steps.length}</div>
         <h2 class="card-title">${step.title}</h2>
         <p class="card-intro">${esc(step.intro)}</p>
-        ${step.outcome ? `<div class="day-outcome"><span class="mono-tag">Исход дня</span><p>${esc(step.outcome)}</p></div>` : ""}
         ${tasksHtml}
         ${allDone ? `<div class="complete-banner${currentDayIdx >= steps.length - 1 ? " complete-banner-final" : ""}">${currentDayIdx < steps.length - 1 ? "День закрыт — можно идти дальше →" : `<p><strong>Онбординг пройден.</strong> Напиши Диме в Telegram.</p>`}</div>` : ""}
         <div class="nav-row">
@@ -1420,20 +1434,39 @@
       });
     });
 
+    main.querySelectorAll("[data-quest-done]").forEach(btn => {
+      btn.addEventListener("click", e => {
+        e.stopPropagation();
+        setTaskDone(btn.dataset.step, btn.dataset.task, true);
+        if (programMode === "focus") advanceQuestAfterAction();
+        else renderMain();
+      });
+    });
+
+    main.querySelectorAll("[data-quest-skip]").forEach(btn => {
+      btn.addEventListener("click", e => {
+        e.stopPropagation();
+        setTaskDone(btn.dataset.step, btn.dataset.task, false);
+        if (programMode === "focus") {
+          advanceQuestAfterAction();
+          return;
+        }
+        const i = parseInt(btn.dataset.questIdx, 10);
+        if (!Number.isNaN(i)) {
+          programMode = "focus";
+          localStorage.setItem(MODE_KEY, programMode);
+          const path = buildQuestPath();
+          goToQuest(Math.min(i + 1, path.length - 1));
+        } else {
+          renderMain();
+        }
+      });
+    });
+
     main.querySelector("#prevDay")?.addEventListener("click", () => goToDay(currentDayIdx - 1));
     main.querySelector("#nextDay")?.addEventListener("click", () => goToDay(currentDayIdx + 1));
 
     main.querySelector("#prevQuest")?.addEventListener("click", () => goToQuest(currentQuestIdx - 1));
-    main.querySelector("#nextQuest")?.addEventListener("click", () => {
-      const path = buildQuestPath();
-      if (currentQuestIdx >= path.length - 1) return;
-      goToQuest(currentQuestIdx + 1);
-    });
-    main.querySelector("#jumpDayList")?.addEventListener("click", () => {
-      programMode = "list";
-      localStorage.setItem(MODE_KEY, programMode);
-      renderMain();
-    });
     main.querySelectorAll("[data-program-mode]").forEach(btn => {
       btn.addEventListener("click", () => {
         programMode = btn.dataset.programMode;
@@ -1442,6 +1475,7 @@
       });
     });
     main.querySelectorAll("[data-quest-idx]").forEach(btn => {
+      if (btn.hasAttribute("data-quest-skip") || btn.hasAttribute("data-quest-done")) return;
       btn.addEventListener("click", e => {
         e.stopPropagation();
         const i = parseInt(btn.dataset.questIdx, 10);
