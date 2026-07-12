@@ -5,7 +5,7 @@
     "passwords_doc": "GDoc «Leonid — доступы 2026-07» в папке найма (только CRO, CEO, hiree)"
   },
   "hiree_intro": "День 1: после вводной с Димой пройди этот чеклист. Если чего-то нет — напиши Диме одним сообщением (шаблон ниже).",
-  "tg_request_template": "Привет, Дима! Стартую онбординг. Проверь, пожалуйста, доступы:\n\n☐ Amo Cult\n☐ Amo Blaster (read)\n☐ Drive Культ-группа + Коммерция\n☐ GDocs пакета (NB, handoff, бриф, Amo-регламент)\n☐ Telegram: Группа / Продажи + Коммерческий директор\n☐ Почта @cult.team\n☐ Clifton access code\n☐ Cursor / Codex (подписка компании)\n☐ Legacy sales-аккаунт Sputnik (логин/передача от Саши)\n☐ Cursor / Codex + agent-pack ZIP (скиллы и роли)\n\nСпасибо!",
+  "tg_request_template": "Привет, Дима! Стартую онбординг. Проверь, пожалуйста, доступы:\n\n☐ Amo Cult\n☐ Amo Blaster (read)\n☐ Drive Культ-группа + Коммерция\n☐ GDocs пакета (NB, handoff, бриф, Amo-регламент)\n☐ Telegram: Группа / Продажи\n☐ Telegram: Сейлз-менеджер | Культ Груп\n☐ Telegram: Коммерческий директор\n☐ Telegram: Вайб-кружок + sales-чаты юнитов (не Супертопы / не Управление / не прод Sputnik)\n☐ Почта @cult.team\n☐ Clifton access code\n☐ Cursor / Codex + agent-pack ZIP\n\nСпасибо!",
   "systems": [
     {
       "id": "amo_cult",
@@ -130,6 +130,10 @@
       "chatId": "group_sales"
     },
     {
+      "id": "sales_manager_cult",
+      "chatId": "sales_manager_cult"
+    },
+    {
       "id": "commercial_director",
       "chatId": "commercial_director"
     }
@@ -140,8 +144,16 @@
       "chatId": "ai_sales"
     },
     {
-      "id": "techtigers",
-      "chatId": "techtigers"
+      "id": "vibe_circle",
+      "chatId": "vibe_circle"
+    },
+    {
+      "id": "sputnik_sales",
+      "chatId": "sputnik_sales"
+    },
+    {
+      "id": "blaster_sputnik_sales",
+      "chatId": "blaster_sputnik_sales"
     }
   ],
   "hiree_verify": [
@@ -171,7 +183,7 @@
     },
     {
       "id": "tg_cro",
-      "text": "Добавлен в чат коммерческого директора"
+      "text": "Добавлен в «Коммерческий директор» и «Сейлз-менеджер | Культ Груп»"
     },
     {
       "id": "email",
@@ -212,6 +224,14 @@
     {
       "id": "skills",
       "text": "Открыл раздел «Скиллы» — знаю где инструкции"
+    },
+    {
+      "id": "tg_no_heads",
+      "text": "Не в Супертопах / Управлении / продюсерском Sputnik (так и должно быть)"
+    },
+    {
+      "id": "tg_vibe",
+      "text": "Добавлен в Вайб-кружок"
     }
   ],
   "crm_rules": [
@@ -244,5 +264,10 @@
       "when": "После демо",
       "what": "Дима сообщит, когда новые сделки переезжают на Prodavan."
     }
+  ],
+  "telegram_do_not_add": [
+    "Супертопы / Весь холдинг",
+    "Управление | Культ Груп",
+    "Sputnik Films | продюсерский чат"
   ]
 }

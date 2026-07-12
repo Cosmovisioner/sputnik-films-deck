@@ -611,7 +611,7 @@
     {
       "kind": "section",
       "id": "chats",
-      "filter": "techtigers"
+      "filter": "ai_sales"
     },
     {
       "kind": "note",
@@ -861,7 +861,7 @@
     {
       "kind": "section",
       "id": "chats",
-      "filter": "techtigers"
+      "filter": "ai_sales"
     }
   ],
   "9.crm_compare": [

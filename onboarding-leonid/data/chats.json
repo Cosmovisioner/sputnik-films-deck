@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Telegram · рабочие чаты",
-    "note": "Публичных ссылок на большинство чатов нет — Дима или хэд юнита добавляет вручную."
+    "note": "Публичных ссылок на большинство чатов нет — Дима добавляет вручную. Лёню не добавляем в Супертопы, Управление | Культ Груп и продюсерский чат Sputnik."
   },
   "chats": [
     {
@@ -13,6 +13,17 @@
       "whoAdds": "Дима Квашнин (@cosmovisioner)",
       "inviteUrl": null,
       "desc": "Общий контур продаж: лиды, статусы, кросс-сделки между юнитами"
+    },
+    {
+      "id": "sales_manager_cult",
+      "name": "Сейлз-менеджер | Культ Груп",
+      "priority": "required",
+      "week": 1,
+      "unit": "uk",
+      "whoAdds": "Дима Квашнин (@cosmovisioner)",
+      "inviteUrl": null,
+      "tg_id": "-1003759381467",
+      "desc": "Отдельный чат управления продажами. Состав позже: Лёня + Костя (+ Дима). Создан 12.07, пока без участников кроме создателя."
     },
     {
       "id": "commercial_director",
@@ -45,16 +56,6 @@
       "desc": "Совместные пресейлы, где участвуют и графика, и продакшен"
     },
     {
-      "id": "petrukhin_blaster",
-      "name": "Петрухин × Blaster | мультимedia",
-      "priority": "as_needed",
-      "week": 2,
-      "unit": "blaster",
-      "whoAdds": "Лиза",
-      "inviteUrl": null,
-      "desc": "Коллаба по мультимedia на выставках и ивентах — не sales-чат"
-    },
-    {
       "id": "sputnik_sales",
       "name": "Спутник / Продажи",
       "priority": "as_needed",
@@ -75,59 +76,38 @@
       "desc": "CRM (Prodavan), ИИ-продукты, формы брифа — roadmap и демо через CRO"
     },
     {
-      "id": "techtigers",
-      "name": "Systems | ТехноТигры | phygital.team",
-      "priority": "week1",
-      "week": 1,
-      "unit": "techtigers",
-      "whoAdds": "Дима",
-      "inviteUrl": null,
-      "desc": "Разработка продуктов студии, интеграция с phygital.team"
-    },
-    {
-      "id": "supertops",
-      "name": "Супертопы / Весь холдинг",
-      "priority": "after_week1",
-      "week": 2,
-      "unit": "uk",
-      "whoAdds": "Дима + Костя Мельников (@umelnikov_work)",
-      "inviteUrl": null,
-      "desc": "Стратегический контур холдинга — после первой недели онбординга"
-    },
-    {
-      "id": "cult_heads",
-      "name": "Управление | Культ Груп",
-      "priority": "after_week1",
-      "week": 2,
-      "unit": "uk",
-      "whoAdds": "Дима Квашнин (@cosmovisioner)",
-      "inviteUrl": null,
-      "desc": "Чат хэдов продакшнов: спецы, кейсы, кросс-опыление между Cult, Blaster и Sputnik. Еженедельный ритм продаж и поддержка между юнитами"
-    },
-    {
-      "id": "sputnik_producers",
-      "name": "Sputnik Films | продюсерский чат",
-      "priority": "as_needed",
-      "week": 2,
-      "unit": "sputnik",
-      "whoAdds": "Сергей Клейн (@klein_sergey) или Дима",
-      "inviteUrl": null,
-      "desc": "Операционный продюсерский контур Sputnik: сметы, тендеры, пресейлы с Blaster, статусы по проектам. Не путать с «Спутник / Продажи»"
-    },
-    {
       "id": "vibe_circle",
       "name": "Вайб-кружок",
-      "priority": "optional",
-      "week": 2,
-      "unit": "techtigers",
+      "priority": "week1",
+      "week": 1,
+      "unit": "uk",
       "whoAdds": "Дима или Егор Мараев (@egormaraev)",
       "inviteUrl": null,
-      "desc": "Необязательный кружок: раз в неделю делимся вайбкодингом, агентами и автоматизацией. Можно просто читать — или подключиться, когда будет интерес"
+      "desc": "Вайбкодинг, агенты, автоматизация — Лёне полезно для agent-pack и Cursor"
     }
   ],
   "skip": [
+    "Супертопы / Весь холдинг",
+    "Управление | Культ Груп",
+    "Sputnik Films | продюсерский чат",
+    "Systems | ТехноТигры | phygital.team",
+    "Петрухин × Blaster | multimedia",
     "Спутник / Акционеры",
     "Holst",
     "Внутренние финансы и P&L"
+  ],
+  "do_not_add": [
+    {
+      "name": "Супертопы / Весь холдинг",
+      "reason": "Стратегический контур холдинга — не sales-контур Лёни"
+    },
+    {
+      "name": "Управление | Культ Груп",
+      "reason": "Чат хэдов продакшнов — не для sales hiree"
+    },
+    {
+      "name": "Sputnik Films | продюсерский чат",
+      "reason": "Операционный прод Sputnik — не sales"
+    }
   ]
 }
