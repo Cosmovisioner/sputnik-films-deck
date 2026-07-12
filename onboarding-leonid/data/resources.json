@@ -173,6 +173,15 @@
       "owner": "dima",
       "unit": "uk",
       "note": "Снимок списков Дениса, Лизы, Димы. Не колл-лист для перехвата."
+    },
+    {
+      "id": "agent_pack_zip",
+      "title": "Agent-pack · ZIP",
+      "subtitle": "14 скиллов · 11 ролей · лекции · токены · без паролей",
+      "url": "assets/agent_pack_leonid_sales_2026_07.zip",
+      "owner": "dima",
+      "unit": "uk",
+      "note": "День 6 · или раньше, если Cursor уже стоит. README внутри архива."
     }
   ],
   "docs": [

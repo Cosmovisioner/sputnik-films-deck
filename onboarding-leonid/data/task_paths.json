@@ -635,15 +635,19 @@
     },
     {
       "kind": "resource",
+      "id": "agent_pack_zip"
+    },
+    {
+      "kind": "resource",
       "id": "soft_cursor"
     },
     {
       "kind": "step",
-      "text": "Установи 3 скилла в Cursor · прогони 1 гипотевый лид через скоринг + brief-gate + deck-router"
+      "text": "Установи 3 скилла Cult (+ остальное из ZIP) · прогони 1 гипотевый лид через скоринг + brief-gate + deck-router"
     },
     {
       "kind": "note",
-      "text": "Если Cursor ещё не стоит — вернись к задаче дня 2 (soft_agent)"
+      "text": "Если Cursor ещё не стоит — задача дня 2 (soft_agent)"
     },
     {
       "kind": "person",
@@ -1082,6 +1086,28 @@
     {
       "kind": "note",
       "text": "Уже на столе по Cult: FMCG · топ-30 · топ-100 рекламодателей (пример: WB, Магнит). Полный список — отдельный сбор, не угадывать."
+    }
+  ],
+  "6.agent_pack": [
+    {
+      "kind": "resource",
+      "id": "agent_pack_zip"
+    },
+    {
+      "kind": "resource",
+      "id": "skills_pack"
+    },
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "step",
+      "text": "Скачай ZIP → распакуй → прочитай README.md (установка Cursor и Codex)"
+    },
+    {
+      "kind": "note",
+      "text": "Если агенты / workspace не встают — отдельный созвон с Димой. Презентации юнитов в архиве нет — запроси у команды."
     }
   ]
 }

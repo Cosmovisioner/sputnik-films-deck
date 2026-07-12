@@ -353,12 +353,25 @@
           "group": "Дисциплина Amo"
         },
         {
+          "id": "agent_pack",
+          "text": "Скачать полный архив скиллов и ролей (agent_pack) — README внутри: куда класть в Cursor/Codex",
+          "group": "Инструменты"
+        },
+        {
           "id": "skills",
-          "text": "Установить 3 скилла Cursor (архив от Димы): скоринг, проверка брифа, выбор презентации",
+          "text": "Скачать agent-pack (ZIP) · установить в Cursor/Codex по README · прогнать 1 тестовый лид: скоринг + brief-gate + deck-router",
           "group": "Инструменты"
         }
       ],
       "links": [
+        {
+          "label": "Agent-pack · ZIP (скиллы + роли)",
+          "url": "assets/agent_pack_leonid_sales_2026_07.zip"
+        },
+        {
+          "label": "Agent-pack · README",
+          "url": "agent_pack_leonid_sales/README.md"
+        },
         {
           "label": "Регламент Amo",
           "url": "https://docs.google.com/document/d/1MwlLD2ZVtKXDeH8FUBOa33VjhAcExHga3ZmwTVYhszI/edit"

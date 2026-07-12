@@ -5,7 +5,7 @@
     "passwords_doc": "GDoc «Leonid — доступы 2026-07» в папке найма (только CRO, CEO, hiree)"
   },
   "hiree_intro": "День 1: после вводной с Димой пройди этот чеклист. Если чего-то нет — напиши Диме одним сообщением (шаблон ниже).",
-  "tg_request_template": "Привет, Дима! Стартую онбординг. Проверь, пожалуйста, доступы:\n\n☐ Amo Cult\n☐ Amo Blaster (read)\n☐ Drive Культ-группа + Коммерция\n☐ GDocs пакета (NB, handoff, бриф, Amo-регламент)\n☐ Telegram: Группа / Продажи + Коммерческий директор\n☐ Почта @cult.team\n☐ Clifton access code\n☐ Cursor / Codex (подписка компании)\n☐ Legacy sales-аккаунт Sputnik (логин/передача от Саши)\n☐ Cursor skills (ссылка на skills-hub на квесте)\n\nСпасибо!",
+  "tg_request_template": "Привет, Дима! Стартую онбординг. Проверь, пожалуйста, доступы:\n\n☐ Amo Cult\n☐ Amo Blaster (read)\n☐ Drive Культ-группа + Коммерция\n☐ GDocs пакета (NB, handoff, бриф, Amo-регламент)\n☐ Telegram: Группа / Продажи + Коммерческий директор\n☐ Почта @cult.team\n☐ Clifton access code\n☐ Cursor / Codex (подписка компании)\n☐ Legacy sales-аккаунт Sputnik (логин/передача от Саши)\n☐ Cursor / Codex + agent-pack ZIP (скиллы и роли)\n\nСпасибо!",
   "systems": [
     {
       "id": "amo_cult",
@@ -204,6 +204,10 @@
     {
       "id": "sales_context",
       "text": "Прочитал «Контекст продаж» + пулы Cult/Blaster/Sputnik"
+    },
+    {
+      "id": "agent_pack",
+      "text": "Скачал agent-pack ZIP и прочитал README установки"
     },
     {
       "id": "skills",

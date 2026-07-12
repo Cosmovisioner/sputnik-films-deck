@@ -1,15 +1,19 @@
 {
   "meta": {
-    "title": "Cursor-скиллы Cult Group",
-    "install_title": "Как установить в Cursor",
+    "title": "Агентный пакет · скиллы и роли",
+    "install_title": "Как установить в Cursor / Codex",
     "install_steps": [
-      "Скачай папку skills_pack с квеста (ссылка ниже) или попроси zip у Димы",
-      "Скопируй каждый скилл в ~/.cursor/skills/ или в skills проекта Second Brain",
-      "В чате Cursor: «скоринг лида», «brief gate», «какую презу показать» — скилл подхватится по описанию",
-      "На 6-й день онбординга — прогони 1 тестовый лид через все три скилла"
+      "Скачай ZIP agent_pack (кнопка / ссылка ниже) — один архив со всем нужным",
+      "Распакуй. Прочитай README.md внутри (10 минут)",
+      "Cursor: скопируй папки из skills/ в .cursor/skills/ проекта или в ~/.cursor/skills/",
+      "Codex: положи skills/ + roles/ + knowledge/ в workspace и используй AGENTS.md из архива",
+      "Проверка: в чате «скоринг лида» / «brief gate» / «досье на компанию»",
+      "Если не встаёт workspace или агенты — отдельный созвон с Димой (это ок)"
     ],
-    "pack_url": "skills_pack/",
-    "pack_note": "Папка skills_pack деплоится вместе с квестом — можно клонировать из GitHub repo sputnik-films-deck/onboarding-leonid/skills_pack/"
+    "pack_url": "assets/agent_pack_leonid_sales_2026_07.zip",
+    "pack_folder": "agent_pack_leonid_sales/",
+    "pack_note": "Полный пакет: 14 скиллов · 11 ролей · лекции · банк возражений · токены · ТЗ парсера/рассылки. Без паролей. Презентации юнитов — запроси у команды отдельно.",
+    "help_note": "Помощь с установкой агентов, нейросетями и workflow — отдельные звонки с CRO."
   },
   "skills": [
     {
@@ -64,6 +68,18 @@
         { "signal": "Неясно / холод", "unit": "Группа", "deck": "Cult Group deck", "who": "Sales / Дима" }
       ],
       "group_deck": "https://cosmovisioner.github.io/sputnik-films-deck/cult-group/"
+    },
+    {
+      "id": "pack_full",
+      "slug": "agent-pack",
+      "title": "Полный agent-pack (ZIP)",
+      "triggers": "«установи скиллы», «архив ролей», «пакет агентов»",
+      "summary": "14 скиллов + 11 ролей + лекции SETTERS/Шадрина + банк возражений + design tokens + ТЗ парсера/рассылки. Скачай ZIP, следуй README.",
+      "rules": [
+        "Сначала три Cult-скилла (скоринг / brief / deck)",
+        "Потом sales-newbiz + commercial director note",
+        "Презентации юнитов в ZIP нет — запроси у команды"
+      ]
     }
   ]
 }

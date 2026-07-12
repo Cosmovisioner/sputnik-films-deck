@@ -4,7 +4,7 @@
   const STORAGE_KEY = "cult_leonid_daily_v5";
   const WELCOME_KEY = "cult_leonid_welcome_v3";
   const ACCESS_KEY = "cult_leonid_access_v1";
-  const ASSET_VER = "20260712-v30";
+  const ASSET_VER = "20260712-v31";
 
   const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya", "alya_dudenkova"]);
 
@@ -1071,7 +1071,10 @@
     }
     const meta = skillsHub.meta || {};
     const install = (meta.install_steps || []).map(s => `<li>${esc(s)}</li>`).join("");
-    const packBase = location.pathname.replace(/\/[^/]*$/, "/") + (meta.pack_url || "skills_pack/");
+    const basePath = location.pathname.replace(/\/[^/]*$/, "/");
+    const zipUrl = basePath + (meta.pack_url || "assets/agent_pack_leonid_sales_2026_07.zip");
+    const skillsFolder = basePath + "skills_pack/";
+    const packFolder = basePath + (meta.pack_folder || "agent_pack_leonid_sales/");
 
     const cards = (skillsHub.skills || []).map(sk => {
       let body = `<p class="card-intro">${esc(sk.summary)}</p>`;
@@ -1088,11 +1091,14 @@
       if (sk.red_flags) body += `<p class="path-note" style="margin-top:10px"><strong>Red flags:</strong> ${esc(sk.red_flags)}</p>`;
       if (sk.handoff_point) body += `<p class="path-note" style="margin-top:10px">${esc(sk.handoff_point)}</p>`;
       if (sk.group_deck) body += `<a class="contact-btn primary" href="${sk.group_deck}" target="_blank" rel="noopener">Cult Group deck</a>`;
+      const skillLink = sk.slug === "agent-pack"
+        ? `<a class="contact-btn primary" href="${zipUrl}" download>⬇️ Скачать ZIP →</a>`
+        : `<a class="contact-btn" href="${skillsFolder}${sk.slug}/SKILL.md" target="_blank" rel="noopener">Полный SKILL.md →</a>`;
       return `<div class="card skill-card">
         <span class="mono-tag">${esc(sk.slug)}</span>
         <h3 class="section-heading">${esc(sk.title)}</h3>
         ${body}
-        <a class="contact-btn" href="${packBase}${sk.slug}/SKILL.md" target="_blank" rel="noopener">Полный SKILL.md →</a>
+        ${skillLink}
       </div>`;
     }).join("");
 
@@ -1100,11 +1106,14 @@
       <div class="card">
         <h2 class="card-title">${esc(meta.title || "Скиллы Cursor")}</h2>
         <p class="card-intro">${esc(meta.pack_note || "")}</p>
+        ${meta.help_note ? `<p class="path-note">${esc(meta.help_note)}</p>` : ""}
         <h3 class="section-heading">${esc(meta.install_title || "Установка")}</h3>
         <ul class="hint-list">${install}</ul>
-        <div style="margin-top:12px">
-          <a class="contact-btn primary" href="${packBase}" target="_blank" rel="noopener">📁 Папка skills_pack</a>
-          <button type="button" class="contact-btn" data-view="decks">📊 Deck-router в презентациях</button>
+        <div style="margin-top:12px;display:flex;flex-wrap:wrap;gap:8px">
+          <a class="contact-btn primary" href="${zipUrl}" download>⬇️ Agent-pack ZIP</a>
+          <a class="contact-btn" href="${packFolder}README.md" target="_blank" rel="noopener">README установки</a>
+          <a class="contact-btn" href="${skillsFolder}" target="_blank" rel="noopener">skills_pack (3 Cult)</a>
+          <button type="button" class="contact-btn" data-view="decks">Deck-router в презентациях</button>
         </div>
       </div>
       ${cards}`;
