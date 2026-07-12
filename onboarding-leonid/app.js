@@ -3,11 +3,11 @@
 
   // localStorage ids (not secrets) — named to avoid secret-scanner false positives
   const STORAGE_KEY = "sb-onboarding-leonid-progress";
-  const WELCOME_KEY = "sb-onboarding-leonid-welcome";
+  const WELCOME_KEY = "sb-onboarding-leonid-welcome-v2";
   const ACCESS_KEY = "sb-onboarding-leonid-access";
   const QUEST_KEY = "sb-onboarding-leonid-quest-step";
   const MODE_KEY = "sb-onboarding-leonid-program-mode";
-  const ASSET_VER = "20260712-v43";
+  const ASSET_VER = "20260712-v44";
 
   const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya", "alya_dudenkova"]);
 
@@ -518,6 +518,8 @@
 
   function showWelcome() {
     const el = document.getElementById("welcomeBackdrop");
+    welcomeStep = 0;
+    renderWelcomeStep();
     el.hidden = false;
     el.classList.add("is-open");
     el.setAttribute("aria-hidden", "false");
@@ -533,24 +535,92 @@
     localStorage.setItem(WELCOME_KEY, "1");
   }
 
+  let welcomeStep = 0;
+
+  function welcomeCards() {
+    const u = userProfile();
+    const n = steps.length || 9;
+    const span = stepsMeta.calendarSpan || "13–23 июл";
+    return [
+      {
+        kicker: "Шаг 0 · старт",
+        title: "Привет, " + u.first,
+        lead: "Это не длинный документ — это квест: короткие шаги, понятные ссылки, галочки. " + n + " рабочих дней (" + span + ").",
+        chips: ["Одна задача = один экран", "Можно вернуться назад", "Застрял — пиши Диме"]
+      },
+      {
+        kicker: "Как пользоваться",
+        title: "Два режима программы",
+        lead: "«Шаг за шагом» — делаешь одно действие, отмечаешь, жмёшь «Дальше». «Список дня» — весь день целиком, если хочешь обзор.",
+        chips: ["Галочка только когда реально сделал", "Прогресс — в шапке справа", "Дни вверху — переключалка"]
+      },
+      {
+        kicker: "Как действовать",
+        title: "Сам двигаешь процесс",
+        lead: "Если чего-то не хватает, что-то непонятно или наоборот лишнее — скажи и сделай следующий шаг: напиши, назначь звонок, пушни. Ждать «пока спросят» не нужно.",
+        chips: ["Блокер → 2–3 строки Диме", "Слот сам предложи", "Лишнее — подсвети"]
+      },
+      {
+        kicker: "Ритм",
+        title: "Пятница и конец дня",
+        lead: "Каждую пятницу в 12:00 — звонок юнитов по продажам: лидируете с Димой, разбор отчётов. А каждый день квеста заканчивается коротким отчётом CRO.",
+        chips: ["Пт 12:00 · Дима + ты", "Конец дня · отчёт CRO", "Что закрыл / что мутно"]
+      },
+      {
+        kicker: "Готово",
+        title: "Можно начинать",
+        lead: "Дальше — день 1: вводная с Димой, роль, доступы, карта группы. Материалы уже открыты. Если вернёшься сюда позже — этот экран больше не всплывёт.",
+        chips: ["Старт 13 июля", "Buddy — Дима", "Холод — после плана с CRO"]
+      }
+    ];
+  }
+
+  function renderWelcomeStep() {
+    const cards = welcomeCards();
+    const card = cards[welcomeStep] || cards[0];
+    const body = document.getElementById("welcomeBody");
+    const progress = document.getElementById("welcomeProgress");
+    const go = document.getElementById("welcomeGo");
+    const back = document.getElementById("welcomeBack");
+    if (!body || !go) return;
+
+    if (progress) {
+      progress.innerHTML = cards.map((_, i) =>
+        `<span class="welcome-dot ${i === welcomeStep ? "active" : i < welcomeStep ? "done" : ""}"></span>`
+      ).join("");
+    }
+
+    body.innerHTML = `
+      <p class="mono-tag welcome-tag">${esc(card.kicker)}</p>
+      <h2 class="welcome-title" id="welcomeTitle">${esc(card.title)}</h2>
+      <p class="welcome-lead">${esc(card.lead)}</p>
+      <div class="welcome-chips">${(card.chips || []).map(c => `<span class="welcome-chip">${esc(c)}</span>`).join("")}</div>
+    `;
+
+    if (back) {
+      back.hidden = welcomeStep === 0;
+    }
+    const last = welcomeStep >= cards.length - 1;
+    go.textContent = welcomeStep === 0 ? "Поехали →" : (last ? "Начать программу →" : "Дальше →");
+  }
+
+  function advanceWelcome() {
+    const cards = welcomeCards();
+    if (welcomeStep >= cards.length - 1) {
+      closeWelcome();
+      return;
+    }
+    welcomeStep += 1;
+    renderWelcomeStep();
+  }
+
+  function retreatWelcome() {
+    if (welcomeStep <= 0) return;
+    welcomeStep -= 1;
+    renderWelcomeStep();
+  }
+
   function maybeShowWelcome() {
-    const lead = document.querySelector(".welcome-lead");
-    const list = document.querySelector(".welcome-list");
-    const note = document.querySelector(".welcome-note");
-    if (lead && steps.length) {
-      const span = stepsMeta.calendarSpan || "13–23 июл";
-      lead.innerHTML = `Привет, <strong>${userProfile().first}</strong>. Пошаговый онбординг: куда вести клиента, кто за что отвечает, что открыть в Amo.<br><br><strong>${steps.length} рабочих дней</strong> (${span}). Карту и людей логично закрыть уже в понедельник — после вводной с Димой.`;
-    }
-    if (list && steps.length) {
-      list.innerHTML = `
-        <li><strong>Шаг за шагом</strong> — один экран = одна задача: что сделать, куда кликнуть, галочка</li>
-        <li>Можно <strong>назад</strong> и <strong>вперёд</strong>; прогресс в шапке</li>
-        <li>Нужен обзор — переключись на «Список дня»</li>
-        <li>Не понял — пиши Диме, не гугли</li>`;
-    }
-    if (note && stepsMeta.officialStartDate) {
-      note.innerHTML = `Старт — <strong>${formatDateRu(stepsMeta.officialStartDate, "Пн")}</strong>. Материалы уже открыты, можно начать раньше.`;
-    }
     if (!localStorage.getItem(WELCOME_KEY)) showWelcome();
   }
 
@@ -1612,7 +1682,8 @@
       }
     });
 
-    document.getElementById("welcomeGo").addEventListener("click", closeWelcome);
+    document.getElementById("welcomeGo").addEventListener("click", advanceWelcome);
+    document.getElementById("welcomeBack")?.addEventListener("click", retreatWelcome);
     document.getElementById("welcomeBackdrop").addEventListener("click", e => {
       if (e.target.id === "welcomeBackdrop") closeWelcome();
     });

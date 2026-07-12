@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260712-v43" />
+  <link rel="stylesheet" href="styles.css?v=20260712-v44" />
 </head>
 <body>
   <div id="loadError" class="load-error" hidden>
@@ -50,22 +50,18 @@
   <main class="shell" id="mainContent"></main>
 
   <footer class="site-footer">
-    <span id="footerNote">Cult Group · v20260712-v43</span>
+    <span id="footerNote">Cult Group · v20260712-v44</span>
   </footer>
 
   <div class="welcome-backdrop" id="welcomeBackdrop" hidden aria-hidden="true">
-    <div class="welcome-card" role="dialog" aria-labelledby="welcomeTitle">
+    <div class="welcome-card" role="dialog" aria-labelledby="welcomeTitle" aria-describedby="welcomeBody">
       <div class="welcome-gradient"></div>
-      <p class="mono-tag welcome-tag">Cult Group · онбординг продаж</p>
-      <h2 class="welcome-title" id="welcomeTitle">Привет, Лёня</h2>
-      <p class="welcome-lead">9 рабочих дней (13–23 июл): фокус-режим: одна задача на экран; обзор — «Список дня». Галочка, назад/вперёд, прогресс в шапке.</p>
-      <ul class="welcome-list">
-        <li>Шаг за шагом: что сделать и куда перейти</li>
-        <li>Галочки + прогресс; можно вернуться назад</li>
-        <li>Карта, люди, чаты — в шапке; застрял — пиши Диме</li>
-      </ul>
-      <p class="welcome-note">Старт — <strong>13 июля</strong>. Материалы уже открыты.</p>
-      <button type="button" class="btn primary welcome-go" id="welcomeGo">Поехали →</button>
+      <div class="welcome-progress" id="welcomeProgress" aria-hidden="true"></div>
+      <div id="welcomeBody"></div>
+      <div class="welcome-nav">
+        <button type="button" class="btn welcome-back" id="welcomeBack" hidden>← Назад</button>
+        <button type="button" class="btn primary welcome-go" id="welcomeGo">Поехали →</button>
+      </div>
     </div>
   </div>
 
@@ -76,6 +72,6 @@
     </div>
   </div>
 
-  <script src="app.js?v=20260712-v43"></script>
+  <script src="app.js?v=20260712-v44"></script>
 </body>
 </html>
