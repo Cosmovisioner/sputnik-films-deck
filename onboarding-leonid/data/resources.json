@@ -159,20 +159,19 @@
     {
       "id": "doc_sales_context",
       "title": "Контекст продаж · HTML",
-      "subtitle": "Как было · что изменилось · люди · тактика · пулы",
+      "subtitle": "Убрано из программы",
       "url": "sales_context.html",
       "owner": "dima",
       "unit": "uk",
-      "note": "День 2 · обязательно. Источник: SB + чат Группа/Продажи 30.06"
+      "note": "Не использовать в онбординге"
     },
     {
       "id": "doc_client_pools",
-      "title": "Пулы клиентов · HTML",
-      "subtitle": "Cult / Blaster / Sputnik — тёплые бренды на 30.06.2026 · do-not-touch",
-      "url": "client_pools.html",
+      "title": "Пулы клиентов",
+      "subtitle": "Cult · Blaster · Sputnik — раздел в меню",
       "owner": "dima",
       "unit": "uk",
-      "note": "UI поверх снимка списков Дениса, Лизы, Димы. Не колл-лист для перехвата. Сырой JSON — только data/client_pools.json для агентов."
+      "action": "pools"
     },
     {
       "id": "agent_pack_zip",
@@ -324,7 +323,7 @@
     {
       "id": "view_org_map",
       "title": "Карта группы",
-          "subtitle": "Холдинг → Cult · Blaster · Sputnik · ТехноТигры",
+      "subtitle": "Холдинг → Cult · Blaster · Sputnik · ТехноТигры",
       "action": "map",
       "unit": "uk"
     },
@@ -362,6 +361,13 @@
       "title": "Чеклист доступов",
       "subtitle": "Amo, Drive, TG, почта — что проверить в день 1",
       "action": "access",
+      "unit": "uk"
+    },
+    {
+      "id": "view_pools",
+      "title": "Пулы клиентов",
+      "subtitle": "Кто уже в работе у Cult / Blaster / Sputnik",
+      "action": "pools",
       "unit": "uk"
     }
   ]

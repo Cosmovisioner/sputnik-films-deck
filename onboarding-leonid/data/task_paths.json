@@ -16,7 +16,7 @@
     },
     {
       "kind": "step",
-      "text": "Оффер + зона: входящие + тёплая база → бриф. Правила — день 4."
+      "text": "Оффер + зона: входящие + тёплая база → бриф"
     }
   ],
   "1.access": [
@@ -27,6 +27,24 @@
     {
       "kind": "step",
       "text": "Пройди чеклист доступов"
+    }
+  ],
+  "1.amo_walk": [
+    {
+      "kind": "person",
+      "id": "sasha_a"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_handoff_sasha"
+    },
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    },
+    {
+      "kind": "step",
+      "text": "Прими дела и открой Amo Cult"
     }
   ],
   "1.org_map": [
@@ -46,7 +64,7 @@
   "1.schedule_heads": [
     {
       "kind": "step",
-      "text": "Напиши Денису и Лизе: 30 мин знакомства, когда удобно им"
+      "text": "Напиши Денису и Лизе: 30 мин, когда удобно им"
     },
     {
       "kind": "person",
@@ -58,82 +76,40 @@
     },
     {
       "kind": "step",
-      "text": "Остальные знакомства — Дима, не назначай сам"
+      "text": "Остальные знакомства — Дима"
     }
   ],
-  "2.amo_walk": [
-    {
-      "kind": "person",
-      "id": "sasha_a"
-    },
-    {
-      "kind": "resource",
-      "id": "doc_handoff_sasha"
-    },
-    {
-      "kind": "resource",
-      "id": "amo_cult"
-    },
+  "2.denis_call": [
     {
       "kind": "step",
-      "text": "Прими дела и открой Amo Cult"
-    }
-  ],
-  "2.sales_context": [
-    {
-      "kind": "resource",
-      "id": "doc_sales_context"
-    },
-    {
-      "kind": "resource",
-      "id": "doc_client_pools"
-    },
-    {
-      "kind": "step",
-      "text": "Прочитай контекст и пулы — не перехватывай чужое"
-    }
-  ],
-  "2.tg_join": [
-    {
-      "kind": "resource",
-      "id": "view_chats"
-    },
-    {
-      "kind": "step",
-      "text": "Вступи в чаты из раздела Telegram"
-    }
-  ],
-  "3.denis_call": [
-    {
-      "kind": "step",
-      "text": "30 мин · неформальное знакомство, продукт Cult"
+      "text": "30 мин · знакомство, продукт Cult"
     },
     {
       "kind": "deck",
       "id": "cult_main_cases"
     }
   ],
-  "3.liza_call": [
+  "2.liza_call": [
     {
       "kind": "step",
-      "text": "30 мин · неформальное знакомство, продукт Blaster"
+      "text": "30 мин · знакомство, продукт Blaster"
     },
     {
       "kind": "deck",
       "id": "blaster_master"
     }
   ],
-  "3.products": [
+  "2.products": [
     {
       "kind": "deck",
       "id": "sputnik_unit"
     },
     {
       "kind": "step",
-      "text": "Преза Sputnik + «Куда вести» в разделе Карта. Знакомство с Сергеем — через CRO."
+      "text": "Преза Sputnik + «Куда вести» на карте. Сергей — через CRO."
     }
   ],
-  "4.rules": [
+  "3.rules": [
     {
       "kind": "resource",
       "id": "doc_rules_summary"
@@ -144,10 +120,10 @@
     },
     {
       "kind": "step",
-      "text": "Сначала кратко, потом полная версия при необходимости"
+      "text": "Сначала кратко, потом полная при необходимости"
     }
   ],
-  "4.docs_alya": [
+  "3.docs_alya": [
     {
       "kind": "person",
       "id": "alya_dudenkova"
@@ -157,7 +133,7 @@
       "text": "Акты, счета, Контур — спроси Алю"
     }
   ],
-  "4.team_staff": [
+  "3.team_staff": [
     {
       "kind": "resource",
       "id": "view_people"
@@ -167,7 +143,7 @@
       "text": "Пробеги карточки в разделе Люди"
     }
   ],
-  "4.clifton_setup": [
+  "3.clifton_setup": [
     {
       "kind": "resource",
       "id": "doc_clifton_team"
@@ -177,13 +153,7 @@
       "text": "Закажи тест и сверь с таблицей"
     }
   ],
-  "5.friday_units_sales": [
-    {
-      "kind": "step",
-      "text": "Пт 12:00 — звонок юнитов по продажам"
-    }
-  ],
-  "5.crm_landscape": [
+  "4.crm_landscape": [
     {
       "kind": "resource",
       "id": "view_sales"
@@ -193,7 +163,7 @@
       "text": "Три CRM: куда новые сделки"
     }
   ],
-  "5.amo_reg": [
+  "4.amo_reg": [
     {
       "kind": "resource",
       "id": "doc_amo_reg"
@@ -203,7 +173,7 @@
       "text": "Прочитай регламент ведения карточек"
     }
   ],
-  "5.skills": [
+  "4.skills": [
     {
       "kind": "resource",
       "id": "skills_pack"
@@ -217,10 +187,16 @@
       "text": "Поставь Cursor, открой agent-pack"
     }
   ],
+  "5.friday_units_sales": [
+    {
+      "kind": "step",
+      "text": "Пт 12:00 — звонок юнитов по продажам"
+    }
+  ],
   "5.cro_gaps": [
     {
       "kind": "step",
-      "text": "Список дыр доступов — в отчёт CRO (чеклист уже в дне 1)"
+      "text": "Список дыр доступов — в отчёт CRO"
     }
   ],
   "6.warm_base_collect": [
@@ -236,7 +212,7 @@
   "6.amo_100": [
     {
       "kind": "step",
-      "text": "В Amo: next step во всех своих карточках (раздел Доступы / Amo)"
+      "text": "В Amo: next step во всех своих карточках"
     }
   ],
   "7.scoring_practice": [
@@ -268,7 +244,7 @@
   "8.qual_brief": [
     {
       "kind": "step",
-      "text": "Один учебный бриф до ≥5 (брифы — раздел Скиллы / practice_briefs)"
+      "text": "Один учебный бриф до ≥5"
     }
   ],
   "9.month_plan": [
@@ -353,6 +329,16 @@
       "personId": "dima",
       "label": "Написать отчёт в Telegram",
       "prefill": "Отчёт дня 9:\n• Сделал:\n• Закрыто:\n• Мутно:\n"
+    }
+  ],
+  "3.client_pools": [
+    {
+      "kind": "resource",
+      "id": "view_pools"
+    },
+    {
+      "kind": "step",
+      "text": "Открой раздел Пулы: Cult / Blaster / Sputnik. Не перехватывать."
     }
   ]
 }

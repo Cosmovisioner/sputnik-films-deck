@@ -7,7 +7,7 @@
   const ACCESS_KEY = "sb-onboarding-leonid-access";
   const QUEST_KEY = "sb-onboarding-leonid-quest-step";
   const MODE_KEY = "sb-onboarding-leonid-program-mode";
-  const ASSET_VER = "20260712-v50";
+  const ASSET_VER = "20260712-v51";
 
   const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya", "alya_dudenkova"]);
 
@@ -66,6 +66,7 @@
   let salesSnapshot = null;
   let accessChecklist = null;
   let skillsHub = null;
+  let clientPools = null;
   let accessState = loadAccessState();
   let state = loadState();
   let currentView = "program";
@@ -925,6 +926,7 @@
         <h3 class="section-heading">Быстрые разделы</h3>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
           <button type="button" class="btn" data-view="map">Карта группы</button>
+          <button type="button" class="btn" data-view="pools">Пулы</button>
           <button type="button" class="btn" data-view="sales">Продажи</button>
           <button type="button" class="btn" data-view="people">Люди</button>
           <button type="button" class="btn" data-view="chats">Telegram</button>
@@ -984,11 +986,12 @@
           <button type="button" class="btn primary" id="nextDay" ${!next ? "disabled" : ""}>${next ? next.title + " →" : "Конец"}</button>
         </div>
       </article>
-      ${step.id === 4 ? renderUnitRoutingCard("После созвона с Лизой — держи таблицу под рукой.") : ""}
+      ${step.id === 2 ? renderUnitRoutingCard("После продуктов — держи таблицу под рукой.") : ""}
       <div class="card">
         <h3 class="section-heading">Быстрые разделы</h3>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
           <button type="button" class="btn" data-view="map">Карта группы</button>
+          <button type="button" class="btn" data-view="pools">Пулы</button>
           <button type="button" class="btn" data-view="sales">Продажи</button>
           <button type="button" class="btn" data-view="people">Люди</button>
           <button type="button" class="btn" data-view="chats">Telegram</button>
@@ -1001,6 +1004,42 @@
 
   function renderProgram() {
     return programMode === "list" ? renderProgramList() : renderProgramFocus();
+  }
+
+  function renderPools() {
+    if (!clientPools) {
+      return `<div class="card"><h2 class="card-title">Пулы клиентов</h2><p class="card-intro">Не удалось загрузить список. Обнови страницу.</p></div>`;
+    }
+    const units = clientPools.units || [];
+    const order = ["cult", "blaster", "sputnik"];
+    const sorted = [...units].sort((a, b) => {
+      const ia = order.indexOf(a.id);
+      const ib = order.indexOf(b.id);
+      return (ia < 0 ? 99 : ia) - (ib < 0 ? 99 : ib);
+    });
+    const blocks = sorted.map(u => {
+      const clients = u.clients || u.brands || [];
+      const agencies = u.agencies || [];
+      const names = clients.map(c => typeof c === "string" ? c : c.name).filter(Boolean);
+      const agencyNames = agencies.map(c => typeof c === "string" ? c : c.name).filter(Boolean);
+      const list = names.map(n => `<li>${esc(n)}</li>`).join("");
+      const agencyList = agencyNames.length
+        ? `<p class="pools-agency-label">Агентства</p><ul class="pools-list">${agencyNames.map(n => `<li>${esc(n)}</li>`).join("")}</ul>`
+        : "";
+      return `
+        <div class="card pools-unit-card">
+          <h3 class="section-heading">${esc(u.name)}</h3>
+          <p class="card-intro">${esc(u.owner || "")}${u.label ? " · " + esc(u.label) : ""}</p>
+          <ul class="pools-list">${list || "<li class='path-note'>Список пуст</li>"}</ul>
+          ${agencyList}
+        </div>`;
+    }).join("");
+    return `
+      <div class="card">
+        <h2 class="card-title">Пулы клиентов</h2>
+        <p class="card-intro">С кем уже работают юниты. Не колл-лист и не перехват: пишет держатель отношений.</p>
+      </div>
+      ${blocks}`;
   }
 
   function renderMap() {
@@ -1448,6 +1487,7 @@
     const main = document.getElementById("mainContent");
     if (currentView === "program") main.innerHTML = renderProgram();
     else if (currentView === "map") main.innerHTML = renderMap();
+    else if (currentView === "pools") main.innerHTML = renderPools();
     else if (currentView === "people") main.innerHTML = renderPeople();
     else if (currentView === "chats") main.innerHTML = renderChats();
     else if (currentView === "decks") main.innerHTML = renderDecks();
@@ -1631,7 +1671,7 @@
 
   async function init() {
     try {
-      const [stepsData, teamRes, resRes, chatsRes, decksRes, pathsRes, contactsRes, salesRes, accessRes, skillsRes] = await Promise.all([
+      const [stepsData, teamRes, resRes, chatsRes, decksRes, pathsRes, contactsRes, salesRes, accessRes, skillsRes, poolsRes] = await Promise.all([
         fetch("data/steps.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
         fetch("data/team.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
         fetch("data/resources.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
@@ -1641,7 +1681,8 @@
         fetch("data/contacts.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
         fetch("data/sales_snapshot.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
         fetch("data/access_checklist.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
-        fetch("data/skills_hub.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); })
+        fetch("data/skills_hub.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); }),
+        fetch("data/client_pools.json?v=" + ASSET_VER).then(r => { if (!r.ok) throw new Error(); return r.json(); })
       ]);
       steps = stepsData.steps;
       stepsMeta = stepsData.meta || {};
@@ -1654,6 +1695,7 @@
       salesSnapshot = salesRes;
       accessChecklist = accessRes;
       skillsHub = skillsRes;
+      clientPools = poolsRes;
     } catch (_) {
       document.getElementById("loadError").hidden = false;
       return;
@@ -1672,13 +1714,14 @@
     const params = new URLSearchParams(location.search);
     const viewParam = params.get("view") || params.get("map") && "map" || params.get("people") && "people";
     if (params.has("map")) currentView = "map";
+    else if (params.has("pools")) currentView = "pools";
     else if (params.has("people")) currentView = "people";
     else if (params.has("chats")) currentView = "chats";
     else if (params.has("decks")) currentView = "decks";
     else if (params.has("sales")) currentView = "sales";
     else if (params.has("access")) currentView = "access";
     else if (params.has("skills")) currentView = "skills";
-    else if (viewParam && ["program","map","people","chats","decks","sales","access","skills"].includes(viewParam)) currentView = viewParam;
+    else if (viewParam && ["program","map","pools","people","chats","decks","sales","access","skills"].includes(viewParam)) currentView = viewParam;
 
     const dayParam = params.get("day");
     if (dayParam) {
