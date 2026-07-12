@@ -5,7 +5,7 @@
     "passwords_doc": "GDoc «Leonid — доступы 2026-07» в папке найма (только CRO, CEO, hiree)"
   },
   "hiree_intro": "День 1: после вводной с Димой пройди этот чеклист. Если чего-то нет — напиши Диме одним сообщением (шаблон ниже).",
-  "tg_request_template": "Привет, Дима! Стартую онбординг. Проверь, пожалуйста, доступы:\n\n☐ Amo Cult\n☐ Amo Blaster (read)\n☐ Drive Культ-группа + Коммерция\n☐ GDocs пакета (NB, handoff, бриф, Amo-регламент)\n☐ Telegram: Группа / Продажи + Коммерческий директор\n☐ Почта @cult.team\n☐ Clifton access code\n☐ Cursor skills (ссылка на skills-hub на квесте)\n\nСпасибо!",
+  "tg_request_template": "Привет, Дима! Стартую онбординг. Проверь, пожалуйста, доступы:\n\n☐ Amo Cult\n☐ Amo Blaster (read)\n☐ Drive Культ-группа + Коммерция\n☐ GDocs пакета (NB, handoff, бриф, Amo-регламент)\n☐ Telegram: Группа / Продажи + Коммерческий директор\n☐ Почта @cult.team\n☐ Clifton access code\n☐ Cursor / Codex (подписка компании)\n☐ Cursor skills (ссылка на skills-hub на квесте)\n\nСпасибо!",
   "systems": [
     { "id": "amo_cult", "name": "AmoCRM · Cult Group", "url": "https://cultteam.amocrm.ru", "role": "full sales · новые сделки группы", "who": "Дима Квашнин", "resource": "amo_cult" },
     { "id": "amo_blaster", "name": "AmoCRM · Blaster", "url": "https://blasterstudio.amocrm.ru", "role": "read / joint · наследие Blaster", "who": "Лиза + Дима", "resource": "amo_blaster" },
@@ -13,7 +13,9 @@
     { "id": "drive_group", "name": "Google Drive · Культ-группа", "url": "https://drive.google.com/drive/folders/1O89yMg7RCXGIwv_eTQ8Sp6A6oiJiwRmR", "role": "read/edit коммерция", "who": "Дима", "resource": "drive_cult_group" },
     { "id": "drive_commerce", "name": "Google Drive · Коммерция", "url": "https://drive.google.com/drive/folders/1cm50xCY02m_WTNenHbEoKAl-ALZ-Ac_n", "role": "edit · КП и шаблоны", "who": "Дима", "resource": "drive_commerce" },
     { "id": "email", "name": "Почта @cult.team", "url": null, "role": "outbound sales", "who": "CEO / ops Cult", "resource": "email_leonid" },
-    { "id": "clifton", "name": "CliftonStrengths", "url": "https://www.gallup.com/access", "role": "Top 34 · оплачивает компания", "who": "Дима (access code)", "resource": "clifton" }
+    { "id": "clifton", "name": "CliftonStrengths", "url": "https://www.gallup.com/access", "role": "Top 34 · оплачивает компания", "who": "Дима (access code)", "resource": "clifton" },
+    { "id": "macwhisper", "name": "MacWhisper (или Handy)", "url": "https://goodsnooze.gumroad.com/l/macwhisper", "role": "транскрипция встреч · бесплатно", "who": "самостоятельно · день 1", "resource": "soft_macwhisper" },
+    { "id": "cursor", "name": "Cursor (или Codex)", "url": "https://cursor.com/", "role": "агентизация · подписку оплачивает компания", "who": "Дима (инвайт)", "resource": "soft_cursor" }
   ],
   "docs": [
     { "id": "nb", "name": "NB регламент", "url": "https://docs.google.com/spreadsheets/d/1W0xbSDRQVSYWjCOHPtfNL43Ps9yknejEIaspzu28QU4/edit", "resource": "doc_nb_reg" },
@@ -42,6 +44,8 @@
     { "id": "tg_cro", "text": "Добавлен в чат коммерческого директора" },
     { "id": "email", "text": "Рабочая почта @cult.team настроена" },
     { "id": "clifton", "text": "Получил access code Clifton от Димы" },
+    { "id": "macwhisper", "text": "MacWhisper или Handy установлены (запись встреч)" },
+    { "id": "cursor", "text": "Cursor или Codex установлены (инвайт/оплата у Димы)" },
     { "id": "skills", "text": "Открыл раздел «Скиллы» — знаю где инструкции" }
   ],
   "crm_rules": [

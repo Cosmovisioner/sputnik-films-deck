@@ -1,300 +1,915 @@
 {
   "1.walkthrough": [
-    { "kind": "step", "text": "10:00–13:00 — вводная сессия с Димой Квашниным (коммерческий директор)" },
-    { "kind": "person", "id": "dima" },
-    { "kind": "resource", "id": "view_org_map" },
-    { "kind": "note", "text": "Запиши вопросы — структуру закрываешь сегодня после сессии" }
+    {
+      "kind": "step",
+      "text": "10:00–13:00 — вводная сессия с Димой Квашниным (коммерческий директор)"
+    },
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "resource",
+      "id": "view_org_map"
+    },
+    {
+      "kind": "note",
+      "text": "Запиши вопросы — структуру закрываешь сегодня после сессии"
+    }
   ],
   "1.role": [
-    { "kind": "step", "text": "Твоя зона: холод, входящие, бриф до договора" },
-    { "kind": "resource", "id": "doc_rules_summary" },
-    { "kind": "resource", "id": "doc_commerce_rules" },
-    { "kind": "note", "text": "Не продакшен, не PR, не тащить всё в Sputnik по привычке" }
+    {
+      "kind": "step",
+      "text": "Твоя зона: холод, входящие, бриф до договора"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_rules_summary"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_commerce_rules"
+    },
+    {
+      "kind": "note",
+      "text": "Не продакшен, не PR, не тащить всё в Sputnik по привычке"
+    }
   ],
   "1.access": [
-    { "kind": "resource", "id": "view_access" },
-    { "kind": "step", "text": "1. Пройди чеклист доступов — отметь что уже есть" },
-    { "kind": "resource", "id": "drive_hiring" },
-    { "kind": "resource", "id": "amo_cult" },
-    { "kind": "resource", "id": "drive_commerce" },
-    { "kind": "resource", "id": "email_leonid" },
-    { "kind": "section", "id": "chats", "filter": "required" },
-    { "kind": "note", "text": "Если чего-то нет — скопируй шаблон сообщения из раздела «Доступы» и отправь Диме" }
+    {
+      "kind": "resource",
+      "id": "view_access"
+    },
+    {
+      "kind": "step",
+      "text": "1. Пройди чеклист доступов — отметь что уже есть"
+    },
+    {
+      "kind": "resource",
+      "id": "drive_hiring"
+    },
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    },
+    {
+      "kind": "resource",
+      "id": "drive_commerce"
+    },
+    {
+      "kind": "resource",
+      "id": "email_leonid"
+    },
+    {
+      "kind": "section",
+      "id": "chats",
+      "filter": "required"
+    },
+    {
+      "kind": "note",
+      "text": "Если чего-то нет — скопируй шаблон сообщения из раздела «Доступы» и отправь Диме"
+    }
   ],
   "1.clifton_order": [
-    { "kind": "step", "text": "Напиши Диме — компания оплачивает тест CliftonStrengths (Top 34)" },
-    { "kind": "person", "id": "dima" },
-    { "kind": "resource", "id": "clifton" },
-    { "kind": "resource", "id": "doc_clifton_team" },
-    { "kind": "note", "text": "Access code для gallup.com/access пришлёт Дима. Таблица команды — от Кости (созвон 08.05)" }
+    {
+      "kind": "step",
+      "text": "Напиши Диме — компания оплачивает тест CliftonStrengths (Top 34)"
+    },
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "resource",
+      "id": "clifton"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_clifton_team"
+    },
+    {
+      "kind": "note",
+      "text": "Access code для gallup.com/access пришлёт Дима. Таблица команды — от Кости (созвон 08.05)"
+    }
+  ],
+  "1.soft_whisper": [
+    {
+      "kind": "step",
+      "text": "Поставь MacWhisper (предпочтительно) — бесплатно, локальная транскрипция встреч"
+    },
+    {
+      "kind": "resource",
+      "id": "soft_macwhisper"
+    },
+    {
+      "kind": "resource",
+      "id": "soft_handy"
+    },
+    {
+      "kind": "note",
+      "text": "Альтернатива — Handy (handy.computer). Цель: записывать все встречи → транскрипт → отчёт. Не облачный Otter без согласования."
+    }
   ],
   "1.motivation": [
-    { "kind": "step", "text": "Сначала PDF-оффер (канон) · 220к + 12% · повторы 6→3→0% · бонус 50к за юнит в пул · старт 13.07 · выплата 13-го" },
-    { "kind": "resource", "id": "doc_offer_leonid" },
-    { "kind": "resource", "id": "doc_motivation_extended" },
-    { "kind": "resource", "id": "doc_commerce_rules" },
-    { "kind": "note", "text": "Расширенный GDoc — про % после ухода и ownership базы. Если что-то спорит с PDF — верить PDF." },
-    { "kind": "person", "id": "dima" }
+    {
+      "kind": "step",
+      "text": "Сначала PDF-оффер (канон) · 220к + 12% · повторы 6→3→0% · бонус 50к за юнит в пул · старт 13.07 · выплата 13-го"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_offer_leonid"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_motivation_extended"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_commerce_rules"
+    },
+    {
+      "kind": "note",
+      "text": "Расширенный GDoc — про % после ухода и ownership базы. Если что-то спорит с PDF — верить PDF."
+    },
+    {
+      "kind": "person",
+      "id": "dima"
+    }
   ],
   "1.org_map": [
-    { "kind": "resource", "id": "view_org_map" },
-    { "kind": "resource", "id": "drive_techtigers_products" },
-    { "kind": "step", "text": "Нажми на каждый юнит и продукт ТехноТигров — посмотри людей и презентации" },
-    { "kind": "note", "text": "Open Production упразднён — в структуре его нет" }
+    {
+      "kind": "resource",
+      "id": "view_org_map"
+    },
+    {
+      "kind": "resource",
+      "id": "drive_techtigers_products"
+    },
+    {
+      "kind": "step",
+      "text": "Нажми на каждый юнит и продукт ТехноТигров — посмотри людей и презентации"
+    },
+    {
+      "kind": "note",
+      "text": "Open Production упразднён — в структуре его нет"
+    }
   ],
   "1.sales_snapshot": [
-    { "kind": "resource", "id": "view_sales" },
-    { "kind": "resource", "id": "doc_nb_reg" },
-    { "kind": "resource", "id": "amo_cult" },
-    { "kind": "person", "id": "dima" },
-    { "kind": "note", "text": "Prodavan и iCRM — одно и то же. Июльский факт — на синке с Димой" }
+    {
+      "kind": "resource",
+      "id": "view_sales"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_nb_reg"
+    },
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    },
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "note",
+      "text": "Prodavan и iCRM — одно и то же. Июльский факт — на синке с Димой"
+    }
   ],
   "1.group_deck": [
-    { "kind": "deck", "id": "cult_group" },
-    { "kind": "resource", "id": "view_decks" }
+    {
+      "kind": "deck",
+      "id": "cult_group"
+    },
+    {
+      "kind": "resource",
+      "id": "view_decks"
+    }
   ],
   "1.team_preview": [
-    { "kind": "resource", "id": "view_people" },
-    { "kind": "step", "text": "Открой карточки штата — пробегись, не углубляйся (детали — день 3)" }
+    {
+      "kind": "resource",
+      "id": "view_people"
+    },
+    {
+      "kind": "step",
+      "text": "Открой карточки штата — пробегись, не углубляйся (детали — день 3)"
+    }
   ],
   "2.amo_walk": [
-    { "kind": "step", "text": "11:00–12:30 — разбор Amo Cult + передача дел от Саши Алексеева" },
-    { "kind": "resource", "id": "amo_cult" },
-    { "kind": "person", "id": "dima" },
-    { "kind": "person", "id": "sasha_a" },
-    { "kind": "resource", "id": "doc_handoff_sasha" }
+    {
+      "kind": "step",
+      "text": "11:00–12:30 — разбор Amo Cult + передача дел от Саши Алексеева"
+    },
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    },
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "person",
+      "id": "sasha_a"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_handoff_sasha"
+    }
   ],
   "2.crm_legacy": [
-    { "kind": "resource", "id": "amo_cult" },
-    { "kind": "resource", "id": "amo_blaster" },
-    { "kind": "resource", "id": "crm_landscape" },
-    { "kind": "note", "text": "С 13.07 новые сделки группы — Amo Cult. Amo Blaster — наследие и сделки только Blaster" }
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    },
+    {
+      "kind": "resource",
+      "id": "amo_blaster"
+    },
+    {
+      "kind": "resource",
+      "id": "crm_landscape"
+    },
+    {
+      "kind": "note",
+      "text": "С 13.07 новые сделки группы — Amo Cult. Amo Blaster — наследие и сделки только Blaster"
+    }
   ],
   "2.handoff_doc": [
-    { "kind": "resource", "id": "doc_handoff_sasha" },
-    { "kind": "person", "id": "sasha_a" },
-    { "kind": "note", "text": "Старая база — для консультаций, не владелец CRM" }
+    {
+      "kind": "resource",
+      "id": "doc_handoff_sasha"
+    },
+    {
+      "kind": "person",
+      "id": "sasha_a"
+    },
+    {
+      "kind": "note",
+      "text": "Старая база — для консультаций, не владелец CRM"
+    }
   ],
   "2.tg_join": [
-    { "kind": "section", "id": "chats", "filter": "required" },
-    { "kind": "person", "id": "dima" },
-    { "kind": "note", "text": "Ссылок нет — попроси добавить в чат" }
+    {
+      "kind": "section",
+      "id": "chats",
+      "filter": "required"
+    },
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "note",
+      "text": "Ссылок нет — попроси добавить в чат"
+    }
+  ],
+  "2.soft_agent": [
+    {
+      "kind": "step",
+      "text": "Поставь Cursor (предпочтительно) или Codex — агентизация продаж"
+    },
+    {
+      "kind": "resource",
+      "id": "soft_cursor"
+    },
+    {
+      "kind": "resource",
+      "id": "soft_codex"
+    },
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "note",
+      "text": "Подписку оплачивает компания — напиши Диме за инвайтом/картой. Cursor нужен к дню 6 (скиллы)."
+    }
   ],
   "3.denis_call": [
-    { "kind": "step", "text": "11:00–12:00 — созвон: Cult, презентации, Amo, маржа" },
-    { "kind": "person", "id": "denis" },
-    { "kind": "deck", "id": "cult_main_cases" },
-    { "kind": "resource", "id": "amo_cult" }
+    {
+      "kind": "step",
+      "text": "11:00–12:00 — созвон: Cult, презентации, Amo, маржа"
+    },
+    {
+      "kind": "person",
+      "id": "denis"
+    },
+    {
+      "kind": "deck",
+      "id": "cult_main_cases"
+    },
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    }
   ],
   "3.team_staff": [
-    { "kind": "resource", "id": "view_people" },
-    { "kind": "step", "text": "Открой карточки штата — нажми на каждого" }
+    {
+      "kind": "resource",
+      "id": "view_people"
+    },
+    {
+      "kind": "step",
+      "text": "Открой карточки штата — нажми на каждого"
+    }
   ],
   "3.clifton_test": [
-    { "kind": "resource", "id": "clifton" },
-    { "kind": "person", "id": "dima" },
-    { "kind": "note", "text": "Около 45 минут без перерыва — лучше утром" }
+    {
+      "kind": "resource",
+      "id": "clifton"
+    },
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "note",
+      "text": "Около 45 минут без перерыва — лучше утром"
+    }
   ],
   "3.sasha_sync": [
-    { "kind": "step", "text": "15:00–16:00 — синхрон по контактам и базе" },
-    { "kind": "person", "id": "sasha_a" },
-    { "kind": "resource", "id": "doc_handoff_sasha" }
+    {
+      "kind": "step",
+      "text": "15:00–16:00 — синхрон по контактам и базе"
+    },
+    {
+      "kind": "person",
+      "id": "sasha_a"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_handoff_sasha"
+    }
   ],
   "3.clifton_table": [
-    { "kind": "resource", "id": "doc_clifton_team" },
-    { "kind": "resource", "id": "view_people" }
+    {
+      "kind": "resource",
+      "id": "doc_clifton_team"
+    },
+    {
+      "kind": "resource",
+      "id": "view_people"
+    }
   ],
   "4.liza_call": [
-    { "kind": "step", "text": "11:00–12:00 — Blaster, мультимедиа, прайс" },
-    { "kind": "person", "id": "liza" },
-    { "kind": "deck", "id": "blaster_master" },
-    { "kind": "resource", "id": "drive_blaster_sales" }
+    {
+      "kind": "step",
+      "text": "11:00–12:00 — Blaster, мультимедиа, прайс"
+    },
+    {
+      "kind": "person",
+      "id": "liza"
+    },
+    {
+      "kind": "deck",
+      "id": "blaster_master"
+    },
+    {
+      "kind": "resource",
+      "id": "drive_blaster_sales"
+    }
   ],
   "4.products": [
-    { "kind": "resource", "id": "view_org_map" },
-    { "kind": "resource", "id": "view_decks" },
-    { "kind": "note", "text": "Cult от ~5 млн ₽ · Blaster от сотен тысяч · Sputnik от ~1 млн · «берём» Sputnik решает Сергей" }
+    {
+      "kind": "resource",
+      "id": "view_org_map"
+    },
+    {
+      "kind": "resource",
+      "id": "view_decks"
+    },
+    {
+      "kind": "note",
+      "text": "Cult от ~5 млн ₽ · Blaster от сотен тысяч · Sputnik от ~1 млн · «берём» Sputnik решает Сергей"
+    }
   ],
   "4.icp_check": [
-    { "kind": "resource", "id": "doc_icp_checklist" },
-    { "kind": "resource", "id": "doc_rules_summary" },
-    { "kind": "note", "text": "Не наш / стоп-лист — не тратить время на КП, зафиксировать отказ в Amo" }
+    {
+      "kind": "resource",
+      "id": "doc_icp_checklist"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_rules_summary"
+    },
+    {
+      "kind": "note",
+      "text": "Не наш / стоп-лист — не тратить время на КП, зафиксировать отказ в Amo"
+    }
   ],
   "4.deck_router": [
-    { "kind": "resource", "id": "view_decks" },
-    { "kind": "resource", "id": "skills_pack" },
-    { "kind": "note", "text": "Скилл выбора презентации — после установки на 6-й день" }
+    {
+      "kind": "resource",
+      "id": "view_decks"
+    },
+    {
+      "kind": "resource",
+      "id": "skills_pack"
+    },
+    {
+      "kind": "note",
+      "text": "Скилл выбора презентации — после установки на 6-й день"
+    }
   ],
   "4.shadow1": [
-    { "kind": "person", "id": "dima" },
-    { "kind": "resource", "id": "amo_cult" },
-    { "kind": "deck", "id": "cult_group" }
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    },
+    {
+      "kind": "deck",
+      "id": "cult_group"
+    }
   ],
   "4.amo_next": [
-    { "kind": "resource", "id": "amo_cult" },
-    { "kind": "resource", "id": "doc_amo_reg" }
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_amo_reg"
+    }
   ],
   "5.sergey_call": [
-    { "kind": "step", "text": "11:00–12:00 — «берём ли» проект в Sputnik" },
-    { "kind": "person", "id": "sergey" },
-    { "kind": "deck", "id": "sputnik_unit" },
-    { "kind": "section", "id": "chats", "filter": "sputnik_sales" }
+    {
+      "kind": "step",
+      "text": "11:00–12:00 — «берём ли» проект в Sputnik"
+    },
+    {
+      "kind": "person",
+      "id": "sergey"
+    },
+    {
+      "kind": "deck",
+      "id": "sputnik_unit"
+    },
+    {
+      "kind": "section",
+      "id": "chats",
+      "filter": "sputnik_sales"
+    }
   ],
   "5.rules": [
-    { "kind": "resource", "id": "doc_rules_summary" },
-    { "kind": "resource", "id": "doc_commerce_rules" },
-    { "kind": "resource", "id": "doc_nb_reg" },
-    { "kind": "resource", "id": "doc_prod_standards" }
+    {
+      "kind": "resource",
+      "id": "doc_rules_summary"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_commerce_rules"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_nb_reg"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_prod_standards"
+    }
   ],
   "5.docs_alya": [
-    { "kind": "step", "text": "Напиши @DudenkovaA или попроси Диму представить — 30–40 мин разбор документооборота" },
-    { "kind": "person", "id": "alya_dudenkova" },
-    { "kind": "person", "id": "dima" },
-    { "kind": "resource", "id": "doc_prod_standards" },
-    { "kind": "note", "text": "Спроси: акт+счёт после закрытия · реквизиты Контур · кто утверждает документ на оплату · NDA с печатью · куда слать пакет клиенту. Не путать с коммерческим «берём/не берём»" }
+    {
+      "kind": "step",
+      "text": "Напиши @DudenkovaA или попроси Диму представить — 30–40 мин разбор документооборота"
+    },
+    {
+      "kind": "person",
+      "id": "alya_dudenkova"
+    },
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_prod_standards"
+    },
+    {
+      "kind": "note",
+      "text": "Спроси: акт+счёт после закрытия · реквизиты Контур · кто утверждает документ на оплату · NDA с печатью · куда слать пакет клиенту. Не путать с коммерческим «берём/не берём»"
+    }
   ],
   "5.partner_sales": [
-    { "kind": "resource", "id": "view_people", "filter": "partner_slz" },
-    { "kind": "person", "id": "sasha_a" },
-    { "kind": "person", "id": "dima_soldatov" },
-    { "kind": "person", "id": "max_blaster" },
-    { "kind": "person", "id": "petrukhin" },
-    { "kind": "section", "id": "chats", "filter": "ddl" },
-    { "kind": "note", "text": "Петрухин — коллаборация Blaster, не партнёрский sales. DDL — чат «ДДЛ бизнес» для док Sputnik" }
+    {
+      "kind": "resource",
+      "id": "view_people",
+      "filter": "partner_slz"
+    },
+    {
+      "kind": "person",
+      "id": "sasha_a"
+    },
+    {
+      "kind": "person",
+      "id": "dima_soldatov"
+    },
+    {
+      "kind": "person",
+      "id": "max_blaster"
+    },
+    {
+      "kind": "person",
+      "id": "petrukhin"
+    },
+    {
+      "kind": "section",
+      "id": "chats",
+      "filter": "ddl"
+    },
+    {
+      "kind": "note",
+      "text": "Петрухин — коллаборация Blaster, не партнёрский sales. DDL — чат «ДДЛ бизнес» для док Sputnik"
+    }
   ],
   "5.shadow2": [
-    { "kind": "person", "id": "dima" },
-    { "kind": "resource", "id": "amo_cult" }
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    }
   ],
   "5.sputnik_rule": [
-    { "kind": "person", "id": "sergey" },
-    { "kind": "person", "id": "dima" },
-    { "kind": "note", "text": "Ex-Sputnik — не уводи каждый лид в Sputnik автоматически" }
+    {
+      "kind": "person",
+      "id": "sergey"
+    },
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "note",
+      "text": "Ex-Sputnik — не уводи каждый лид в Sputnik автоматически"
+    }
   ],
   "6.sales_meet": [
-    { "kind": "section", "id": "chats", "filter": "group_sales" },
-    { "kind": "person", "id": "dima" }
+    {
+      "kind": "section",
+      "id": "chats",
+      "filter": "group_sales"
+    },
+    {
+      "kind": "person",
+      "id": "dima"
+    }
   ],
   "6.crm_landscape": [
-    { "kind": "resource", "id": "crm_landscape" },
-    { "kind": "resource", "id": "amo_cult" },
-    { "kind": "resource", "id": "amo_blaster" },
-    { "kind": "resource", "id": "icrm" },
-    { "kind": "person", "id": "dima" }
+    {
+      "kind": "resource",
+      "id": "crm_landscape"
+    },
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    },
+    {
+      "kind": "resource",
+      "id": "amo_blaster"
+    },
+    {
+      "kind": "resource",
+      "id": "icrm"
+    },
+    {
+      "kind": "person",
+      "id": "dima"
+    }
   ],
   "6.amo_blaster_tour": [
-    { "kind": "resource", "id": "amo_blaster" },
-    { "kind": "person", "id": "liza" },
-    { "kind": "note", "text": "Только просмотр — смотри историю сделок, не создавай дубли в Amo Cult" }
+    {
+      "kind": "resource",
+      "id": "amo_blaster"
+    },
+    {
+      "kind": "person",
+      "id": "liza"
+    },
+    {
+      "kind": "note",
+      "text": "Только просмотр — смотри историю сделок, не создавай дубли в Amo Cult"
+    }
   ],
   "6.icrm_intro": [
-    { "kind": "resource", "id": "icrm" },
-    { "kind": "person", "id": "dima" },
-    { "kind": "section", "id": "chats", "filter": "techtigers" },
-    { "kind": "note", "text": "Пока тест — полное демо на 9-й день с CRO. Prodavan = iCRM" }
+    {
+      "kind": "resource",
+      "id": "icrm"
+    },
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "section",
+      "id": "chats",
+      "filter": "techtigers"
+    },
+    {
+      "kind": "note",
+      "text": "Пока тест — полное демо на 9-й день с CRO. Prodavan = iCRM"
+    }
   ],
   "6.amo_reg": [
-    { "kind": "resource", "id": "doc_amo_reg" },
-    { "kind": "resource", "id": "amo_cult" }
+    {
+      "kind": "resource",
+      "id": "doc_amo_reg"
+    },
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    }
   ],
   "6.skills": [
-    { "kind": "resource", "id": "skills_pack" },
-    { "kind": "step", "text": "Установи 3 скилла в Cursor · прогони 1 тестовый лид через скоринг + brief-gate + deck-router" },
-    { "kind": "person", "id": "dima" }
+    {
+      "kind": "resource",
+      "id": "skills_pack"
+    },
+    {
+      "kind": "resource",
+      "id": "soft_cursor"
+    },
+    {
+      "kind": "step",
+      "text": "Установи 3 скилла в Cursor · прогони 1 гипотевый лид через скоринг + brief-gate + deck-router"
+    },
+    {
+      "kind": "note",
+      "text": "Если Cursor ещё не стоит — вернись к задаче дня 2 (soft_agent)"
+    },
+    {
+      "kind": "person",
+      "id": "dima"
+    }
   ],
   "6.amo_100": [
-    { "kind": "resource", "id": "amo_cult" },
-    { "kind": "resource", "id": "doc_amo_reg" }
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_amo_reg"
+    }
   ],
   "7.objection": [
-    { "kind": "person", "id": "dima" },
-    { "kind": "resource", "id": "drive_commerce" },
-    { "kind": "note", "text": "Документ не публичный — Дима выдаёт файл или ссылку в Drive коммерции" }
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "resource",
+      "id": "drive_commerce"
+    },
+    {
+      "kind": "note",
+      "text": "Документ не публичный — Дима выдаёт файл или ссылку в Drive коммерции"
+    }
   ],
   "7.scoring_practice": [
-    { "kind": "resource", "id": "skills_pack" },
-    { "kind": "resource", "id": "doc_brief_criteria" }
+    {
+      "kind": "resource",
+      "id": "skills_pack"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_brief_criteria"
+    }
   ],
   "7.brief_gate": [
-    { "kind": "resource", "id": "doc_brief_criteria" },
-    { "kind": "resource", "id": "skills_pack" }
+    {
+      "kind": "resource",
+      "id": "doc_brief_criteria"
+    },
+    {
+      "kind": "resource",
+      "id": "skills_pack"
+    }
   ],
   "7.warm_review": [
-    { "kind": "person", "id": "dima" },
-    { "kind": "resource", "id": "amo_cult" }
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    }
   ],
   "7.shadow3": [
-    { "kind": "person", "id": "dima" },
-    { "kind": "resource", "id": "amo_cult" },
-    { "kind": "deck", "id": "cult_group" },
-    { "kind": "note", "text": "Опционально — если календарь позволяет на этой неделе" }
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    },
+    {
+      "kind": "deck",
+      "id": "cult_group"
+    },
+    {
+      "kind": "note",
+      "text": "Опционально — если календарь позволяет на этой неделе"
+    }
   ],
   "7.outreach_plan": [
-    { "kind": "resource", "id": "amo_cult" },
-    { "kind": "resource", "id": "doc_nb_reg" }
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_nb_reg"
+    }
   ],
   "7.cold_touch": [
-    { "kind": "resource", "id": "amo_cult" },
-    { "kind": "resource", "id": "doc_nb_reg" }
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_nb_reg"
+    }
   ],
   "7.incoming": [
-    { "kind": "resource", "id": "doc_brief_criteria" },
-    { "kind": "resource", "id": "view_decks" },
-    { "kind": "resource", "id": "amo_cult" }
+    {
+      "kind": "resource",
+      "id": "doc_brief_criteria"
+    },
+    {
+      "kind": "resource",
+      "id": "view_decks"
+    },
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    }
   ],
   "7.deck_practice": [
-    { "kind": "resource", "id": "view_decks" },
-    { "kind": "resource", "id": "skills_pack" }
+    {
+      "kind": "resource",
+      "id": "view_decks"
+    },
+    {
+      "kind": "resource",
+      "id": "skills_pack"
+    }
   ],
   "7.daily_cro": [
-    { "kind": "person", "id": "dima" },
-    { "kind": "section", "id": "chats", "filter": "commercial_director" },
-    { "kind": "note", "text": "Короткий sync: блокеры, приоритеты, что эскалировать" }
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "section",
+      "id": "chats",
+      "filter": "commercial_director"
+    },
+    {
+      "kind": "note",
+      "text": "Короткий sync: блокеры, приоритеты, что эскалировать"
+    }
   ],
   "8.qual_brief": [
-    { "kind": "resource", "id": "doc_brief_criteria" },
-    { "kind": "resource", "id": "amo_cult" },
-    { "kind": "resource", "id": "skills_pack" }
+    {
+      "kind": "resource",
+      "id": "doc_brief_criteria"
+    },
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    },
+    {
+      "kind": "resource",
+      "id": "skills_pack"
+    }
   ],
   "8.unit_route": [
-    { "kind": "resource", "id": "view_people" },
-    { "kind": "person", "id": "denis" },
-    { "kind": "person", "id": "liza" },
-    { "kind": "person", "id": "sergey" }
+    {
+      "kind": "resource",
+      "id": "view_people"
+    },
+    {
+      "kind": "person",
+      "id": "denis"
+    },
+    {
+      "kind": "person",
+      "id": "liza"
+    },
+    {
+      "kind": "person",
+      "id": "sergey"
+    }
   ],
   "8.no_kp_ghost": [
-    { "kind": "resource", "id": "amo_cult" },
-    { "kind": "resource", "id": "doc_amo_reg" }
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_amo_reg"
+    }
   ],
   "8.internal_first": [
-    { "kind": "resource", "id": "doc_commerce_rules" },
-    { "kind": "resource", "id": "amo_cult" },
-    { "kind": "note", "text": "На кросс-брифе — сначала соседний юнит группы, потом внешний подряд" }
+    {
+      "kind": "resource",
+      "id": "doc_commerce_rules"
+    },
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    },
+    {
+      "kind": "note",
+      "text": "На кросс-брифе — сначала соседний юнит группы, потом внешний подряд"
+    }
   ],
   "9.icrm_demo": [
-    { "kind": "person", "id": "dima" },
-    { "kind": "resource", "id": "icrm" },
-    { "kind": "section", "id": "chats", "filter": "techtigers" }
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "resource",
+      "id": "icrm"
+    },
+    {
+      "kind": "section",
+      "id": "chats",
+      "filter": "techtigers"
+    }
   ],
   "9.crm_compare": [
-    { "kind": "resource", "id": "crm_landscape" },
-    { "kind": "resource", "id": "amo_cult" },
-    { "kind": "resource", "id": "amo_blaster" },
-    { "kind": "resource", "id": "icrm" },
-    { "kind": "person", "id": "dima" },
-    { "kind": "note", "text": "Когда все новые сделки переедут на Prodavan — скажет Дима после демо" }
+    {
+      "kind": "resource",
+      "id": "crm_landscape"
+    },
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    },
+    {
+      "kind": "resource",
+      "id": "amo_blaster"
+    },
+    {
+      "kind": "resource",
+      "id": "icrm"
+    },
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "note",
+      "text": "Когда все новые сделки переедут на Prodavan — скажет Дима после демо"
+    }
   ],
   "9.retro": [
-    { "kind": "person", "id": "dima" },
-    { "kind": "note", "text": "Что понятно / что мутно — списком в Amo или в Telegram" }
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "note",
+      "text": "Что понятно / что мутно — списком в Amo или в Telegram"
+    }
   ],
   "9.month_plan": [
-    { "kind": "resource", "id": "doc_commerce_rules" },
-    { "kind": "resource", "id": "amo_cult" },
-    { "kind": "note", "text": "Цель 2-го месяца: 3–5 квалифицированных брифов в производство" }
+    {
+      "kind": "resource",
+      "id": "doc_commerce_rules"
+    },
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    },
+    {
+      "kind": "note",
+      "text": "Цель 2-го месяца: 3–5 квалифицированных брифов в производство"
+    }
   ],
   "9.quest_done": [
-    { "kind": "step", "text": "Отметь все галочки · напиши Диме «онбординг пройден»" },
-    { "kind": "person", "id": "dima" }
+    {
+      "kind": "step",
+      "text": "Отметь все галочки · напиши Диме «онбординг пройден»"
+    },
+    {
+      "kind": "person",
+      "id": "dima"
+    }
   ]
 }

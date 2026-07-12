@@ -94,6 +94,42 @@
       "unit": "techtigers"
     },
     {
+      "id": "soft_macwhisper",
+      "title": "MacWhisper",
+      "subtitle": "Транскрипция встреч · бесплатно · локально (предпочтительно)",
+      "url": "https://goodsnooze.gumroad.com/l/macwhisper",
+      "owner": "dima",
+      "unit": "uk",
+      "note": "Пиши встречи → транскрипт → отчёт. Free-tier достаточно для старта."
+    },
+    {
+      "id": "soft_handy",
+      "title": "Handy",
+      "subtitle": "Альтернатива MacWhisper · open-source dictation / Whisper",
+      "url": "https://handy.computer/",
+      "owner": "dima",
+      "unit": "uk",
+      "note": "Лёгкая альтернатива, если MacWhisper тяжёлый. Download: handy.computer/download"
+    },
+    {
+      "id": "soft_cursor",
+      "title": "Cursor",
+      "subtitle": "Агентизация · IDE + AI · подписку оплачивает компания",
+      "url": "https://cursor.com/",
+      "owner": "dima",
+      "unit": "uk",
+      "note": "Предпочтительно для скиллов дня 6. Инвайт/оплата — у Димы."
+    },
+    {
+      "id": "soft_codex",
+      "title": "OpenAI Codex",
+      "subtitle": "Альтернатива Cursor · агентизация · подписку оплачивает компания",
+      "url": "https://chatgpt.com/codex",
+      "owner": "dima",
+      "unit": "uk",
+      "note": "Если Cursor не зайдёт — Codex. Код доступа у Димы."
+    },
+    {
       "id": "clifton_store",
       "title": "CliftonStrengths · каталог Gallup",
       "subtitle": "Справочно — покупку кодов делает компания, не ты",
