@@ -7,7 +7,7 @@
   const ACCESS_KEY = "sb-onboarding-leonid-access";
   const QUEST_KEY = "sb-onboarding-leonid-quest-step";
   const MODE_KEY = "sb-onboarding-leonid-program-mode";
-  const ASSET_VER = "20260712-v53";
+  const ASSET_VER = "20260712-v54";
 
   const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya", "alya_dudenkova"]);
 
@@ -559,7 +559,7 @@
       {
         kicker: "Инструкция · 3/",
         title: "Шапка и навигация",
-        lead: "Ряд кнопок — разделы: Программа, Карта, Продажи, Люди, Telegram, Презентации, Доступы, Скиллы. Полоска дней — только в «Программе». При скролле дни прячутся, кнопки разделов остаются.",
+        lead: "Ряд кнопок — разделы: Программа, Карта, Пулы, Люди, Telegram, Презентации, Доступы, Скиллы. Полоска дней — только в «Программе». При скролле дни прячутся, кнопки разделов остаются.",
         chips: ["Дни · смена дня", "Вкладки · разделы", "Скролл · шапка короче"]
       },
       {
@@ -930,14 +930,13 @@
           ${linksBlock}
         </div>
         ${renderQuestDecisionBar({ stepId: q.stepId, taskId: q.taskId, isDone, showBack: prev, backId: "prevQuest" })}
-        ${!next && isDone ? `<div class="complete-banner complete-banner-final"><p><strong>Онбординг пройден.</strong> Напиши Диме. Дальше — weekly 1:1 с CRO. Месяц 2: <strong>1–2 квал. брифа</strong>.</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><a class="btn primary" href="https://t.me/cosmovisioner" target="_blank" rel="noopener">Написать Диме</a><button type="button" class="btn" data-view="sales">KPI на 90 дней</button></div></div>` : ""}
+        ${!next && isDone ? `<div class="complete-banner complete-banner-final"><p><strong>Онбординг пройден.</strong> Напиши Диме. Дальше — weekly 1:1 с CRO. Месяц 2: <strong>1–2 квал. брифа</strong>.</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><a class="btn primary" href="https://t.me/cosmovisioner" target="_blank" rel="noopener">Написать Диме</a></div></div>` : ""}
       </article>
       <div class="card">
         <h3 class="section-heading">Быстрые разделы</h3>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
           <button type="button" class="btn" data-view="map">Карта группы</button>
           <button type="button" class="btn" data-view="pools">Пулы</button>
-          <button type="button" class="btn" data-view="sales">Продажи</button>
           <button type="button" class="btn" data-view="people">Люди</button>
           <button type="button" class="btn" data-view="chats">Telegram</button>
           <button type="button" class="btn" data-view="decks">Презентации</button>
@@ -1002,7 +1001,6 @@
         <div style="display:flex;gap:8px;flex-wrap:wrap">
           <button type="button" class="btn" data-view="map">Карта группы</button>
           <button type="button" class="btn" data-view="pools">Пулы</button>
-          <button type="button" class="btn" data-view="sales">Продажи</button>
           <button type="button" class="btn" data-view="people">Люди</button>
           <button type="button" class="btn" data-view="chats">Telegram</button>
           <button type="button" class="btn" data-view="decks">Презентации</button>

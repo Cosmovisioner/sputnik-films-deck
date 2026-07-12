@@ -315,9 +315,9 @@
   "internal": [
     {
       "id": "view_sales",
-      "title": "Продажи · план и факт",
-      "subtitle": "Выручка, маржа, winrate, брифы по юнитам",
-      "action": "sales",
+      "title": "Контекст продаж",
+      "subtitle": "Мандат, правила, как устроены продажи группы",
+      "url": "sales_context.html",
       "unit": "uk"
     },
     {
