@@ -16,55 +16,134 @@
     },
     {
       "kind": "step",
-      "text": "Оффер + зона: входящие + тёплая база → бриф"
+      "text": "Зона: входящие + тёплая база → бриф"
+    }
+  ],
+  "1.team_staff": [
+    {
+      "kind": "resource",
+      "id": "view_people"
+    },
+    {
+      "kind": "step",
+      "text": "Пробеги карточки: с кем будешь писать и созваниваться"
     }
   ],
   "1.access": [
     {
-      "kind": "resource",
-      "id": "view_access"
+      "kind": "step",
+      "text": "Напиши Диме шаблоном ниже — получи всё из списка. AmoCRM НЕ сегодня (день 3)."
+    },
+    {
+      "kind": "telegram",
+      "personId": "dima",
+      "label": "Написать Диме · запрос доступов",
+      "prefill": "Привет, Дима! Стартую онбординг (день 1). Проверь / выдай доступы:\n\n☐ Drive Культ-группа + Коммерция\n☐ Почта @cult.team\n☐ Telegram: Группа / Продажи\n☐ Telegram: Сейлз-менеджер | Культ Груп\n☐ Telegram: Коммерческий директор\n☐ Clifton access code\n☐ Cursor или Codex (инвайт/оплата)\n☐ MacWhisper или Handy\n\nAmoCRM — не сегодня, день 3.\nСпасибо!"
     },
     {
       "kind": "step",
-      "text": "Пройди чеклист доступов"
+      "text": "Drive · Культ-группа"
+    },
+    {
+      "kind": "resource",
+      "id": "drive_cult_group"
+    },
+    {
+      "kind": "step",
+      "text": "Drive · Коммерция"
+    },
+    {
+      "kind": "resource",
+      "id": "drive_commerce"
+    },
+    {
+      "kind": "step",
+      "text": "Почта leonid@cult.team"
+    },
+    {
+      "kind": "resource",
+      "id": "email_leonid"
+    },
+    {
+      "kind": "step",
+      "text": "Clifton — access code у Димы"
+    },
+    {
+      "kind": "resource",
+      "id": "clifton"
+    },
+    {
+      "kind": "step",
+      "text": "MacWhisper или Handy — транскрипция"
+    },
+    {
+      "kind": "resource",
+      "id": "soft_macwhisper"
+    },
+    {
+      "kind": "step",
+      "text": "Cursor или Codex — инвайт/оплата у Димы"
+    },
+    {
+      "kind": "resource",
+      "id": "soft_cursor"
+    },
+    {
+      "kind": "resource",
+      "id": "soft_codex"
+    },
+    {
+      "kind": "step",
+      "text": "Чаты Telegram — отдельным шагом ниже. AmoCRM — день 3, не сегодня."
     }
   ],
-  "1.amo_walk": [
-    {
-      "kind": "person",
-      "id": "sasha_a"
-    },
+  "1.tg_join": [
     {
       "kind": "resource",
-      "id": "doc_handoff_sasha"
+      "id": "view_chats"
     },
     {
-      "kind": "resource",
-      "id": "amo_cult"
+      "kind": "section",
+      "id": "chats",
+      "filter": "required"
     },
     {
       "kind": "step",
-      "text": "Прими дела и открой Amo Cult"
+      "text": "Попроси Диму добавить во все required-чаты"
     }
   ],
-  "1.org_map": [
+  "1.soft_ai": [
     {
       "kind": "resource",
-      "id": "view_org_map"
+      "id": "soft_cursor"
     },
     {
-      "kind": "deck",
-      "id": "cult_group"
+      "kind": "resource",
+      "id": "soft_codex"
     },
     {
       "kind": "step",
-      "text": "Открой карту и общую презу"
+      "text": "Поставь Cursor или Codex · инвайт/оплата у Димы"
+    }
+  ],
+  "1.clifton_setup": [
+    {
+      "kind": "resource",
+      "id": "clifton"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_clifton_team"
+    },
+    {
+      "kind": "step",
+      "text": "Пройди тест и сверь с таблицей команды"
     }
   ],
   "1.schedule_heads": [
     {
       "kind": "step",
-      "text": "Напиши Денису и Лизе: 30 мин, когда удобно им"
+      "text": "Напиши Денису и Лизе: 30 мин знакомства, когда удобно им"
     },
     {
       "kind": "person",
@@ -73,16 +152,22 @@
     {
       "kind": "person",
       "id": "liza"
-    },
+    }
+  ],
+  "2.sasha_office": [
     {
       "kind": "step",
-      "text": "Остальные знакомства — Дима"
+      "text": "Офис · сегодня 14:30 — офлайн знакомство с Сашей Алексеевым"
+    },
+    {
+      "kind": "person",
+      "id": "sasha_a"
     }
   ],
   "2.denis_call": [
     {
       "kind": "step",
-      "text": "30 мин · знакомство, продукт Cult"
+      "text": "30 мин · продукт Cult"
     },
     {
       "kind": "deck",
@@ -92,7 +177,7 @@
   "2.liza_call": [
     {
       "kind": "step",
-      "text": "30 мин · знакомство, продукт Blaster"
+      "text": "30 мин · продукт Blaster"
     },
     {
       "kind": "deck",
@@ -105,11 +190,113 @@
       "id": "sputnik_unit"
     },
     {
+      "kind": "deck",
+      "id": "cult_group"
+    },
+    {
       "kind": "step",
-      "text": "Преза Sputnik + «Куда вести» на карте. Сергей — через CRO."
+      "text": "Три юнита + роутинг на карте. Сергей — через CRO."
     }
   ],
-  "3.rules": [
+  "2.client_pools": [
+    {
+      "kind": "resource",
+      "id": "view_pools"
+    },
+    {
+      "kind": "step",
+      "text": "Cult / Blaster / Sputnik — не перехватывать"
+    }
+  ],
+  "3.handoff": [
+    {
+      "kind": "person",
+      "id": "sasha_a"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_handoff_sasha"
+    },
+    {
+      "kind": "step",
+      "text": "Формально прими дела: как вёлся контур, хвосты, база"
+    }
+  ],
+  "3.amo_access": [
+    {
+      "kind": "step",
+      "text": "Запроси у Димы доступ Amo Cult (+ Blaster read при необходимости)"
+    },
+    {
+      "kind": "telegram",
+      "personId": "dima",
+      "label": "Написать Диме · Amo",
+      "prefill": "Дима, день 3 — нужен доступ в Amo Cult (и Blaster read, если ещё нет). Спасибо!"
+    },
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    },
+    {
+      "kind": "resource",
+      "id": "amo_blaster"
+    },
+    {
+      "kind": "step",
+      "text": "Проверь вход под своим логином"
+    }
+  ],
+  "4.rules_nb": [
+    {
+      "kind": "resource",
+      "id": "doc_nb_reg"
+    },
+    {
+      "kind": "step",
+      "text": "Регламент работы new business manager"
+    }
+  ],
+  "4.rules_handoff": [
+    {
+      "kind": "resource",
+      "id": "doc_handoff_sasha"
+    },
+    {
+      "kind": "step",
+      "text": "Документ передачи дел — прочитай целиком"
+    }
+  ],
+  "4.rules_brief": [
+    {
+      "kind": "resource",
+      "id": "doc_brief_criteria"
+    },
+    {
+      "kind": "step",
+      "text": "Критерии качества оценки брифа"
+    }
+  ],
+  "4.rules_prod": [
+    {
+      "kind": "resource",
+      "id": "doc_prod_standards"
+    },
+    {
+      "kind": "step",
+      "text": "Стандарты взаимодействия с продакшеном"
+    }
+  ],
+  "4.rules_amo": [
+    {
+      "kind": "resource",
+      "id": "doc_amo_reg"
+    },
+    {
+      "kind": "step",
+      "text": "Регламент работы в AmoCRM"
+    }
+  ],
+  "4.rules_commerce": [
     {
       "kind": "resource",
       "id": "doc_rules_summary"
@@ -120,83 +307,51 @@
     },
     {
       "kind": "step",
-      "text": "Сначала кратко, потом полная при необходимости"
+      "text": "Сначала кратко, затем полная версия GDoc"
     }
   ],
-  "3.docs_alya": [
-    {
-      "kind": "person",
-      "id": "alya_dudenkova"
-    },
-    {
-      "kind": "step",
-      "text": "Акты, счета, Контур — спроси Алю"
-    }
-  ],
-  "3.team_staff": [
-    {
-      "kind": "resource",
-      "id": "view_people"
-    },
-    {
-      "kind": "step",
-      "text": "Пробеги карточки в разделе Люди"
-    }
-  ],
-  "3.clifton_setup": [
-    {
-      "kind": "resource",
-      "id": "doc_clifton_team"
-    },
-    {
-      "kind": "step",
-      "text": "Закажи тест и сверь с таблицей"
-    }
-  ],
-  "4.crm_landscape": [
+  "5.crm_landscape": [
     {
       "kind": "resource",
       "id": "view_sales"
     },
     {
+      "kind": "resource",
+      "id": "crm_landscape"
+    },
+    {
       "kind": "step",
-      "text": "Три CRM: куда новые сделки"
+      "text": "Какие системы есть: Amo Cult, Amo Blaster, Prodo — и зачем каждая"
     }
   ],
-  "4.amo_reg": [
+  "5.crm_custom": [
+    {
+      "kind": "resource",
+      "id": "icrm"
+    },
+    {
+      "kind": "step",
+      "text": "Кастомная CRM группы (Prodo/Prodavan) — в ней начнёшь работать. Демо/доступ через Диму."
+    }
+  ],
+  "5.crm_rules": [
+    {
+      "kind": "step",
+      "text": "Правила пользования CRM — поля, этапы, next step, без «КП и пропал»"
+    },
     {
       "kind": "resource",
       "id": "doc_amo_reg"
     },
     {
       "kind": "step",
-      "text": "Прочитай регламент ведения карточек"
-    }
-  ],
-  "4.skills": [
-    {
-      "kind": "resource",
-      "id": "skills_pack"
-    },
-    {
-      "kind": "resource",
-      "id": "agent_pack_zip"
-    },
-    {
-      "kind": "step",
-      "text": "Поставь Cursor, открой agent-pack"
+      "text": "Тот же регламент уже был в дне 4 — сегодня закрепи перед работой в системах"
     }
   ],
   "5.friday_units_sales": [
     {
       "kind": "step",
-      "text": "Пт 12:00 — звонок юнитов по продажам"
-    }
-  ],
-  "5.cro_gaps": [
-    {
-      "kind": "step",
-      "text": "Список дыр доступов — в отчёт CRO"
+      "text": "Сегодня 12:00 — первый созвон по продажам (юниты + Дима + Лёня)"
     }
   ],
   "6.warm_base_collect": [
@@ -212,7 +367,7 @@
   "6.amo_100": [
     {
       "kind": "step",
-      "text": "В Amo: next step во всех своих карточках"
+      "text": "В Amo/CRM: next step во всех своих карточках"
     }
   ],
   "7.scoring_practice": [
@@ -232,7 +387,7 @@
     },
     {
       "kind": "step",
-      "text": "3 касания → зафиксируй в Amo"
+      "text": "3 касания → зафиксируй в CRM"
     }
   ],
   "8.hyp_test_plan": [
@@ -329,16 +484,6 @@
       "personId": "dima",
       "label": "Написать отчёт в Telegram",
       "prefill": "Отчёт дня 9:\n• Сделал:\n• Закрыто:\n• Мутно:\n"
-    }
-  ],
-  "3.client_pools": [
-    {
-      "kind": "resource",
-      "id": "view_pools"
-    },
-    {
-      "kind": "step",
-      "text": "Открой раздел Пулы: Cult / Blaster / Sputnik. Не перехватывать."
     }
   ]
 }

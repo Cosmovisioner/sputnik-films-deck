@@ -7,7 +7,7 @@
   const ACCESS_KEY = "sb-onboarding-leonid-access";
   const QUEST_KEY = "sb-onboarding-leonid-quest-step";
   const MODE_KEY = "sb-onboarding-leonid-program-mode";
-  const ASSET_VER = "20260712-v51";
+  const ASSET_VER = "20260712-v52";
 
   const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya", "alya_dudenkova"]);
 
@@ -1308,8 +1308,13 @@
     const doneCount = verify.filter(x => accessState[x.id]).length;
     const pct = verify.length ? Math.round((doneCount / verify.length) * 100) : 0;
 
-    const phaseOrder = ["day1", "week1", "week2"];
-    const phaseLabel = { day1: "День 1 · старт", week1: "Неделя 1", week2: "Неделя 2 / итог" };
+    const phaseOrder = ["day1", "day3", "week1", "week2"];
+    const phaseLabel = {
+      day1: "День 1 · старт",
+      day3: "День 3 · Amo",
+      week1: "Неделя 1",
+      week2: "Неделя 2 / итог"
+    };
     let verifyHtml = "";
     phaseOrder.forEach(phase => {
       const items = verify.filter(x => (x.phase || "day1") === phase);

@@ -5,8 +5,8 @@
     "passwords_doc": "GDoc «Leonid — доступы 2026-07» в папке найма (только CRO, CEO, hiree)",
     "cro_preflight": "До старта CRO: TG required · Amo Cult (+ Blaster read) · Drive · Cursor invite · Clifton code · shadow-слоты в календаре (Сева/Дима)."
   },
-  "hiree_intro": "Чеклист по фазам. Идеально CRO уже выдал TG/Amo/Drive/Clifton/Cursor до 13.07 — тогда день 1 = проверка, не охота за инвайтами. Buddy онбординга — Дима (CRO). Если чего-то нет — шаблон ниже одним сообщением.",
-  "tg_request_template": "Привет, Дима! Стартую онбординг (день 1). Проверь доступы:\n\n☐ Amo Cult\n☐ Amo Blaster (read)\n☐ Drive Культ-группа + Коммерция\n☐ GDocs пакета (NB, handoff, бриф, Amo-регламент)\n☐ Telegram: Группа / Продажи\n☐ Telegram: Сейлз-менеджер | Культ Груп (когда откроешь состав)\n☐ Telegram: Коммерческий директор\n☐ Почта @cult.team\n☐ Clifton access code\n☐ MacWhisper или Handy\n\nCursor/Codex и agent-pack — день 6 (можно раньше, если инвайт уже есть).\nСпасибо!",
+  "hiree_intro": "День 1: все доступы кроме AmoCRM + чаты + Cursor/Codex + Clifton. Amo — день 3. Buddy — Дима (CRO).",
+  "tg_request_template": "Привет, Дима! Стартую онбординг (день 1). Проверь / выдай доступы:\n\n☐ Drive Культ-группа + Коммерция\n☐ Почта @cult.team\n☐ Telegram: Группа / Продажи\n☐ Telegram: Сейлз-менеджер | Культ Груп\n☐ Telegram: Коммерческий директор\n☐ Clifton access code\n☐ Cursor или Codex (инвайт/оплата)\n☐ MacWhisper или Handy\n\nAmoCRM — не сегодня, день 3.\nСпасибо!",
   "systems": [
     {
       "id": "amo_cult",
@@ -165,13 +165,13 @@
     },
     {
       "id": "amo_cult",
-      "text": "Вхожу в Amo Cult под своим логином",
-      "phase": "day1"
+      "text": "Вхожу в Amo Cult под своим логином (день 3)",
+      "phase": "day3"
     },
     {
       "id": "amo_blaster",
-      "text": "Вижу Amo Blaster (хотя бы read)",
-      "phase": "day1"
+      "text": "Вижу Amo Blaster (хотя бы read) (день 3)",
+      "phase": "day3"
     },
     {
       "id": "drive",
@@ -180,7 +180,7 @@
     },
     {
       "id": "docs",
-      "text": "GDocs пакета открываются (NB, handoff, бриф, Amo)",
+      "text": "GDocs открываются (оффер; полный пакет правил — день 4)",
       "phase": "day1"
     },
     {
@@ -211,7 +211,7 @@
     {
       "id": "cursor",
       "text": "Cursor или Codex установлены (инвайт/оплата у Димы)",
-      "phase": "week1"
+      "phase": "day1"
     },
     {
       "id": "sales_account",
