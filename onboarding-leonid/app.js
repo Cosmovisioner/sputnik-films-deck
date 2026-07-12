@@ -7,7 +7,7 @@
   const ACCESS_KEY = "sb-onboarding-leonid-access";
   const QUEST_KEY = "sb-onboarding-leonid-quest-step";
   const MODE_KEY = "sb-onboarding-leonid-program-mode";
-  const ASSET_VER = "20260712-v41";
+  const ASSET_VER = "20260712-v42";
 
   const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya", "alya_dudenkova"]);
 
@@ -399,6 +399,27 @@
     ).join("");
 
     const losses = (salesSnapshot.loss_patterns || []).map(x => `<li>${esc(x)}</li>`).join("");
+    const cold = salesSnapshot.cold_entry_playbook;
+    const coldHtml = cold ? `
+      <div class="card">
+        <h3 class="section-heading">${esc(cold.title || "Заходы в холод")}</h3>
+        <p class="card-intro">${esc(cold.when || "")}</p>
+        ${(cold.hooks || []).map(h => `
+          <div class="sales-callout" style="margin-top:12px">
+            <p class="sales-tldr-label">${esc(h.name || "")}</p>
+            <p><strong>${esc(h.offer || "")}</strong></p>
+            ${h.value ? `<p>${esc(h.value)}</p>` : ""}
+            ${h.status ? `<p class="path-note">${esc(h.status)}</p>` : ""}
+            ${h.owner ? `<p class="path-note">Владелец: ${esc(h.owner)}</p>` : ""}
+          </div>`).join("")}
+      </div>` : "";
+    const rhythms = salesSnapshot.rhythms || stepsMeta.rhythms || [];
+    const rhythmHtml = rhythms.length ? `
+      <div class="card">
+        <h3 class="section-heading">Ритм продаж</h3>
+        <ul class="sales-tldr-list">${rhythms.map(x => `<li><strong>${esc(x.when || "")}</strong> — ${esc(x.title || "")}${x.leads ? ` · ${esc(x.leads)}` : ""}${x.agenda ? `. ${esc(x.agenda)}` : ""}</li>`).join("")}</ul>
+        ${hl.ownership ? `<p class="path-note" style="margin-top:12px">${esc(hl.ownership)}</p>` : ""}
+      </div>` : "";
 
     return `
       <div class="card">
@@ -415,10 +436,13 @@
             <li>Считается <strong>квал. бриф</strong> и передача в юнит — не «красивый созвон»</li>
             <li>Новые сделки → <strong>Amo Cult</strong> · следующий шаг в каждой карточке</li>
             <li>Sputnik «берём» → только после <strong>Сергея Клейна</strong></li>
+            <li><strong>Пятница 12:00</strong> — звонок юнитов: лидируете с CRO</li>
           </ul>
         </div>
       </div>
 
+      ${rhythmHtml}
+      ${coldHtml}
       <div class="card">
         <h3 class="section-heading">${esc(salesSnapshot.group_targets_2026?.title || "План группы")}</h3>
         ${renderSalesTable(["Метрика", "Было (май 2026)", "Цель 2026"], groupRows)}
@@ -706,6 +730,8 @@
     const buddy = stepsMeta.buddy || {};
     const cadence = stepsMeta.feedback_cadence || [];
     const culture = stepsMeta.culture_blurb || "";
+    const own = stepsMeta.ownership || {};
+    const rhythms = stepsMeta.rhythms || [];
     return `
       <div class="card hint-card">
         <h3 class="section-heading">Как пользоваться квестом</h3>
@@ -716,6 +742,8 @@
           <li><strong>Галочка</strong> — только когда реально сделал; «Пропустить» не копится как прогресс смысла</li>
           <li><strong>Застрял</strong> — пиши Диме; календарь хэдов — через Севу (@se_leverk)</li>
         </ul>
+        ${own.rule ? `<div class="buddy-box ownership-box"><span class="mono-tag">${esc(own.title || "Самоорганизация")}</span><p><strong>${esc(own.rule)}</strong></p>${(own.do || []).length ? `<ul class="hint-list">${own.do.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}</div>` : ""}
+        ${rhythms.length ? `<div class="cadence-box"><span class="mono-tag">Ритм</span><ul class="hint-list">${rhythms.map(x => `<li><strong>${esc(x.when || "")}</strong> — ${esc(x.title || "")}${x.leads ? ` · лиды: ${esc(x.leads)}` : ""}</li>`).join("")}</ul></div>` : ""}
         ${buddy.primary ? `<div class="buddy-box"><span class="mono-tag">Buddy</span><p><strong>${esc(buddy.primary)}</strong></p>${buddy.handoff ? `<p>${esc(buddy.handoff)}</p>` : ""}${buddy.calendar ? `<p class="path-note">${esc(buddy.calendar)}</p>` : ""}</div>` : ""}
         ${cadence.length ? `<div class="cadence-box"><span class="mono-tag">Обратная связь</span><ul class="hint-list">${cadence.map(c => `<li>${esc(c)}</li>`).join("")}</ul></div>` : ""}
         ${r.hoursWeek1 ? `<p class="path-note" style="margin-top:12px">Нагрузка: ${esc(r.hoursWeek1)} в 1-й неделе · узкое место — ${esc(r.bottleneck || "созвоны с хэдами")}</p>` : ""}

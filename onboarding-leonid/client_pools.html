@@ -67,7 +67,7 @@
   <script>
     (async function () {
       try {
-        const r = await fetch("data/client_pools.json?v=20260712-v41");
+        const r = await fetch("data/client_pools.json?v=20260712-v42");
         if (!r.ok) throw new Error("HTTP " + r.status);
         const data = await r.json();
         document.getElementById("asOf").textContent =
