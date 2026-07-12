@@ -8,7 +8,7 @@
   const QUEST_KEY = "sb-onboarding-leonid-quest-step";
   const MODE_KEY = "sb-onboarding-leonid-program-mode";
   const QUIZ_KEY = "sb-onboarding-leonid-quiz";
-  const ASSET_VER = "20260712-v60";
+  const ASSET_VER = "20260712-v61";
 
   const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya", "alya_dudenkova"]);
 
@@ -116,18 +116,18 @@
   function blockPastQuiz(targetIdx) {
     const qIdx = quizGateIdx();
     if (qIdx < 0) return false;
-    return targetIdx > qIdx && !isQuizPassed("rules_day6");
+    return targetIdx > qIdx && !isQuizPassed("rules_day5");
   }
 
   function canCompleteTask(stepId, taskId) {
-    if (String(stepId) === "6" && taskId === "rules_quiz") {
-      return isQuizPassed("rules_day6");
+    if (String(stepId) === "5" && taskId === "rules_quiz") {
+      return isQuizPassed("rules_day5");
     }
     return true;
   }
 
   function quizGateMessage() {
-    return "Сначала сдай тест по правилам: нужно ≥18 из 20. Пока тест не сдан — дальше нельзя.";
+    return "Сначала сдай тест по коммерческим правилам: нужно ≥18 из 20. Пока тест не сдан — дальше нельзя.";
   }
 
   function userProfile() {
@@ -534,14 +534,14 @@
 
   function goToDay(idx) {
     if (idx < 0 || idx >= steps.length) return;
-    if (idx > 5 && !isQuizPassed("rules_day6")) {
+    if (idx > 4 && !isQuizPassed("rules_day5")) {
       window.alert(quizGateMessage());
       const qIdx = quizGateIdx();
       if (qIdx >= 0) {
         goToQuest(qIdx);
         return;
       }
-      idx = 5;
+      idx = 4;
     }
     currentDayIdx = idx;
     const path = buildQuestPath();
@@ -917,7 +917,7 @@
         const id = btn.dataset.quizRetry;
         delete quizState[id];
         saveQuizState();
-        if (state["step_6"]) delete state["step_6"].rules_quiz;
+        if (state["step_5"]) delete state["step_5"].rules_quiz;
         saveState();
         renderMain();
       });
@@ -963,7 +963,7 @@
             : `<strong>Не сдано: ${score}/${quiz.questions.length}.</strong> Нужно ≥${quiz.pass_score}. Исправь ошибки (подсказки выше) и попробуй снова.`;
         }
         if (pass) {
-          setTaskDone(6, "rules_quiz", true);
+          setTaskDone(5, "rules_quiz", true);
           renderMain();
         }
       });
@@ -978,7 +978,7 @@
       return `<div class="path-callout">${esc(item.text)}</div>`;
     }
     if (item.kind === "quiz") {
-      return renderQuizHtml(item.id || "rules_day6");
+      return renderQuizHtml(item.id || "rules_day5");
     }
     if (item.kind === "view") {
       return pathCtaHtml({
