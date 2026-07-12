@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700;800&family=Unbounded:wght@500;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="styles.css?v=20260712-v65" />
+  <link rel="stylesheet" href="styles.css?v=20260712-v66" />
 </head>
 <body>
   <div id="loadError" class="load-error" hidden>
@@ -76,6 +76,16 @@
     </div>
   </div>
 
+  <div class="welcome-backdrop day-done-backdrop" id="dayDoneBackdrop" hidden aria-hidden="true">
+    <div class="welcome-card day-done-card" role="dialog" aria-labelledby="dayDoneTitle" aria-describedby="dayDoneBody">
+      <div class="welcome-gradient day-done-gradient"></div>
+      <div id="dayDoneBody"></div>
+      <div class="welcome-nav">
+        <button type="button" class="btn primary welcome-go" id="dayDoneGo">Отлично →</button>
+      </div>
+    </div>
+  </div>
+
   <div class="modal-backdrop" id="modalBackdrop" hidden aria-hidden="true">
     <div class="modal" role="dialog" aria-modal="true" id="personModal">
       <button type="button" class="modal-close" id="modalClose" aria-label="Закрыть">×</button>
@@ -83,6 +93,6 @@
     </div>
   </div>
 
-  <script src="app.js?v=20260712-v65"></script>
+  <script src="app.js?v=20260712-v66"></script>
 </body>
 </html>

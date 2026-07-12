@@ -23,24 +23,6 @@
       "unit": "cult"
     },
     {
-      "id": "cult_production",
-      "title": "Cult · продакшен-подход",
-      "when": "Часть стандартного КП: как снимаем и собираем ролик",
-      "url": "https://docs.google.com/presentation/d/1t8ll1rX1MxF8jZZKVl3vezw--qoRLgIGlxYAhi6XZNM",
-      "status": "live",
-      "owner": "denis",
-      "unit": "cult"
-    },
-    {
-      "id": "cult_directors",
-      "title": "Cult · подборка режиссёров",
-      "when": "КП с вариантами режиссёра под бриф",
-      "url": "https://docs.google.com/presentation/d/1JUQsqkRka2eMW_MDe8EnR5LBPMF8FLMHhQauEpWmlio/edit",
-      "status": "live",
-      "owner": "denis",
-      "unit": "cult"
-    },
-    {
       "id": "blaster_master",
       "title": "Blaster · портфолио (master)",
       "when": "Графика, motion, 3D, мультимедиа, выставки",
@@ -50,23 +32,31 @@
       "unit": "blaster"
     },
     {
-      "id": "blaster_cross",
-      "title": "Blaster + Sputnik · портфолио (кросс)",
-      "when": "Совместные пресейлы Blaster × Sputnik",
-      "url": "https://docs.google.com/presentation/d/1VvWBqzaKPosBuoJAvYMYoJ8CfCXP9_WG-_lyChcWoK8/edit",
+      "id": "sputnik_films_2025",
+      "title": "Sputnik Films · 2025",
+      "when": "Общий заход в Sputnik: док, шоу, спецпроекты",
+      "url": "assets/docs/deck_sputnik_films_2025.pdf",
       "status": "live",
-      "owner": "liza",
-      "unit": "blaster"
+      "owner": "sergey",
+      "unit": "sputnik"
     },
     {
-      "id": "sputnik_unit",
-      "title": "Sputnik Films · док и спецпроекты",
-      "when": "Док, шоу, спецпроект — PDF в квесте дня 2; не запрашивай у Сергея на онбординге",
-      "url": null,
-      "status": "request",
+      "id": "sputnik_special_2026",
+      "title": "Sputnik · спецпроекты 2026",
+      "when": "Спецпроект, шоу, брендовый longform",
+      "url": "assets/docs/deck_sputnik_special_projects_2026.pdf",
+      "status": "live",
       "owner": "sergey",
-      "unit": "sputnik",
-      "requestVia": "Сергей Клейн (@klein_sergey) или Дима"
+      "unit": "sputnik"
+    },
+    {
+      "id": "sputnik_doc",
+      "title": "Sputnik · документальное кино",
+      "when": "Документальный формат, сериал, док-проект",
+      "url": "assets/docs/deck_sputnik_documentary.pdf",
+      "status": "live",
+      "owner": "sergey",
+      "unit": "sputnik"
     }
   ],
   "routing": [
@@ -79,20 +69,20 @@
       "deck": "cult_main_cases"
     },
     {
-      "signal": "Нужен продакшен-подход в КП",
-      "deck": "cult_production"
-    },
-    {
       "signal": "CG, 2D/3D, motion, мультимедиа",
       "deck": "blaster_master"
     },
     {
-      "signal": "Кросс: графика + продакшен",
-      "deck": "blaster_cross"
+      "signal": "Док / спецпроект / шоу · общий заход",
+      "deck": "sputnik_films_2025"
     },
     {
-      "signal": "Док, спецпроект, шоу",
-      "deck": "sputnik_unit"
+      "signal": "Спецпроект / брендовый longform",
+      "deck": "sputnik_special_2026"
+    },
+    {
+      "signal": "Документальное кино",
+      "deck": "sputnik_doc"
     }
   ]
 }

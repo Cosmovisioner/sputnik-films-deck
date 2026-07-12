@@ -27,16 +27,16 @@
         {
           "id": "amo_sputnik",
           "name": "AmoCRM · Sputnik Films",
-          "url": null,
+          "url": "https://sputnikfilms.amocrm.ru/",
           "role": "CRM юнита Sputnik · смотреть наследие",
           "who": "Дима / Сергей",
           "resource": "amo_sputnik"
         },
         {
           "id": "icrm",
-          "name": "Prodavan · умная CRM группы",
-          "url": null,
-          "role": "Prodo.one / iCRM · кастомная CRM, в ней начнёшь работать",
+          "name": "iCRM · Prodo.one",
+          "url": "https://cosmovisioner.github.io/cult-group-crm/",
+          "role": "Кастомная CRM группы (Prodavan / iCRM)",
           "who": "Дима",
           "resource": "icrm"
         }
@@ -183,14 +183,6 @@
           "name": "Продажи Cult · legacy",
           "url": "https://drive.google.com/drive/folders/1veiUtmQ-TOWNLADaSNtFL1WltpCiu_0J",
           "role": ""
-        },
-        {
-          "id": "email",
-          "name": "Почта @cult.team",
-          "url": null,
-          "role": "leonid@cult.team · outbound sales",
-          "who": "CEO / ops",
-          "resource": "email_leonid"
         }
       ]
     },
@@ -264,7 +256,7 @@
     },
     {
       "id": "crm_prodavan",
-      "text": "CRM Cult Group (Prodavan) — демо/доступ открыт",
+      "text": "iCRM / Prodo.one — доступ открыт",
       "phase": "day3"
     }
   ]

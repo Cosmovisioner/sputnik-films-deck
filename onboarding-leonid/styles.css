@@ -321,6 +321,15 @@ body::after {
   border-color: color-mix(in srgb, var(--lavender) 35%, var(--border));
   background: color-mix(in srgb, var(--lavender) 6%, var(--white));
 }
+.day-pill.locked {
+  opacity: 0.42;
+  filter: grayscale(0.3);
+  cursor: not-allowed;
+}
+.day-pill.locked:hover {
+  transform: none;
+  box-shadow: none;
+}
 .day-pill-kicker {
   font-family: var(--font-ui);
   font-size: 9px;
@@ -1303,6 +1312,22 @@ body::after {
 .grad-tag {
   color: var(--accent);
   letter-spacing: 0.04em;
+}
+
+.day-done-backdrop {
+  z-index: 320;
+}
+.day-done-card {
+  border-color: rgba(90, 140, 255, 0.28);
+  text-align: center;
+}
+.day-done-gradient {
+  background:
+    radial-gradient(ellipse 80% 60% at 50% 0%, rgba(90, 140, 255, 0.22), transparent 55%),
+    radial-gradient(ellipse 70% 50% at 80% 100%, rgba(249, 116, 190, 0.16), transparent 50%);
+}
+.day-done-card .welcome-title {
+  margin-bottom: 8px;
 }
 
 body.modal-open { overflow: hidden; }

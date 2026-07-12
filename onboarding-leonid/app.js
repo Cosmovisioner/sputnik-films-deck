@@ -3,16 +3,16 @@
 
   // localStorage ids (not secrets) — named to avoid secret-scanner false positives
   const STORAGE_KEY = "sb-onboarding-leonid-progress";
-  const WELCOME_KEY = "sb-onboarding-leonid-welcome-v3";
+  const WELCOME_KEY = "sb-onboarding-leonid-welcome-v4";
   const GRAD_KEY = "sb-onboarding-leonid-grad-v1";
   const GRAD_DAY_IDX = 6; /* день 7: старт реальной работы */
   const ACCESS_KEY = "sb-onboarding-leonid-access";
   const QUEST_KEY = "sb-onboarding-leonid-quest-step";
   const MODE_KEY = "sb-onboarding-leonid-program-mode";
   const QUIZ_KEY = "sb-onboarding-leonid-quiz";
-  const ASSET_VER = "20260712-v65";
-  /** Временно: проверка онбординга без обязательной сдачи теста. Перед стартом Лёни вернуть false. */
-  const QUIZ_GATE_ENABLED = false;
+  const ASSET_VER = "20260712-v66";
+  /** Ворота теста: без сдачи (≥18/20) дни после теста закрыты */
+  const QUIZ_GATE_ENABLED = true;
 
   const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya", "alya_dudenkova"]);
 
@@ -1310,16 +1310,66 @@
   }
 
   function setTaskDone(stepId, taskId, done) {
+    const step = steps.find(s => String(s.id) === String(stepId));
+    const wasComplete = step ? stepComplete(step) : false;
     state["step_" + stepId] = state["step_" + stepId] || {};
     if (done) state["step_" + stepId][taskId] = true;
     else delete state["step_" + stepId][taskId];
     saveState();
+    if (done && step && !wasComplete && stepComplete(step)) {
+      queueDayComplete(step);
+    }
+  }
+
+  let pendingDayComplete = null;
+
+  function queueDayComplete(step) {
+    pendingDayComplete = step;
+  }
+
+  function flushDayComplete() {
+    if (!pendingDayComplete) return;
+    const step = pendingDayComplete;
+    pendingDayComplete = null;
+    showDayComplete(step);
+  }
+
+  function showDayComplete(step) {
+    const el = document.getElementById("dayDoneBackdrop");
+    if (!el) return;
+    const body = document.getElementById("dayDoneBody");
+    if (body) {
+      const dayLabel = step ? ("День " + step.id) : "День";
+      body.innerHTML = `
+        <p class="mono-tag welcome-tag">Готово</p>
+        <h2 class="welcome-title" id="dayDoneTitle">День завершён</h2>
+        <p class="welcome-lead">${esc(dayLabel)} закрыт. Спасибо за продуктивную работу. Ты красавчик!</p>
+      `;
+    }
+    el.hidden = false;
+    el.classList.add("is-open");
+    el.setAttribute("aria-hidden", "false");
+    document.body.classList.add("modal-open");
+  }
+
+  function closeDayComplete() {
+    const el = document.getElementById("dayDoneBackdrop");
+    if (!el) return;
+    el.hidden = true;
+    el.classList.remove("is-open");
+    el.setAttribute("aria-hidden", "true");
+    if (!document.getElementById("welcomeBackdrop")?.classList.contains("is-open")
+      && !document.getElementById("gradBackdrop")?.classList.contains("is-open")
+      && !document.getElementById("modalBackdrop")?.classList.contains("is-open")) {
+      document.body.classList.remove("modal-open");
+    }
   }
 
   function advanceQuestAfterAction() {
     const path = buildQuestPath();
     if (currentQuestIdx < path.length - 1) goToQuest(currentQuestIdx + 1);
     else renderMain();
+    flushDayComplete();
   }
 
   function renderQuestDecisionBar(opts) {
@@ -1426,7 +1476,7 @@
         <h2 class="card-title">${step.title}</h2>
         <p class="card-intro">${esc(step.intro)}</p>
         ${tasksHtml}
-        ${allDone ? `<div class="complete-banner${currentDayIdx >= steps.length - 1 ? " complete-banner-final" : ""}">${currentDayIdx < steps.length - 1 ? "День закрыт — можно идти дальше →" : `<p><strong>Онбординг пройден.</strong> Напиши Диме в Telegram.</p>`}</div>` : ""}
+        ${allDone ? `<div class="complete-banner${currentDayIdx >= steps.length - 1 ? " complete-banner-final" : ""}">${currentDayIdx < steps.length - 1 ? `<p><strong>День завершён.</strong> Спасибо за продуктивную работу. Ты красавчик!</p>` : `<p><strong>Онбординг пройден.</strong> Напиши Диме в Telegram.</p>`}</div>` : ""}
         <div class="nav-row">
           <button type="button" class="btn" id="prevDay" ${!prev ? "disabled" : ""}>${prev ? "← " + prev.title : "← Назад"}</button>
           <button type="button" class="btn primary" id="nextDay" ${!next ? "disabled" : ""}>${next ? next.title + " →" : "Конец"}</button>
@@ -1919,10 +1969,9 @@
       cb.addEventListener("change", () => {
         const sid = cb.dataset.step;
         const tid = cb.dataset.task;
-        state["step_" + sid] = state["step_" + sid] || {};
-        state["step_" + sid][tid] = cb.checked;
-        saveState();
+        setTaskDone(sid, tid, cb.checked);
         renderMain();
+        flushDayComplete();
       });
     });
 
@@ -1935,7 +1984,10 @@
         }
         setTaskDone(btn.dataset.step, btn.dataset.task, true);
         if (programMode === "focus") advanceQuestAfterAction();
-        else renderMain();
+        else {
+          renderMain();
+          flushDayComplete();
+        }
       });
     });
 
@@ -2031,15 +2083,17 @@
 
   function renderDayNav() {
     const nav = document.getElementById("dayNav");
+    const quizLocked = QUIZ_GATE_ENABLED && !isQuizPassed("rules_day5");
     nav.innerHTML = steps.map((step, i) => {
       const short = step.title.split("·").pop().trim();
       const done = stepComplete(step) ? "done" : "";
       const active = i === currentDayIdx && currentView === "program" ? "active" : "";
+      const locked = quizLocked && i > 4 ? "locked" : "";
       const d = parseDate(step.date);
       const months = ["янв", "фев", "мар", "апр", "май", "июн", "июл", "авг", "сен", "окт", "ноя", "дек"];
       const dayNum = d.getDate();
       const month = months[d.getMonth()];
-      return `<button type="button" class="day-pill ${done} ${active}" data-day="${i}" title="${step.title}" aria-current="${active ? "step" : "false"}">
+      return `<button type="button" class="day-pill ${done} ${active} ${locked}" data-day="${i}" title="${locked ? quizGateMessage() : step.title}" aria-current="${active ? "step" : "false"}" ${locked ? 'aria-disabled="true"' : ""}>
         <span class="day-pill-kicker">День ${step.id}</span>
         <span class="day-pill-date-row">
           <span class="day-pill-day-num">${dayNum}</span>
@@ -2142,7 +2196,8 @@
     });
     document.addEventListener("keydown", e => {
       if (e.key === "Escape") {
-        if (document.getElementById("gradBackdrop")?.classList.contains("is-open")) closeGraduation();
+        if (document.getElementById("dayDoneBackdrop")?.classList.contains("is-open")) closeDayComplete();
+        else if (document.getElementById("gradBackdrop")?.classList.contains("is-open")) closeGraduation();
         else if (document.getElementById("welcomeBackdrop").classList.contains("is-open")) closeWelcome();
         else closeModal();
       }
@@ -2160,10 +2215,26 @@
       if (e.target.id === "gradBackdrop") closeGraduation();
     });
 
+    document.getElementById("dayDoneGo")?.addEventListener("click", closeDayComplete);
+    document.getElementById("dayDoneBackdrop")?.addEventListener("click", e => {
+      if (e.target.id === "dayDoneBackdrop") closeDayComplete();
+    });
+
     bindHeaderCompactOnScroll();
 
     closeModal();
     applyUserBranding();
+    if (QUIZ_GATE_ENABLED && !isQuizPassed("rules_day5") && currentDayIdx > 4) {
+      const qIdx = quizGateIdx();
+      if (qIdx >= 0) {
+        currentQuestIdx = qIdx;
+        currentDayIdx = 4;
+        saveQuestIdx();
+      } else {
+        currentDayIdx = 4;
+      }
+      currentView = "program";
+    }
     setView(currentView);
     maybeShowWelcome();
     document.getElementById("footerNote").textContent =
