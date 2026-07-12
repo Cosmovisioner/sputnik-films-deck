@@ -1,68 +1,15 @@
 {
   "2.sasha_office": [
     {
-      "kind": "step",
-      "text": "Офис · сегодня 14:30 — офлайн знакомство с Сашей Алексеевым"
+      "kind": "note",
+      "text": "Офис · сегодня 14:30 — офлайн знакомство с Сашей Алексеевым."
     },
     {
-      "kind": "person",
-      "id": "sasha_a"
-    }
-  ],
-  "2.denis_call": [
-    {
-      "kind": "step",
-      "text": "30 мин · продукт Cult"
-    },
-    {
-      "kind": "deck",
-      "id": "cult_main_cases"
-    }
-  ],
-  "2.liza_call": [
-    {
-      "kind": "step",
-      "text": "30 мин · продукт Blaster"
-    },
-    {
-      "kind": "deck",
-      "id": "blaster_master"
-    }
-  ],
-  "2.products": [
-    {
-      "kind": "deck",
-      "id": "sputnik_unit"
-    },
-    {
-      "kind": "deck",
-      "id": "cult_group"
-    },
-    {
-      "kind": "step",
-      "text": "Три юнита + роутинг на карте. Сергей — через CRO."
-    },
-    {
-      "kind": "step",
-      "text": "Презентации Sputnik Films — открой и посмотри:"
-    },
-    {
-      "kind": "link",
-      "url": "assets/docs/deck_sputnik_films_2025.pdf",
-      "title": "Sputnik Films 2025",
-      "cta": "Открыть PDF"
-    },
-    {
-      "kind": "link",
-      "url": "assets/docs/deck_sputnik_special_projects_2026.pdf",
-      "title": "Sputnik · спецпроекты 2026",
-      "cta": "Открыть PDF"
-    },
-    {
-      "kind": "link",
-      "url": "assets/docs/deck_sputnik_documentary.pdf",
-      "title": "Sputnik · документальное кино",
-      "cta": "Открыть PDF"
+      "kind": "contact_card",
+      "id": "sasha_a",
+      "cta": "Написать Саше",
+      "prefill": "",
+      "copy": false
     }
   ],
   "2.client_pools": [
@@ -71,46 +18,40 @@
       "id": "view_pools"
     },
     {
-      "kind": "step",
-      "text": "Cult / Blaster / Sputnik — не перехватывать"
+      "kind": "note",
+      "text": "Cult / Blaster / Sputnik — не перехватывать чужие пулы."
     }
   ],
   "3.handoff": [
     {
-      "kind": "person",
-      "id": "sasha_a"
+      "kind": "contact_card",
+      "id": "sasha_a",
+      "cta": "Написать Саше",
+      "prefill": "",
+      "copy": false
     },
     {
       "kind": "resource",
-      "id": "doc_handoff_sasha"
+      "id": "doc_handoff_sasha",
+      "cta": "Открыть"
     },
     {
-      "kind": "step",
-      "text": "Формально прими дела: как вёлся контур, хвосты, база"
+      "kind": "note",
+      "text": "Формально прими дела: как вёлся контур, хвосты, база."
     }
   ],
   "3.amo_access": [
     {
-      "kind": "step",
-      "text": "Запроси у Димы доступ Amo Cult (+ Blaster read при необходимости)"
-    },
-    {
       "kind": "telegram",
       "personId": "dima",
-      "label": "Написать Диме · Amo",
-      "prefill": "Дима, день 3 — нужен доступ в Amo Cult (и Blaster read, если ещё нет). Спасибо!"
+      "label": "Запросить доступы CRM",
+      "cta": "Написать Диме",
+      "prefill": "Привет, Дима! День 3 — нужны доступы:\n\n• Amo Cult\n• Amo Blaster\n• Amo Sputnik Films\n• CRM Cult Group (Prodavan) — демо и рассказ, что с этим делать\n\nЛогины жду от тебя. Спасибо!",
+      "copy": true
     },
     {
-      "kind": "resource",
-      "id": "amo_cult"
-    },
-    {
-      "kind": "resource",
-      "id": "amo_blaster"
-    },
-    {
-      "kind": "step",
-      "text": "Проверь вход под своим логином"
+      "kind": "note",
+      "text": "Логин в Amo пришлёт Дима — не жди вход «под своим» старым аккаунтом. После доступов отметь чеклист:"
     },
     {
       "kind": "access_verify",
@@ -120,169 +61,98 @@
   "4.rules_nb": [
     {
       "kind": "resource",
-      "id": "doc_nb_reg"
-    },
-    {
-      "kind": "step",
-      "text": "Регламент работы new business manager"
-    }
-  ],
-  "4.rules_handoff": [
-    {
-      "kind": "resource",
-      "id": "doc_handoff_sasha"
-    },
-    {
-      "kind": "step",
-      "text": "Документ передачи дел — прочитай целиком"
+      "id": "doc_nb_reg",
+      "cta": "Открыть"
     }
   ],
   "4.rules_brief": [
     {
       "kind": "resource",
-      "id": "doc_brief_criteria"
+      "id": "doc_brief_criteria",
+      "cta": "Открыть"
     },
     {
-      "kind": "step",
-      "text": "Критерии качества оценки брифа"
+      "kind": "note",
+      "text": "Как собрать и передать бриф в продакшен без дыр."
     }
   ],
   "4.rules_prod": [
     {
       "kind": "resource",
-      "id": "doc_prod_standards"
-    },
-    {
-      "kind": "step",
-      "text": "Стандарты взаимодействия с продакшеном"
-    }
-  ],
-  "4.rules_amo": [
-    {
-      "kind": "resource",
-      "id": "doc_amo_reg"
-    },
-    {
-      "kind": "step",
-      "text": "Регламент работы в AmoCRM"
+      "id": "doc_prod_standards",
+      "cta": "Открыть"
     }
   ],
   "4.rules_commerce": [
     {
       "kind": "resource",
-      "id": "doc_rules_summary"
+      "id": "doc_commerce_rules",
+      "cta": "Открыть"
     },
     {
-      "kind": "resource",
-      "id": "doc_commerce_rules"
-    },
-    {
-      "kind": "step",
-      "text": "Сначала кратко, затем полная версия GDoc"
-    }
-  ],
-  "5.crm_landscape": [
-    {
-      "kind": "resource",
-      "id": "view_sales"
-    },
-    {
-      "kind": "resource",
-      "id": "crm_landscape"
-    },
-    {
-      "kind": "step",
-      "text": "Какие системы есть: Amo Cult, Amo Blaster, Prodo — и зачем каждая"
+      "kind": "note",
+      "text": "Полная версия коммерческих правил. Краткий конспект убран из программы."
     }
   ],
   "5.crm_custom": [
     {
-      "kind": "resource",
-      "id": "icrm"
+      "kind": "note",
+      "text": "Если доступ к кастомной CRM ещё не открыт — напиши Диме. Если открыт — протестируй: потыкай карточки, проверь что всё работает, напиши Диме фидбек. При необходимости назначь созвон для уточнений."
     },
     {
-      "kind": "step",
-      "text": "Кастомная CRM группы (Prodo/Prodavan) — в ней начнёшь работать. Демо/доступ через Диму."
-    }
-  ],
-  "5.crm_rules": [
-    {
-      "kind": "step",
-      "text": "Правила пользования CRM — поля, этапы, next step, без «КП и пропал»"
+      "kind": "telegram",
+      "personId": "dima",
+      "label": "Нет доступа / нужен демо",
+      "cta": "Написать Диме",
+      "prefill": "Дима, кастомная CRM (Prodavan): доступа ещё нет — открой, пожалуйста, или назначим демо.",
+      "copy": true
     },
     {
-      "kind": "resource",
-      "id": "doc_amo_reg"
-    },
-    {
-      "kind": "step",
-      "text": "Тот же регламент уже был в дне 4 — сегодня закрепи перед работой в системах"
+      "kind": "telegram",
+      "personId": "dima",
+      "label": "Фидбек после теста",
+      "cta": "Написать Диме",
+      "prefill": "Дима, потестил кастомную CRM:\n\n✅ Что ок:\n•\n\n⚠️ Что ломается / мутно:\n•\n\nНужен созвон для уточнений: да / нет",
+      "copy": true
     }
   ],
   "5.friday_units_sales": [
     {
-      "kind": "step",
-      "text": "Сегодня 12:00 — первый созвон по продажам (юниты + Дима + Лёня)"
+      "kind": "link",
+      "url": "https://telemost.yandex.ru/j/34407680646086",
+      "title": "Пятница 12:00 · звонок юнитов",
+      "cta": "Присоединиться к звонку",
+      "flat": false
+    },
+    {
+      "kind": "note",
+      "text": "Добавь этот звонок в 12:00 к себе в календарь — регулярно, на каждую пятницу."
     }
   ],
   "6.warm_base_collect": [
     {
-      "kind": "resource",
-      "id": "doc_warm_base_template"
+      "kind": "link",
+      "url": "assets/docs/warm_base_template.xlsx",
+      "title": "Тёплая база · Excel",
+      "cta": "Скачать Excel",
+      "flat": true
     },
     {
-      "kind": "step",
-      "text": "Заполни шаблон своей тёплой базы"
-    }
-  ],
-  "6.amo_100": [
-    {
-      "kind": "step",
-      "text": "В Amo/CRM: next step во всех своих карточках"
-    }
-  ],
-  "7.scoring_practice": [
-    {
-      "kind": "resource",
-      "id": "doc_practice_briefs"
+      "kind": "link",
+      "url": "warm_base_template.html",
+      "title": "Шаблон в браузере",
+      "cta": "Открыть",
+      "flat": true
     },
     {
-      "kind": "step",
-      "text": "Два учебных брифа → скоринг"
-    }
-  ],
-  "7.warm_touch": [
-    {
-      "kind": "resource",
-      "id": "doc_outreach_templates"
-    },
-    {
-      "kind": "step",
-      "text": "3 касания → зафиксируй в CRM"
-    }
-  ],
-  "8.hyp_test_plan": [
-    {
-      "kind": "step",
-      "text": "Сегменты + поводы захода — черновик на сверку с CRO"
-    }
-  ],
-  "8.qual_brief": [
-    {
-      "kind": "step",
-      "text": "Один учебный бриф до ≥5"
-    }
-  ],
-  "9.month_plan": [
-    {
-      "kind": "step",
-      "text": "1–2 квал. брифа / месяц — реалистичный план"
+      "kind": "note",
+      "text": "Это твоя сеть — не пулы хэдов. Заполни Excel и держи рядом к рассылке."
     }
   ],
   "9.quest_done": [
     {
-      "kind": "step",
-      "text": "Отметь программу пройденной"
+      "kind": "note",
+      "text": "Онбординг пройден. Дальше — weekly 1:1 с CRO и пятница 12:00."
     }
   ],
   "2.day_report": [
@@ -554,6 +424,157 @@
       "cta": "Написать Диме",
       "prefill": "Дима, отчёт день 1:\n\n✅ Сделано:\n•\n\n⏳ В процессе:\n•\n\nCliftonStrengths: [ссылка / в процессе]\nСумма теста: [₽]\nКуда перевести: [реквизиты]\n\nМутно / блокеры:\n•",
       "copy": false
+    }
+  ],
+  "1.schedule_sputnik": [
+    {
+      "kind": "note",
+      "text": "Отдельный созвон с Димой как с CEO Sputnik Films — вне контекста всей группы: что сейчас у студии, фокус, как ты можешь помочь продажам Sputnik."
+    },
+    {
+      "kind": "contact_card",
+      "id": "dima",
+      "cta": "Написать Диме",
+      "prefill": "Привет, Дима! Нужен отдельный созвон ~30–40 мин — ты как CEO Sputnik Films: что сейчас у студии, фокус, как мне как sales группы правильно заходить в Sputnik-контур. Какие слоты удобны?",
+      "copy": true
+    }
+  ],
+  "2.cases_cult": [
+    {
+      "kind": "deck",
+      "id": "cult_main_cases"
+    }
+  ],
+  "2.cases_blaster": [
+    {
+      "kind": "deck",
+      "id": "blaster_master"
+    }
+  ],
+  "2.cases_sputnik": [
+    {
+      "kind": "note",
+      "text": "Ничего у Сергея Клейна запрашивать не нужно — открой PDF ниже."
+    },
+    {
+      "kind": "link",
+      "url": "assets/docs/deck_sputnik_films_2025.pdf",
+      "title": "Sputnik Films 2025",
+      "cta": "Открыть PDF",
+      "flat": true
+    },
+    {
+      "kind": "link",
+      "url": "assets/docs/deck_sputnik_special_projects_2026.pdf",
+      "title": "Sputnik · спецпроекты 2026",
+      "cta": "Открыть PDF",
+      "flat": true
+    },
+    {
+      "kind": "link",
+      "url": "assets/docs/deck_sputnik_documentary.pdf",
+      "title": "Sputnik · документальное кино",
+      "cta": "Открыть PDF",
+      "flat": true
+    }
+  ],
+  "2.group_deck": [
+    {
+      "kind": "deck",
+      "id": "cult_group"
+    }
+  ],
+  "3.skills_install": [
+    {
+      "kind": "note",
+      "text": "Схема простая: скачай ZIP → закинь весь архив внутрь Cursor или Codex → попроси распаковать эти файлы для дальнейшей работы (скиллы и роли)."
+    },
+    {
+      "kind": "resource",
+      "id": "agent_pack_zip",
+      "cta": "Скачать ZIP"
+    },
+    {
+      "kind": "telegram",
+      "personId": "dima",
+      "label": "Трудности с установкой",
+      "cta": "Написать Диме",
+      "prefill": "Дима, день 3 — не получается поставить agent-pack в Cursor/Codex. Подскажи, пожалуйста.",
+      "copy": true
+    }
+  ],
+  "3.rules_amo": [
+    {
+      "kind": "resource",
+      "id": "doc_amo_reg",
+      "cta": "Открыть"
+    },
+    {
+      "kind": "note",
+      "text": "Поля, этапы, next step — как работать в Amo."
+    }
+  ],
+  "4.rules_scoring": [
+    {
+      "kind": "resource",
+      "id": "doc_scoring_howto",
+      "cta": "Открыть"
+    },
+    {
+      "kind": "note",
+      "text": "Скоринг лида: criterion-by-criterion, порог ≥5 = квал. лид."
+    }
+  ],
+  "7.warm_mail": [
+    {
+      "kind": "note",
+      "text": "Сделай рассылку по тёплой базе. Перед внесением контактов в CRM — сначала спишись с Димой: есть ли пожелания и рекомендации по внесению."
+    },
+    {
+      "kind": "telegram",
+      "personId": "dima",
+      "label": "Свериться перед CRM",
+      "cta": "Написать Диме",
+      "prefill": "Дима, день 7: готов вносить тёплую базу в кастомную CRM и вести рассылки. Какие пожелания/рекомендации по внесению контактов? Нужны ли воронки и трек рассылок в CRM?",
+      "copy": true
+    },
+    {
+      "kind": "resource",
+      "id": "doc_outreach_templates",
+      "cta": "Шаблоны касаний"
+    }
+  ],
+  "7.crm_import": [
+    {
+      "kind": "note",
+      "text": "После ок от Димы — внеси контакты в кастомную CRM. В этот момент дорабатываем CRM: удобные рассылки по базам, слежение и раздел воронок — если чего-то нет, скажи CRO."
+    },
+    {
+      "kind": "telegram",
+      "personId": "dima",
+      "label": "Контакты внесены / нужен допил CRM",
+      "cta": "Написать Диме",
+      "prefill": "Дима, контакты из тёплой базы: [внёс / жду доступ]. Для рассылок не хватает: [воронки / трек / другое].",
+      "copy": true
+    }
+  ],
+  "8.plans_horizon": [
+    {
+      "kind": "note",
+      "text": "Вместе с коммерческим директором зафиксируй план на месяц, квартал и год + стратегию."
+    },
+    {
+      "kind": "contact_card",
+      "id": "dima",
+      "cta": "Написать Диме",
+      "prefill": "Дима, день 8 — давай слот на план: месяц / квартал / год + стратегия sales. Когда удобно?",
+      "copy": true
+    }
+  ],
+  "8.solo_start": [
+    {
+      "kind": "note",
+      "text": "С этого момента — самостоятельная работа: тестирование гипотез, воронок, сбор баз, рассылки. Блокер — сразу к CRO."
     }
   ]
 }

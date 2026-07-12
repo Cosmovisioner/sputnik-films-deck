@@ -193,8 +193,8 @@
     },
     {
       "id": "agent_pack_zip",
-      "title": "Agent-pack · ZIP",
-      "subtitle": "14 скиллов · 11 ролей · лекции · токены · без паролей",
+      "title": "Agent-pack · скиллы и роли",
+      "subtitle": "ZIP → Cursor / Codex",
       "url": "assets/agent_pack_leonid_sales_2026_07.zip",
       "owner": "dima",
       "unit": "uk",
@@ -322,12 +322,20 @@
     },
     {
       "id": "doc_warm_base_template",
-      "title": "Шаблон тёплой базы",
-      "subtitle": "Колонки для списка контактов",
-      "url": "warm_base_template.html",
+      "title": "Тёплая база · Excel",
+      "subtitle": "Скачай и заполни своей сетью",
+      "url": "assets/docs/warm_base_template.xlsx",
       "owner": "dima",
       "unit": "uk",
       "note": "Своя сеть, не пулы хэдов"
+    },
+    {
+      "id": "doc_scoring_howto",
+      "title": "Скоринг лида · как делать",
+      "subtitle": "Порог ≥5 = квал. лид · skill в agent-pack",
+      "url": "skills_pack/cult-group-lead-scoring/SKILL.md",
+      "owner": "dima",
+      "unit": "uk"
     }
   ],
   "internal": [

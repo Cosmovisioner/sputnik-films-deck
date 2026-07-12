@@ -249,12 +249,22 @@
     },
     {
       "id": "amo_cult",
-      "text": "Вхожу в Amo Cult под своим логином",
+      "text": "Amo Cult — доступ открыт (логин от Димы)",
       "phase": "day3"
     },
     {
       "id": "amo_blaster",
-      "text": "Вижу Amo Blaster (хотя бы read)",
+      "text": "Amo Blaster — доступ открыт",
+      "phase": "day3"
+    },
+    {
+      "id": "amo_sputnik",
+      "text": "Amo Sputnik Films — доступ открыт",
+      "phase": "day3"
+    },
+    {
+      "id": "crm_prodavan",
+      "text": "CRM Cult Group (Prodavan) — демо/доступ открыт",
       "phase": "day3"
     }
   ]

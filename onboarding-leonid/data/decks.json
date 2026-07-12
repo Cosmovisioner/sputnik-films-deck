@@ -61,7 +61,7 @@
     {
       "id": "sputnik_unit",
       "title": "Sputnik Films · док и спецпроекты",
-      "when": "Док, шоу, корпоративный фильм — только после «берём» от Сергея",
+      "when": "Док, шоу, спецпроект — PDF в квесте дня 2; не запрашивай у Сергея на онбординге",
       "url": null,
       "status": "request",
       "owner": "sergey",
@@ -70,11 +70,29 @@
     }
   ],
   "routing": [
-    { "signal": "Не ясен формат / холод", "deck": "cult_group" },
-    { "signal": "Рекламный ролик, TV/digital", "deck": "cult_main_cases" },
-    { "signal": "Нужен продакшен-подход в КП", "deck": "cult_production" },
-    { "signal": "CG, 2D/3D, motion, мультимедиа", "deck": "blaster_master" },
-    { "signal": "Кросс: графика + продакшен", "deck": "blaster_cross" },
-    { "signal": "Док, спецпроект, шоу", "deck": "sputnik_unit" }
+    {
+      "signal": "Не ясен формат / холод",
+      "deck": "cult_group"
+    },
+    {
+      "signal": "Рекламный ролик, TV/digital",
+      "deck": "cult_main_cases"
+    },
+    {
+      "signal": "Нужен продакшен-подход в КП",
+      "deck": "cult_production"
+    },
+    {
+      "signal": "CG, 2D/3D, motion, мультимедиа",
+      "deck": "blaster_master"
+    },
+    {
+      "signal": "Кросс: графика + продакшен",
+      "deck": "blaster_cross"
+    },
+    {
+      "signal": "Док, спецпроект, шоу",
+      "deck": "sputnik_unit"
+    }
   ]
 }
