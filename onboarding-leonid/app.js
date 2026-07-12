@@ -10,7 +10,7 @@
   const QUEST_KEY = "sb-onboarding-leonid-quest-step";
   const MODE_KEY = "sb-onboarding-leonid-program-mode";
   const QUIZ_KEY = "sb-onboarding-leonid-quiz";
-  const ASSET_VER = "20260712-v63";
+  const ASSET_VER = "20260712-v64";
   /** Временно: проверка онбординга без обязательной сдачи теста. Перед стартом Лёни вернуть false. */
   const QUIZ_GATE_ENABLED = false;
 
