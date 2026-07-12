@@ -1,11 +1,11 @@
 # Как построить отдел продаж — живая лекция (Екатерина Шадрина, SETTERS / изионисты, 2026)
 
-Файл: `research_sales_department_build_shadrina_live_2026_01.md`  
-Путь сохранения: `SecondBrain/30_Knowledge/research/`  
+Файл: `research_sales_department_build_shadrina_live_2026_01.md`
+Путь сохранения: `SecondBrain/30_Knowledge/research/`
 Тип документа: `Knowledge / Research`
 
-**Источник:** транскрипт онлайн-лекции (изионисты / SETTERS). Спикер: **Екатерина Шадрина** — ex-2GIS (холодные продажи рекламы, ~6 лет), ex-Яндекс.Директ (SMB, рост выручки текущих клиентов), консультант по продажам.  
-**Связь с PDF-конспектом:** дополняет [research_sales_department_build_izi_shadrina_2024](research_sales_department_build_izi_shadrina_2024.md) (там — структура со слайдов «Изи»). Здесь — развёрнутые формулировки, уточнения и **Q&A** из эфира.  
+**Источник:** транскрипт онлайн-лекции (изионисты / SETTERS). Спикер: **Екатерина Шадрина** — ex-2GIS (холодные продажи рекламы, ~6 лет), ex-Яндекс.Директ (SMB, рост выручки текущих клиентов), консультант по продажам.
+**Связь с PDF-конспектом:** дополняет [research_sales_department_build_izi_shadrina_2024](research_sales_department_build_izi_shadrina_2024.md) (там — структура со слайдов «Изи»). Здесь — развёрнутые формулировки, уточнения и **Q&A** из эфира.
 **Для SB:** [role_sales_newbiz](../../60_System/roles/role_sales_newbiz.md), [artifact_sales_lecture_crm_negotiations_relationships_2026](../../40_Artifacts/artifact_sales_lecture_crm_negotiations_relationships_2026.md).
 
 **Фокус лекции (заявлено спикером):** не маркетинг и не лидогенерация как тема дня, а **проактивные исходящие продажи**, в которых сейлз сам формирует и ведёт базу. Входящие лиды сейлз тоже может обрабатывать — в связке с другими функциями (см. Q&A).
@@ -139,6 +139,6 @@
 
 ## Связанные материалы
 
-- [research_sales_department_build_izi_shadrina_2024](research_sales_department_build_izi_shadrina_2024.md) — конспект PDF «Как построить отдел продаж_Изи».  
-- [30_Knowledge/isionism/README.md](../isionism/README.md) — индекс оригиналов.  
+- [research_sales_department_build_izi_shadrina_2024](research_sales_department_build_izi_shadrina_2024.md) — конспект PDF «Как построить отдел продаж_Изи».
+- [30_Knowledge/isionism/README.md](../isionism/README.md) — индекс оригиналов.
 - [artifact_knowledge_capture_decks_newbiz_pr_finance_2026](../../40_Artifacts/artifact_knowledge_capture_decks_newbiz_pr_finance_2026.md).

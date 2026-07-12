@@ -1,10 +1,10 @@
 # Саммари лекции: CRM, переговоры, долгосрочные отношения, роль фаундера в продажах
 
-Файл: `artifact_sales_lecture_crm_negotiations_relationships_2026.md`  
-Путь сохранения: `SecondBrain/40_Artifacts/`  
+Файл: `artifact_sales_lecture_crm_negotiations_relationships_2026.md`
+Путь сохранения: `SecondBrain/40_Artifacts/`
 Тип документа: `Artifact`
 
-Источник: лекция (саммари пользователя), апрель 2026.  
+Источник: лекция (саммари пользователя), апрель 2026.
 Использование: операционный чеклист для роли Sales + NewBiz, CRM-дисциплины и переговоров; зафиксировано в [master_context_lor](../60_System/context/master_context_lor.md) и [role_sales_newbiz](../60_System/roles/role_sales_newbiz.md).
 
 ---
@@ -79,7 +79,7 @@
 
 ## Связь с Second Brain
 
-- Роль: [role_sales_newbiz](../60_System/roles/role_sales_newbiz.md)  
-- Skill: [.cursor/skills/sales-newbiz/SKILL.md](../.cursor/skills/sales-newbiz/SKILL.md)  
-- CRM/скоринг: [artifact_crm_lead_scoring](artifact_crm_lead_scoring.md), [artifact_crm_leads_2026](artifact_crm_leads_2026.md)  
+- Роль: [role_sales_newbiz](../60_System/roles/role_sales_newbiz.md)
+- Skill: [.cursor/skills/sales-newbiz/SKILL.md](../.cursor/skills/sales-newbiz/SKILL.md)
+- CRM/скоринг: [artifact_crm_lead_scoring](artifact_crm_lead_scoring.md), [artifact_crm_leads_2026](artifact_crm_leads_2026.md)
 - Peer-практики сообщества (мастер-майнд SETTERS, апр. 2026): [research_setters_mastermind_sales_peer_practices_2026_04](../30_Knowledge/research/research_setters_mastermind_sales_peer_practices_2026_04.md)

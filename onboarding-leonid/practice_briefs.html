@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Практика · 2 тестовых брифа</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Unbounded:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #F7F7F6; --card: #FFFFFF; --text: #111111; --muted: rgba(17,17,17,0.62);
+      --accent: #F974BE; --border: rgba(17,17,17,0.12);
+      --font-display: Unbounded, system-ui, sans-serif;
+      --font-ui: "JetBrains Mono", ui-monospace, monospace;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: var(--font-ui); background: var(--bg); color: var(--text);
+      line-height: 1.55; padding: 24px 16px 48px; -webkit-font-smoothing: antialiased;
+      background-image:
+        radial-gradient(800px 420px at 10% -10%, rgba(249,116,190,0.18), transparent 55%),
+        radial-gradient(600px 360px at 100% 0%, rgba(249,116,190,0.1), transparent 50%);
+    }
+    .wrap { max-width: 760px; margin: 0 auto; position: relative; }
+    h1 { font-family: var(--font-display); font-size: 1.35rem; margin: 0 0 8px; letter-spacing: -0.02em; }
+    h2 { font-family: var(--font-display); font-size: 1rem; margin: 0 0 12px; }
+    .tag { font-family: var(--font-ui); font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: .08em; font-weight: 700; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin: 16px 0; box-shadow: 0 10px 30px rgba(17,17,17,0.04); }
+    .note { font-size: 13px; color: var(--muted); }
+    a { color: var(--accent); }
+    .back { display: inline-block; margin-bottom: 16px; font-size: 13px; font-weight: 600; text-decoration: none; color: var(--text); border-bottom: 1px solid var(--accent); }
+    table { width: 100%; border-collapse: collapse; font-size: 14px; margin: 12px 0; }
+    th, td { border: 1px solid var(--border); padding: 8px 10px; text-align: left; vertical-align: top; }
+    th { background: rgba(249,116,190,0.08); font-weight: 600; }
+    ul, ol { margin: 0; padding-left: 1.2rem; }
+    li { margin: 6px 0; }
+    pre { white-space: pre-wrap; background: #111; color: #f5f5f5; border-radius: 12px; padding: 14px; font-size: 13px; line-height: 1.45; border: 1px solid rgba(249,116,190,0.25); }
+    .badge { display:inline-block; font-size:11px; padding:2px 8px; border-radius:999px; border:1px solid var(--border); font-family: var(--font-ui); }
+    .ok { color: #1F7A4C; } .warn { color: #9A3412; }
+    code { font-family: var(--font-ui); font-size: 12px; }
+
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a href="index.html">← Онбординг</a>
+    <p class="tag">Cult Group · день 7 · практика</p>
+    <h1>Два тестовых брифа для скоринга</h1>
+    <p class="note">Синтетика для онбординга. Прогони через brief-gate + скоринг (≥ 5 = квал.). Не клиенты из реальных пулов.</p>
+
+    <div class="card">
+      <h2>Бриф A · <span class="badge ok">ожидаемо ≥ 5</span></h2>
+      <table>
+        <tr><th>Поле</th><th>Значение</th></tr>
+        <tr><td>Компания</td><td>Сеть fashion-ритейла (прямой бренд, РФ)</td></tr>
+        <tr><td>Контакт</td><td>бренд-директор, ответил на тёплое касание</td></tr>
+        <tr><td>Задача</td><td>Имиджевый ролик + короткий cutdown под digital, съёмка 2 дня</td></tr>
+        <tr><td>Бюджет</td><td>ориентир 6–8 млн ₽, постоплата 30 дней</td></tr>
+        <tr><td>Срок</td><td>старт через 5 недель, дедлайн к кампании</td></tr>
+        <tr><td>Юнит-гипотеза</td><td>Cult (реклама / съёмка)</td></tr>
+        <tr><td>Риски</td><td>нужен бриф по полям; агентство в контуре нет</td></tr>
+      </table>
+      <p class="note"><strong>Задание:</strong> проставь скоринг, маршрут (Cult → Денис), какую презу (Cult / Cult Group), следующий шаг в Amo.</p>
+    </div>
+
+    <div class="card">
+      <h2>Бриф B · <span class="badge warn">ожидаемо &lt; 5 или стоп</span></h2>
+      <table>
+        <tr><th>Поле</th><th>Значение</th></tr>
+        <tr><td>Компания</td><td>Небольшой букмекер (новый холодный контакт)</td></tr>
+        <tr><td>Контакт</td><td>маркетолог, «нужен ролик как у конкурентов»</td></tr>
+        <tr><td>Задача</td><td>«Что-нибудь вирусное за 2 недели», без брифа</td></tr>
+        <tr><td>Бюджет</td><td>«посмотрим после КП», намёк на 200–400 тыс.</td></tr>
+        <tr><td>Срок</td><td>«вчера»</td></tr>
+        <tr><td>Юнит-гипотеза</td><td>неясно; просят «как Sputnik, но дёшево»</td></tr>
+        <tr><td>Риски</td><td>стоп-лист беттинг на новых холодных · сырой бриф · порог</td></tr>
+      </table>
+      <p class="note"><strong>Задание:</strong> brief-gate fail? стоп-лист? куда писать отказ в Amo? не слать КП «на всякий случай».</p>
+    </div>
+
+    <div class="card">
+      <h2>Если входящих нет</h2>
+      <p>На задачах brief_gate / incoming / qual_brief — бери <strong>бриф A</strong> как учебный и помечай в Amo «онбординг · практика», либо возьми карточку из handoff Саши с согласия CRO.</p>
+    </div>
+  </div>
+</body>
+</html>

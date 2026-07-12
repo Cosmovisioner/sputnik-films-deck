@@ -100,7 +100,7 @@
       "url": "https://goodsnooze.gumroad.com/l/macwhisper",
       "owner": "dima",
       "unit": "uk",
-      "note": "Пиши встречи → транскрипт → отчёт. Free-tier достаточно для старта."
+      "note": "Только Mac. На Windows/Linux — Handy (handy.computer)."
     },
     {
       "id": "soft_handy",
@@ -109,7 +109,7 @@
       "url": "https://handy.computer/",
       "owner": "dima",
       "unit": "uk",
-      "note": "Лёгкая альтернатива, если MacWhisper тяжёлый. Download: handy.computer/download"
+      "note": "Кроссплатформенно: Mac / Windows. Альтернатива MacWhisper."
     },
     {
       "id": "soft_cursor",
@@ -167,12 +167,12 @@
     },
     {
       "id": "doc_client_pools",
-      "title": "Пулы клиентов · JSON",
-      "subtitle": "Cult / Blaster / Sputnik — тёплые бренды на 30.06.2026",
-      "url": "data/client_pools.json",
+      "title": "Пулы клиентов · HTML",
+      "subtitle": "Cult / Blaster / Sputnik — тёплые бренды на 30.06.2026 · do-not-touch",
+      "url": "client_pools.html",
       "owner": "dima",
       "unit": "uk",
-      "note": "Снимок списков Дениса, Лизы, Димы. Не колл-лист для перехвата."
+      "note": "UI поверх снимка списков Дениса, Лизы, Димы. Не колл-лист для перехвата. Сырой JSON — только data/client_pools.json для агентов."
     },
     {
       "id": "agent_pack_zip",
@@ -229,10 +229,10 @@
       "id": "doc_icp_checklist",
       "title": "ICP · наш клиент",
       "subtitle": "5 проверок перед квалификацией",
-      "url": null,
+      "url": "rules-summary.html#icp",
       "owner": "dima",
       "unit": "uk",
-      "note": "1) Прямой клиент (бренд/заказчик), не агентство в первом приоритете · 2) Средний и крупный бизнес, Россия + СНГ · 3) Задача в Cult / Blaster / Sputnik, не стоп-лист · 4) Бюджет выше порога юнита или OK Сергея на неформат · 5) Не казино, букмекеры, алкоголь, политика"
+      "note": "5 проверок ICP в кратких правилах. Стоп-лист: новый холод в беттинг/казино/алкоголь/политику — нет. Существующие отношения юнита (напр. WINLINE у Cult) — не перехватывать и не масштабировать холод без CRO."
     },
     {
       "id": "doc_rules_summary",
@@ -275,6 +275,42 @@
       "owner": "dima",
       "unit": "uk",
       "note": "Не заменяет оффер PDF. Разбор: % после расставания, передача дел, ownership CRM-базы, запрет переманивать клиентов 12 мес. При расхождении с PDF — верить PDF."
+    },
+    {
+      "id": "doc_objections_top10",
+      "title": "Банк возражений · топ-10",
+      "subtitle": "Стартер для дня 7",
+      "url": "objections_top10.html",
+      "owner": "dima",
+      "unit": "uk",
+      "note": "Полный банк — в agent-pack; живые формулировки пополняет CRO"
+    },
+    {
+      "id": "doc_practice_briefs",
+      "title": "2 тестовых брифа",
+      "subtitle": "Практика скоринга и brief-gate",
+      "url": "practice_briefs.html",
+      "owner": "dima",
+      "unit": "uk",
+      "note": "Если входящих нет — бери бриф A"
+    },
+    {
+      "id": "doc_outreach_templates",
+      "title": "Шаблоны касаний",
+      "subtitle": "Тёплая база · TG/mail",
+      "url": "outreach_templates.html",
+      "owner": "dima",
+      "unit": "uk",
+      "note": "Коротко, один CTA, без спама"
+    },
+    {
+      "id": "doc_warm_base_template",
+      "title": "Шаблон тёплой базы",
+      "subtitle": "Колонки для списка контактов",
+      "url": "warm_base_template.html",
+      "owner": "dima",
+      "unit": "uk",
+      "note": "Своя сеть, не пулы хэдов"
     }
   ],
   "internal": [

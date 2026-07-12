@@ -1,15 +1,15 @@
 # Контекст продаж Cult Group · для онбординга Леонида
 
-Файл: `artifact_cult_group_sales_context_for_leonid_2026_07.md`  
-Путь: `20_Business_Projects/sputnik_films/operations/cult_group/co_sales/`  
+Файл: `artifact_cult_group_sales_context_for_leonid_2026_07.md`
+Путь: `20_Business_Projects/sputnik_films/operations/cult_group/co_sales/`
 Тип: `Artifact`
 
-Каноническая **читаемая** версия для hiree:  
-https://cosmovisioner.github.io/sputnik-films-deck/onboarding-leonid/sales_context.html  
+Каноническая **читаемая** версия для hiree:
+https://cosmovisioner.github.io/sputnik-films-deck/onboarding-leonid/sales_context.html
 
 Пулы (JSON): `onboarding_quest_leonid_2026/data/client_pools.json`
 
-Собрано ролями: стратегический партнёр · Sales/NewBiz · HR-директор (отношения и fit роли).  
+Собрано ролями: стратегический партнёр · Sales/NewBiz · HR-директор (отношения и fit роли).
 База: SB + чат «Группа / Продажи» 30.06–01.07.2026.
 
 ---
@@ -20,8 +20,8 @@ https://cosmovisioner.github.io/sputnik-films-deck/onboarding-leonid/sales_conte
 
 ## Тактика двух волн
 
-1. **Волна 1:** Денис / Лиза / Дима+Сергей — свои тёплые списки (бренды без передачи контактов).  
-2. **Параллельно Лёня:** своя тёплая → преза Cult Group.  
+1. **Волна 1:** Денис / Лиза / Дима+Сергей — свои тёплые списки (бренды без передачи контактов).
+2. **Параллельно Лёня:** своя тёплая → преза Cult Group.
 3. **Волна 2:** тестирование гипотез и поиск ключевых контактов; категории — отдельный сбор с CRO. Известно по Cult: FMCG, топ-30 и топ-100 рекламодателей (ориентиры: WB, Магнит).
 
 ## Пулы (снимок 30.06)

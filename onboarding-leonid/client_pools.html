@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Пулы клиентов · Cult Group</title>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Unbounded:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #F7F7F6; --card: #FFFFFF; --text: #111111; --muted: rgba(17,17,17,0.62);
+      --accent: #F974BE; --border: rgba(17,17,17,0.12);
+      --font-display: Unbounded, system-ui, sans-serif;
+      --font-ui: "JetBrains Mono", ui-monospace, monospace;
+      --danger: #9A3412; --ok: #1F7A4C;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: var(--font-ui); background: var(--bg); color: var(--text);
+      line-height: 1.55; padding: 24px 16px 48px; -webkit-font-smoothing: antialiased;
+      background-image: radial-gradient(800px 420px at 10% -10%, rgba(249,116,190,0.16), transparent 55%);
+    }
+    .wrap { max-width: 860px; margin: 0 auto; }
+    h1 { font-family: var(--font-display); font-size: 1.35rem; margin: 0 0 8px; }
+    h2 { font-family: var(--font-display); font-size: 1rem; margin: 0 0 10px; }
+    .tag { font-size: 11px; color: var(--accent); text-transform: uppercase; letter-spacing: .08em; font-weight: 700; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 16px; padding: 20px; margin: 16px 0; box-shadow: 0 10px 30px rgba(17,17,17,0.04); }
+    .note { font-size: 13px; color: var(--muted); }
+    a { color: var(--accent); }
+    .back { display: inline-block; margin-bottom: 16px; font-size: 13px; font-weight: 600; text-decoration: none; color: var(--text); border-bottom: 1px solid var(--accent); }
+    .rule {
+      padding: 14px 16px; border-radius: 12px; background: rgba(249,116,190,0.12);
+      border: 1px solid rgba(249,116,190,0.28); font-size: 13px; margin: 12px 0;
+    }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 10px; }
+    .chip {
+      font-size: 12px; padding: 6px 10px; border-radius: 999px; border: 1px solid var(--border);
+      background: #fff;
+    }
+    .chip.hot { border-color: rgba(249,116,190,0.45); background: rgba(249,116,190,0.08); }
+    .chip.stop { border-color: rgba(154,52,18,0.35); color: var(--danger); }
+    .chip.agency { border-style: dashed; }
+    .meta { font-size: 12px; color: var(--muted); margin-top: 8px; }
+    .err { color: var(--danger); font-size: 13px; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="index.html">← Онбординг</a>
+    <p class="tag">Cult Group · день 2 · пулы</p>
+    <h1>Действующие пулы · не колл-лист</h1>
+    <div class="rule">
+      <strong>Правило CRO (30.06):</strong> контакты пула не перехватывать. Пишет держатель отношений (Денис / Лиза / Дима). Ты — свою тёплую базу.
+      <br><br>
+      <strong>Стоп-лист на новый холод:</strong> казино, букмекеры, алкоголь, политика.
+      Бренды вроде WINLINE / Фонбет в пуле = существующие отношения юнита, не повод открывать холодный беттинг.
+      <br><br>
+      <strong>Агентства в пуле Blaster</strong> = тёплые/партнёрские, не ICP для массового холода.
+    </div>
+    <p class="note" id="asOf">Загрузка…</p>
+    <div id="pools"></div>
+    <div class="card" id="bonus">
+      <h2>Бонус Кости (не юнитный пул)</h2>
+      <p class="note">ЦИАН · Wildberries · Манго Телеком — без OK Кости/CRO не писать.</p>
+      <div class="chips" id="bonusChips"></div>
+    </div>
+  </div>
+  <script>
+    (async function () {
+      try {
+        const r = await fetch("data/client_pools.json?v=20260712-v41");
+        if (!r.ok) throw new Error("HTTP " + r.status);
+        const data = await r.json();
+        document.getElementById("asOf").textContent =
+          "Снимок: " + (data.meta?.as_of || data.meta?.updated || "30.06.2026") + " · не актуальный CRM";
+        const root = document.getElementById("pools");
+        const units = data.units || data.pools || [];
+        root.innerHTML = units.map(u => {
+          const brands = u.brands || u.clients || [];
+          const agencies = u.agencies || [];
+          const chips = brands.map(b => {
+            const name = typeof b === "string" ? b : b.name;
+            const note = typeof b === "string" ? "" : (b.note || "");
+            const stop = /WINLINE|Фонбет|бетт|казино/i.test(name + " " + note);
+            const title = note ? ` title="${note.replace(/"/g, "&quot;")}"` : "";
+            return `<span class="chip${stop ? " stop" : " hot"}"${title}>${name}${stop ? " · не холод" : ""}</span>`;
+          }).join("");
+          const ag = agencies.map(a => {
+            const name = typeof a === "string" ? a : a.name;
+            return `<span class="chip agency">${name} · agency</span>`;
+          }).join("");
+          const owner = u.owner || u.head || u.holder || "";
+          return `<div class="card">
+            <h2>${u.name || u.id || "Юнит"}</h2>
+            <p class="meta">Держатель: ${owner || "—"} · ${u.note || "не перехватывать"}</p>
+            <div class="chips">${chips || "<span class='note'>пусто</span>"}</div>
+            ${ag ? `<p class="meta" style="margin-top:12px">Агентства / партнёры</p><div class="chips">${ag}</div>` : ""}
+          </div>`;
+        }).join("");
+        const bonus = data.bonus_kostya || {};
+        const list = bonus.brands || bonus.list || ["ЦИАН", "Wildberries", "Манго Телеком"];
+        document.getElementById("bonusChips").innerHTML = list.map(x => {
+          const name = typeof x === "string" ? x : x.name;
+          return `<span class="chip stop">${name} · только с OK</span>`;
+        }).join("");
+      } catch (e) {
+        document.getElementById("asOf").innerHTML = `<span class="err">Не загрузился JSON: ${e.message}. Открой через http.server.</span>`;
+      }
+    })();
+  </script>
+</body>
+</html>

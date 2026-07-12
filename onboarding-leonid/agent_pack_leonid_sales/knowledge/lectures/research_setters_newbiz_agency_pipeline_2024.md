@@ -1,11 +1,11 @@
 # SETTERS: new biz в агентстве — воронка, каналы, метрики (презентация 2024)
 
-Файл: `research_setters_newbiz_agency_pipeline_2024.md`  
-Путь сохранения: `SecondBrain/30_Knowledge/research/`  
+Файл: `research_setters_newbiz_agency_pipeline_2024.md`
+Путь сохранения: `SecondBrain/30_Knowledge/research/`
 Тип документа: `Knowledge / Research`
 
-**Источник:** PDF в [30_Knowledge/isionism/](../isionism/) — «Как выстроить ньюбиз в агентстве и привлечь новых клиентов» (Дмитрий Будков, New Business Director SETTERS, 2024). Текст извлечён из слайдов автоматически.  
-**Живая лекция (транскрипт эфира, практика SETTERS, Q&A):** [research_setters_newbiz_agency_pipeline_live_2026_04](research_setters_newbiz_agency_pipeline_live_2026_04.md).  
+**Источник:** PDF в [30_Knowledge/isionism/](../isionism/) — «Как выстроить ньюбиз в агентстве и привлечь новых клиентов» (Дмитрий Будков, New Business Director SETTERS, 2024). Текст извлечён из слайдов автоматически.
+**Живая лекция (транскрипт эфира, практика SETTERS, Q&A):** [research_setters_newbiz_agency_pipeline_live_2026_04](research_setters_newbiz_agency_pipeline_live_2026_04.md).
 **Связь с пользователем:** референс для **Sputnik Films** (агентство/продакшен): системный new biz, CRM, пресейл, метрики — стыкуется с [role_sales_newbiz](../../60_System/roles/role_sales_newbiz.md), [artifact_sales_lecture_crm_negotiations_relationships_2026](../../40_Artifacts/artifact_sales_lecture_crm_negotiations_relationships_2026.md).
 
 ---
@@ -25,10 +25,10 @@
 
 ## 2. Стадии new business (линейная модель)
 
-1. **Поиск клиента**  
-2. **Пресейл**  
-3. **Сделка**  
-4. **Передача в реализацию**  
+1. **Поиск клиента**
+2. **Пресейл**
+3. **Сделка**
+4. **Передача в реализацию**
 5. **CRM** (сквозная дисциплина на всём пути)
 
 ---
@@ -124,7 +124,7 @@
 
 ## Связанные материалы в Second Brain
 
-- [research_setters_newbiz_agency_pipeline_live_2026_04](research_setters_newbiz_agency_pipeline_live_2026_04.md) — живая лекция (транскрипт эфира): практика SETTERS, Q&A.  
-- [research_pr_business_result_channels_neskuchnye_dao_2024](research_pr_business_result_channels_neskuchnye_dao_2024.md) — PR-каналы и связка с маркетингом.  
-- [research_owner_kpi_finances_easy_deck_2024](research_owner_kpi_finances_easy_deck_2024.md) — показатели собственника (смежный дек «Финансы на изи»).  
+- [research_setters_newbiz_agency_pipeline_live_2026_04](research_setters_newbiz_agency_pipeline_live_2026_04.md) — живая лекция (транскрипт эфира): практика SETTERS, Q&A.
+- [research_pr_business_result_channels_neskuchnye_dao_2024](research_pr_business_result_channels_neskuchnye_dao_2024.md) — PR-каналы и связка с маркетингом.
+- [research_owner_kpi_finances_easy_deck_2024](research_owner_kpi_finances_easy_deck_2024.md) — показатели собственника (смежный дек «Финансы на изи»).
 - [artifact_knowledge_capture_decks_newbiz_pr_finance_2026](../../40_Artifacts/artifact_knowledge_capture_decks_newbiz_pr_finance_2026.md) — оглавление импорта.

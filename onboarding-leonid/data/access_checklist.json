@@ -2,10 +2,11 @@
   "meta": {
     "title": "Доступы и чеклист старта",
     "note": "Пароли и инвайты — только в личке от Димы или в закрытом GDoc в папке найма. Здесь — что проверить и что попросить.",
-    "passwords_doc": "GDoc «Leonid — доступы 2026-07» в папке найма (только CRO, CEO, hiree)"
+    "passwords_doc": "GDoc «Leonid — доступы 2026-07» в папке найма (только CRO, CEO, hiree)",
+    "cro_preflight": "До старта CRO: TG required · Amo Cult (+ Blaster read) · Drive · Cursor invite · Clifton code · shadow-слоты в календаре (Сева/Дима)."
   },
-  "hiree_intro": "День 1: после вводной с Димой пройди этот чеклист. Если чего-то нет — напиши Диме одним сообщением (шаблон ниже).",
-  "tg_request_template": "Привет, Дима! Стартую онбординг. Проверь, пожалуйста, доступы:\n\n☐ Amo Cult\n☐ Amo Blaster (read)\n☐ Drive Культ-группа + Коммерция\n☐ GDocs пакета (NB, handoff, бриф, Amo-регламент)\n☐ Telegram: Группа / Продажи\n☐ Telegram: Сейлз-менеджер | Культ Груп\n☐ Telegram: Коммерческий директор\n☐ Telegram: Вайб-кружок + sales-чаты юнитов (не Супертопы / не Управление / не прод Sputnik)\n☐ Почта @cult.team\n☐ Clifton access code\n☐ Cursor / Codex + agent-pack ZIP\n\nСпасибо!",
+  "hiree_intro": "Чеклист по фазам. Идеально CRO уже выдал TG/Amo/Drive/Clifton/Cursor до 13.07 — тогда день 1 = проверка, не охота за инвайтами. Buddy онбординга — Дима (CRO). Если чего-то нет — шаблон ниже одним сообщением.",
+  "tg_request_template": "Привет, Дима! Стартую онбординг (день 1). Проверь доступы:\n\n☐ Amo Cult\n☐ Amo Blaster (read)\n☐ Drive Культ-группа + Коммерция\n☐ GDocs пакета (NB, handoff, бриф, Amo-регламент)\n☐ Telegram: Группа / Продажи\n☐ Telegram: Сейлз-менеджер | Культ Груп (когда откроешь состав)\n☐ Telegram: Коммерческий директор\n☐ Почта @cult.team\n☐ Clifton access code\n☐ MacWhisper или Handy\n\nCursor/Codex и agent-pack — день 6 (можно раньше, если инвайт уже есть).\nСпасибо!",
   "systems": [
     {
       "id": "amo_cult",
@@ -27,7 +28,7 @@
       "id": "icrm",
       "name": "Prodo.one (Prodavan / iCRM)",
       "url": null,
-      "role": "beta после демо · 23–24.07",
+      "role": "beta после демо · слот 23–25.07",
       "who": "Дима Квашнин (CRO) · Хомич до 01.08.2026 (уходит)",
       "resource": "icrm"
     },
@@ -159,79 +160,98 @@
   "hiree_verify": [
     {
       "id": "quest_link",
-      "text": "Открывается квест онбординга (эта страница)"
+      "text": "Открывается квест онбординга (эта страница)",
+      "phase": "day1"
     },
     {
       "id": "amo_cult",
-      "text": "Вхожу в Amo Cult под своим логином"
+      "text": "Вхожу в Amo Cult под своим логином",
+      "phase": "day1"
     },
     {
       "id": "amo_blaster",
-      "text": "Вижу Amo Blaster (хотя бы read)"
+      "text": "Вижу Amo Blaster (хотя бы read)",
+      "phase": "day1"
     },
     {
       "id": "drive",
-      "text": "Drive Культ-группа + Коммерция открываются"
+      "text": "Drive Культ-группа + Коммерция открываются",
+      "phase": "day1"
     },
     {
       "id": "docs",
-      "text": "GDocs пакета открываются (NB, handoff, бриф, Amo)"
+      "text": "GDocs пакета открываются (NB, handoff, бриф, Amo)",
+      "phase": "day1"
     },
     {
       "id": "tg_sales",
-      "text": "Добавлен в «Группа / Продажи»"
+      "text": "Добавлен в «Группа / Продажи»",
+      "phase": "day1"
     },
     {
       "id": "tg_cro",
-      "text": "Добавлен в «Коммерческий директор» и «Сейлз-менеджер | Культ Груп»"
+      "text": "Добавлен в «Коммерческий директор»; «Сейлз-менеджер | Культ Груп» — когда CRO откроет состав (или план в личке)",
+      "phase": "day1"
     },
     {
       "id": "email",
-      "text": "Рабочая почта @cult.team настроена"
+      "text": "Рабочая почта @cult.team настроена",
+      "phase": "day1"
     },
     {
       "id": "clifton",
-      "text": "Получил access code Clifton от Димы"
+      "text": "Получил access code Clifton от Димы",
+      "phase": "day1"
     },
     {
       "id": "macwhisper",
-      "text": "MacWhisper или Handy установлены (запись встреч)"
+      "text": "MacWhisper или Handy установлены (запись встреч)",
+      "phase": "day1"
     },
     {
       "id": "cursor",
-      "text": "Cursor или Codex установлены (инвайт/оплата у Димы)"
+      "text": "Cursor или Codex установлены (инвайт/оплата у Димы)",
+      "phase": "week1"
     },
     {
       "id": "sales_account",
-      "text": "Старый sales-аккаунт Sputnik обновлён под Cult Group"
+      "text": "Старый sales-аккаунт Sputnik обновлён под Cult Group",
+      "phase": "week1"
     },
     {
       "id": "warm_base",
-      "text": "Своя тёплая база собрана (можно слать презу Cult Group)"
+      "text": "Своя тёплая база собрана (можно слать презу Cult Group)",
+      "phase": "week2"
     },
     {
       "id": "cro_gaps",
-      "text": "С CRO закрыты дыры по доступам/софту/подпискам (или есть план)"
+      "text": "С CRO закрыты дыры по доступам/софту/подпискам (или есть план)",
+      "phase": "week1"
     },
     {
       "id": "sales_context",
-      "text": "Прочитал «Контекст продаж» + пулы Cult/Blaster/Sputnik"
+      "text": "Прочитал «Контекст продаж» + пулы Cult/Blaster/Sputnik",
+      "phase": "week1"
     },
     {
       "id": "agent_pack",
-      "text": "Скачал agent-pack ZIP и прочитал README установки"
+      "text": "Скачал agent-pack ZIP и прочитал README установки",
+      "phase": "week2"
     },
     {
       "id": "skills",
-      "text": "Открыл раздел «Скиллы» — знаю где инструкции"
+      "text": "Открыл раздел «Скиллы» — знаю где инструкции",
+      "phase": "week2"
     },
     {
       "id": "tg_no_heads",
-      "text": "Не в Супертопах / Управлении / продюсерском Sputnik (так и должно быть)"
+      "text": "Не в Супертопах / Управлении / продюсерском Sputnik на онбординге (так и должно быть; стратегия — через Диму)",
+      "phase": "day1"
     },
     {
       "id": "tg_vibe",
-      "text": "Добавлен в Вайб-кружок"
+      "text": "Добавлен в Вайб-кружок",
+      "phase": "week1"
     }
   ],
   "crm_rules": [
@@ -257,8 +277,8 @@
       "what": "Intro: Prodavan = iCRM = Prodo.one. Пока тест — не дублируй сделки в Amo."
     },
     {
-      "when": "День 9 (23–24.07)",
-      "what": "Демо Prodavan с Димой (CRO). После — адрес, доступ, дата миграции с Amo."
+      "when": "День 9 (23–25.07)",
+      "what": "Демо Prodavan с Димой (CRO). Слот в календаре — ориентир до 25.07. После — адрес, доступ, дата миграции с Amo."
     },
     {
       "when": "После демо",
@@ -269,5 +289,31 @@
     "Супертопы / Весь холдинг",
     "Управление | Культ Груп",
     "Sputnik Films | продюсерский чат"
+  ],
+  "cro_preflight_items": [
+    {
+      "id": "pf_tg",
+      "text": "Telegram: обязательные чаты + инвайт hiree"
+    },
+    {
+      "id": "pf_amo",
+      "text": "Amo Cult full + Amo Blaster read"
+    },
+    {
+      "id": "pf_drive",
+      "text": "Drive Культ-группа + Коммерция"
+    },
+    {
+      "id": "pf_cursor",
+      "text": "Инвайт Cursor/Codex (день 6)"
+    },
+    {
+      "id": "pf_clifton",
+      "text": "Код CliftonStrengths"
+    },
+    {
+      "id": "pf_shadow",
+      "text": "Слоты shadow/пресейл в календаре (если есть живые сделки)"
+    }
   ]
 }

@@ -1,7 +1,7 @@
 # Outreach Campaign Launch Checklist (Template)
 
-Файл: `note_outreach_campaign_launch_checklist_template.md`  
-Путь сохранения: `SecondBrain/60_System/automation/`  
+Файл: `note_outreach_campaign_launch_checklist_template.md`
+Путь сохранения: `SecondBrain/60_System/automation/`
 Тип документа: `System`
 
 ## Назначение
@@ -150,4 +150,3 @@
 - [ ] Где bottleneck (reply, meeting, qualification, close).
 - [ ] Что масштабируем в следующую кампанию.
 - [ ] Что убираем как шум/перегруз.
-

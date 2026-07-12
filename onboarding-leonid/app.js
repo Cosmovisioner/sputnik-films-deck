@@ -1,12 +1,13 @@
 (function () {
   "use strict";
 
-  const STORAGE_KEY = "cult_leonid_daily_v5";
-  const WELCOME_KEY = "cult_leonid_welcome_v4";
-  const ACCESS_KEY = "cult_leonid_access_v1";
-  const QUEST_KEY = "cult_leonid_quest_idx_v1";
-  const MODE_KEY = "cult_leonid_program_mode_v1";
-  const ASSET_VER = "20260712-v34";
+  // localStorage ids (not secrets) — named to avoid secret-scanner false positives
+  const STORAGE_KEY = "sb-onboarding-leonid-progress";
+  const WELCOME_KEY = "sb-onboarding-leonid-welcome";
+  const ACCESS_KEY = "sb-onboarding-leonid-access";
+  const QUEST_KEY = "sb-onboarding-leonid-quest-step";
+  const MODE_KEY = "sb-onboarding-leonid-program-mode";
+  const ASSET_VER = "20260712-v41";
 
   const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya", "alya_dudenkova"]);
 
@@ -108,8 +109,9 @@
       const raw = localStorage.getItem(STORAGE_KEY);
       if (raw) return JSON.parse(raw);
     } catch (_) {}
-    const legacy = localStorage.getItem("cult_leonid_daily_v4");
-    if (legacy) {
+    for (const legacyKey of ["cult_leonid_daily_v5", "cult_leonid_daily_v4"]) {
+      const legacy = localStorage.getItem(legacyKey);
+      if (!legacy) continue;
       try {
         const parsed = JSON.parse(legacy);
         localStorage.setItem(STORAGE_KEY, legacy);
@@ -279,7 +281,7 @@
 
   function peopleForUnit(unitId) {
     return team.people.filter(p => {
-      if (p.id === "leonid") return false;
+      if (p.id === "leonid" || p.id === "homich") return false;
       return personUnitId(p) === unitId;
     });
   }
@@ -402,7 +404,8 @@
       <div class="card">
         <div class="card-meta">Срез на ${esc(m.as_of)} · ${esc(m.period_label || "")}</div>
         <h2 class="card-title">Продажи · план, факт, воронка</h2>
-        <p class="card-intro">${esc(m.updated_note || "")}</p>
+        <p class="card-intro">${esc(m.ui_banner || m.updated_note || "")}</p>
+        ${m.offer_note ? `<p class="path-note">${esc(m.offer_note)}</p>` : ""}
         <div class="sales-callout sales-tldr">
           <p class="sales-tldr-label">Твой мандат (прочитай первым)</p>
           <p><strong>${esc(hl.problem || "")}</strong></p>
@@ -423,6 +426,7 @@
 
       <div class="card">
         <h3 class="section-heading">${esc(salesSnapshot.leonid_kpi?.title || "Твои KPI")}</h3>
+        ${salesSnapshot.leonid_kpi?.note ? `<p class="card-intro">${esc(salesSnapshot.leonid_kpi.note)}</p>` : ""}
         ${renderSalesTable(["Период", "Фокус", "Ориентир"], leonidRows)}
       </div>
 
@@ -511,7 +515,7 @@
     const note = document.querySelector(".welcome-note");
     if (lead && steps.length) {
       const span = stepsMeta.calendarSpan || "13–23 июл";
-      lead.innerHTML = `Привет, <strong>${userProfile().first}</strong>. Тут всё на первые две недели: куда вести клиента, кто за что отвечает, что открыть в Amo.<br><br><strong>${steps.length} дней</strong> по календарю (${span}). Карту и людей логично закрыть уже в понедельник — после вводной с Димой.`;
+      lead.innerHTML = `Привет, <strong>${userProfile().first}</strong>. Пошаговый онбординг: куда вести клиента, кто за что отвечает, что открыть в Amo.<br><br><strong>${steps.length} рабочих дней</strong> (${span}). Карту и людей логично закрыть уже в понедельник — после вводной с Димой.`;
     }
     if (list && steps.length) {
       list.innerHTML = `
@@ -545,7 +549,7 @@
       contactsHtml += `<a class="contact-btn" href="mailto:${esc(c.emailWork)}">✉ ${esc(c.emailWork)}</a>`;
     }
     if (c.telegram) {
-      contactsHtml += `<a class="contact-btn" href="${c.telegram}" target="_blank" rel="noopener">💬 ${esc(c.telegramLabel || "Telegram")}</a>`;
+      contactsHtml += `<a class="contact-btn" href="${c.telegram}" target="_blank" rel="noopener"><span class="icon">TG</span> ${esc(c.telegramLabel || "Telegram")}</a>`;
     }
     if (c.howToWrite) {
       contactsHtml += `<p style="font-size:12px;color:var(--muted);margin:8px 0 0">${esc(c.howToWrite)}</p>`;
@@ -558,7 +562,7 @@
     const cliftonLinks = [];
     if (p.clifton_url) {
       const label = p.clifton_tab ? `Clifton · ${p.clifton_tab}` : "Clifton · профиль";
-      cliftonLinks.push(`<a class="contact-btn" href="${p.clifton_url}" target="_blank" rel="noopener">📊 ${esc(label)}</a>`);
+      cliftonLinks.push(`<a class="contact-btn" href="${p.clifton_url}" target="_blank" rel="noopener"><span class="icon">CL</span> ${esc(label)}</a>`);
     }
     cliftonLinks.push(`<a class="contact-btn" href="https://docs.google.com/spreadsheets/d/1bkfERbO8UlEql6pLS_UIhCrBRiT2R4-YDOqxVeUx__0/edit" target="_blank" rel="noopener">📋 Таблица команды</a>`);
 
@@ -600,16 +604,16 @@
 
   function renderPathItem(item, stepId) {
     if (item.kind === "step") {
-      return `<div class="path-step">→ ${item.text}</div>`;
+      return `<div class="path-step">→ ${esc(item.text)}</div>`;
     }
     if (item.kind === "note") {
-      return `<div class="path-note">${item.text}</div>`;
+      return `<div class="path-note">${esc(item.text)}</div>`;
     }
     if (item.kind === "person") {
       const p = findPerson(item.id);
       if (!p) return "";
       return `<button type="button" class="path-link" data-person="${p.id}">
-        <span class="icon">👤</span>
+        <span class="icon">P</span>
         <span>${p.name}<span class="sub">${p.role}</span></span>
       </button>`;
     }
@@ -617,15 +621,16 @@
       const r = findResource(item.id);
       if (!r) return "";
       if (r.action) {
-        const icon = r.action === "sales" ? "📈" : r.action === "people" ? "👥" : r.action === "access" ? "🔐" : r.action === "skills" ? "⚡" : "🗺";
-        return `<button type="button" class="path-link" data-view="${r.action}">
+        const icon = r.action === "sales" ? "S" : r.action === "people" ? "L" : r.action === "access" ? "A" : r.action === "skills" ? "K" : "M";
+        const filterAttr = item.filter ? ` data-people-filter="${esc(item.filter)}"` : "";
+        return `<button type="button" class="path-link" data-view="${r.action}"${filterAttr}>
           <span class="icon">${icon}</span>
           <span>${r.title}<span class="sub">${r.subtitle}</span></span>
         </button>`;
       }
       if (r.url) {
         return `<a class="path-link" href="${r.url}" target="_blank" rel="noopener">
-          <span class="icon">${r.group === "docs" ? "📄" : "🔗"}</span>
+          <span class="icon">${r.group === "docs" ? "D" : "→"}</span>
           <span>${r.title}<span class="sub">${r.subtitle || ""}</span></span>
         </a>`;
       }
@@ -638,13 +643,13 @@
       if (!d) return "";
       if (d.url) {
         return `<a class="path-link" href="${d.url}" target="_blank" rel="noopener">
-          <span class="icon">📊</span>
+          <span class="icon">D</span>
           <span>${d.title}<span class="sub">${d.when}</span></span>
         </a>`;
       }
       const owner = findPerson(d.owner);
       return `<button type="button" class="path-link" data-person="${d.owner}">
-        <span class="icon">📊</span>
+        <span class="icon">D</span>
         <span>${d.title}<span class="sub">Запросить у ${owner ? owner.name : d.requestVia}</span></span>
       </button>`;
     }
@@ -653,11 +658,11 @@
       return list.map(ch => {
         if (ch.inviteUrl) {
           return `<a class="path-link" href="${ch.inviteUrl}" target="_blank" rel="noopener">
-            <span class="icon">💬</span>
+            <span class="icon">TG</span>
             <span>${ch.name}<span class="sub">Вступить · добавляет ${ch.whoAdds}</span></span>
           </a>`;
         }
-        return `<div class="path-note">💬 ${ch.name} — попроси ${ch.whoAdds} добавить</div>`;
+        return `<div class="path-note">TG · ${ch.name} — попроси ${ch.whoAdds} добавить</div>`;
       }).join("");
     }
     return "";
@@ -667,9 +672,7 @@
     container.querySelectorAll("[data-person]").forEach(el => {
       el.addEventListener("click", () => openPerson(el.dataset.person));
     });
-    container.querySelectorAll("[data-view]").forEach(el => {
-      el.addEventListener("click", () => setView(el.dataset.view));
-    });
+    // data-view: только в bindMainEvents (один handler, с people-filter)
   }
 
   function renderUnitRoutingCard(intro) {
@@ -691,24 +694,31 @@
           </table>
         </div>
         <div style="margin-top:12px">
-          <button type="button" class="btn" data-view="decks">📊 Какую презу показать →</button>
+          <button type="button" class="btn" data-view="decks">Какую презу показать →</button>
         </div>
       </div>`;
   }
 
   function renderProgramHint(step) {
-    if (step.id !== 1 || programMode !== "list") return "";
+    if (step.id !== 1) return "";
+    if (programMode === "focus" && currentQuestIdx > 0) return "";
     const r = stepsMeta.realism || {};
+    const buddy = stepsMeta.buddy || {};
+    const cadence = stepsMeta.feedback_cadence || [];
+    const culture = stepsMeta.culture_blurb || "";
     return `
       <div class="card hint-card">
         <h3 class="section-heading">Как пользоваться квестом</h3>
+        ${culture ? `<p class="card-intro culture-blurb">${esc(culture)}</p>` : ""}
         <ul class="hint-list">
-          <li><strong>Режим шагов</strong> — один шаг за раз: что сделать, куда перейти, галочка, назад/вперёд</li>
-          <li><strong>Список дня</strong> — все задачи дня сразу (можно переключить сверху)</li>
-          <li><strong>Галочка</strong> — отметил выполненным; прогресс в шапке</li>
-          <li><strong>Застрял</strong> — пиши Диме</li>
+          <li><strong>Шаг за шагом</strong> — одна задача: куда перейти → сделай → галочка → «Дальше»</li>
+          <li><strong>Список дня</strong> — обзор всех задач дня (переключатель сверху)</li>
+          <li><strong>Галочка</strong> — только когда реально сделал; «Пропустить» не копится как прогресс смысла</li>
+          <li><strong>Застрял</strong> — пиши Диме; календарь хэдов — через Севу (@se_leverk)</li>
         </ul>
-        ${r.hoursWeek1 ? `<p class="path-note" style="margin-top:12px">Нагрузка: ~${esc(r.hoursWeek1)} в 1-й неделе · узкое место — ${esc(r.bottleneck || "созвоны с хэдами")}</p>` : ""}
+        ${buddy.primary ? `<div class="buddy-box"><span class="mono-tag">Buddy</span><p><strong>${esc(buddy.primary)}</strong></p>${buddy.handoff ? `<p>${esc(buddy.handoff)}</p>` : ""}${buddy.calendar ? `<p class="path-note">${esc(buddy.calendar)}</p>` : ""}</div>` : ""}
+        ${cadence.length ? `<div class="cadence-box"><span class="mono-tag">Обратная связь</span><ul class="hint-list">${cadence.map(c => `<li>${esc(c)}</li>`).join("")}</ul></div>` : ""}
+        ${r.hoursWeek1 ? `<p class="path-note" style="margin-top:12px">Нагрузка: ${esc(r.hoursWeek1)} в 1-й неделе · узкое место — ${esc(r.bottleneck || "созвоны с хэдами")}</p>` : ""}
       </div>`;
   }
 
@@ -721,14 +731,14 @@
 
   function renderExcludedCard() {
     const list = stepsMeta.excludedForSales;
-    if (!list || !list.length) return "";
+    const ok = stepsMeta.ok_not_to_know || [];
+    if ((!list || !list.length) && !ok.length) return "";
     return `
       <div class="card excluded-card">
         <h3 class="section-heading">Не входит в онбординг</h3>
         <p class="card-intro excluded-intro">Sales-safe: без P&amp;L, паролей и внутренних финмоделей.</p>
-        <ul class="excluded-list">
-          ${list.map(x => `<li><strong>${x.label}</strong> — ${x.reason}</li>`).join("")}
-        </ul>
+        ${list && list.length ? `<ul class="excluded-list">${list.map(x => `<li><strong>${esc(x.label)}</strong> — ${esc(x.reason)}</li>`).join("")}</ul>` : ""}
+        ${ok.length ? `<div class="ok-know-box"><span class="mono-tag">Нормально не знать на старте</span><ul class="excluded-list">${ok.map(x => `<li><strong>${esc(x.label)}</strong> — ${esc(x.why)}</li>`).join("")}</ul></div>` : ""}
       </div>`;
   }
 
@@ -768,9 +778,10 @@
     const dayDoneCount = step.tasks.filter(t => (state["step_" + step.id] || {})[t.id]).length;
     const prev = currentQuestIdx > 0;
     const next = currentQuestIdx < path.length - 1;
-    const linksBlock = (step.links || []).length
+    const firstOfDay = path.findIndex(x => x.stepId === q.stepId) === currentQuestIdx;
+    const linksBlock = firstOfDay && (step.links || []).length
       ? `<div class="quest-day-links"><span class="mono-tag">Ссылки дня</span>${step.links.map(l =>
-          `<a class="path-link" href="${l.url}" target="_blank" rel="noopener"><span class="icon">🔗</span><span>${esc(l.label)}</span></a>`
+          `<a class="path-link" href="${l.url}" target="_blank" rel="noopener"><span class="icon">→</span><span>${esc(l.label)}</span></a>`
         ).join("")}</div>`
       : "";
 
@@ -780,6 +791,7 @@
 
     return `
       ${renderModeToggle()}
+      ${renderProgramHint(step)}
       <div class="quest-progress-card card">
         <div class="quest-progress-top">
           <span class="mono-tag">Шаг ${currentQuestIdx + 1} из ${path.length}</span>
@@ -793,13 +805,14 @@
         <p class="quest-kicker">Сейчас сделай</p>
         <h2 class="card-title quest-task-title">${esc(q.task.text)}</h2>
         ${q.task.group ? `<p class="mono-tag" style="margin-bottom:12px">${esc(q.task.group)}</p>` : ""}
-        <p class="card-intro">${esc(step.intro)}</p>
+        ${firstOfDay ? `<p class="card-intro">${esc(step.intro)}</p>` : ""}
+        ${firstOfDay && step.outcome ? `<div class="day-outcome"><span class="mono-tag">Исход дня</span><p>${esc(step.outcome)}</p></div>` : ""}
         ${renderQuestRail(path, currentQuestIdx)}
         <div class="quest-do-box">
           <h3 class="section-heading">Что сделать на этом шаге</h3>
           <label class="quest-check-row">
             <input type="checkbox" data-step="${q.stepId}" data-task="${q.taskId}" ${isDone ? "checked" : ""} />
-            <span>${isDone ? "Выполнено — можно идти дальше" : "Отметь, когда сделаешь"}</span>
+            <span>${isDone ? "Выполнено — жми «Дальше»" : "Отметь, когда реально сделаешь"}</span>
           </label>
           <div class="quest-actions">
             <h4 class="quest-actions-title">Куда перейти / что открыть</h4>
@@ -810,9 +823,9 @@
         <div class="nav-row quest-nav">
           <button type="button" class="btn" id="prevQuest" ${!prev ? "disabled" : ""}>← Назад</button>
           <button type="button" class="btn" id="jumpDayList">Список дня</button>
-          <button type="button" class="btn primary" id="nextQuest" ${!next && !isDone ? "disabled" : ""}>${next ? (isDone ? "Дальше →" : "Пропустить →") : (isDone ? "Финиш ✓" : "Конец")}</button>
+          <button type="button" class="btn primary" id="nextQuest" ${!next && !isDone ? "disabled" : ""}>${next ? (isDone ? "Дальше →" : "Пропустить без галочки →") : (isDone ? "Финиш ✓" : "Конец")}</button>
         </div>
-        ${!next && isDone ? `<div class="complete-banner complete-banner-final"><p><strong>Онбординг пройден.</strong> Напиши Диме. Дальше — ежедневный sync и 3–5 квал. брифов во 2-м месяце.</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button type="button" class="btn primary" data-person="dima">Написать Диме</button><button type="button" class="btn" data-view="sales">KPI на 90 дней</button></div></div>` : ""}
+        ${!next && isDone ? `<div class="complete-banner complete-banner-final"><p><strong>Онбординг пройден.</strong> Напиши Диме. Дальше — daily async + weekly 1:1 с CRO. Месяц 2: <strong>1–2 квал. брифа</strong> (реализм); 3–5 — только если объём тёплых/входящих позволяет.</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button type="button" class="btn primary" data-person="dima">Написать Диме</button><button type="button" class="btn" data-view="sales">KPI на 90 дней</button></div></div>` : ""}
       </article>
       <div class="card">
         <h3 class="section-heading">Быстрые разделы</h3>
@@ -867,7 +880,8 @@
       <article class="card card-hero">
         <div class="card-meta">${phaseMeta}${formatDateRu(step.date, step.weekday)} · день ${step.id} из ${steps.length}</div>
         <h2 class="card-title">${step.title}</h2>
-        <p class="card-intro">${step.intro}</p>
+        <p class="card-intro">${esc(step.intro)}</p>
+        ${step.outcome ? `<div class="day-outcome"><span class="mono-tag">Исход дня</span><p>${esc(step.outcome)}</p></div>` : ""}
         ${tasksHtml}
         ${allDone ? `<div class="complete-banner${currentDayIdx >= steps.length - 1 ? " complete-banner-final" : ""}">${currentDayIdx < steps.length - 1 ? "День закрыт — можно идти дальше →" : `<p><strong>Онбординг пройден.</strong> Напиши Диме в Telegram.</p>`}</div>` : ""}
         <div class="nav-row">
@@ -1036,12 +1050,13 @@
 
     let list = team.people.filter(p => p.id !== "leonid");
     if (peopleFilter === "holding") {
-      list = list.filter(p => p.category === "holding");
+      list = list.filter(p => p.category === "holding" && p.id !== "homich");
     } else if (peopleFilter === "sales_core") {
       list = list.filter(p => SALES_CORE_IDS.has(p.id));
     } else if (peopleFilter !== "all") {
       list = list.filter(p => personUnitId(p) === peopleFilter);
     }
+    list = list.filter(p => p.id !== "homich");
     const staff = list.filter(p => p.category !== "partner_slz" && p.category !== "collaborator" && p.category !== "holding");
     const holding = list.filter(p => p.category === "holding");
     const partners = list.filter(p => p.category === "partner_slz");
@@ -1053,7 +1068,7 @@
         <p class="card-intro">Кликни карточку — кратко, Clifton, когда писать, контакты. Фильтр <strong>Sales-контур</strong> — кого пинговать в первую неделю.</p>
         <div class="filter-row">${chips}</div>
         ${staff.length ? `<h3 class="mono-tag" style="margin-bottom:12px">${peopleFilter === "sales_core" ? "Sales-контур · первая неделя" : "Штат"}</h3><div class="people-grid">${staff.map(p => personCardHtml(p)).join("")}</div>` : ""}
-        ${holding.length ? `<h3 class="mono-tag" style="margin:20px 0 12px">Супертопы · контур группы</h3><p style="font-size:13px;color:var(--muted);margin-bottom:12px">Финансы, документооборот (Аля), SnubDoc, PR, ops. Аля — обязательный контакт sales по актам/счетам/Контуру.</p><div class="people-grid">${holding.map(p => personCardHtml(p)).join("")}</div>` : ""}
+        ${holding.length ? `<h3 class="mono-tag" style="margin:20px 0 12px">Холдинг · смежные контакты</h3><p style="font-size:13px;color:var(--muted);margin-bottom:12px">Финансы, документооборот (Аля), СнупДок, PR, ops. Это <strong>не</strong> чат «Супертопы» — туда на онбординге не добавляют. Аля — обязательный контакт sales по актам/счетам/Контуру.</p><div class="people-grid">${holding.map(p => personCardHtml(p)).join("")}</div>` : ""}
         ${partners.length ? `<h3 class="mono-tag" style="margin:20px 0 12px">Партнёрские сейлз-менеджеры</h3><p style="font-size:13px;color:var(--muted);margin-bottom:12px">${team.org.partner_slz?.routing || ""}</p><div class="people-grid">${partners.map(p => personCardHtml(p)).join("")}</div>` : ""}
         ${collaborators.length ? `<h3 class="mono-tag" style="margin:20px 0 12px">Коллаборации (не sales)</h3><div class="people-grid">${collaborators.map(p => personCardHtml(p)).join("")}</div>` : ""}
       </div>`;
@@ -1083,15 +1098,27 @@
   function renderChats() {
     const required = chatsFiltered("required");
     const rest = (chats.chats || []).filter(c => c.priority !== "required");
+    const skipBlock = chats.skip
+      ? `<div class="skip-list"><strong>Не на старте (по мере сделок / не sales-default):</strong> ${chats.skip.map(esc).join(" · ")}</div>`
+      : "";
+    const ban = chats.do_not_add || [];
+    const banNote = chats.meta?.do_not_add_note || "Не добавляем на онбординге";
+    const banBlock = ban.length
+      ? `<div class="skip-list" style="margin-top:12px"><strong>${esc(banNote)}:</strong><ul class="hint-list" style="margin-top:8px">${ban.map(b => {
+          if (typeof b === "string") return `<li>${esc(b)}</li>`;
+          return `<li><strong>${esc(b.name || "")}</strong>${b.reason ? " — " + esc(b.reason) : ""}</li>`;
+        }).join("")}</ul></div>`
+      : "";
     return `
       <div class="card">
         <h2 class="card-title">Telegram · рабочие чаты</h2>
-        <p class="card-intro">${chats.meta?.note || ""} <button type="button" class="btn" data-view="access" style="margin-top:8px">🔐 Чеклист доступов + шаблон для Димы</button></p>
+        <p class="card-intro">${chats.meta?.note || ""} <button type="button" class="btn" data-view="access" style="margin-top:8px">Чеклист доступов + шаблон для Димы</button></p>
         <h3 class="mono-tag" style="margin-bottom:12px">Обязательные с первого дня</h3>
         ${required.map(chatCardHtml).join("")}
         <h3 class="mono-tag" style="margin:20px 0 12px">По мере работы</h3>
         ${rest.map(chatCardHtml).join("")}
-        ${chats.skip ? `<div class="skip-list"><strong>Не на старте:</strong> ${chats.skip.join(" · ")}</div>` : ""}
+        ${skipBlock}
+        ${banBlock}
       </div>`;
   }
 
@@ -1144,17 +1171,40 @@
     const doneCount = verify.filter(x => accessState[x.id]).length;
     const pct = verify.length ? Math.round((doneCount / verify.length) * 100) : 0;
 
-    const verifyHtml = verify.map(item => {
-      const checked = accessState[item.id] ? "checked" : "";
-      return `<label class="access-row"><input type="checkbox" data-access-id="${item.id}" ${checked} /><span>${esc(item.text)}</span></label>`;
-    }).join("");
+    const phaseOrder = ["day1", "week1", "week2"];
+    const phaseLabel = { day1: "День 1 · старт", week1: "Неделя 1", week2: "Неделя 2 / итог" };
+    let verifyHtml = "";
+    phaseOrder.forEach(phase => {
+      const items = verify.filter(x => (x.phase || "day1") === phase);
+      if (!items.length) return;
+      verifyHtml += `<h4 class="task-group-heading">${phaseLabel[phase] || phase}</h4>`;
+      verifyHtml += items.map(item => {
+        const checked = accessState[item.id] ? "checked" : "";
+        return `<label class="access-row"><input type="checkbox" data-access-id="${item.id}" ${checked} /><span>${esc(item.text)}</span></label>`;
+      }).join("");
+    });
+    const leftover = verify.filter(x => !phaseOrder.includes(x.phase || "day1"));
+    if (leftover.length) {
+      verifyHtml += leftover.map(item => {
+        const checked = accessState[item.id] ? "checked" : "";
+        return `<label class="access-row"><input type="checkbox" data-access-id="${item.id}" ${checked} /><span>${esc(item.text)}</span></label>`;
+      }).join("");
+    }
 
     const systemsHtml = (accessChecklist.systems || []).map(s => {
-      const link = s.url
-        ? `<a class="contact-btn" href="${s.url}" target="_blank" rel="noopener">Открыть</a>`
-        : `<button type="button" class="contact-btn" data-view="program">После выдачи</button>`;
-      const resBtn = s.resource
-        ? `<button type="button" class="contact-btn" data-view="program">В программе →</button>`
+      const res = s.resource ? findResource(s.resource) : null;
+      let link = "";
+      if (s.url) {
+        link = `<a class="contact-btn" href="${s.url}" target="_blank" rel="noopener">Открыть</a>`;
+      } else if (res && res.url) {
+        link = `<a class="contact-btn" href="${res.url}" target="_blank" rel="noopener">Открыть</a>`;
+      } else if (res && res.action) {
+        link = `<button type="button" class="contact-btn" data-view="${res.action}">Открыть раздел</button>`;
+      } else {
+        link = `<button type="button" class="contact-btn" data-person="dima">Запросить у Димы</button>`;
+      }
+      const resBtn = res && res.action && s.url
+        ? `<button type="button" class="contact-btn" data-view="${res.action}">Раздел квеста →</button>`
         : "";
       return `<div class="access-sys-card">
         <div class="access-sys-name">${esc(s.name)}</div>
@@ -1164,7 +1214,7 @@
     }).join("");
 
     const docsHtml = (accessChecklist.docs || []).map(d =>
-      `<a class="path-link" href="${d.url}" target="_blank" rel="noopener"><span class="icon">📄</span><span>${esc(d.name)}</span></a>`
+      `<a class="path-link" href="${d.url}" target="_blank" rel="noopener"><span class="icon">D</span><span>${esc(d.name)}</span></a>`
     ).join("");
 
     const crmHtml = (accessChecklist.crm_rules || []).map(r =>
@@ -1182,10 +1232,19 @@
     }).join("");
 
     const tpl = (accessChecklist.tg_request_template || "").replace("@cult.team", u.email);
+    const preflight = accessChecklist.cro_preflight_items || [];
+    const preflightHtml = preflight.length
+      ? `<div class="card preflight-card">
+        <h3 class="section-heading">Preflight CRO · до 13.07</h3>
+        <p class="card-intro">${esc(meta.cro_preflight || "Что должно быть готово до старта.")}</p>
+        <ul class="hint-list">${preflight.map(p => `<li>${esc(p.text)}</li>`).join("")}</ul>
+        <p class="path-note">Если пункт закрыт — отметь в чеклисте ниже. Если нет — одним сообщением по шаблону.</p>
+      </div>`
+      : "";
 
     return `
       <div class="card">
-        <div class="card-meta">День 1 · ${esc(u.name)}</div>
+        <div class="card-meta">Чеклист по фазам · ${esc(u.name)}</div>
         <h2 class="card-title">${esc(meta.title || "Доступы")}</h2>
         <p class="card-intro">${esc(accessChecklist.hiree_intro || meta.note || "")}</p>
         <div class="access-progress">
@@ -1193,6 +1252,8 @@
           <span class="access-progress-label">доступов проверено (${doneCount}/${verify.length})</span>
         </div>
       </div>
+
+      ${preflightHtml}
 
       <div class="card">
         <h3 class="section-heading">Твой чеклист</h3>
@@ -1320,13 +1381,6 @@
         state["step_" + sid] = state["step_" + sid] || {};
         state["step_" + sid][tid] = cb.checked;
         saveState();
-        if (cb.checked && programMode === "focus") {
-          const path = buildQuestPath();
-          if (currentQuestIdx < path.length - 1) {
-            setTimeout(() => goToQuest(currentQuestIdx + 1), 280);
-            return;
-          }
-        }
         renderMain();
       });
     });
@@ -1365,7 +1419,10 @@
     });
 
     main.querySelectorAll("[data-view]").forEach(btn => {
-      btn.addEventListener("click", () => setView(btn.dataset.view));
+      btn.addEventListener("click", () => {
+        if (btn.dataset.peopleFilter) peopleFilter = btn.dataset.peopleFilter;
+        setView(btn.dataset.view);
+      });
     });
 
     main.querySelectorAll("[data-person]").forEach(el => {

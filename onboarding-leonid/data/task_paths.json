@@ -20,7 +20,7 @@
   "1.role": [
     {
       "kind": "step",
-      "text": "Твоя зона: холод, входящие, бриф до договора"
+      "text": "Твоя зона: входящие + тёплая база → бриф до договора; холод — день 8 с CRO"
     },
     {
       "kind": "resource",
@@ -70,46 +70,6 @@
       "text": "Если чего-то нет — скопируй шаблон сообщения из раздела «Доступы» и отправь Диме"
     }
   ],
-  "1.clifton_order": [
-    {
-      "kind": "step",
-      "text": "Напиши Диме — компания оплачивает тест CliftonStrengths (Top 34)"
-    },
-    {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
-      "kind": "resource",
-      "id": "clifton"
-    },
-    {
-      "kind": "resource",
-      "id": "doc_clifton_team"
-    },
-    {
-      "kind": "note",
-      "text": "Access code для gallup.com/access пришлёт Дима. Таблица команды — от Кости (созвон 08.05)"
-    }
-  ],
-  "1.soft_whisper": [
-    {
-      "kind": "step",
-      "text": "Поставь MacWhisper (предпочтительно) — бесплатно, локальная транскрипция встреч"
-    },
-    {
-      "kind": "resource",
-      "id": "soft_macwhisper"
-    },
-    {
-      "kind": "resource",
-      "id": "soft_handy"
-    },
-    {
-      "kind": "note",
-      "text": "Альтернатива — Handy (handy.computer). Цель: записывать все встречи → транскрипт → отчёт. Не облачный Otter без согласования."
-    }
-  ],
   "1.motivation": [
     {
       "kind": "step",
@@ -154,28 +114,6 @@
       "text": "Open Production упразднён — в структуре его нет"
     }
   ],
-  "1.sales_snapshot": [
-    {
-      "kind": "resource",
-      "id": "view_sales"
-    },
-    {
-      "kind": "resource",
-      "id": "doc_nb_reg"
-    },
-    {
-      "kind": "resource",
-      "id": "amo_cult"
-    },
-    {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
-      "kind": "note",
-      "text": "Prodavan и iCRM — одно и то же. Июльский факт — на синке с Димой"
-    }
-  ],
   "1.group_deck": [
     {
       "kind": "deck",
@@ -184,16 +122,6 @@
     {
       "kind": "resource",
       "id": "view_decks"
-    }
-  ],
-  "1.team_preview": [
-    {
-      "kind": "resource",
-      "id": "view_people"
-    },
-    {
-      "kind": "step",
-      "text": "Открой карточки штата — пробегись, не углубляйся (детали — день 3)"
     }
   ],
   "2.amo_walk": [
@@ -216,24 +144,6 @@
     {
       "kind": "resource",
       "id": "doc_handoff_sasha"
-    }
-  ],
-  "2.crm_legacy": [
-    {
-      "kind": "resource",
-      "id": "amo_cult"
-    },
-    {
-      "kind": "resource",
-      "id": "amo_blaster"
-    },
-    {
-      "kind": "resource",
-      "id": "crm_landscape"
-    },
-    {
-      "kind": "note",
-      "text": "С 13.07 новые сделки группы — Amo Cult. Amo Blaster — наследие и сделки только Blaster"
     }
   ],
   "2.handoff_doc": [
@@ -265,32 +175,14 @@
       "text": "Ссылок нет — попроси добавить в чат"
     }
   ],
-  "2.soft_agent": [
-    {
-      "kind": "step",
-      "text": "Поставь Cursor (предпочтительно) или Codex — агентизация продаж"
-    },
-    {
-      "kind": "resource",
-      "id": "soft_cursor"
-    },
-    {
-      "kind": "resource",
-      "id": "soft_codex"
-    },
-    {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
-      "kind": "note",
-      "text": "Подписку оплачивает компания — напиши Диме за инвайтом/картой. Cursor нужен к дню 6 (скиллы)."
-    }
-  ],
   "3.denis_call": [
     {
       "kind": "step",
       "text": "11:00–12:00 — созвон: Cult, презентации, Amo, маржа"
+    },
+    {
+      "kind": "person",
+      "id": "se_leverk"
     },
     {
       "kind": "person",
@@ -303,6 +195,10 @@
     {
       "kind": "resource",
       "id": "amo_cult"
+    },
+    {
+      "kind": "note",
+      "text": "Календарь/слот — Сева (@se_leverk) или Дима. Нет слота — не ставь галочку, перенеси."
     }
   ],
   "3.team_staff": [
@@ -313,20 +209,6 @@
     {
       "kind": "step",
       "text": "Открой карточки штата — нажми на каждого"
-    }
-  ],
-  "3.clifton_test": [
-    {
-      "kind": "resource",
-      "id": "clifton"
-    },
-    {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
-      "kind": "note",
-      "text": "Около 45 минут без перерыва — лучше утром"
     }
   ],
   "3.sasha_sync": [
@@ -343,20 +225,14 @@
       "id": "doc_handoff_sasha"
     }
   ],
-  "3.clifton_table": [
-    {
-      "kind": "resource",
-      "id": "doc_clifton_team"
-    },
-    {
-      "kind": "resource",
-      "id": "view_people"
-    }
-  ],
   "4.liza_call": [
     {
       "kind": "step",
       "text": "11:00–12:00 — Blaster, мультимедиа, прайс"
+    },
+    {
+      "kind": "person",
+      "id": "se_leverk"
     },
     {
       "kind": "person",
@@ -369,6 +245,10 @@
     {
       "kind": "resource",
       "id": "drive_blaster_sales"
+    },
+    {
+      "kind": "note",
+      "text": "Календарь/слот — Сева (@se_leverk) или Дима. Нет слота — не ставь галочку, перенеси."
     }
   ],
   "4.products": [
@@ -416,6 +296,10 @@
   "4.shadow1": [
     {
       "kind": "person",
+      "id": "se_leverk"
+    },
+    {
+      "kind": "person",
       "id": "dima"
     },
     {
@@ -425,6 +309,10 @@
     {
       "kind": "deck",
       "id": "cult_group"
+    },
+    {
+      "kind": "note",
+      "text": "Календарь/слот — Сева (@se_leverk) или Дима. Нет слота — не ставь галочку, перенеси."
     }
   ],
   "4.amo_next": [
@@ -444,6 +332,10 @@
     },
     {
       "kind": "person",
+      "id": "se_leverk"
+    },
+    {
+      "kind": "person",
       "id": "sergey"
     },
     {
@@ -454,6 +346,10 @@
       "kind": "section",
       "id": "chats",
       "filter": "sputnik_sales"
+    },
+    {
+      "kind": "note",
+      "text": "Календарь/слот — Сева (@se_leverk) или Дима. Нет слота — не ставь галочку, перенеси."
     }
   ],
   "5.rules": [
@@ -531,25 +427,19 @@
   "5.shadow2": [
     {
       "kind": "person",
+      "id": "se_leverk"
+    },
+    {
+      "kind": "person",
       "id": "dima"
     },
     {
       "kind": "resource",
       "id": "amo_cult"
-    }
-  ],
-  "5.sputnik_rule": [
-    {
-      "kind": "person",
-      "id": "sergey"
-    },
-    {
-      "kind": "person",
-      "id": "dima"
     },
     {
       "kind": "note",
-      "text": "Ex-Sputnik — не уводи каждый лид в Sputnik автоматически"
+      "text": "Календарь/слот — Сева (@se_leverk) или Дима. Нет слота — не ставь галочку, перенеси."
     }
   ],
   "6.sales_meet": [
@@ -585,20 +475,6 @@
       "id": "dima"
     }
   ],
-  "6.amo_blaster_tour": [
-    {
-      "kind": "resource",
-      "id": "amo_blaster"
-    },
-    {
-      "kind": "person",
-      "id": "liza"
-    },
-    {
-      "kind": "note",
-      "text": "Только просмотр — смотри историю сделок, не создавай дубли в Amo Cult"
-    }
-  ],
   "6.icrm_intro": [
     {
       "kind": "resource",
@@ -630,8 +506,20 @@
   ],
   "6.skills": [
     {
+      "kind": "step",
+      "text": "Сначала Cursor/Codex + MacWhisper/Handy (инвайт у Димы), затем agent-pack ZIP"
+    },
+    {
       "kind": "resource",
-      "id": "skills_pack"
+      "id": "soft_handy"
+    },
+    {
+      "kind": "resource",
+      "id": "soft_macwhisper"
+    },
+    {
+      "kind": "resource",
+      "id": "soft_codex"
     },
     {
       "kind": "resource",
@@ -639,15 +527,19 @@
     },
     {
       "kind": "resource",
+      "id": "skills_pack"
+    },
+    {
+      "kind": "resource",
       "id": "soft_cursor"
     },
     {
       "kind": "step",
-      "text": "Установи 3 скилла Cult (+ остальное из ZIP) · прогони 1 гипотевый лид через скоринг + brief-gate + deck-router"
+      "text": "Скачай ZIP → README → установи скиллы · прогони 1 гипотевый лид: скоринг + brief-gate + deck-router"
     },
     {
       "kind": "note",
-      "text": "Если Cursor ещё не стоит — задача дня 2 (soft_agent)"
+      "text": "Cursor/Codex + MacWhisper ставятся в этой же задаче дня 6 (до ZIP). Презентации юнитов в архиве нет — бери с вкладки Презентации."
     },
     {
       "kind": "person",
@@ -666,57 +558,45 @@
   ],
   "7.objection": [
     {
+      "kind": "resource",
+      "id": "doc_objections_top10"
+    },
+    {
+      "kind": "resource",
+      "id": "agent_pack_zip"
+    },
+    {
       "kind": "person",
       "id": "dima"
     },
     {
-      "kind": "resource",
-      "id": "drive_commerce"
-    },
-    {
       "kind": "note",
-      "text": "Документ не публичный — Дима выдаёт файл или ссылку в Drive коммерции"
+      "text": "Сначала топ-10 в квесте. Полный банк — в ZIP (artifacts) или отдельный файл от Димы, когда появятся живые формулировки со звонков."
     }
   ],
   "7.scoring_practice": [
     {
       "kind": "resource",
+      "id": "doc_practice_briefs"
+    },
+    {
+      "kind": "resource",
       "id": "skills_pack"
     },
     {
       "kind": "resource",
       "id": "doc_brief_criteria"
-    }
-  ],
-  "7.brief_gate": [
-    {
-      "kind": "resource",
-      "id": "doc_brief_criteria"
     },
     {
-      "kind": "resource",
-      "id": "skills_pack"
+      "kind": "note",
+      "text": "Бриф A — ожидаемо ≥ 5; бриф B — стоп/ниже порога. Зафиксируй скоринг письменно."
     }
   ],
   "7.warm_review": [
     {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
       "kind": "resource",
-      "id": "amo_cult"
+      "id": "doc_warm_base_template"
     },
-    {
-      "kind": "deck",
-      "id": "cult_group"
-    },
-    {
-      "kind": "note",
-      "text": "Принеси свой список тёплой базы. Вместе: приоритет касаний + кому слать презу Cult Group первой."
-    }
-  ],
-  "7.shadow3": [
     {
       "kind": "person",
       "id": "dima"
@@ -731,51 +611,7 @@
     },
     {
       "kind": "note",
-      "text": "Опционально — если календарь позволяет на этой неделе"
-    }
-  ],
-  "7.outreach_plan": [
-    {
-      "kind": "resource",
-      "id": "amo_cult"
-    },
-    {
-      "kind": "resource",
-      "id": "doc_nb_reg"
-    }
-  ],
-  "7.cold_touch": [
-    {
-      "kind": "resource",
-      "id": "amo_cult"
-    },
-    {
-      "kind": "resource",
-      "id": "doc_nb_reg"
-    }
-  ],
-  "7.incoming": [
-    {
-      "kind": "resource",
-      "id": "doc_brief_criteria"
-    },
-    {
-      "kind": "resource",
-      "id": "view_decks"
-    },
-    {
-      "kind": "resource",
-      "id": "amo_cult"
-    }
-  ],
-  "7.deck_practice": [
-    {
-      "kind": "resource",
-      "id": "view_decks"
-    },
-    {
-      "kind": "resource",
-      "id": "skills_pack"
+      "text": "Принеси список по шаблону. Вместе: приоритет касаний + кому слать презу Cult Group первой."
     }
   ],
   "7.daily_cro": [
@@ -800,11 +636,19 @@
     },
     {
       "kind": "resource",
+      "id": "doc_practice_briefs"
+    },
+    {
+      "kind": "resource",
       "id": "amo_cult"
     },
     {
       "kind": "resource",
       "id": "skills_pack"
+    },
+    {
+      "kind": "note",
+      "text": "Пайплайна нет — бриф A как учебный + план, откуда возьмёшь первый реальный."
     }
   ],
   "8.unit_route": [
@@ -855,6 +699,10 @@
       "id": "dima"
     },
     {
+      "kind": "person",
+      "id": "se_leverk"
+    },
+    {
       "kind": "resource",
       "id": "icrm"
     },
@@ -862,6 +710,10 @@
       "kind": "section",
       "id": "chats",
       "filter": "ai_sales"
+    },
+    {
+      "kind": "note",
+      "text": "Слот 23–25.07 — Сева/Дима в календаре. Prodavan = iCRM = Prodo.one. Хомич с 01.08 не в компании — всё через CRO."
     }
   ],
   "9.crm_compare": [
@@ -911,7 +763,7 @@
     },
     {
       "kind": "note",
-      "text": "Цель 2-го месяца: 3–5 квалифицированных брифов в производство"
+      "text": "Цель месяца 2 (реализм): 1–2 квал. брифа; 3–5 — только при объёме тёплых/входящих"
     }
   ],
   "9.quest_done": [
@@ -924,29 +776,11 @@
       "id": "dima"
     }
   ],
-  "2.sales_account_refresh": [
-    {
-      "kind": "person",
-      "id": "sasha_a"
-    },
-    {
-      "kind": "person",
-      "id": "dima"
-    },
+  "4.warm_base_collect": [
     {
       "kind": "resource",
-      "id": "doc_handoff_sasha"
+      "id": "doc_warm_base_template"
     },
-    {
-      "kind": "step",
-      "text": "Получи логин/доступ у Димы или Саши к legacy sales-аккаунту Sputnik"
-    },
-    {
-      "kind": "note",
-      "text": "Обнови: должность, компания Cult Group, контакты (leonid@cult.team / sales@cult.team), bio. Цель — рабочий внешний профиль для outreach, не «витрина Саши»."
-    }
-  ],
-  "4.warm_base_collect": [
     {
       "kind": "deck",
       "id": "cult_group"
@@ -961,11 +795,11 @@
     },
     {
       "kind": "step",
-      "text": "Выпиши контакты из своей сети (Telegram, LinkedIn, почта, прошлые клиенты) — кому уместна преза Cult Group"
+      "text": "Заполни шаблон: имя, канал, почему тёплый, статус «можно слать»"
     },
     {
       "kind": "note",
-      "text": "Это твоя база, не только handoff Саши. Черновик → к дню 7 разбор с Димой. Без спама: тёплые и уместные."
+      "text": "Это твоя база, не handoff Саши и не пулы хэдов. К дню 7 — разбор с Димой."
     }
   ],
   "5.cro_gaps": [
@@ -984,28 +818,6 @@
     {
       "kind": "note",
       "text": "Шаблон: «Нужно настроить / оплатить / выдать». Цель недели 1 — закрыть дыры, не копить до конца онбординга."
-    }
-  ],
-  "7.warm_base_ready": [
-    {
-      "kind": "deck",
-      "id": "cult_group"
-    },
-    {
-      "kind": "resource",
-      "id": "amo_cult"
-    },
-    {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
-      "kind": "step",
-      "text": "Доведи список до рабочего: имя, канал связи, почему тёплый, статус «можно слать презу»"
-    },
-    {
-      "kind": "note",
-      "text": "Зафиксируй в Amo или таблице — чтобы не потерять после онбординга."
     }
   ],
   "9.access_soft_final": [
@@ -1070,7 +882,7 @@
       "text": "Правило Димы 30.06: контакты не забираем. Пишет держатель отношений. Ты — свою базу."
     }
   ],
-  "7.hyp_test_plan": [
+  "8.hyp_test_plan": [
     {
       "kind": "person",
       "id": "dima"
@@ -1088,26 +900,122 @@
       "text": "Уже на столе по Cult: FMCG · топ-30 · топ-100 рекламодателей (пример: WB, Магнит). Полный список — отдельный сбор, не угадывать."
     }
   ],
-  "6.agent_pack": [
+  "8.deck_practice": [
     {
       "kind": "resource",
-      "id": "agent_pack_zip"
+      "id": "view_decks"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_practice_briefs"
     },
     {
       "kind": "resource",
       "id": "skills_pack"
     },
     {
+      "kind": "note",
+      "text": "Нет живых лидов — выбери презу для брифов A и (если уместно) отказа по B."
+    }
+  ],
+  "7.warm_touch": [
+    {
+      "kind": "resource",
+      "id": "doc_outreach_templates"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_warm_base_template"
+    },
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    },
+    {
+      "kind": "note",
+      "text": "Только тёплая база. Холодные гипотезы волны 2 — день 8 с CRO, не сегодня."
+    }
+  ],
+  "2.sales_snapshot": [
+    {
+      "kind": "resource",
+      "id": "view_sales"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_nb_reg"
+    },
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    },
+    {
       "kind": "person",
       "id": "dima"
     },
     {
+      "kind": "note",
+      "text": "Prodavan и iCRM — одно и то же. Июльский факт — на синке с Димой"
+    }
+  ],
+  "6.sales_account_refresh": [
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "person",
+      "id": "sasha_a"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_handoff_sasha"
+    },
+    {
       "kind": "step",
-      "text": "Скачай ZIP → распакуй → прочитай README.md (установка Cursor и Codex)"
+      "text": "Уточни у Димы/Саши: какой именно аккаунт (Telegram / LinkedIn / email-подпись) и логин"
     },
     {
       "kind": "note",
-      "text": "Если агенты / workspace не встают — отдельный созвон с Димой. Презентации юнитов в архиве нет — запроси у команды."
+      "text": "Обнови: должность, компания Cult Group, контакты (leonid@cult.team / sales@cult.team), bio."
+    }
+  ],
+  "3.clifton_setup": [
+    {
+      "kind": "step",
+      "text": "Заказать Clifton (компания) → пройти тест → сверить профиль с таблицей команды"
+    },
+    {
+      "kind": "resource",
+      "id": "clifton"
+    },
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "note",
+      "text": "Около 45 минут без перерыва — лучше утром"
+    },
+    {
+      "kind": "step",
+      "text": "Напиши Диме — компания оплачивает тест CliftonStrengths (Top 34)"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_clifton_team"
+    },
+    {
+      "kind": "note",
+      "text": "Access code для gallup.com/access пришлёт Дима. Таблица команды уже в Drive — созвон с Костей не нужен."
+    },
+    {
+      "kind": "resource",
+      "id": "view_people"
+    },
+    {
+      "kind": "note",
+      "text": "Один блок вместо трёх отдельных задач. Не растягивай на вечер."
     }
   ]
 }

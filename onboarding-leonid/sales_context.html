@@ -7,26 +7,27 @@
   <title>Контекст продаж · Cult Group</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@500;700&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&family=Unbounded:wght@600;700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --ivory: #F4F3F0;
+      --ivory: #F7F7F6;
       --paper: #FFFFFF;
-      --ink: #141414;
-      --muted: #5C5C5C;
-      --soft: #949494;
-      --line: #E2E2DE;
-      --blue: #2563EB;
-      --lime: #C8FF00;
-      --cult: #2563EB;
+      --ink: #111111;
+      --muted: rgba(17, 17, 17, 0.62);
+      --soft: rgba(17, 17, 17, 0.42);
+      --line: rgba(17, 17, 17, 0.12);
+      --blue: #F974BE;
+      --lime: #F974BE;
+      --cult: #F974BE;
       --blaster: #E11D48;
       --sputnik: #0D9488;
-      --shadow: 4px 4px 0 #141414;
+      --accent: #F974BE;
+      --shadow: 0 14px 40px rgba(17, 17, 17, 0.08);
     }
     * { box-sizing: border-box; }
     html, body { margin: 0; padding: 0; }
     body {
-      font-family: Inter, system-ui, sans-serif;
+      font-family: "JetBrains Mono", ui-monospace, monospace;
       background:
         radial-gradient(ellipse 80% 50% at 10% -10%, rgba(37, 99, 235, 0.08), transparent 50%),
         radial-gradient(ellipse 60% 40% at 100% 0%, rgba(200, 255, 0, 0.12), transparent 45%),
@@ -238,7 +239,7 @@
     </section>
 
     <section>
-      <h2><span class="n">05</span> Действующие пулы · с кем уже работаем</h2>
+      <h2 id="pools"><span class="n">05</span> Действующие пулы · с кем уже работаем</h2>
       <p class="note">Источник: чат «Группа / Продажи», 30.06.2026. Это бренды для тёплой волны хэдов — не твой холодный колл-лист.</p>
 
       <div class="card ink" id="cult-pool">
@@ -270,7 +271,7 @@
         <div class="tags" id="sputnik-tags"></div>
       </div>
 
-      <p class="note">Бонус Кости (01.07, не юнитный пул): ЦИАН · Wildberries · Манго Телеком — без его OK не писать.</p>
+      <p class="note">Правило: контакты пула не перехватывать. Стоп-лист (новый холод в беттинг/казино) ≠ запрет на существующие отношения юнита — но без масштабирования холода и без чужих касаний. Бонус Кости (01.07, не юнитный пул): ЦИАН · Wildberries · Манго Телеком — без его OK не писать.</p>
     </section>
 
     <section>
@@ -279,10 +280,10 @@
         <table>
           <tr><th>Месяц</th><th>Фокус</th></tr>
           <tr><td>1</td><td>Онбординг + CRM: 100% карточек с next step</td></tr>
-          <tr><td>2</td><td>3–5 квал. брифов в прод (скоринг ≥ 5)</td></tr>
+          <tr><td>2</td><td>1–2 квал. брифа (реализм); 3–5 — только если объём позволяет</td></tr>
           <tr><td>3</td><td>5–7 новых брифов + 1–2 handoff (договор + предоплата)</td></tr>
         </table>
-        <p class="note">KPI = квалифицированный бриф и handoff, не «красивый созвон». Handoff = договор + предоплата → продюсер; ты остаёшься в контуре.</p>
+        <p class="note">KPI = квалифицированный бриф и handoff, не «красивый созвон». Handoff = договор + предоплата → продюсер юнита; ты остаёшься в клиентском чате <strong>наблюдателем</strong> (прод не ведёшь).</p>
       </div>
     </section>
 
@@ -327,7 +328,7 @@
         }).join("");
       }
       try {
-        var r = await fetch("data/client_pools.json?v=20260712-v30");
+        var r = await fetch("data/client_pools.json?v=20260712-v41");
         var d = await r.json();
         var by = {};
         (d.units || []).forEach(function (u) { by[u.id] = u; });

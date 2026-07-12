@@ -1,7 +1,7 @@
 # Framework: Outreach Automation Multichannel Blueprint
 
-Файл: `framework_outreach_automation_multichannel_blueprint.md`  
-Путь сохранения: `SecondBrain/30_Knowledge/frameworks/`  
+Файл: `framework_outreach_automation_multichannel_blueprint.md`
+Путь сохранения: `SecondBrain/30_Knowledge/frameworks/`
 Тип документа: `Knowledge`
 
 ## Зачем
