@@ -7,7 +7,7 @@
   const ACCESS_KEY = "sb-onboarding-leonid-access";
   const QUEST_KEY = "sb-onboarding-leonid-quest-step";
   const MODE_KEY = "sb-onboarding-leonid-program-mode";
-  const ASSET_VER = "20260712-v57";
+  const ASSET_VER = "20260712-v58";
 
   const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya", "alya_dudenkova"]);
 
@@ -737,11 +737,18 @@
     }).join("");
   }
 
-  function pathCtaHtml({ title, sub, cta, href, attrs, tag, className }) {
+  function pathCtaHtml({ title, sub, cta, href, attrs, tag, className, flat }) {
     const Tag = tag || (href ? "a" : "button");
     const extra = attrs || "";
     const hrefAttr = href ? ` href="${esc(href)}" target="_blank" rel="noopener"` : "";
     const typeAttr = Tag === "button" ? ` type="button"` : "";
+    if (flat) {
+      const cls = className || "path-link path-link-flat";
+      return `<${Tag} class="${cls}"${typeAttr}${hrefAttr}${extra}>
+        <span class="path-link-title">${esc(title || "")}</span>
+        <span class="path-link-flat-arrow" aria-hidden="true">→</span>
+      </${Tag}>`;
+    }
     const cls = className || "path-link path-link-cta";
     return `<${Tag} class="${cls}"${typeAttr}${hrefAttr}${extra}>
       <span class="path-link-main">
@@ -775,19 +782,70 @@
     showModal();
   }
 
+  function peopleGridHtml() {
+    if (!team) return "";
+    const list = (team.people || []).filter(p =>
+      p.id !== "leonid" && p.id !== "homich" && (p.category === "staff" || SALES_CORE_IDS.has(p.id) || p.category === "holding")
+    );
+    const sales = list.filter(p => SALES_CORE_IDS.has(p.id));
+    const holding = list.filter(p => p.category === "holding" && !SALES_CORE_IDS.has(p.id));
+    const rest = list.filter(p => !SALES_CORE_IDS.has(p.id) && p.category !== "holding");
+    return `<div class="path-people-embed">
+      ${sales.length ? `<h4 class="path-block-title">Sales-контур</h4><div class="people-grid">${sales.map(personCardHtml).join("")}</div>` : ""}
+      ${rest.length ? `<h4 class="path-block-title" style="margin-top:16px">Команда</h4><div class="people-grid">${rest.map(personCardHtml).join("")}</div>` : ""}
+      ${holding.length ? `<h4 class="path-block-title" style="margin-top:16px">Холдинг</h4><div class="people-grid">${holding.map(personCardHtml).join("")}</div>` : ""}
+    </div>`;
+  }
+
+  function contactCardHtml(item) {
+    const p = findPerson(item.id);
+    if (!p) return "";
+    const c = getContact(item.id);
+    const url = item.prefill
+      ? telegramUrlFor(item.id, item.prefill)
+      : (c.telegram || telegramUrlFor(item.id, ""));
+    const copyAttr = item.copy && item.prefill
+      ? ` data-copy-text="${esc(item.prefill)}"`
+      : "";
+    const tgBtn = url
+      ? `<a class="contact-card-cta" href="${esc(url)}" target="_blank" rel="noopener"${copyAttr}>${esc(item.cta || "Написать")}</a>`
+      : "";
+    return `<div class="contact-card">
+      <button type="button" class="contact-card-main" data-person="${p.id}">
+        ${personAvatarHtml(p, false)}
+        <span class="contact-card-text">
+          <span class="contact-card-name">${esc(p.name)}</span>
+          <span class="contact-card-role">${esc(p.role)}</span>
+        </span>
+      </button>
+      ${tgBtn}
+    </div>`;
+  }
+
   function renderPathItem(item, stepId) {
     if (item.kind === "step") {
-      return `<div class="path-step">→ ${esc(item.text)}</div>`;
+      return "";
     }
     if (item.kind === "note") {
       return `<div class="path-callout">${esc(item.text)}</div>`;
+    }
+    if (item.kind === "questions") {
+      const items = item.items || [];
+      return `<ol class="path-questions">${items.map(q => `<li>${esc(q)}</li>`).join("")}</ol>`;
+    }
+    if (item.kind === "people_grid") {
+      return peopleGridHtml();
+    }
+    if (item.kind === "contact_card") {
+      return contactCardHtml(item);
     }
     if (item.kind === "link") {
       return pathCtaHtml({
         title: item.title || item.url,
         sub: item.sub || "",
         cta: item.cta || "Открыть",
-        href: item.url
+        href: item.url,
+        flat: !!item.flat
       });
     }
     if (item.kind === "copy") {
@@ -799,12 +857,7 @@
       });
     }
     if (item.kind === "overlay" && item.id === "people") {
-      return pathCtaHtml({
-        title: item.title || "Люди Cult Group",
-        sub: "",
-        cta: item.cta || "Открыть",
-        attrs: ` data-overlay="people"`
-      });
+      return peopleGridHtml();
     }
     if (item.kind === "telegram") {
       const url = telegramUrlFor(item.personId || "dima", item.prefill || "");
@@ -814,7 +867,7 @@
         : "";
       return pathCtaHtml({
         title: item.label || "Написать в Telegram",
-        sub: item.copy ? "Текст в буфере" : "",
+        sub: "",
         cta: item.cta || "Написать",
         href: url,
         className: "path-link path-link-cta path-link-tg",
@@ -822,14 +875,7 @@
       });
     }
     if (item.kind === "person") {
-      const p = findPerson(item.id);
-      if (!p) return "";
-      return pathCtaHtml({
-        title: p.name,
-        sub: p.role,
-        cta: item.cta || "Открыть профиль",
-        attrs: ` data-person="${p.id}"`
-      });
+      return contactCardHtml({ id: item.id, cta: item.cta || "Написать", prefill: item.prefill || "", copy: !!item.copy });
     }
     if (item.kind === "resource") {
       const r = findResource(item.id);
@@ -854,9 +900,10 @@
       if (r.url) {
         return pathCtaHtml({
           title: r.title,
-          sub: r.subtitle || "",
+          sub: "",
           cta: cta,
-          href: r.url
+          href: r.url,
+          flat: item.flat !== false
         });
       }
       const noteBody = r.note || r.subtitle || "запроси у Димы";
@@ -918,7 +965,9 @@
         if (!text) return;
         try {
           await navigator.clipboard.writeText(text);
-          const action = el.querySelector(".path-link-action");
+          const action = el.querySelector(".path-link-action")
+            || (el.classList.contains("contact-card-cta") ? el : null)
+            || el.querySelector(".contact-card-cta");
           if (action) {
             const prev = action.textContent;
             action.textContent = "Скопировано ✓";
@@ -1400,11 +1449,17 @@
 
   function accessCardHtml(s) {
     const res = s.resource ? findResource(s.resource) : null;
+    const url = s.url || (res && res.url) || "";
+    const isTg = url.includes("t.me");
+    if (url && (s.flat || s.folderStyle)) {
+      return `<a class="access-sys-card access-sys-card-flat" href="${esc(url)}" target="_blank" rel="noopener">
+        <span class="access-sys-name">${esc(s.name)}</span>
+        <span class="path-link-flat-arrow" aria-hidden="true">→</span>
+      </a>`;
+    }
     let link = "";
-    if (s.url) {
-      link = `<a class="contact-btn primary" href="${s.url}" target="_blank" rel="noopener">${s.url.includes("t.me") ? "Вступить" : "Открыть"}</a>`;
-    } else if (res && res.url) {
-      link = `<a class="contact-btn primary" href="${res.url}" target="_blank" rel="noopener">Открыть</a>`;
+    if (url) {
+      link = `<a class="contact-btn primary" href="${esc(url)}" target="_blank" rel="noopener">${isTg ? "Вступить" : "Открыть"}</a>`;
     } else if (res && res.action) {
       link = `<button type="button" class="contact-btn primary" data-view="${res.action}">Открыть</button>`;
     } else {
@@ -1412,15 +1467,19 @@
     }
     return `<div class="access-sys-card">
       <div class="access-sys-name">${esc(s.name)}</div>
-      <div class="access-sys-meta">${esc(s.role || "")}${s.who ? " · " + esc(s.who) : ""}</div>
+      ${s.role || s.who ? `<div class="access-sys-meta">${esc(s.role || "")}${s.who ? (s.role ? " · " : "") + esc(s.who) : ""}</div>` : ""}
       <div class="chat-actions">${link}</div>
     </div>`;
   }
 
   function renderAccessTelegramSection(section) {
     const list = chats.chats || [];
-    const required = list.filter(c => c.priority === "required");
-    const rest = list.filter(c => c.priority !== "required");
+    const withLink = list.filter(c => c.inviteUrl);
+    const withoutLink = list.filter(c => !c.inviteUrl);
+    const prefill = "Привет, Дима! Добавь меня, пожалуйста, в чаты:\n\n"
+      + withoutLink.map(c => "• " + c.name).join("\n")
+      + "\n\nСпасибо!";
+    const dimaUrl = telegramUrlFor("dima", prefill);
     const ban = (chats.do_not_add || []).map(b =>
       typeof b === "string" ? `<li>${esc(b)}</li>` : `<li><strong>${esc(b.name || "")}</strong>${b.reason ? " — " + esc(b.reason) : ""}</li>`
     ).join("");
@@ -1428,21 +1487,20 @@
       <div class="card" id="access-telegram">
         <h3 class="section-heading">${esc(section.title || "Telegram-чаты")}</h3>
         ${section.intro ? `<p class="card-intro">${esc(section.intro)}</p>` : ""}
-        ${chats.meta?.note ? `<p class="path-note">${esc(chats.meta.note)}</p>` : ""}
-        <h4 class="mono-tag" style="margin:12px 0">Обязательные</h4>
-        <div class="access-sys-grid">${required.map(ch => accessCardHtml({
+        <div class="access-sys-grid">${withLink.map(ch => accessCardHtml({
           name: ch.name,
-          url: ch.inviteUrl || null,
-          role: ch.desc || "рабочий чат",
-          who: ch.inviteUrl ? "" : ("добавляет " + (ch.whoAdds || "Дима"))
+          url: ch.inviteUrl,
+          flat: true
         })).join("")}</div>
-        <h4 class="mono-tag" style="margin:20px 0 12px">По мере работы</h4>
-        <div class="access-sys-grid">${rest.map(ch => accessCardHtml({
-          name: ch.name,
-          url: ch.inviteUrl || null,
-          role: ch.desc || "по сделкам",
-          who: ch.inviteUrl ? "" : ("добавляет " + (ch.whoAdds || "Дима"))
-        })).join("")}</div>
+        ${withoutLink.length && dimaUrl ? `
+          <div style="margin-top:14px">
+            <a class="path-link path-link-cta path-link-tg" href="${esc(dimaUrl)}" target="_blank" rel="noopener" data-copy-text="${esc(prefill)}">
+              <span class="path-link-main">
+                <span class="path-link-title">Чаты без ссылки</span>
+              </span>
+              <span class="path-link-action">Написать Диме</span>
+            </a>
+          </div>` : ""}
         ${ban ? `<div class="skip-list" style="margin-top:16px"><strong>Не добавляем на онбординге:</strong><ul class="hint-list">${ban}</ul></div>` : ""}
       </div>`;
   }
@@ -1455,7 +1513,8 @@
     const sections = accessChecklist.sections || [];
     const body = sections.map(sec => {
       if (sec.chats) return renderAccessTelegramSection(sec);
-      const grid = (sec.items || []).map(accessCardHtml).join("");
+      const flat = sec.id === "folders";
+      const grid = (sec.items || []).map(item => accessCardHtml({ ...item, flat: flat || !!item.flat, folderStyle: flat })).join("");
       return `<div class="card" id="access-${esc(sec.id)}">
         <h3 class="section-heading">${esc(sec.title)}</h3>
         ${sec.intro ? `<p class="card-intro">${esc(sec.intro)}</p>` : ""}

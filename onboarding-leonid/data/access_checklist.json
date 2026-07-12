@@ -153,12 +153,12 @@
     },
     {
       "id": "folders",
-      "title": "Ссылки",
-      "intro": "Папки Drive — открой и проверь доступ.",
+      "title": "Папки Drive",
+      "intro": "Открой и проверь доступ. Нет доступа — напиши Диме.",
       "items": [
         {
           "id": "drive_group",
-          "name": "Google Drive · Культ-группа",
+          "name": "Культ-группа",
           "url": "https://drive.google.com/drive/folders/1O89yMg7RCXGIwv_eTQ8Sp6A6oiJiwRmR",
           "role": "Корень холдинга",
           "who": "Дима",
@@ -166,31 +166,23 @@
         },
         {
           "id": "drive_commerce",
-          "name": "Google Drive · Коммерция",
+          "name": "Коммерция Cult Group",
           "url": "https://drive.google.com/drive/folders/1cm50xCY02m_WTNenHbEoKAl-ALZ-Ac_n",
-          "role": "КП, шаблоны, коммерция",
+          "role": "КП, шаблоны, продажи",
           "who": "Дима",
           "resource": "drive_commerce"
         },
         {
           "id": "drive_sales_blaster",
-          "name": "Папка продаж · Blaster",
+          "name": "Продажи Blaster",
           "url": "https://drive.google.com/drive/folders/1j-ARZnroEcDoSQnr-1Rr-urwUq4izNxb",
-          "role": "Материалы Blaster sales"
+          "role": ""
         },
         {
           "id": "drive_sales_cult",
-          "name": "Папка продаж · Cult (legacy)",
+          "name": "Продажи Cult · legacy",
           "url": "https://drive.google.com/drive/folders/1veiUtmQ-TOWNLADaSNtFL1WltpCiu_0J",
-          "role": "Legacy Cult sales"
-        },
-        {
-          "id": "clifton",
-          "name": "CliftonStrengths",
-          "url": "https://www.gallup.com/access",
-          "role": "Access code у Димы · оплачивает компания",
-          "who": "Дима",
-          "resource": "clifton"
+          "role": ""
         },
         {
           "id": "email",
@@ -205,7 +197,7 @@
     {
       "id": "telegram",
       "title": "Telegram-чаты",
-      "intro": "Обязательные — день 1. Остальные — по мере работы. Большинство без публичной ссылки: попроси Диму добавить.",
+      "intro": "Со ссылкой — вступить. Без ссылки — одно сообщение Диме в дне 1.",
       "chats": "all"
     }
   ],
@@ -242,7 +234,7 @@
     },
     {
       "id": "clifton",
-      "text": "Получил access code Clifton от Димы",
+      "text": "CliftonStrengths пройден или в процессе",
       "phase": "day1"
     },
     {

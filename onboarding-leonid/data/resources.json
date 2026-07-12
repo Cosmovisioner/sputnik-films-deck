@@ -87,12 +87,12 @@
     },
     {
       "id": "clifton",
-      "title": "CliftonStrengths · пройти тест",
-      "subtitle": "Redeem access code — компания оплачивает, код от Димы",
-      "url": "https://www.gallup.com/access",
+      "title": "CliftonStrengths",
+      "subtitle": "Синхронизация профилей с командой",
+      "url": "https://www.gallup.com/cliftonstrengths/en/253808/cliftonstrengths.aspx",
       "owner": "dima",
       "unit": "uk",
-      "note": "Access code пришлёт Дима в личку. После прохождения — сверь профиль с таблицей команды. Каталог продуктов Gallup: gallup.com/cliftonstrengths (если нужен контекст)."
+      "note": "Оплати сам — компания компенсирует. В отчёте дня напиши сумму и куда перевести."
     },
     {
       "id": "drive_techtigers_products",
@@ -270,7 +270,7 @@
     {
       "id": "doc_clifton_team",
       "title": "Clifton · таблица команды",
-      "subtitle": "Сверь свой профиль с коллегами · ссылка от Кости (май 2026)",
+      "subtitle": "Сверка профилей (не на дне 1 в доступах)",
       "url": "https://docs.google.com/spreadsheets/d/1bkfERbO8UlEql6pLS_UIhCrBRiT2R4-YDOqxVeUx__0/edit",
       "owner": "dima",
       "unit": "uk"

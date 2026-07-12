@@ -290,7 +290,8 @@
       "kind": "telegram",
       "personId": "dima",
       "label": "Написать отчёт в Telegram",
-      "prefill": "Отчёт дня 2:\n• Сделал:\n• Закрыто:\n• Мутно:\n"
+      "prefill": "Отчёт дня 2:\n• Сделал:\n• Закрыто:\n• Мутно:\n",
+      "copy": false
     }
   ],
   "3.day_report": [
@@ -298,7 +299,8 @@
       "kind": "telegram",
       "personId": "dima",
       "label": "Написать отчёт в Telegram",
-      "prefill": "Отчёт дня 3:\n• Сделал:\n• Закрыто:\n• Мутно:\n"
+      "prefill": "Отчёт дня 3:\n• Сделал:\n• Закрыто:\n• Мутно:\n",
+      "copy": false
     }
   ],
   "4.day_report": [
@@ -306,7 +308,8 @@
       "kind": "telegram",
       "personId": "dima",
       "label": "Написать отчёт в Telegram",
-      "prefill": "Отчёт дня 4:\n• Сделал:\n• Закрыто:\n• Мутно:\n"
+      "prefill": "Отчёт дня 4:\n• Сделал:\n• Закрыто:\n• Мутно:\n",
+      "copy": false
     }
   ],
   "5.day_report": [
@@ -314,7 +317,8 @@
       "kind": "telegram",
       "personId": "dima",
       "label": "Написать отчёт в Telegram",
-      "prefill": "Отчёт дня 5:\n• Сделал:\n• Закрыто:\n• Мутно:\n"
+      "prefill": "Отчёт дня 5:\n• Сделал:\n• Закрыто:\n• Мутно:\n",
+      "copy": false
     }
   ],
   "6.day_report": [
@@ -322,7 +326,8 @@
       "kind": "telegram",
       "personId": "dima",
       "label": "Написать отчёт в Telegram",
-      "prefill": "Отчёт дня 6:\n• Сделал:\n• Закрыто:\n• Мутно:\n"
+      "prefill": "Отчёт дня 6:\n• Сделал:\n• Закрыто:\n• Мутно:\n",
+      "copy": false
     }
   ],
   "7.day_report": [
@@ -330,7 +335,8 @@
       "kind": "telegram",
       "personId": "dima",
       "label": "Написать отчёт в Telegram",
-      "prefill": "Отчёт дня 7:\n• Сделал:\n• Закрыто:\n• Мутно:\n"
+      "prefill": "Отчёт дня 7:\n• Сделал:\n• Закрыто:\n• Мутно:\n",
+      "copy": false
     }
   ],
   "8.day_report": [
@@ -338,7 +344,8 @@
       "kind": "telegram",
       "personId": "dima",
       "label": "Написать отчёт в Telegram",
-      "prefill": "Отчёт дня 8:\n• Сделал:\n• Закрыто:\n• Мутно:\n"
+      "prefill": "Отчёт дня 8:\n• Сделал:\n• Закрыто:\n• Мутно:\n",
+      "copy": false
     }
   ],
   "9.day_report": [
@@ -346,31 +353,26 @@
       "kind": "telegram",
       "personId": "dima",
       "label": "Написать отчёт в Telegram",
-      "prefill": "Отчёт дня 9:\n• Сделал:\n• Закрыто:\n• Мутно:\n"
+      "prefill": "Отчёт дня 9:\n• Сделал:\n• Закрыто:\n• Мутно:\n",
+      "copy": false
     }
   ],
   "1.walkthrough": [
     {
-      "kind": "step",
-      "text": "10:30–11:30 · вводная с Димой"
-    },
-    {
-      "kind": "person",
-      "id": "dima",
-      "cta": "Профиль Димы"
-    },
-    {
       "kind": "link",
       "url": "https://telemost.yandex.ru/j/19690866747185",
-      "title": "Яндекс Телемост",
+      "title": "Яндекс Телемост · 10:30–11:30",
       "cta": "Перейти на звонок"
+    },
+    {
+      "kind": "contact_card",
+      "id": "dima",
+      "cta": "Написать Диме",
+      "prefill": "",
+      "copy": false
     }
   ],
   "1.role": [
-    {
-      "kind": "step",
-      "text": "Согласованный оффер"
-    },
     {
       "kind": "resource",
       "id": "doc_offer_leonid",
@@ -379,313 +381,169 @@
   ],
   "1.team_staff": [
     {
-      "kind": "step",
-      "text": "С кем будешь работать"
-    },
-    {
-      "kind": "overlay",
-      "id": "people",
-      "title": "Команда",
-      "cta": "Открыть",
-      "sub": ""
+      "kind": "people_grid"
     }
   ],
   "1.tg_join": [
     {
-      "kind": "step",
-      "text": "Чаты со ссылкой"
-    },
-    {
       "kind": "link",
       "url": "https://t.me/+iK0kFij8L4FjOTgy",
       "title": "Сейлз | Культ Груп",
-      "cta": "Вступить"
-    },
-    {
-      "kind": "link",
-      "url": "https://t.me/+De8Uvd8Y_PIzODQy",
-      "title": "Сейлз-менеджер | Культ Груп",
-      "cta": "Вступить"
+      "cta": "Вступить",
+      "flat": true
     },
     {
       "kind": "link",
       "url": "https://t.me/+Dox8bNEFaLgzZjMy",
-      "title": "Коммерческий директор | Культ Груп",
-      "cta": "Вступить"
+      "title": "Коммерческий директор",
+      "cta": "Вступить",
+      "flat": true
     },
     {
       "kind": "link",
       "url": "https://t.me/+Se8NCMboatI5NzRi",
       "title": "Blaster × Sputnik / Продажи",
-      "cta": "Вступить"
-    },
-    {
-      "kind": "step",
-      "text": "Группа / Продажи · без ссылки"
+      "cta": "Вступить",
+      "flat": true
     },
     {
       "kind": "telegram",
       "personId": "dima",
-      "label": "Группа / Продажи",
+      "label": "Чаты без ссылки",
       "cta": "Написать Диме",
-      "prefill": "Привет! Дай мне, пожалуйста, доступ в чат продаж группы.",
+      "prefill": "Привет, Дима! Добавь меня, пожалуйста, в чаты:\n\n• Группа / Продажи\n• Спутник х Культ | Продажи\n• Cult × Blaster | Продажи (или попроси Дениса/Лизу)\n• Вайб-кружок (если ок, не срочно)\n\nСпасибо!",
       "copy": true
     },
     {
-      "kind": "step",
-      "text": "Спутник х Культ | Продажи · без ссылки"
-    },
-    {
-      "kind": "telegram",
-      "personId": "dima",
-      "label": "Спутник х Культ | Продажи",
-      "cta": "Написать Диме",
-      "prefill": "Привет, Дима! Добавь меня, пожалуйста, в чат «Спутник х Культ | Продажи». Спасибо!",
-      "copy": true
-    },
-    {
-      "kind": "step",
-      "text": "Cult × Blaster · шаблон в общий чат"
-    },
-    {
-      "kind": "copy",
-      "label": "Шаблон · Группа / Продажи",
-      "cta": "Скопировать текст",
-      "text": "Ребята, это для Дениса и Лизы: у вас есть совместный чат продаж Cult × Blaster? Пустите меня, пожалуйста, туда — и Диму тоже."
-    },
-    {
-      "kind": "step",
-      "text": "Все чаты без ссылок · одним сообщением"
-    },
-    {
-      "kind": "telegram",
-      "personId": "dima",
-      "label": "Чаты без ссылок",
-      "cta": "Написать Диме",
-      "prefill": "Привет, Дима! Нужны доступы в Telegram (день 1):\n\n☐ Группа / Продажи\n☐ Спутник х Культ | Продажи\n☐ Вайб-кружок (не срочно, опционально)\n\nОстальные чаты уже по ссылкам в квесте. Спасибо!",
-      "copy": true
-    },
-    {
-      "kind": "step",
-      "text": "Вайб-кружок · опционально"
-    },
-    {
-      "kind": "telegram",
-      "personId": "dima",
-      "label": "Вайб-кружок (опционально)",
-      "cta": "Попросить добавить",
-      "prefill": "Привет, Дима! Если ок — добавь в Вайб-кружок (не срочно). Спасибо!",
-      "copy": true
+      "kind": "note",
+      "text": "Вайб-кружок — по желанию."
     }
   ],
   "1.access": [
     {
-      "kind": "step",
-      "text": "Папки Drive · день 1"
-    },
-    {
-      "kind": "step",
-      "text": "Коммерция Cult Group"
+      "kind": "link",
+      "url": "https://drive.google.com/drive/folders/1O89yMg7RCXGIwv_eTQ8Sp6A6oiJiwRmR",
+      "title": "Культ-группа",
+      "cta": "Открыть",
+      "flat": true
     },
     {
       "kind": "link",
-      "url": "https://drive.google.com/drive/folders/1TpAPO58bvQN13RQUwd1NnTbGBoOl9We0?usp=sharing",
+      "url": "https://drive.google.com/drive/folders/1cm50xCY02m_WTNenHbEoKAl-ALZ-Ac_n",
       "title": "Коммерция Cult Group",
-      "cta": "Открыть"
-    },
-    {
-      "kind": "step",
-      "text": "Продажи Blaster"
+      "cta": "Открыть",
+      "flat": true
     },
     {
       "kind": "link",
       "url": "https://drive.google.com/drive/folders/1j-ARZnroEcDoSQnr-1Rr-urwUq4izNxb",
       "title": "Продажи Blaster",
-      "cta": "Открыть"
-    },
-    {
-      "kind": "step",
-      "text": "Продажи Sputnik"
+      "cta": "Открыть",
+      "flat": true
     },
     {
       "kind": "link",
       "url": "https://drive.google.com/drive/folders/1C4scLmeG2w3XpJKyM45NZJIgVzADkNNA?usp=sharing",
       "title": "Продажи Sputnik",
-      "cta": "Открыть"
-    },
-    {
-      "kind": "step",
-      "text": "Продажи Cult · legacy"
+      "cta": "Открыть",
+      "flat": true
     },
     {
       "kind": "link",
       "url": "https://drive.google.com/drive/folders/1veiUtmQ-TOWNLADaSNtFL1WltpCiu_0J",
-      "title": "Продажи Cult (старое)",
-      "cta": "Открыть"
-    },
-    {
-      "kind": "step",
-      "text": "Культ-группа · корень"
-    },
-    {
-      "kind": "resource",
-      "id": "drive_cult_group",
-      "cta": "Открыть"
-    },
-    {
-      "kind": "step",
-      "text": "Таблица Clifton команды"
-    },
-    {
-      "kind": "resource",
-      "id": "doc_clifton_team",
-      "cta": "Открыть"
-    },
-    {
-      "kind": "note",
-      "text": "Позже: P&L Blaster, декомпозиция Cult, Холст, фин. дэшборд."
+      "title": "Продажи Cult · legacy",
+      "cta": "Открыть",
+      "flat": true
     },
     {
       "kind": "telegram",
       "personId": "dima",
       "label": "Нет доступа к папке",
       "cta": "Написать Диме",
-      "prefill": "Привет, Дима! Нет доступа к папке/документу: [название]. Открой, пожалуйста.",
+      "prefill": "Привет, Дима! Нет доступа к папке: [название]. Открой, пожалуйста.",
       "copy": true
     }
   ],
   "1.work_accounts": [
     {
-      "kind": "step",
-      "text": "Почта @cult.team"
-    },
-    {
-      "kind": "telegram",
-      "personId": "se_leverk",
-      "label": "Лиза Никонова",
+      "kind": "contact_card",
+      "id": "se_leverk",
       "cta": "Написать Лизе",
-      "prefill": "Привет, Лиза! Это Леонид Мархашов, новый sales Cult Group. Стартую онбординг.\n\nПожалуйста, зарегистрируй / привяжи мою личную почту к аккаунту Культа (рабочая почта leonid@cult.team).\n\nЛичная почта: [впиши свою]\nСпасибо!",
+      "prefill": "Привет, Лиза! Это Леонид Мархашов, новый sales Cult Group.\n\nПожалуйста, зарегистрируй / привяжи мою личную почту к аккаунту Культа (рабочая leonid@cult.team).\n\nЛичная почта: [впиши]\nСпасибо!",
       "copy": true
     },
     {
-      "kind": "step",
-      "text": "Рабочий профиль"
-    },
-    {
       "kind": "note",
-      "text": "Когда почта придёт — проверь вход и заполни профиль."
+      "text": "Обнови профиль @cult.team: имя, фото, подпись — когда почта будет готова."
     }
   ],
   "1.soft_ai": [
     {
-      "kind": "step",
-      "text": "Cursor / Codex"
-    },
-    {
       "kind": "resource",
       "id": "soft_cursor",
-      "cta": "Скачать Cursor"
+      "cta": "Скачать"
     },
     {
       "kind": "resource",
       "id": "soft_codex",
-      "cta": "Скачать Codex"
-    },
-    {
-      "kind": "step",
-      "text": "Транскрипция"
+      "cta": "Скачать"
     },
     {
       "kind": "resource",
       "id": "soft_macwhisper",
-      "cta": "Скачать Whisper · Mac"
+      "cta": "Скачать · Mac"
     },
     {
       "kind": "resource",
       "id": "soft_whisper_win",
-      "cta": "Скачать Whisper · Windows"
+      "cta": "Скачать · Windows"
     },
     {
       "kind": "resource",
       "id": "soft_handy",
-      "cta": "Скачать Handy"
+      "cta": "Скачать"
     }
   ],
   "1.schedule_heads": [
     {
-      "kind": "step",
-      "text": "Два слота по 30 мин"
+      "kind": "note",
+      "text": "Два созвона по ~30 мин — познакомиться и наладить контакт."
     },
     {
-      "kind": "person",
+      "kind": "contact_card",
       "id": "denis",
-      "cta": "Профиль Дениса"
-    },
-    {
-      "kind": "telegram",
-      "personId": "denis",
-      "label": "Денис Леваков",
       "cta": "Написать Денису",
-      "prefill": "Привет, Денис! Я Лёня, новый sales Cult Group. Можем созвониться на 30 мин на этой неделе — познакомиться и синхронизироваться? Какие слоты удобны?",
+      "prefill": "Привет, Денис! Я Лёня, новый sales Cult Group. Можем созвониться на 30 мин на этой неделе — познакомиться? Какие слоты удобны?",
       "copy": true
     },
     {
-      "kind": "person",
+      "kind": "contact_card",
       "id": "liza",
-      "cta": "Профиль Лизы"
-    },
-    {
-      "kind": "telegram",
-      "personId": "liza",
-      "label": "Лиза Иванова",
       "cta": "Написать Лизе",
-      "prefill": "Привет, Лиза! Я Лёня, новый sales Cult Group. Можем созвониться на 30 мин на этой неделе — познакомиться и синхронизироваться? Какие слоты удобны?",
+      "prefill": "Привет, Лиза! Я Лёня, новый sales Cult Group. Можем созвониться на 30 мин на этой неделе — познакомиться? Какие слоты удобны?",
       "copy": true
     },
     {
-      "kind": "step",
-      "text": "Вопросы на созвон"
-    },
-    {
-      "kind": "note",
-      "text": "1. Какие у вас пожелания и ожидания от совместной работы?"
-    },
-    {
-      "kind": "note",
-      "text": "2. Какие сейчас фокусные задачи или фокусные клиенты?"
-    },
-    {
-      "kind": "note",
-      "text": "3. Какие продукты / категории хочется продавать больше? (у Дениса — интерес к FMCG)"
-    },
-    {
-      "kind": "note",
-      "text": "4. Как вам удобнее со мной синхронизироваться: Amo, чат, созвон?"
-    },
-    {
-      "kind": "note",
-      "text": "5. Что вам важно узнать обо мне, чтобы старт был комфортным?"
+      "kind": "questions",
+      "items": [
+        "Какие у вас пожелания и ожидания от совместной работы?",
+        "Какие сейчас фокусные задачи или фокусные клиенты?",
+        "Какие продукты / категории хочется продавать больше? (у Дениса — интерес к FMCG)",
+        "Как в принципе сейчас дела с продажами?",
+        "Что вам важно узнать обо мне, чтобы старт был комфортным?"
+      ]
     }
   ],
   "1.clifton_setup": [
     {
-      "kind": "step",
-      "text": "CliftonStrengths · оплата своя, компенсация от команды"
+      "kind": "note",
+      "text": "Шаг нужен, чтобы лучше синхронизироваться по профилям личности с командой. Оплати тест сам — компания компенсирует; в отчёте напиши сумму и куда перевести."
     },
     {
       "kind": "link",
       "url": "https://www.gallup.com/cliftonstrengths/en/253808/cliftonstrengths.aspx",
-      "title": "CliftonStrengths · Gallup",
+      "title": "CliftonStrengths",
       "cta": "Пройти тест"
-    },
-    {
-      "kind": "step",
-      "text": "После теста"
-    },
-    {
-      "kind": "resource",
-      "id": "doc_clifton_team",
-      "cta": "Таблица команды"
     }
   ],
   "1.day_report": [
@@ -694,8 +552,8 @@
       "personId": "dima",
       "label": "Отчёт за день 1",
       "cta": "Написать Диме",
-      "prefill": "Дима, отчёт день 1:\n\n✅ Сделано:\n•\n\n⏳ В процессе:\n•\n\nCliftonStrengths: [ссылка на результат]\nСумма теста: [₽]\nКуда перевести компенсацию: [реквизиты]\n\nМутно / блокеры:\n•",
-      "copy": true
+      "prefill": "Дима, отчёт день 1:\n\n✅ Сделано:\n•\n\n⏳ В процессе:\n•\n\nCliftonStrengths: [ссылка / в процессе]\nСумма теста: [₽]\nКуда перевести: [реквизиты]\n\nМутно / блокеры:\n•",
+      "copy": false
     }
   ]
 }

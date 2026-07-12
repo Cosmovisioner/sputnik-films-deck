@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Telegram · рабочие чаты",
-    "note": "Часть ссылок выгружена из аккаунта CRO (Telethon). Где нет прав админа на инвайт — Лёня пишет Диме.",
+    "note": "Со ссылкой — вступить. Без ссылки — одно сообщение Диме (день 1).",
     "do_not_add_note": "Не добавляем на онбординге (не «потом само»)",
     "sourced_at": "2026-07-12"
   },
@@ -15,29 +15,7 @@
       "whoAdds": "ссылка",
       "inviteUrl": "https://t.me/+iK0kFij8L4FjOTgy",
       "tg_id": "-5376303378",
-      "desc": "Рабочий чат продаж Cult Group. Вступай по ссылке."
-    },
-    {
-      "id": "sales_manager_cult",
-      "name": "Сейлз-менеджер | Культ Груп",
-      "priority": "required",
-      "week": 1,
-      "unit": "uk",
-      "whoAdds": "ссылка",
-      "inviteUrl": "https://t.me/+De8Uvd8Y_PIzODQy",
-      "tg_id": "-1003759381467",
-      "desc": "Канал/чат сейlz-менеджера Cult Group."
-    },
-    {
-      "id": "group_sales",
-      "name": "Группа / Продажи",
-      "priority": "required",
-      "week": 1,
-      "unit": "uk",
-      "whoAdds": "Дима Квашнин (@cosmovisioner)",
-      "inviteUrl": null,
-      "tg_id": "-5280287302",
-      "desc": "Общий контур продаж. Публичной ссылки нет (CRO не админ на экспорт) — напиши Диме."
+      "desc": "Рабочий чат продаж Cult Group."
     },
     {
       "id": "commercial_director",
@@ -48,18 +26,7 @@
       "whoAdds": "ссылка",
       "inviteUrl": "https://t.me/+Dox8bNEFaLgzZjMy",
       "tg_id": "-5311172784",
-      "desc": "Прямая линия с коммерческим директором."
-    },
-    {
-      "id": "cult_sputnik_sales",
-      "name": "Спутник х Культ | Продажи",
-      "priority": "required",
-      "week": 1,
-      "unit": "sputnik",
-      "whoAdds": "Дима Квашнин",
-      "inviteUrl": null,
-      "tg_id": "-5129431095",
-      "desc": "Совместный контур Sputnik × Cult. Ссылки нет — попроси Диму добавить."
+      "desc": "Линия с CRO."
     },
     {
       "id": "blaster_sputnik_sales",
@@ -70,28 +37,29 @@
       "whoAdds": "ссылка",
       "inviteUrl": "https://t.me/+Se8NCMboatI5NzRi",
       "tg_id": "-1003800092654",
-      "desc": "Совместные пресейлы Blaster × Sputnik. Вступай по ссылке."
+      "desc": "Совместные пресейлы."
     },
     {
-      "id": "cult_blaster_sales",
-      "name": "Cult × Blaster | Продажи (совместный)",
+      "id": "group_sales",
+      "name": "Группа / Продажи",
       "priority": "required",
       "week": 1,
       "unit": "uk",
-      "whoAdds": "Денис + Лиза (через Группа / Продажи)",
+      "whoAdds": "Дима",
       "inviteUrl": null,
-      "desc": "Отдельного инвайта в аккаунте CRO нет. Когда будешь в «Группа / Продажи» — попроси Дениса и Лизу пустить тебя и Диму."
+      "tg_id": "-5280287302",
+      "desc": "Без публичной ссылки — через Диму."
     },
     {
-      "id": "ai_sales",
-      "name": "Техно отдел / ИИ продажи",
-      "priority": "week1",
+      "id": "cult_sputnik_sales",
+      "name": "Спутник х Культ | Продажи",
+      "priority": "required",
       "week": 1,
-      "unit": "techtigers",
-      "whoAdds": "ссылка",
-      "inviteUrl": "https://t.me/+U7VzMZ8itMk2M2Iy",
-      "tg_id": "-1003341517637",
-      "desc": "CRM (Prodavan), ИИ-продукты — по мере работы."
+      "unit": "sputnik",
+      "whoAdds": "Дима",
+      "inviteUrl": null,
+      "tg_id": "-5129431095",
+      "desc": "Без ссылки — через Диму."
     },
     {
       "id": "vibe_circle",
@@ -99,28 +67,17 @@
       "priority": "optional",
       "week": 1,
       "unit": "uk",
-      "whoAdds": "Дима или Егор",
+      "whoAdds": "Дима",
       "inviteUrl": null,
       "tg_id": "-1003732411848",
-      "desc": "Необязательно. Нейросети, вайбкодинг, созвон раз в неделю. Инвайт только у админов — попроси Диму."
-    },
-    {
-      "id": "sputnik_sales",
-      "name": "Спутник / Продажи",
-      "priority": "as_needed",
-      "week": 1,
-      "unit": "sputnik",
-      "whoAdds": "Дима или Сергей",
-      "inviteUrl": null,
-      "desc": "Док, спецпроекты — по сделкам Sputnik."
+      "desc": "Опционально."
     }
   ],
   "skip": [
     "Systems | ТехноТигры | phygital.team (только если CRO добавит под iCRM)",
     "Петрухин × Blaster | multimedia",
     "Спутник / Акционеры",
-    "Holst",
-    "Внутренние финансы и P&L"
+    "Holst"
   ],
   "do_not_add": [
     {
