@@ -702,6 +702,14 @@
     {
       "kind": "resource",
       "id": "amo_cult"
+    },
+    {
+      "kind": "deck",
+      "id": "cult_group"
+    },
+    {
+      "kind": "note",
+      "text": "Принеси свой список тёплой базы. Вместе: приоритет касаний + кому слать презу Cult Group первой."
     }
   ],
   "7.shadow3": [
@@ -910,6 +918,104 @@
     {
       "kind": "person",
       "id": "dima"
+    }
+  ],
+  "2.sales_account_refresh": [
+    {
+      "kind": "person",
+      "id": "sasha_a"
+    },
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_handoff_sasha"
+    },
+    {
+      "kind": "step",
+      "text": "Получи логин/доступ у Димы или Саши к legacy sales-аккаунту Sputnik"
+    },
+    {
+      "kind": "note",
+      "text": "Обнови: должность, компания Cult Group, контакты (leonid@cult.team / sales@cult.team), bio. Цель — рабочий внешний профиль для outreach, не «витрина Саши»."
+    }
+  ],
+  "4.warm_base_collect": [
+    {
+      "kind": "deck",
+      "id": "cult_group"
+    },
+    {
+      "kind": "resource",
+      "id": "view_decks"
+    },
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "step",
+      "text": "Выпиши контакты из своей сети (Telegram, LinkedIn, почта, прошлые клиенты) — кому уместна преза Cult Group"
+    },
+    {
+      "kind": "note",
+      "text": "Это твоя база, не только handoff Саши. Черновик → к дню 7 разбор с Димой. Без спама: тёплые и уместные."
+    }
+  ],
+  "5.cro_gaps": [
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "resource",
+      "id": "view_access"
+    },
+    {
+      "kind": "step",
+      "text": "Собери список: что непонятно + чего не хватает (доступы, софт, подписки, аккаунты, сервисы)"
+    },
+    {
+      "kind": "note",
+      "text": "Шаблон: «Нужно настроить / оплатить / выдать». Цель недели 1 — закрыть дыры, не копить до конца онбординга."
+    }
+  ],
+  "7.warm_base_ready": [
+    {
+      "kind": "deck",
+      "id": "cult_group"
+    },
+    {
+      "kind": "resource",
+      "id": "amo_cult"
+    },
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "step",
+      "text": "Доведи список до рабочего: имя, канал связи, почему тёплый, статус «можно слать презу»"
+    },
+    {
+      "kind": "note",
+      "text": "Зафиксируй в Amo или таблице — чтобы не потерять после онбординга."
+    }
+  ],
+  "9.access_soft_final": [
+    {
+      "kind": "person",
+      "id": "dima"
+    },
+    {
+      "kind": "resource",
+      "id": "view_access"
+    },
+    {
+      "kind": "note",
+      "text": "Сверь с чеклистом доступов и списком cro_gaps с пятницы недели 1. Открытое — в план дозакрытия с датой."
     }
   ]
 }

@@ -4,7 +4,7 @@
   const STORAGE_KEY = "cult_leonid_daily_v5";
   const WELCOME_KEY = "cult_leonid_welcome_v3";
   const ACCESS_KEY = "cult_leonid_access_v1";
-  const ASSET_VER = "20260712-v28";
+  const ASSET_VER = "20260712-v29";
 
   const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya", "alya_dudenkova"]);
 
