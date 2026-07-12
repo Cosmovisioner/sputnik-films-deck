@@ -666,7 +666,11 @@ body::after {
   font-size: 12px;
   margin: 0 0 12px;
 }
-.pillar-drive a { color: var(--accent); }
+.pillar-drive a { color: inherit; }
+.path-link-tg {
+  border-color: rgba(249, 116, 190, 0.45);
+  background: rgba(249, 116, 190, 0.08);
+}
 .pillar-footnote {
   font-size: 11px;
   color: var(--muted);

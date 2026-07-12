@@ -324,7 +324,7 @@
     {
       "id": "view_org_map",
       "title": "Карта группы",
-      "subtitle": "УК → Cult · Blaster · Sputnik · ТехноТигры",
+          "subtitle": "Холдинг → Cult · Blaster · Sputnik · ТехноТигры",
       "action": "map",
       "unit": "uk"
     },

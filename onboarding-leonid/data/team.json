@@ -711,19 +711,19 @@
     },
     {
       "id": "se_leverk",
-      "category": "holding",
+      "category": "staff",
       "name": "Елизавета Никонова",
-      "role": "Production Assistant · cult.team",
-      "unit": "Холдинг",
-      "unitId": "uk",
+      "role": "Ассистент Дениса Левакова · Cult",
+      "unit": "Cult",
+      "unitId": "cult",
       "initials": "ЕН",
       "photo": "assets/avatars/se_leverk.jpg",
-      "bio_short": "Production Assistant cult.team: календарь, созвоны хэдов, операционка.",
-      "lore": "Профиль @se_leverk — Elizaveta Nikonova, Production Assistant https://cult.team. В tech-чатах и «Супертопах» — календарь, координация встреч, доступ к боту Scrooge для внепроектных заявок вместе с хэдами.",
+      "bio_short": "Ассистент Дениса Левакова (Cult): календарь и операционка юнита.",
+      "lore": "Елизавета Никонова (@se_leverk) — ассистент Дениса Левакова в Cult. Не Sputnik. Календарь/слоты Дениса — через неё или CRO.",
       "tasks": [
-        "Календарь и созвоны",
-        "Операционка cult.team",
-        "Финбот Scrooge (доступы)"
+        "Календарь Дениса / Cult",
+        "Операционка юнита",
+        "Слоты созвонов"
       ],
       "clifton_themes": [],
       "clifton_tab": null,
@@ -737,7 +737,7 @@
         "Не sales-лид"
       ],
       "contact_when": [
-        "Календарь, созвоны хэдов, операционка cult.team"
+        "Слот с Денисом, операционка Cult"
       ],
       "avoid": "Коммерческие решения по сделке — к Диме и хэдам юнитов"
     },

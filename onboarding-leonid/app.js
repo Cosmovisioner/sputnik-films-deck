@@ -7,7 +7,7 @@
   const ACCESS_KEY = "sb-onboarding-leonid-access";
   const QUEST_KEY = "sb-onboarding-leonid-quest-step";
   const MODE_KEY = "sb-onboarding-leonid-program-mode";
-  const ASSET_VER = "20260712-v46";
+  const ASSET_VER = "20260712-v47";
 
   const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya", "alya_dudenkova"]);
 
@@ -700,12 +700,29 @@
     showModal();
   }
 
+  function telegramUrlFor(personId, prefill) {
+    const c = getContact(personId);
+    const base = c.telegram || (personId === "dima" ? "https://t.me/cosmovisioner" : "");
+    if (!base) return "";
+    if (!prefill) return base;
+    const sep = base.includes("?") ? "&" : "?";
+    return base + sep + "text=" + encodeURIComponent(prefill);
+  }
+
   function renderPathItem(item, stepId) {
     if (item.kind === "step") {
       return `<div class="path-step">→ ${esc(item.text)}</div>`;
     }
     if (item.kind === "note") {
       return `<div class="path-note">${esc(item.text)}</div>`;
+    }
+    if (item.kind === "telegram") {
+      const url = telegramUrlFor(item.personId || "dima", item.prefill || "");
+      if (!url) return "";
+      return `<a class="path-link path-link-tg" href="${esc(url)}" target="_blank" rel="noopener">
+        <span class="icon">TG</span>
+        <span>${esc(item.label || "Написать в Telegram")}<span class="sub">откроется чат</span></span>
+      </a>`;
     }
     if (item.kind === "person") {
       const p = findPerson(item.id);

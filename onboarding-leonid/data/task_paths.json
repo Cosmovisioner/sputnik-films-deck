@@ -12,11 +12,11 @@
   "1.role": [
     {
       "kind": "resource",
-      "id": "doc_rules_summary"
+      "id": "doc_offer_leonid"
     },
     {
       "kind": "step",
-      "text": "Зафиксируй зону: входящие + тёплая база → бриф"
+      "text": "Оффер + зона: входящие + тёплая база → бриф. Правила — день 4."
     }
   ],
   "1.access": [
@@ -26,50 +26,7 @@
     },
     {
       "kind": "step",
-      "text": "1. Пройди чеклист доступов — отметь что уже есть"
-    },
-    {
-      "kind": "resource",
-      "id": "drive_hiring"
-    },
-    {
-      "kind": "resource",
-      "id": "amo_cult"
-    },
-    {
-      "kind": "resource",
-      "id": "drive_commerce"
-    },
-    {
-      "kind": "resource",
-      "id": "email_leonid"
-    },
-    {
-      "kind": "section",
-      "id": "chats",
-      "filter": "required"
-    }
-  ],
-  "1.motivation": [
-    {
-      "kind": "step",
-      "text": "Сначала PDF-оффер (канон) · 220к + 12% · повторы 6→3→0% · бонус 50к за юнит в пул ·…"
-    },
-    {
-      "kind": "resource",
-      "id": "doc_offer_leonid"
-    },
-    {
-      "kind": "resource",
-      "id": "doc_motivation_extended"
-    },
-    {
-      "kind": "resource",
-      "id": "doc_commerce_rules"
-    },
-    {
-      "kind": "person",
-      "id": "dima"
+      "text": "Пройди чеклист доступов"
     }
   ],
   "1.org_map": [
@@ -78,598 +35,51 @@
       "id": "view_org_map"
     },
     {
-      "kind": "resource",
-      "id": "drive_techtigers_products"
-    },
-    {
-      "kind": "step",
-      "text": "Нажми на каждый юнит и продукт ТехноТигров — посмотри людей и презентации"
-    }
-  ],
-  "1.group_deck": [
-    {
       "kind": "deck",
       "id": "cult_group"
     },
     {
-      "kind": "resource",
-      "id": "view_decks"
+      "kind": "step",
+      "text": "Открой карту и общую презу"
+    }
+  ],
+  "1.schedule_heads": [
+    {
+      "kind": "step",
+      "text": "Напиши Денису и Лизе: 30 мин знакомства, когда удобно им"
+    },
+    {
+      "kind": "person",
+      "id": "denis"
+    },
+    {
+      "kind": "person",
+      "id": "liza"
+    },
+    {
+      "kind": "step",
+      "text": "Остальные знакомства — Дима, не назначай сам"
     }
   ],
   "2.amo_walk": [
     {
-      "kind": "step",
-      "text": "11:00–12:30 — разбор Amo Cult + передача дел от Саши Алексеева"
-    },
-    {
-      "kind": "resource",
-      "id": "amo_cult"
-    },
-    {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
       "kind": "person",
       "id": "sasha_a"
     },
     {
       "kind": "resource",
       "id": "doc_handoff_sasha"
-    }
-  ],
-  "2.handoff_doc": [
-    {
-      "kind": "resource",
-      "id": "doc_handoff_sasha"
-    },
-    {
-      "kind": "person",
-      "id": "sasha_a"
-    }
-  ],
-  "2.tg_join": [
-    {
-      "kind": "section",
-      "id": "chats",
-      "filter": "required"
-    },
-    {
-      "kind": "person",
-      "id": "dima"
-    }
-  ],
-  "3.denis_call": [
-    {
-      "kind": "step",
-      "text": "11:00–12:00 — созвон: Cult, презентации, Amo, маржа"
-    },
-    {
-      "kind": "person",
-      "id": "se_leverk"
-    },
-    {
-      "kind": "person",
-      "id": "denis"
-    },
-    {
-      "kind": "deck",
-      "id": "cult_main_cases"
     },
     {
       "kind": "resource",
       "id": "amo_cult"
-    }
-  ],
-  "3.team_staff": [
-    {
-      "kind": "resource",
-      "id": "view_people"
     },
     {
       "kind": "step",
-      "text": "Открой карточки штата — нажми на каждого"
-    }
-  ],
-  "3.sasha_sync": [
-    {
-      "kind": "step",
-      "text": "15:00–16:00 — синхрон по контактам и базе"
-    },
-    {
-      "kind": "person",
-      "id": "sasha_a"
-    },
-    {
-      "kind": "resource",
-      "id": "doc_handoff_sasha"
-    }
-  ],
-  "4.liza_call": [
-    {
-      "kind": "step",
-      "text": "11:00–12:00 — Blaster, мультимедиа, прайс"
-    },
-    {
-      "kind": "person",
-      "id": "se_leverk"
-    },
-    {
-      "kind": "person",
-      "id": "liza"
-    },
-    {
-      "kind": "deck",
-      "id": "blaster_master"
-    },
-    {
-      "kind": "resource",
-      "id": "drive_blaster_sales"
-    }
-  ],
-  "4.products": [
-    {
-      "kind": "resource",
-      "id": "view_org_map"
-    },
-    {
-      "kind": "resource",
-      "id": "view_decks"
-    }
-  ],
-  "4.icp_check": [
-    {
-      "kind": "resource",
-      "id": "doc_icp_checklist"
-    },
-    {
-      "kind": "resource",
-      "id": "doc_rules_summary"
-    }
-  ],
-  "4.deck_router": [
-    {
-      "kind": "resource",
-      "id": "view_decks"
-    },
-    {
-      "kind": "resource",
-      "id": "skills_pack"
-    }
-  ],
-  "4.shadow1": [
-    {
-      "kind": "person",
-      "id": "se_leverk"
-    },
-    {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
-      "kind": "resource",
-      "id": "amo_cult"
-    },
-    {
-      "kind": "deck",
-      "id": "cult_group"
-    }
-  ],
-  "5.sergey_call": [
-    {
-      "kind": "step",
-      "text": "11:00–12:00 — «берём ли» проект в Sputnik"
-    },
-    {
-      "kind": "person",
-      "id": "se_leverk"
-    },
-    {
-      "kind": "person",
-      "id": "sergey"
-    },
-    {
-      "kind": "deck",
-      "id": "sputnik_unit"
-    },
-    {
-      "kind": "section",
-      "id": "chats",
-      "filter": "sputnik_sales"
-    }
-  ],
-  "5.rules": [
-    {
-      "kind": "resource",
-      "id": "doc_rules_summary"
-    },
-    {
-      "kind": "resource",
-      "id": "doc_commerce_rules"
-    },
-    {
-      "kind": "resource",
-      "id": "doc_nb_reg"
-    },
-    {
-      "kind": "resource",
-      "id": "doc_prod_standards"
-    }
-  ],
-  "5.docs_alya": [
-    {
-      "kind": "step",
-      "text": "Напиши @DudenkovaA или попроси Диму представить — 30–40 мин разбор документооборота"
-    },
-    {
-      "kind": "person",
-      "id": "alya_dudenkova"
-    },
-    {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
-      "kind": "resource",
-      "id": "doc_prod_standards"
-    }
-  ],
-  "5.partner_sales": [
-    {
-      "kind": "resource",
-      "id": "view_people",
-      "filter": "partner_slz"
-    },
-    {
-      "kind": "person",
-      "id": "sasha_a"
-    },
-    {
-      "kind": "person",
-      "id": "dima_soldatov"
-    },
-    {
-      "kind": "person",
-      "id": "max_blaster"
-    },
-    {
-      "kind": "person",
-      "id": "petrukhin"
-    },
-    {
-      "kind": "section",
-      "id": "chats",
-      "filter": "ddl"
-    }
-  ],
-  "6.sales_meet": [
-    {
-      "kind": "section",
-      "id": "chats",
-      "filter": "group_sales"
-    },
-    {
-      "kind": "person",
-      "id": "dima"
-    }
-  ],
-  "6.crm_landscape": [
-    {
-      "kind": "resource",
-      "id": "crm_landscape"
-    },
-    {
-      "kind": "resource",
-      "id": "amo_cult"
-    },
-    {
-      "kind": "resource",
-      "id": "amo_blaster"
-    },
-    {
-      "kind": "resource",
-      "id": "icrm"
-    },
-    {
-      "kind": "person",
-      "id": "dima"
-    }
-  ],
-  "6.amo_reg": [
-    {
-      "kind": "resource",
-      "id": "doc_amo_reg"
-    },
-    {
-      "kind": "resource",
-      "id": "amo_cult"
-    }
-  ],
-  "6.skills": [
-    {
-      "kind": "step",
-      "text": "Сначала Cursor/Codex + MacWhisper/Handy (инвайт у Димы), затем agent-pack ZIP"
-    },
-    {
-      "kind": "resource",
-      "id": "soft_handy"
-    },
-    {
-      "kind": "resource",
-      "id": "soft_macwhisper"
-    },
-    {
-      "kind": "resource",
-      "id": "soft_codex"
-    },
-    {
-      "kind": "resource",
-      "id": "agent_pack_zip"
-    },
-    {
-      "kind": "resource",
-      "id": "skills_pack"
-    },
-    {
-      "kind": "resource",
-      "id": "soft_cursor"
-    },
-    {
-      "kind": "person",
-      "id": "dima"
-    }
-  ],
-  "6.amo_100": [
-    {
-      "kind": "resource",
-      "id": "amo_cult"
-    },
-    {
-      "kind": "resource",
-      "id": "doc_amo_reg"
-    }
-  ],
-  "7.objection": [
-    {
-      "kind": "resource",
-      "id": "doc_objections_top10"
-    },
-    {
-      "kind": "resource",
-      "id": "agent_pack_zip"
-    },
-    {
-      "kind": "person",
-      "id": "dima"
-    }
-  ],
-  "7.scoring_practice": [
-    {
-      "kind": "resource",
-      "id": "doc_practice_briefs"
-    },
-    {
-      "kind": "resource",
-      "id": "skills_pack"
-    },
-    {
-      "kind": "resource",
-      "id": "doc_brief_criteria"
-    }
-  ],
-  "7.warm_review": [
-    {
-      "kind": "resource",
-      "id": "doc_warm_base_template"
-    },
-    {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
-      "kind": "resource",
-      "id": "amo_cult"
-    },
-    {
-      "kind": "deck",
-      "id": "cult_group"
-    }
-  ],
-  "7.daily_cro": [
-    {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
-      "kind": "section",
-      "id": "chats",
-      "filter": "commercial_director"
-    }
-  ],
-  "8.qual_brief": [
-    {
-      "kind": "resource",
-      "id": "doc_brief_criteria"
-    },
-    {
-      "kind": "resource",
-      "id": "doc_practice_briefs"
-    },
-    {
-      "kind": "resource",
-      "id": "amo_cult"
-    },
-    {
-      "kind": "resource",
-      "id": "skills_pack"
-    }
-  ],
-  "8.unit_route": [
-    {
-      "kind": "resource",
-      "id": "view_people"
-    },
-    {
-      "kind": "person",
-      "id": "denis"
-    },
-    {
-      "kind": "person",
-      "id": "liza"
-    },
-    {
-      "kind": "person",
-      "id": "sergey"
-    }
-  ],
-  "8.no_kp_ghost": [
-    {
-      "kind": "resource",
-      "id": "amo_cult"
-    },
-    {
-      "kind": "resource",
-      "id": "doc_amo_reg"
-    }
-  ],
-  "8.internal_first": [
-    {
-      "kind": "resource",
-      "id": "doc_commerce_rules"
-    },
-    {
-      "kind": "resource",
-      "id": "amo_cult"
-    }
-  ],
-  "9.icrm_demo": [
-    {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
-      "kind": "person",
-      "id": "se_leverk"
-    },
-    {
-      "kind": "resource",
-      "id": "icrm"
-    },
-    {
-      "kind": "section",
-      "id": "chats",
-      "filter": "ai_sales"
-    }
-  ],
-  "9.crm_compare": [
-    {
-      "kind": "resource",
-      "id": "crm_landscape"
-    },
-    {
-      "kind": "resource",
-      "id": "amo_cult"
-    },
-    {
-      "kind": "resource",
-      "id": "amo_blaster"
-    },
-    {
-      "kind": "resource",
-      "id": "icrm"
-    },
-    {
-      "kind": "person",
-      "id": "dima"
-    }
-  ],
-  "9.retro": [
-    {
-      "kind": "person",
-      "id": "dima"
-    }
-  ],
-  "9.month_plan": [
-    {
-      "kind": "resource",
-      "id": "doc_commerce_rules"
-    },
-    {
-      "kind": "resource",
-      "id": "amo_cult"
-    }
-  ],
-  "9.quest_done": [
-    {
-      "kind": "step",
-      "text": "Отметь все галочки · напиши Диме «онбординг пройден»"
-    },
-    {
-      "kind": "person",
-      "id": "dima"
-    }
-  ],
-  "4.warm_base_collect": [
-    {
-      "kind": "resource",
-      "id": "doc_warm_base_template"
-    },
-    {
-      "kind": "deck",
-      "id": "cult_group"
-    },
-    {
-      "kind": "resource",
-      "id": "view_decks"
-    },
-    {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
-      "kind": "step",
-      "text": "Заполни шаблон: имя, канал, почему тёплый, статус «можно слать»"
-    }
-  ],
-  "5.cro_gaps": [
-    {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
-      "kind": "resource",
-      "id": "view_access"
-    },
-    {
-      "kind": "step",
-      "text": "Собери список: что непонятно + чего не хватает (доступы, софт, подписки, аккаунты,…"
-    }
-  ],
-  "9.access_soft_final": [
-    {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
-      "kind": "resource",
-      "id": "view_access"
+      "text": "Прими дела и открой Amo Cult"
     }
   ],
   "2.sales_context": [
-    {
-      "kind": "resource",
-      "id": "doc_sales_context"
-    },
-    {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
-      "kind": "step",
-      "text": "Открой sales_context.html — прочитай блоки 01–04 и 07 целиком"
-    }
-  ],
-  "2.client_pools": [
     {
       "kind": "resource",
       "id": "doc_sales_context"
@@ -679,56 +89,164 @@
       "id": "doc_client_pools"
     },
     {
-      "kind": "person",
-      "id": "denis"
-    },
+      "kind": "step",
+      "text": "Прочитай контекст и пулы — не перехватывай чужое"
+    }
+  ],
+  "2.tg_join": [
     {
-      "kind": "person",
-      "id": "liza"
-    },
-    {
-      "kind": "person",
-      "id": "dima"
+      "kind": "resource",
+      "id": "view_chats"
     },
     {
       "kind": "step",
-      "text": "В том же HTML — раздел «Действующие пулы». Запомни: Cult / Blaster / Sputnik"
+      "text": "Вступи в чаты из раздела Telegram"
     }
   ],
-  "8.hyp_test_plan": [
+  "3.denis_call": [
     {
-      "kind": "person",
-      "id": "dima"
+      "kind": "step",
+      "text": "30 мин · неформальное знакомство, продукт Cult"
     },
     {
       "kind": "deck",
-      "id": "cult_group"
+      "id": "cult_main_cases"
+    }
+  ],
+  "3.liza_call": [
+    {
+      "kind": "step",
+      "text": "30 мин · неформальное знакомство, продукт Blaster"
+    },
+    {
+      "kind": "deck",
+      "id": "blaster_master"
+    }
+  ],
+  "3.products": [
+    {
+      "kind": "deck",
+      "id": "sputnik_unit"
     },
     {
       "kind": "step",
-      "text": "После своей тёплой — созвон с CRO: сегменты волны 2 + поводы захода"
-    },
-    {
-      "kind": "person",
-      "id": "zhenya_gmouse"
-    },
-    {
-      "kind": "person",
-      "id": "kostya"
+      "text": "Преза Sputnik + «Куда вести» в разделе Карта. Знакомство с Сергеем — через CRO."
     }
   ],
-  "8.deck_practice": [
+  "4.rules": [
     {
       "kind": "resource",
-      "id": "view_decks"
+      "id": "doc_rules_summary"
     },
+    {
+      "kind": "resource",
+      "id": "doc_commerce_rules"
+    },
+    {
+      "kind": "step",
+      "text": "Сначала кратко, потом полная версия при необходимости"
+    }
+  ],
+  "4.docs_alya": [
+    {
+      "kind": "person",
+      "id": "alya_dudenkova"
+    },
+    {
+      "kind": "step",
+      "text": "Акты, счета, Контур — спроси Алю"
+    }
+  ],
+  "4.team_staff": [
+    {
+      "kind": "resource",
+      "id": "view_people"
+    },
+    {
+      "kind": "step",
+      "text": "Пробеги карточки в разделе Люди"
+    }
+  ],
+  "4.clifton_setup": [
+    {
+      "kind": "resource",
+      "id": "doc_clifton_team"
+    },
+    {
+      "kind": "step",
+      "text": "Закажи тест и сверь с таблицей"
+    }
+  ],
+  "5.friday_units_sales": [
+    {
+      "kind": "step",
+      "text": "Пт 12:00 — звонок юнитов по продажам"
+    }
+  ],
+  "5.crm_landscape": [
+    {
+      "kind": "resource",
+      "id": "view_sales"
+    },
+    {
+      "kind": "step",
+      "text": "Три CRM: куда новые сделки"
+    }
+  ],
+  "5.amo_reg": [
+    {
+      "kind": "resource",
+      "id": "doc_amo_reg"
+    },
+    {
+      "kind": "step",
+      "text": "Прочитай регламент ведения карточек"
+    }
+  ],
+  "5.skills": [
+    {
+      "kind": "resource",
+      "id": "skills_pack"
+    },
+    {
+      "kind": "resource",
+      "id": "agent_pack_zip"
+    },
+    {
+      "kind": "step",
+      "text": "Поставь Cursor, открой agent-pack"
+    }
+  ],
+  "5.cro_gaps": [
+    {
+      "kind": "step",
+      "text": "Список дыр доступов — в отчёт CRO (чеклист уже в дне 1)"
+    }
+  ],
+  "6.warm_base_collect": [
+    {
+      "kind": "resource",
+      "id": "doc_warm_base_template"
+    },
+    {
+      "kind": "step",
+      "text": "Заполни шаблон своей тёплой базы"
+    }
+  ],
+  "6.amo_100": [
+    {
+      "kind": "step",
+      "text": "В Amo: next step во всех своих карточках (раздел Доступы / Amo)"
+    }
+  ],
+  "7.scoring_practice": [
     {
       "kind": "resource",
       "id": "doc_practice_briefs"
     },
     {
-      "kind": "resource",
-      "id": "skills_pack"
+      "kind": "step",
+      "text": "Два учебных брифа → скоринг"
     }
   ],
   "7.warm_touch": [
@@ -737,170 +255,104 @@
       "id": "doc_outreach_templates"
     },
     {
-      "kind": "resource",
-      "id": "doc_warm_base_template"
-    },
-    {
-      "kind": "resource",
-      "id": "amo_cult"
+      "kind": "step",
+      "text": "3 касания → зафиксируй в Amo"
     }
   ],
-  "2.sales_snapshot": [
-    {
-      "kind": "resource",
-      "id": "view_sales"
-    },
-    {
-      "kind": "resource",
-      "id": "doc_nb_reg"
-    },
-    {
-      "kind": "resource",
-      "id": "amo_cult"
-    },
-    {
-      "kind": "person",
-      "id": "dima"
-    }
-  ],
-  "6.sales_account_refresh": [
-    {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
-      "kind": "person",
-      "id": "sasha_a"
-    },
-    {
-      "kind": "resource",
-      "id": "doc_handoff_sasha"
-    },
+  "8.hyp_test_plan": [
     {
       "kind": "step",
-      "text": "Уточни у Димы/Саши: какой именно аккаунт (Telegram / LinkedIn / email-подпись) и логин"
+      "text": "Сегменты + поводы захода — черновик на сверку с CRO"
     }
   ],
-  "3.clifton_setup": [
+  "8.qual_brief": [
     {
       "kind": "step",
-      "text": "Заказать Clifton (компания) → пройти тест → сверить профиль с таблицей команды"
-    },
-    {
-      "kind": "resource",
-      "id": "clifton"
-    },
-    {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
-      "kind": "resource",
-      "id": "doc_clifton_team"
-    },
-    {
-      "kind": "resource",
-      "id": "view_people"
+      "text": "Один учебный бриф до ≥5 (брифы — раздел Скиллы / practice_briefs)"
     }
   ],
-  "5.friday_units_sales": [
-    {
-      "kind": "person",
-      "id": "dima"
-    },
+  "9.month_plan": [
     {
       "kind": "step",
-      "text": "Каждую пятницу 12:00 — звонок юнитов по продажам. Лидируете: Дима + ты. Готовь…"
+      "text": "1–2 квал. брифа / месяц — реалистичный план"
+    }
+  ],
+  "9.quest_done": [
+    {
+      "kind": "step",
+      "text": "Отметь программу пройденной"
     }
   ],
   "1.day_report": [
     {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
-      "kind": "step",
-      "text": "Напиши Диме: что сделал · всё ли закрыто · что мутно"
+      "kind": "telegram",
+      "personId": "dima",
+      "label": "Написать отчёт в Telegram",
+      "prefill": "Отчёт дня 1:\n• Сделал:\n• Закрыто:\n• Мутно:\n"
     }
   ],
   "2.day_report": [
     {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
-      "kind": "step",
-      "text": "Напиши Диме: что сделал · всё ли закрыто · что мутно"
+      "kind": "telegram",
+      "personId": "dima",
+      "label": "Написать отчёт в Telegram",
+      "prefill": "Отчёт дня 2:\n• Сделал:\n• Закрыто:\n• Мутно:\n"
     }
   ],
   "3.day_report": [
     {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
-      "kind": "step",
-      "text": "Напиши Диме: что сделал · всё ли закрыто · что мутно"
+      "kind": "telegram",
+      "personId": "dima",
+      "label": "Написать отчёт в Telegram",
+      "prefill": "Отчёт дня 3:\n• Сделал:\n• Закрыто:\n• Мутно:\n"
     }
   ],
   "4.day_report": [
     {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
-      "kind": "step",
-      "text": "Напиши Диме: что сделал · всё ли закрыто · что мутно"
+      "kind": "telegram",
+      "personId": "dima",
+      "label": "Написать отчёт в Telegram",
+      "prefill": "Отчёт дня 4:\n• Сделал:\n• Закрыто:\n• Мутно:\n"
     }
   ],
   "5.day_report": [
     {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
-      "kind": "step",
-      "text": "Напиши Диме: что сделал · всё ли закрыто · что мутно"
+      "kind": "telegram",
+      "personId": "dima",
+      "label": "Написать отчёт в Telegram",
+      "prefill": "Отчёт дня 5:\n• Сделал:\n• Закрыто:\n• Мутно:\n"
     }
   ],
   "6.day_report": [
     {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
-      "kind": "step",
-      "text": "Напиши Диме: что сделал · всё ли закрыто · что мутно"
+      "kind": "telegram",
+      "personId": "dima",
+      "label": "Написать отчёт в Telegram",
+      "prefill": "Отчёт дня 6:\n• Сделал:\n• Закрыто:\n• Мутно:\n"
     }
   ],
   "7.day_report": [
     {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
-      "kind": "step",
-      "text": "Напиши Диме: что сделал · всё ли закрыто · что мутно"
+      "kind": "telegram",
+      "personId": "dima",
+      "label": "Написать отчёт в Telegram",
+      "prefill": "Отчёт дня 7:\n• Сделал:\n• Закрыто:\n• Мутно:\n"
     }
   ],
   "8.day_report": [
     {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
-      "kind": "step",
-      "text": "Напиши Диме: что сделал · всё ли закрыто · что мутно"
+      "kind": "telegram",
+      "personId": "dima",
+      "label": "Написать отчёт в Telegram",
+      "prefill": "Отчёт дня 8:\n• Сделал:\n• Закрыто:\n• Мутно:\n"
     }
   ],
   "9.day_report": [
     {
-      "kind": "person",
-      "id": "dima"
-    },
-    {
-      "kind": "step",
-      "text": "Напиши Диме: что сделал · всё ли закрыто · что мутно"
+      "kind": "telegram",
+      "personId": "dima",
+      "label": "Написать отчёт в Telegram",
+      "prefill": "Отчёт дня 9:\n• Сделал:\n• Закрыто:\n• Мутно:\n"
     }
   ]
 }
