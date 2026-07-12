@@ -7,7 +7,7 @@
   const ACCESS_KEY = "sb-onboarding-leonid-access";
   const QUEST_KEY = "sb-onboarding-leonid-quest-step";
   const MODE_KEY = "sb-onboarding-leonid-program-mode";
-  const ASSET_VER = "20260712-v48";
+  const ASSET_VER = "20260712-v49";
 
   const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya", "alya_dudenkova"]);
 
@@ -638,16 +638,16 @@
 
     let contactsHtml = "";
     if (c.email) {
-      contactsHtml += `<a class="contact-btn primary" href="mailto:${esc(c.email)}">✉ ${esc(c.email)}</a>`;
+      contactsHtml += `<button type="button" class="contact-btn primary" data-copy-email="${esc(c.email)}" title="Скопировать почту">✉ ${esc(c.email)}</button>`;
     }
     if (c.emailAlt) {
-      contactsHtml += `<a class="contact-btn" href="mailto:${esc(c.emailAlt)}">✉ ${esc(c.emailAlt)}</a>`;
+      contactsHtml += `<button type="button" class="contact-btn" data-copy-email="${esc(c.emailAlt)}" title="Скопировать почту">✉ ${esc(c.emailAlt)}</button>`;
     }
     if (c.emailWork && c.emailWork !== c.email) {
-      contactsHtml += `<a class="contact-btn" href="mailto:${esc(c.emailWork)}">✉ ${esc(c.emailWork)}</a>`;
+      contactsHtml += `<button type="button" class="contact-btn" data-copy-email="${esc(c.emailWork)}" title="Скопировать почту">✉ ${esc(c.emailWork)}</button>`;
     }
     if (c.telegram) {
-      contactsHtml += `<a class="contact-btn" href="${c.telegram}" target="_blank" rel="noopener"><span class="icon">TG</span> ${esc(c.telegramLabel || "Telegram")}</a>`;
+      contactsHtml += `<a class="contact-btn" href="${esc(c.telegram)}" target="_blank" rel="noopener"><span class="icon">TG</span> ${esc(c.telegramLabel || "Telegram")}</a>`;
     }
     if (c.howToWrite) {
       contactsHtml += `<p style="font-size:12px;color:var(--muted);margin:8px 0 0">${esc(c.howToWrite)}</p>`;
@@ -697,6 +697,7 @@
       setView("map");
     });
 
+    bindCopyEmail(body);
     showModal();
   }
 
@@ -785,9 +786,12 @@
 
   function bindPathActions(container) {
     container.querySelectorAll("[data-person]").forEach(el => {
-      el.addEventListener("click", () => openPerson(el.dataset.person));
+      el.addEventListener("click", e => {
+        if (e.target.closest("[data-copy-email], .person-contact-tg, a.contact-btn")) return;
+        openPerson(el.dataset.person);
+      });
     });
-    // data-view: только в bindMainEvents (один handler, с people-filter)
+    bindCopyEmail(container);
   }
 
   function renderUnitRoutingCard(intro) {
@@ -1069,15 +1073,60 @@
       ${renderUnitRoutingCard("Быстрый роутинг по типу задачи.")}`;
   }
 
+  function personContactsHtml(p) {
+    const c = getContact(p.id);
+    if (!c.email && !c.telegram) return "";
+    const parts = [];
+    if (c.email) {
+      parts.push(`<button type="button" class="person-contact person-contact-email" data-copy-email="${esc(c.email)}" title="Скопировать почту">${esc(c.email)}</button>`);
+    }
+    if (c.telegram) {
+      const label = c.telegramLabel || "Telegram";
+      parts.push(`<a class="person-contact person-contact-tg" href="${esc(c.telegram)}" target="_blank" rel="noopener">${esc(label)}</a>`);
+    }
+    return `<div class="person-contacts">${parts.join("")}</div>`;
+  }
+
+  async function copyEmail(email, btn) {
+    if (!email) return;
+    try {
+      await navigator.clipboard.writeText(email);
+      if (btn) {
+        const prev = btn.textContent;
+        btn.classList.add("copied");
+        btn.textContent = "Скопировано ✓";
+        setTimeout(() => {
+          btn.classList.remove("copied");
+          btn.textContent = prev;
+        }, 1600);
+      }
+    } catch (_) {
+      alert("Не удалось скопировать — выдели почту вручную");
+    }
+  }
+
+  function bindCopyEmail(root) {
+    (root || document).querySelectorAll("[data-copy-email]").forEach(el => {
+      if (el.dataset.copyBound) return;
+      el.dataset.copyBound = "1";
+      el.addEventListener("click", e => {
+        e.preventDefault();
+        e.stopPropagation();
+        copyEmail(el.dataset.copyEmail, el);
+      });
+    });
+  }
+
   function personCardHtml(p) {
     const partner = p.category === "partner_slz" || p.category === "collaborator" ? " partner" : "";
     const sub = p.bio_short ? `<div class="person-bio">${esc(p.bio_short)}</div>` : "";
     return `<div class="person-card${partner}" data-person="${p.id}">
       ${personAvatarHtml(p, false)}
-      <div>
+      <div class="person-card-body">
         <div class="person-name">${esc(p.name)}</div>
         <div class="person-role">${esc(p.role)}</div>
         ${sub}
+        ${personContactsHtml(p)}
         <span class="person-unit-tag">${esc(p.unit)}</span>
       </div>
     </div>`;
@@ -1495,8 +1544,13 @@
     });
 
     main.querySelectorAll("[data-person]").forEach(el => {
-      el.addEventListener("click", () => openPerson(el.dataset.person));
+      el.addEventListener("click", e => {
+        if (e.target.closest("[data-copy-email], .person-contact-tg, a.contact-btn")) return;
+        openPerson(el.dataset.person);
+      });
     });
+    bindCopyEmail(main);
+    bindCopyEmail(document.getElementById("modalBody"));
 
     main.querySelectorAll(".org-unit").forEach(el => {
       el.addEventListener("click", () => {
