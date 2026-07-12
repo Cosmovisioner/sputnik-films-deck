@@ -505,21 +505,59 @@ body::after {
 .path-link {
   display: flex;
   align-items: center;
-  gap: 12px;
+  gap: 14px;
   padding: 12px 14px;
-  margin: 6px 0;
+  margin: 0;
   border: 1px solid var(--border);
   border-radius: 10px;
-  background: var(--ivory);
+  background: var(--white);
   text-decoration: none;
   color: var(--graphite);
   font-size: 13px;
   font-weight: 600;
-  transition: transform 0.1s, box-shadow 0.1s;
+  transition: transform 0.12s var(--ease), box-shadow 0.12s var(--ease), border-color 0.12s;
   cursor: pointer;
   width: 100%;
   text-align: left;
   font-family: inherit;
+}
+.path-block {
+  margin: 0 0 18px;
+}
+.path-block:last-child { margin-bottom: 0; }
+.path-block-title {
+  margin: 0 0 8px;
+  font-family: var(--font-ui);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--tertiary);
+  line-height: 1.35;
+}
+.path-block-list {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.path-block-note-only .path-callout {
+  margin-top: 0;
+}
+.path-empty {
+  margin: 0;
+  font-size: 13px;
+  color: var(--muted);
+}
+.path-callout {
+  margin: 0;
+  padding: 10px 12px;
+  border-left: 3px solid var(--accent-mid);
+  background: var(--accent-soft);
+  border-radius: 0 8px 8px 0;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--graphite);
+  line-height: 1.45;
 }
 .path-link-cta {
   justify-content: space-between;
@@ -527,7 +565,7 @@ body::after {
 .path-link-main {
   display: flex;
   flex-direction: column;
-  gap: 2px;
+  gap: 3px;
   min-width: 0;
   flex: 1;
 }
@@ -535,6 +573,7 @@ body::after {
   font-size: 14px;
   font-weight: 650;
   line-height: 1.3;
+  color: var(--ink);
 }
 .path-link-sub {
   display: block;
@@ -545,21 +584,22 @@ body::after {
 }
 .path-link-action {
   flex-shrink: 0;
-  padding: 8px 14px;
+  padding: 9px 14px;
   border-radius: 8px;
   background: var(--graphite);
   color: #fff;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 700;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
 }
 .path-link-cta:hover .path-link-action {
-  opacity: 0.92;
+  background: #000;
 }
 .path-link:hover {
   transform: translateY(-1px);
   box-shadow: var(--shadow-sm);
-  border-color: rgba(17,17,17,0.28);
+  border-color: rgba(17,17,17,0.22);
 }
 .path-link:active { transform: scale(0.99); }
 .path-link .icon {
@@ -1525,20 +1565,41 @@ body.modal-open { overflow: hidden; }
   color: var(--accent);
   margin: 0 0 6px;
 }
-.quest-task-title { margin-bottom: 8px; }
+.quest-task-title {
+  margin: 0 0 8px;
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2.5vw, 1.55rem);
+  line-height: 1.2;
+  letter-spacing: -0.02em;
+}
 .quest-focus.quest-done { outline: 2px solid var(--ok); outline-offset: 2px; }
+.quest-focus-head { margin: 0 0 18px; }
+.quest-focus-meta {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 8px 12px;
+  margin: 0 0 10px;
+}
+.quest-focus-day {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--muted);
+}
 .quest-rail {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
-  margin: 0 0 16px;
+  margin: 0 0 18px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid var(--border);
 }
 .quest-step-num {
   min-width: 28px;
   height: 28px;
   padding: 0 6px;
   border-radius: 8px;
-  border: 1.5px solid var(--graphite);
+  border: 1.5px solid var(--border);
   background: var(--white);
   color: var(--graphite);
   font-family: var(--font-ui);
@@ -1559,10 +1620,11 @@ body.modal-open { overflow: hidden; }
   box-shadow: 0 0 0 3px rgba(249, 116, 190, 0.28);
 }
 .quest-task-hint {
-  margin: 0 0 12px;
+  margin: 0;
   font-size: 14px;
   color: var(--muted);
-  line-height: 1.45;
+  line-height: 1.5;
+  max-width: 42rem;
 }
 .task-hint {
   display: block;
@@ -1574,11 +1636,11 @@ body.modal-open { overflow: hidden; }
 }
 .task-item.done .task-hint { text-decoration: none; }
 .quest-do-box {
-  background: var(--ivory);
-  border: 1.5px solid var(--border);
-  border-radius: var(--radius-sm);
-  padding: 16px;
-  margin: 0 0 16px;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  padding: 0;
+  margin: 0 0 20px;
 }
 .quest-actions-title {
   font-size: 13px;
@@ -1588,9 +1650,19 @@ body.modal-open { overflow: hidden; }
 .quest-actions .path-link,
 .quest-actions .path-step,
 .quest-actions .path-note { margin-left: 0; }
-.quest-day-links { margin-top: 14px; }
+.quest-day-links {
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+}
+.task-path {
+  display: block;
+  padding: 12px 0 4px;
+}
 .quest-decision {
   margin-top: 4px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
 }
 .quest-decision .btn-done,
 .quest-decision .btn-skip,

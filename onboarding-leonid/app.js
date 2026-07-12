@@ -7,7 +7,7 @@
   const ACCESS_KEY = "sb-onboarding-leonid-access";
   const QUEST_KEY = "sb-onboarding-leonid-quest-step";
   const MODE_KEY = "sb-onboarding-leonid-program-mode";
-  const ASSET_VER = "20260712-v56";
+  const ASSET_VER = "20260712-v57";
 
   const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya", "alya_dudenkova"]);
 
@@ -711,6 +711,32 @@
     return base + sep + "text=" + encodeURIComponent(prefill);
   }
 
+  function renderPathBlocks(items, stepId) {
+    if (!items || !items.length) {
+      return `<p class="path-empty">Действий нет — отметь шаг или напиши Диме.</p>`;
+    }
+    const blocks = [];
+    let cur = { title: null, items: [] };
+    items.forEach(it => {
+      if (it.kind === "step") {
+        if (cur.title || cur.items.length) blocks.push(cur);
+        cur = { title: it.text, items: [] };
+      } else {
+        cur.items.push(it);
+      }
+    });
+    if (cur.title || cur.items.length) blocks.push(cur);
+
+    return blocks.map(b => {
+      const actions = b.items.map(p => renderPathItem(p, stepId)).filter(Boolean).join("");
+      const hasActions = b.items.some(p => p.kind !== "note");
+      return `<section class="path-block${hasActions ? "" : " path-block-note-only"}">
+        ${b.title ? `<h4 class="path-block-title">${esc(b.title)}</h4>` : ""}
+        ${actions ? `<div class="path-block-list">${actions}</div>` : ""}
+      </section>`;
+    }).join("");
+  }
+
   function pathCtaHtml({ title, sub, cta, href, attrs, tag, className }) {
     const Tag = tag || (href ? "a" : "button");
     const extra = attrs || "";
@@ -754,7 +780,7 @@
       return `<div class="path-step">→ ${esc(item.text)}</div>`;
     }
     if (item.kind === "note") {
-      return `<div class="path-note">${esc(item.text)}</div>`;
+      return `<div class="path-callout">${esc(item.text)}</div>`;
     }
     if (item.kind === "link") {
       return pathCtaHtml({
@@ -767,7 +793,7 @@
     if (item.kind === "copy") {
       return pathCtaHtml({
         title: item.label || "Скопировать текст",
-        sub: "Текст попадёт в буфер",
+        sub: "",
         cta: item.cta || "Скопировать",
         attrs: ` data-copy-text="${esc(item.text || "")}"`
       });
@@ -775,7 +801,7 @@
     if (item.kind === "overlay" && item.id === "people") {
       return pathCtaHtml({
         title: item.title || "Люди Cult Group",
-        sub: "Откроется поверх шага",
+        sub: "",
         cta: item.cta || "Открыть",
         attrs: ` data-overlay="people"`
       });
@@ -788,7 +814,7 @@
         : "";
       return pathCtaHtml({
         title: item.label || "Написать в Telegram",
-        sub: item.copy ? "Сообщение скопируется и откроется чат" : "Откроется чат",
+        sub: item.copy ? "Текст в буфере" : "",
         cta: item.cta || "Написать",
         href: url,
         className: "path-link path-link-cta path-link-tg",
@@ -990,58 +1016,38 @@
     currentDayIdx = q.dayIdx;
     const isDone = !!(state["step_" + q.stepId] || {})[q.taskId];
     const pathItems = taskPaths[q.key] || [];
-    const prog = questProgressLabel();
-    const dayDoneCount = step.tasks.filter(t => (state["step_" + step.id] || {})[t.id]).length;
     const prev = currentQuestIdx > 0;
     const next = currentQuestIdx < path.length - 1;
     const firstOfDay = path.findIndex(x => x.stepId === q.stepId) === currentQuestIdx;
     const linksBlock = firstOfDay && (step.links || []).length
-      ? `<div class="quest-day-links"><span class="mono-tag">Ссылки дня</span>${step.links.map(l =>
-          `<a class="path-link" href="${l.url}" target="_blank" rel="noopener"><span class="icon">→</span><span>${esc(l.label)}</span></a>`
-        ).join("")}</div>`
+      ? `<div class="quest-day-links"><span class="mono-tag">Ссылки дня</span><div class="path-block-list" style="margin-top:8px">${step.links.map(l =>
+          pathCtaHtml({ title: l.label, cta: "Открыть", href: l.url })
+        ).join("")}</div></div>`
       : "";
 
     const actionsHint = pathItems.length
-      ? pathItems.map(p => renderPathItem(p, step.id)).join("")
-      : `<div class="path-note">Открой нужный раздел в шапке или напиши Диме в отчёте дня.</div>`;
+      ? renderPathBlocks(pathItems, step.id)
+      : `<p class="path-empty">Открой раздел в меню или напиши Диме в отчёте дня.</p>`;
 
     return `
       ${renderModeToggle()}
-      <div class="quest-progress-card card">
-        <div class="quest-progress-top">
-          <span class="mono-tag">Шаг ${currentQuestIdx + 1} из ${path.length}</span>
-          <span class="quest-progress-pct">${prog.pct}% · ${prog.done}/${prog.total}</span>
-        </div>
-        <div class="quest-progress-track"><div class="quest-progress-fill" style="width:${prog.pct}%"></div></div>
-        <p class="quest-progress-day">${esc(step.phase || "")} · день ${step.id}: ${dayDoneCount}/${step.tasks.length} сегодня</p>
-      </div>
       <article class="card card-hero quest-focus ${isDone ? "quest-done" : ""}">
         ${renderQuestRail(path, currentQuestIdx)}
-        <div class="card-meta">${formatDateRu(step.date, step.weekday)} · ${esc(step.title)}</div>
-        <h2 class="card-title quest-task-title">${esc(q.task.text)}</h2>
-        ${q.task.hint ? `<p class="quest-task-hint">${esc(q.task.hint)}</p>` : ""}
-        ${firstOfDay && step.intro ? `<p class="card-intro">${esc(step.intro)}</p>` : ""}
-        <div class="quest-do-box">
-          <div class="quest-actions">
-            <h4 class="quest-actions-title">Открыть</h4>
-            ${actionsHint}
+        <header class="quest-focus-head">
+          <div class="quest-focus-meta">
+            <span class="mono-tag">Шаг ${currentQuestIdx + 1}/${path.length}</span>
+            <span class="quest-focus-day">${esc(step.title)}</span>
           </div>
+          <h2 class="card-title quest-task-title">${esc(q.task.text)}</h2>
+          ${q.task.hint ? `<p class="quest-task-hint">${esc(q.task.hint)}</p>` : ""}
+        </header>
+        <div class="quest-do-box">
+          ${actionsHint}
           ${linksBlock}
         </div>
         ${renderQuestDecisionBar({ stepId: q.stepId, taskId: q.taskId, isDone, showBack: prev, backId: "prevQuest" })}
-        ${!next && isDone ? `<div class="complete-banner complete-banner-final"><p><strong>Онбординг пройден.</strong> Напиши Диме. Дальше — weekly 1:1 с CRO. Месяц 2: <strong>1–2 квал. брифа</strong>.</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><a class="btn primary" href="https://t.me/cosmovisioner" target="_blank" rel="noopener">Написать Диме</a></div></div>` : ""}
-      </article>
-      <div class="card">
-        <h3 class="section-heading">Быстрые разделы</h3>
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <button type="button" class="btn" data-view="map">Карта группы</button>
-          <button type="button" class="btn" data-view="pools">Пулы</button>
-          <button type="button" class="btn" data-view="people">Люди</button>
-          <button type="button" class="btn" data-view="decks">Презентации</button>
-          <button type="button" class="btn" data-view="access">Ссылки и доступы</button>
-          <button type="button" class="btn" data-view="skills">Скиллы</button>
-        </div>
-      </div>`;
+        ${!next && isDone ? `<div class="complete-banner complete-banner-final"><p><strong>Онбординг пройден.</strong> Напиши Диме. Дальше — weekly 1:1 с CRO.</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><a class="btn primary" href="https://t.me/cosmovisioner" target="_blank" rel="noopener">Написать Диме</a></div></div>` : ""}
+      </article>`;
   }
 
   function renderProgramList() {
@@ -1069,7 +1075,7 @@
             <button type="button" class="btn quest-jump-btn" data-quest-idx="${qIdx}" title="Открыть как шаг">Шаг</button>
             <span class="task-chevron">${path.length ? (isOpen ? "▲" : "▼") : ""}</span>
           </div>
-          ${path.length ? `<div class="task-path">${path.map(p => renderPathItem(p, step.id)).join("")}</div>` : ""}
+          ${path.length ? `<div class="task-path">${renderPathBlocks(path, step.id)}</div>` : ""}
           <div class="task-decision">
             <button type="button" class="btn btn-skip" data-quest-skip data-step="${step.id}" data-task="${task.id}" data-quest-idx="${qIdx}">Пропустить</button>
             <button type="button" class="btn btn-done ${isDone ? "is-active" : ""}" data-quest-done data-step="${step.id}" data-task="${task.id}">Сделано</button>
@@ -1093,18 +1099,7 @@
           <button type="button" class="btn primary" id="nextDay" ${!next ? "disabled" : ""}>${next ? next.title + " →" : "Конец"}</button>
         </div>
       </article>
-      ${step.id === 2 ? renderUnitRoutingCard("После продуктов — держи таблицу под рукой.") : ""}
-      <div class="card">
-        <h3 class="section-heading">Быстрые разделы</h3>
-        <div style="display:flex;gap:8px;flex-wrap:wrap">
-          <button type="button" class="btn" data-view="map">Карта группы</button>
-          <button type="button" class="btn" data-view="pools">Пулы</button>
-          <button type="button" class="btn" data-view="people">Люди</button>
-          <button type="button" class="btn" data-view="decks">Презентации</button>
-          <button type="button" class="btn" data-view="access">Ссылки и доступы</button>
-          <button type="button" class="btn" data-view="skills">Скиллы</button>
-        </div>
-      </div>`;
+      ${step.id === 2 ? renderUnitRoutingCard("После продуктов — держи таблицу под рукой.") : ""}`;
   }
 
   function renderProgram() {
