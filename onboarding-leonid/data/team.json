@@ -2,7 +2,7 @@
   "org": {
     "title": "Cult Group",
     "flow": "Клиент → ты или Дима → бриф и оценка → нужный юнит (Cult / Blaster / Sputnik) → договор и предоплата → продюсер",
-    "producers_note": "Продакшн — Cult Group (три студии). ТехноТигры — IT-студия группы: CRM и другие продукты. Cult Group обкатывает их первым клиентом.",
+    "producers_note": "",
     "pillars": [
       {
         "id": "cult_group",
@@ -13,31 +13,31 @@
         "units": [
           {
             "id": "uk",
-            "name": "Управляющая компания",
-            "short": "УК",
+            "name": "Холдинг",
+            "short": "Холдинг",
             "color": "#111111",
-            "desc": "Правила, коммерция, CRM, PR"
+            "desc": "Коммерция, правила, CRM"
           },
           {
             "id": "cult",
             "name": "Cult",
             "short": "Cult",
             "color": "#F974BE",
-            "desc": "Рекламные ролики, гибрид съёмка + ИИ. Порог от ~5 млн ₽"
+            "desc": "Рекламные ролики, гибрид съёмка + ИИ"
           },
           {
             "id": "blaster",
             "name": "Blaster",
             "short": "Blaster",
             "color": "#E11D48",
-            "desc": "CG, 2D/3D, motion, мультимедиа. Порог от сотен тысяч ₽"
+            "desc": "CG, 2D/3D, motion, мультимедиа"
           },
           {
             "id": "sputnik",
             "name": "Sputnik Films",
             "short": "Sputnik",
             "color": "#0D9488",
-            "desc": "Док, спецпроекты, шоу, корп. фильмы. Порог от ~1 млн ₽"
+            "desc": "Док, спецпроекты, шоу, корп. фильмы"
           }
         ]
       },
@@ -55,7 +55,7 @@
             "short": "CRM",
             "color": "#6B7280",
             "explainer": "Prodoone_0806",
-            "desc": "B2B CRM с ИИ для видеопродакшена. Prodavan / iCRM — внутренние названия того же продукта."
+            "desc": "B2B CRM с ИИ для видеопродакшена"
           },
           {
             "id": "snubdoc",
@@ -63,15 +63,7 @@
             "short": "СнупДок",
             "color": "#6B7280",
             "explainer": "SnoopDoc_0806",
-            "desc": "Документы и процессы для креативных команд и фрилансеров."
-          },
-          {
-            "id": "chechek",
-            "name": "Чечек",
-            "short": "Чечек",
-            "color": "#6B7280",
-            "explainer": "4e4ik_0806",
-            "desc": "Автосбор чеков от самозанятых."
+            "desc": "Документы и процессы для креативных команд"
           },
           {
             "id": "octopus",
@@ -79,26 +71,17 @@
             "short": "Octopus",
             "color": "#6B7280",
             "explainer": "Octopus_0806",
-            "desc": "Платформа для совместной работы над контентом — смотри эксплейнер Octopus в Drive."
-          },
-          {
-            "id": "mission_control",
-            "name": "Mission Control",
-            "short": "MC",
-            "color": "#6B7280",
-            "explainer": "MissionControl_0806",
-            "desc": "Операционный контроль производства — смотри эксплейнер Mission Control в Drive."
+            "desc": "Совместная работа над контентом"
           },
           {
             "id": "robots_sons",
             "name": "Робот и сыновья",
-            "short": "R&S",
+            "short": "Робот и сыновья",
             "color": "#6B7280",
             "explainer": null,
-            "desc": "Обучение: внедрение ИИ в креативные индустрии, курс «Оно само». Публичный education-бренд ТехноТигров."
+            "desc": "Обучение: ИИ в креативных индустриях"
           }
-        ],
-        "note": "Названия продуктов — как в эксплейнерах на Drive (июнь 2026). «Робот и сыновья» — обучение, ролика в той папке нет. Клиентам продакшена эти продукты на старте не продаём — только явный запрос через Диму."
+        ]
       }
     ],
     "partner_slz": {
@@ -121,7 +104,7 @@
       "category": "staff",
       "name": "Константин Мельников",
       "role": "CEO Cult Group · основатель Cult · сооснователь Blaster",
-      "unit": "УК",
+      "unit": "Холдинг",
       "unitId": "uk",
       "initials": "КМ",
       "photo": "assets/avatars/umelnikov_work.jpg",
@@ -168,7 +151,7 @@
       "category": "staff",
       "name": "Дмитрий Квашнин",
       "role": "Коммерческий директор группы",
-      "unit": "УК",
+      "unit": "Холдинг",
       "unitId": "uk",
       "initials": "ДК",
       "photo": "assets/avatars/cosmovisioner.jpg",
@@ -465,7 +448,7 @@
       "category": "staff",
       "name": "Леонид Мархашов",
       "role": "Менеджер по продажам",
-      "unit": "УК",
+      "unit": "Холдинг",
       "unitId": "uk",
       "initials": "ЛМ",
       "photo": null,
@@ -604,7 +587,7 @@
       "category": "holding",
       "name": "Анастасия Коброва",
       "role": "Финансовый директор группы",
-      "unit": "УК",
+      "unit": "Холдинг",
       "unitId": "uk",
       "initials": "АК",
       "photo": null,
@@ -669,7 +652,7 @@
       "category": "holding",
       "name": "Надежда Белякова",
       "role": "PR и ивенты · холдинг",
-      "unit": "УК",
+      "unit": "Холдинг",
       "unitId": "uk",
       "initials": "НБ",
       "photo": "assets/avatars/borisovaaaan.jpg",
@@ -699,7 +682,7 @@
       "category": "holding",
       "name": "Ева Koz",
       "role": "Junior продюсер · Prod / AI",
-      "unit": "УК",
+      "unit": "Холдинг",
       "unitId": "uk",
       "initials": "ЕK",
       "photo": "assets/avatars/Eva_prod.jpg",
@@ -731,7 +714,7 @@
       "category": "holding",
       "name": "Елизавета Никонова",
       "role": "Production Assistant · cult.team",
-      "unit": "УК",
+      "unit": "Холдинг",
       "unitId": "uk",
       "initials": "ЕН",
       "photo": "assets/avatars/se_leverk.jpg",
@@ -797,7 +780,7 @@
       "category": "holding",
       "name": "Дарья",
       "role": "Developer",
-      "unit": "УК",
+      "unit": "Холдинг",
       "unitId": "uk",
       "initials": "Д",
       "photo": "assets/avatars/KiryukhinaD.jpg",
@@ -892,7 +875,7 @@
       "category": "holding",
       "name": "Аля Дуденкова",
       "role": "Документооборот · акты, счета, Контур",
-      "unit": "УК",
+      "unit": "Холдинг",
       "unitId": "uk",
       "initials": "АД",
       "photo": null,

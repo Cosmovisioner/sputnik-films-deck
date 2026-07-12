@@ -7,15 +7,15 @@
   const ACCESS_KEY = "sb-onboarding-leonid-access";
   const QUEST_KEY = "sb-onboarding-leonid-quest-step";
   const MODE_KEY = "sb-onboarding-leonid-program-mode";
-  const ASSET_VER = "20260712-v45";
+  const ASSET_VER = "20260712-v46";
 
   const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya", "alya_dudenkova"]);
 
   const UNIT_ROUTING = [
-    { signal: "Реклама, съёмка, TV/digital", unit: "Cult", threshold: "от ~5 млн ₽", person: "denis" },
-    { signal: "CG, motion, 3D, мультимедиа", unit: "Blaster", threshold: "от сотен тысяч", person: "liza" },
-    { signal: "Док, шоу, спецпроект", unit: "Sputnik", threshold: "от ~1 млн · «берём» решает Сергей", person: "sergey" },
-    { signal: "Не ясен формат / холод", unit: "Cult Group (общая)", threshold: "любой", person: "dima" }
+    { signal: "Реклама, съёмка, TV/digital", unit: "Cult", person: "denis" },
+    { signal: "CG, motion, 3D, мультимедиа", unit: "Blaster", person: "liza" },
+    { signal: "Док, шоу, спецпроект", unit: "Sputnik", person: "sergey" },
+    { signal: "Не ясен формат / холод", unit: "Cult Group (общая)", person: "dima" }
   ];
 
   function esc(s) {
@@ -36,6 +36,7 @@
 
   const UNIT_ID_MAP = {
     "УК": "uk",
+    "Холдинг": "uk",
     "Cult": "cult",
     "Blaster": "blaster",
     "Sputnik": "sputnik",
@@ -43,7 +44,8 @@
     "ТехноТигры": "techtigers",
     "Партнёр": "partner_slz",
     "Партнёр · Blaster": "partner_slz",
-    "УК + Sputnik": "uk"
+    "УК + Sputnik": "uk",
+    "Холдинг + Sputnik": "uk"
   };
 
   const PRIORITY_LABELS = {
@@ -380,7 +382,7 @@
         <div class="sales-unit-card" style="--unit-color:${u.color || "#666"}">
           <div class="sales-unit-head">
             <h3 class="sales-unit-name">${esc(u.name)}</h3>
-            <span class="sales-unit-owner">${esc(u.owner)} · порог ${esc(u.threshold)}</span>
+            <span class="sales-unit-owner">${esc(u.owner)}</span>
           </div>
           ${unitBody}
           ${insights ? `<ul class="sales-insights">${insights}</ul>` : ""}
@@ -777,12 +779,12 @@
       const who = p
         ? `<button type="button" class="path-link inline-person" data-person="${p.id}">${esc(p.name.split(" ")[0])}</button>`
         : esc(r.person);
-      return `<tr><td>${esc(r.signal)}</td><td><strong>${esc(r.unit)}</strong><br><span class="routing-threshold">${esc(r.threshold)}</span></td><td>${who}</td></tr>`;
+      return `<tr><td>${esc(r.signal)}</td><td><strong>${esc(r.unit)}</strong></td><td>${who}</td></tr>`;
     }).join("");
     return `
       <div class="card unit-routing-card">
         <h3 class="section-heading">Куда вести клиента</h3>
-        <p class="card-intro">${intro || "Быстрый роутинг до созвона с хэдом юнита. Сомневаешься — Cult Group + Дима."}</p>
+        <p class="card-intro">${intro || "Сомневаешься — Cult Group + Дима."}</p>
         <div class="sales-table-wrap">
           <table class="sales-table routing-table">
             <thead><tr><th>Сигнал в брифе</th><th>Юнит</th><th>Кому</th></tr></thead>
@@ -795,51 +797,11 @@
       </div>`;
   }
 
-  function renderProgramHint(step) {
-    if (step.id !== 1) return "";
-    if (programMode === "focus" && currentQuestIdx > 0) return "";
-    const r = stepsMeta.realism || {};
-    const buddy = stepsMeta.buddy || {};
-    const cadence = stepsMeta.feedback_cadence || [];
-    const culture = stepsMeta.culture_blurb || "";
-    const own = stepsMeta.ownership || {};
-    const rhythms = stepsMeta.rhythms || [];
-    return `
-      <div class="card hint-card">
-        <h3 class="section-heading">Как пользоваться квестом</h3>
-        ${culture ? `<p class="card-intro culture-blurb">${esc(culture)}</p>` : ""}
-        <ul class="hint-list">
-          <li><strong>Шаг за шагом</strong> — одна задача: куда перейти → сделай → галочка → «Дальше»</li>
-          <li><strong>Список дня</strong> — обзор всех задач дня (переключатель сверху)</li>
-          <li><strong>Галочка</strong> — только когда реально сделал; «Пропустить» не копится как прогресс смысла</li>
-          <li><strong>Застрял</strong> — пиши Диме; календарь хэдов — через Севу (@se_leverk)</li>
-        </ul>
-        ${own.rule ? `<div class="buddy-box ownership-box"><span class="mono-tag">${esc(own.title || "Самоорганизация")}</span><p><strong>${esc(own.rule)}</strong></p>${(own.do || []).length ? `<ul class="hint-list">${own.do.map(x => `<li>${esc(x)}</li>`).join("")}</ul>` : ""}</div>` : ""}
-        ${rhythms.length ? `<div class="cadence-box"><span class="mono-tag">Ритм</span><ul class="hint-list">${rhythms.map(x => `<li><strong>${esc(x.when || "")}</strong> — ${esc(x.title || "")}${x.leads ? ` · лиды: ${esc(x.leads)}` : ""}</li>`).join("")}</ul></div>` : ""}
-        ${buddy.primary ? `<div class="buddy-box"><span class="mono-tag">Buddy</span><p><strong>${esc(buddy.primary)}</strong></p>${buddy.handoff ? `<p>${esc(buddy.handoff)}</p>` : ""}${buddy.calendar ? `<p class="path-note">${esc(buddy.calendar)}</p>` : ""}</div>` : ""}
-        ${cadence.length ? `<div class="cadence-box"><span class="mono-tag">Обратная связь</span><ul class="hint-list">${cadence.map(c => `<li>${esc(c)}</li>`).join("")}</ul></div>` : ""}
-        ${r.hoursWeek1 ? `<p class="path-note" style="margin-top:12px">Нагрузка: ${esc(r.hoursWeek1)} в 1-й неделе · узкое место — ${esc(r.bottleneck || "созвоны с хэдами")}</p>` : ""}
-      </div>`;
-  }
-
   function ensureFirstTaskExpanded(step) {
     const anyOpen = step.tasks.some(t => expandedTasks[step.id + "." + t.id]);
     if (anyOpen) return;
     const first = step.tasks.find(t => (taskPaths[step.id + "." + t.id] || []).length);
     if (first) expandedTasks[step.id + "." + first.id] = true;
-  }
-
-  function renderExcludedCard() {
-    const list = stepsMeta.excludedForSales;
-    const ok = stepsMeta.ok_not_to_know || [];
-    if ((!list || !list.length) && !ok.length) return "";
-    return `
-      <div class="card excluded-card">
-        <h3 class="section-heading">Не входит в онбординг</h3>
-        <p class="card-intro excluded-intro">Sales-safe: без P&amp;L, паролей и внутренних финмоделей.</p>
-        ${list && list.length ? `<ul class="excluded-list">${list.map(x => `<li><strong>${esc(x.label)}</strong> — ${esc(x.reason)}</li>`).join("")}</ul>` : ""}
-        ${ok.length ? `<div class="ok-know-box"><span class="mono-tag">Нормально не знать на старте</span><ul class="excluded-list">${ok.map(x => `<li><strong>${esc(x.label)}</strong> — ${esc(x.why)}</li>`).join("")}</ul></div>` : ""}
-      </div>`;
   }
 
   function renderModeToggle() {
@@ -855,11 +817,11 @@
     const dayItems = path.map((q, i) => ({ q, i })).filter(x => x.q.stepId === dayId);
     return `
       <div class="quest-rail" aria-label="Шаги дня">
-        ${dayItems.map(({ q, i }) => {
+        ${dayItems.map(({ q, i }, n) => {
           const done = !!(state["step_" + q.stepId] || {})[q.taskId];
           const active = i === idx ? "active" : "";
           const cls = done ? "done" : "";
-          return `<button type="button" class="quest-dot ${cls} ${active}" data-quest-idx="${i}" title="${esc(q.task.text)}" aria-current="${active ? "step" : "false"}"></button>`;
+          return `<button type="button" class="quest-step-num ${cls} ${active}" data-quest-idx="${i}" title="${esc(q.task.text)}" aria-label="Шаг ${n + 1}" aria-current="${active ? "step" : "false"}">${n + 1}</button>`;
         }).join("")}
       </div>`;
   }
@@ -891,7 +853,6 @@
 
     return `
       ${renderModeToggle()}
-      ${renderProgramHint(step)}
       <div class="quest-progress-card card">
         <div class="quest-progress-top">
           <span class="mono-tag">Шаг ${currentQuestIdx + 1} из ${path.length}</span>
@@ -904,18 +865,18 @@
         <div class="card-meta">${formatDateRu(step.date, step.weekday)} · ${esc(step.title)}</div>
         <p class="quest-kicker">Сейчас сделай</p>
         <h2 class="card-title quest-task-title">${esc(q.task.text)}</h2>
+        ${q.task.hint ? `<p class="quest-task-hint">${esc(q.task.hint)}</p>` : ""}
         ${q.task.group ? `<p class="mono-tag" style="margin-bottom:12px">${esc(q.task.group)}</p>` : ""}
         ${firstOfDay ? `<p class="card-intro">${esc(step.intro)}</p>` : ""}
         ${firstOfDay && step.outcome ? `<div class="day-outcome"><span class="mono-tag">Исход дня</span><p>${esc(step.outcome)}</p></div>` : ""}
         ${renderQuestRail(path, currentQuestIdx)}
         <div class="quest-do-box">
-          <h3 class="section-heading">Что сделать на этом шаге</h3>
           <label class="quest-check-row">
             <input type="checkbox" data-step="${q.stepId}" data-task="${q.taskId}" ${isDone ? "checked" : ""} />
-            <span>${isDone ? "Выполнено — жми «Дальше»" : "Отметь, когда реально сделаешь"}</span>
+            <span>${isDone ? "Выполнено — жми «Дальше»" : "Отметь, когда сделаешь"}</span>
           </label>
           <div class="quest-actions">
-            <h4 class="quest-actions-title">Куда перейти / что открыть</h4>
+            <h4 class="quest-actions-title">Открыть</h4>
             ${actionsHint}
           </div>
           ${linksBlock}
@@ -925,7 +886,7 @@
           <button type="button" class="btn" id="jumpDayList">Список дня</button>
           <button type="button" class="btn primary" id="nextQuest" ${!next && !isDone ? "disabled" : ""}>${next ? (isDone ? "Дальше →" : "Пропустить без галочки →") : (isDone ? "Финиш ✓" : "Конец")}</button>
         </div>
-        ${!next && isDone ? `<div class="complete-banner complete-banner-final"><p><strong>Онбординг пройден.</strong> Напиши Диме. Дальше — daily async + weekly 1:1 с CRO. Месяц 2: <strong>1–2 квал. брифа</strong> (реализм); 3–5 — только если объём тёплых/входящих позволяет.</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button type="button" class="btn primary" data-person="dima">Написать Диме</button><button type="button" class="btn" data-view="sales">KPI на 90 дней</button></div></div>` : ""}
+        ${!next && isDone ? `<div class="complete-banner complete-banner-final"><p><strong>Онбординг пройден.</strong> Напиши Диме. Дальше — weekly 1:1 с CRO. Месяц 2: <strong>1–2 квал. брифа</strong>.</p><div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px"><button type="button" class="btn primary" data-person="dima">Написать Диме</button><button type="button" class="btn" data-view="sales">KPI на 90 дней</button></div></div>` : ""}
       </article>
       <div class="card">
         <h3 class="section-heading">Быстрые разделы</h3>
@@ -938,8 +899,7 @@
           <button type="button" class="btn" data-view="access">Доступы</button>
           <button type="button" class="btn" data-view="skills">Скиллы</button>
         </div>
-      </div>
-      ${currentDayIdx === 0 ? renderExcludedCard() : ""}`;
+      </div>`;
   }
 
   function renderProgramList() {
@@ -964,9 +924,9 @@
         <div class="task-item ${isOpen ? "open" : ""} ${isDone ? "done" : ""}" data-task-key="${key}">
           <div class="task-head">
             <input type="checkbox" data-step="${step.id}" data-task="${task.id}" ${isDone ? "checked" : ""} />
-            <span class="task-text">${task.text}</span>
+            <span class="task-text">${esc(task.text)}${task.hint ? `<span class="task-hint">${esc(task.hint)}</span>` : ""}</span>
             <button type="button" class="btn quest-jump-btn" data-quest-idx="${qIdx}" title="Открыть как шаг">Шаг</button>
-            <span class="task-chevron">${path.length ? (isOpen ? "▲" : "▼ ссылки") : ""}</span>
+            <span class="task-chevron">${path.length ? (isOpen ? "▲" : "▼") : ""}</span>
           </div>
           ${path.length ? `<div class="task-path">${path.map(p => renderPathItem(p, step.id)).join("")}</div>` : ""}
         </div>`;
@@ -989,8 +949,7 @@
           <button type="button" class="btn primary" id="nextDay" ${!next ? "disabled" : ""}>${next ? next.title + " →" : "Конец"}</button>
         </div>
       </article>
-      ${renderProgramHint(step)}
-      ${step.id === 4 ? renderUnitRoutingCard("После созвона с Лизой — держи эту таблицу под рукой на пресейлах.") : ""}
+      ${step.id === 4 ? renderUnitRoutingCard("После созвона с Лизой — держи таблицу под рукой.") : ""}
       <div class="card">
         <h3 class="section-heading">Быстрые разделы</h3>
         <div style="display:flex;gap:8px;flex-wrap:wrap">
@@ -1002,43 +961,11 @@
           <button type="button" class="btn" data-view="access">Доступы</button>
           <button type="button" class="btn" data-view="skills">Скиллы</button>
         </div>
-      </div>
-      ${currentDayIdx === 0 ? renderExcludedCard() : ""}`;
+      </div>`;
   }
 
   function renderProgram() {
     return programMode === "list" ? renderProgramList() : renderProgramFocus();
-  }
-
-  function renderPartnerBlock() {
-    const ps = team.org.partner_slz;
-    if (!ps) return "";
-    const ids = ps.member_ids || [];
-    const cards = ids.map(id => {
-      const p = findPerson(id);
-      if (!p) return "";
-      return `<div class="person-card partner map-partner-card" data-person="${p.id}">
-        <div class="person-name">${esc(p.name)}</div>
-        <div class="person-role">${esc(p.bio_short || p.role)}</div>
-      </div>`;
-    }).join("");
-    const collabIds = ps.collaborator_ids || [];
-    const collabCards = collabIds.map(id => {
-      const p = findPerson(id);
-      if (!p) return "";
-      return `<div class="person-card partner map-partner-card" data-person="${p.id}">
-        <div class="person-name">${esc(p.name)}</div>
-        <div class="person-role">${esc(p.bio_short || p.role)}</div>
-        <span class="mono-tag" style="margin-top:6px;display:inline-block">коллаборация · не sales</span>
-      </div>`;
-    }).join("");
-    return `
-      <div class="card partner-map-card">
-        <h3 class="section-heading">${esc(ps.title || "Партнёры")}</h3>
-        <p class="card-intro">${esc(ps.desc || "")}</p>
-        <p style="font-size:12px;color:var(--muted);margin-bottom:12px">${esc(ps.routing || "")}</p>
-        <div class="people-grid">${cards}${collabCards}</div>
-      </div>`;
   }
 
   function renderMap() {
@@ -1047,7 +974,6 @@
     const pillarHtml = pillars.map(pillar => {
       const isCult = pillar.id === "cult_group";
       const items = isCult ? pillar.units : pillar.startups;
-      const itemLabel = isCult ? "юнит" : "продукт";
       const inner = items.map(item => {
         const sel = selectedUnit === item.id ? "selected" : "";
         const count = isCult ? peopleForUnit(item.id).length : (item.id === "prodavan" ? peopleForUnit("techtigers").length : 0);
@@ -1066,12 +992,9 @@
           <div class="pillar-head">
             <h3 class="pillar-title">${pillar.name}</h3>
             <p class="pillar-tagline">${pillar.tagline}</p>
-            <p class="pillar-desc">${pillar.desc}</p>
-            ${pillar.products_ref ? `<p class="pillar-drive"><a href="${pillar.products_ref}" target="_blank" rel="noopener">Эксплейнеры продуктов (Drive)</a></p>` : ""}
+            ${pillar.products_ref ? `<p class="pillar-drive"><a class="btn" href="${pillar.products_ref}" target="_blank" rel="noopener">Эксплейнеры продуктов · Drive</a></p>` : ""}
           </div>
           <div class="org-grid pillar-units">${inner}</div>
-          ${pillar.note ? `<p class="pillar-footnote">${esc(pillar.note)}</p>` : ""}
-          <p class="pillar-meta">${items.length} ${itemLabel}${items.length === 1 ? "" : items.length < 5 ? "а" : "ов"}</p>
         </section>`;
     }).join("");
 
@@ -1099,8 +1022,7 @@
               <span class="mono-tag">ТехноТигры</span>
               <h3 class="section-heading">${u.name}</h3>
               <p style="font-size:13px;color:var(--muted)">${u.desc}</p>
-              ${u.id === "prodavan" ? `<p class="path-note" style="margin-top:10px">Prodo.one = Prodavan = iCRM. Клиентам наружу на старте не продаём. CRM для sales — демо, доступ и roadmap только через <button type="button" class="path-link inline-person" data-person="dima">Диму</button>.</p>` : ""}
-              ${ttPeople.length ? `<h4 class="mono-tag" style="margin:16px 0 8px">Контакт по продукту</h4>
+              ${ttPeople.length ? `<h4 class="mono-tag" style="margin:16px 0 8px">Контакт</h4>
                 <div class="people-grid">${ttPeople.map(p => personCardHtml(p)).join("")}</div>` : ""}
             </div>`;
         }
@@ -1110,14 +1032,10 @@
     return `
       <div class="card">
         <h2 class="card-title">Карта холдинга</h2>
-        <p class="card-intro">Нажми на юнит или продукт ТехноТигров — справа появятся люди и презентации. Open Production упразднён.</p>
-        <div class="flow-line">${team.org.flow}</div>
         <div class="pillar-grid">${pillarHtml}</div>
-        <p style="font-size:12px;color:var(--tertiary);margin-top:16px">${team.org.producers_note}</p>
       </div>
-      ${renderPartnerBlock()}
       ${detail}
-      ${renderUnitRoutingCard("Если клиент уже на созвоне — быстрый роутинг по типу задачи.")}`;
+      ${renderUnitRoutingCard("Быстрый роутинг по типу задачи.")}`;
   }
 
   function personCardHtml(p) {

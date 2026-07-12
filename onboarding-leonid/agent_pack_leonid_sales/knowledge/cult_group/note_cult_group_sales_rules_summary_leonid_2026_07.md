@@ -4,7 +4,7 @@
 **Путь:** `SecondBrain/20_Business_Projects/sputnik_films/operations/cult_group/`
 **Тип:** Note
 **Аудитория:** Леонид Мархашов · Sales / NewBiz
-**Полная версия:** `artifact_cult_group_commercial_rules_full_2026_06_16.md` · [GDoc](https://docs.google.com/document/d/1Wd-EIArqDzynvUTRU-u2Gc4mw9feMUjUYOGq9ilEASU/edit)
+**Полная версия:** `artifact_cult_group_commercial_rules_full_2026_06_16.md` · [GDoc](https://docs.google.com/document/d/1Mu4yY-2t8kD-3KCamGuo8VUBPqjvb1yuBsmOwSlvmaM/edit?tab=t.0#heading=h.peq3uhpks7zz)
 
 ---
 

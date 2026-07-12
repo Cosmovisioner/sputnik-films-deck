@@ -237,16 +237,16 @@
     {
       "id": "doc_rules_summary",
       "title": "Коммерческие правила · кратко",
-      "subtitle": "За 2 минуты — роль, юниты, эскалация",
+      "subtitle": "",
       "url": "rules-summary.html",
       "owner": "dima",
       "unit": "uk"
     },
     {
       "id": "doc_commerce_rules",
-      "title": "Коммерческие правила (полные)",
-      "subtitle": "Воронка, маржа, стоп-лист, сначала юнит группы",
-      "url": "https://docs.google.com/document/d/1Wd-EIArqDzynvUTRU-u2Gc4mw9feMUjUYOGq9ilEASU/edit",
+      "title": "Коммерческие правила",
+      "subtitle": "",
+      "url": "https://docs.google.com/document/d/1Mu4yY-2t8kD-3KCamGuo8VUBPqjvb1yuBsmOwSlvmaM/edit?tab=t.0#heading=h.peq3uhpks7zz",
       "owner": "dima",
       "unit": "uk"
     },
