@@ -1,167 +1,4 @@
 {
-  "1.walkthrough": [
-    {
-      "kind": "step",
-      "text": "10:30–13:30 — вводная с Димой"
-    },
-    {
-      "kind": "person",
-      "id": "dima"
-    }
-  ],
-  "1.role": [
-    {
-      "kind": "resource",
-      "id": "doc_offer_leonid"
-    },
-    {
-      "kind": "step",
-      "text": "Зона: входящие + тёплая база → бриф"
-    }
-  ],
-  "1.team_staff": [
-    {
-      "kind": "resource",
-      "id": "view_people"
-    },
-    {
-      "kind": "step",
-      "text": "Пробеги карточки: с кем будешь писать и созваниваться"
-    }
-  ],
-  "1.access": [
-    {
-      "kind": "step",
-      "text": "Напиши Диме шаблоном ниже — получи всё из списка. AmoCRM НЕ сегодня (день 3)."
-    },
-    {
-      "kind": "telegram",
-      "personId": "dima",
-      "label": "Написать Диме · запрос доступов",
-      "prefill": "Привет, Дима! Стартую онбординг (день 1). Проверь / выдай доступы:\n\n☐ Drive Культ-группа + Коммерция\n☐ Почта @cult.team\n☐ Telegram: Группа / Продажи\n☐ Telegram: Сейлз | Культ Груп (ссылка в квесте)\n☐ Telegram: Коммерческий директор\n☐ Clifton access code\n☐ Cursor или Codex (инвайт/оплата)\n☐ MacWhisper или Handy\n\nAmoCRM — не сегодня, день 3.\nСпасибо!"
-    },
-    {
-      "kind": "step",
-      "text": "Drive · Культ-группа"
-    },
-    {
-      "kind": "resource",
-      "id": "drive_cult_group"
-    },
-    {
-      "kind": "step",
-      "text": "Drive · Коммерция"
-    },
-    {
-      "kind": "resource",
-      "id": "drive_commerce"
-    },
-    {
-      "kind": "step",
-      "text": "Почта leonid@cult.team"
-    },
-    {
-      "kind": "resource",
-      "id": "email_leonid"
-    },
-    {
-      "kind": "step",
-      "text": "Clifton — access code у Димы"
-    },
-    {
-      "kind": "resource",
-      "id": "clifton"
-    },
-    {
-      "kind": "step",
-      "text": "MacWhisper или Handy — транскрипция"
-    },
-    {
-      "kind": "resource",
-      "id": "soft_macwhisper"
-    },
-    {
-      "kind": "step",
-      "text": "Cursor или Codex — инвайт/оплата у Димы"
-    },
-    {
-      "kind": "resource",
-      "id": "soft_cursor"
-    },
-    {
-      "kind": "resource",
-      "id": "soft_codex"
-    },
-    {
-      "kind": "step",
-      "text": "Чаты Telegram — отдельным шагом ниже. AmoCRM — день 3, не сегодня."
-    },
-    {
-      "kind": "step",
-      "text": "Отметь, что уже работает:"
-    },
-    {
-      "kind": "access_verify",
-      "phase": "day1"
-    }
-  ],
-  "1.tg_join": [
-    {
-      "kind": "resource",
-      "id": "view_access"
-    },
-    {
-      "kind": "section",
-      "id": "chats",
-      "filter": "required"
-    },
-    {
-      "kind": "step",
-      "text": "Полный список чатов — в «Ссылки и доступы» → Telegram-чаты. Попроси Диму добавить во все required."
-    }
-  ],
-  "1.soft_ai": [
-    {
-      "kind": "resource",
-      "id": "soft_cursor"
-    },
-    {
-      "kind": "resource",
-      "id": "soft_codex"
-    },
-    {
-      "kind": "step",
-      "text": "Поставь Cursor или Codex · инвайт/оплата у Димы"
-    }
-  ],
-  "1.clifton_setup": [
-    {
-      "kind": "resource",
-      "id": "clifton"
-    },
-    {
-      "kind": "resource",
-      "id": "doc_clifton_team"
-    },
-    {
-      "kind": "step",
-      "text": "Пройди тест и сверь с таблицей команды"
-    }
-  ],
-  "1.schedule_heads": [
-    {
-      "kind": "step",
-      "text": "Напиши Денису и Лизе: 30 мин знакомства, когда удобно им"
-    },
-    {
-      "kind": "person",
-      "id": "denis"
-    },
-    {
-      "kind": "person",
-      "id": "liza"
-    }
-  ],
   "2.sasha_office": [
     {
       "kind": "step",
@@ -204,6 +41,28 @@
     {
       "kind": "step",
       "text": "Три юнита + роутинг на карте. Сергей — через CRO."
+    },
+    {
+      "kind": "step",
+      "text": "Презентации Sputnik Films — открой и посмотри:"
+    },
+    {
+      "kind": "link",
+      "url": "assets/docs/deck_sputnik_films_2025.pdf",
+      "title": "Sputnik Films 2025",
+      "cta": "Открыть PDF"
+    },
+    {
+      "kind": "link",
+      "url": "assets/docs/deck_sputnik_special_projects_2026.pdf",
+      "title": "Sputnik · спецпроекты 2026",
+      "cta": "Открыть PDF"
+    },
+    {
+      "kind": "link",
+      "url": "assets/docs/deck_sputnik_documentary.pdf",
+      "title": "Sputnik · документальное кино",
+      "cta": "Открыть PDF"
     }
   ],
   "2.client_pools": [
@@ -426,14 +285,6 @@
       "text": "Отметь программу пройденной"
     }
   ],
-  "1.day_report": [
-    {
-      "kind": "telegram",
-      "personId": "dima",
-      "label": "Написать отчёт в Telegram",
-      "prefill": "Отчёт дня 1:\n• Сделал:\n• Закрыто:\n• Мутно:\n"
-    }
-  ],
   "2.day_report": [
     {
       "kind": "telegram",
@@ -496,6 +347,354 @@
       "personId": "dima",
       "label": "Написать отчёт в Telegram",
       "prefill": "Отчёт дня 9:\n• Сделал:\n• Закрыто:\n• Мутно:\n"
+    }
+  ],
+  "1.walkthrough": [
+    {
+      "kind": "step",
+      "text": "Сегодня 10:30–11:30 — вводная с Димой (≈1 час)."
+    },
+    {
+      "kind": "person",
+      "id": "dima",
+      "cta": "Профиль Димы"
+    },
+    {
+      "kind": "link",
+      "url": "https://telemost.yandex.ru/j/19690866747185",
+      "title": "Яндекс Телемост",
+      "cta": "Перейти на звонок"
+    }
+  ],
+  "1.role": [
+    {
+      "kind": "step",
+      "text": "Прежде чем идти дальше — посмотрим согласованный оффер."
+    },
+    {
+      "kind": "resource",
+      "id": "doc_offer_leonid",
+      "cta": "Открыть оффер"
+    }
+  ],
+  "1.team_staff": [
+    {
+      "kind": "step",
+      "text": "Посмотри, с кем будешь общаться. Откроется поверх шага — можно закрыть и вернуться."
+    },
+    {
+      "kind": "overlay",
+      "id": "people",
+      "title": "Люди Cult Group",
+      "cta": "Открыть"
+    }
+  ],
+  "1.tg_join": [
+    {
+      "kind": "step",
+      "text": "Вступи по ссылкам. Где ссылки нет — сообщение Диме уже готово (скопируется при клике)."
+    },
+    {
+      "kind": "link",
+      "url": "https://t.me/+iK0kFij8L4FjOTgy",
+      "title": "Сейлз | Культ Груп",
+      "cta": "Вступить"
+    },
+    {
+      "kind": "link",
+      "url": "https://t.me/+De8Uvd8Y_PIzODQy",
+      "title": "Сейлз-менеджер | Культ Груп",
+      "cta": "Вступить"
+    },
+    {
+      "kind": "link",
+      "url": "https://t.me/+Dox8bNEFaLgzZjMy",
+      "title": "Коммерческий директор | Культ Груп",
+      "cta": "Вступить"
+    },
+    {
+      "kind": "link",
+      "url": "https://t.me/+Se8NCMboatI5NzRi",
+      "title": "Blaster × Sputnik / Продажи",
+      "cta": "Вступить"
+    },
+    {
+      "kind": "step",
+      "text": "Группа / Продажи — инвайт нельзя выгрузить (нет прав админа). Напиши Диме:"
+    },
+    {
+      "kind": "telegram",
+      "personId": "dima",
+      "label": "Группа / Продажи",
+      "cta": "Написать Диме",
+      "prefill": "Привет! Дай мне, пожалуйста, доступ в чат продаж группы.",
+      "copy": true
+    },
+    {
+      "kind": "step",
+      "text": "Спутник х Культ | Продажи — то же:"
+    },
+    {
+      "kind": "telegram",
+      "personId": "dima",
+      "label": "Спутник х Культ | Продажи",
+      "cta": "Написать Диме",
+      "prefill": "Привет, Дима! Добавь меня, пожалуйста, в чат «Спутник х Культ | Продажи». Спасибо!",
+      "copy": true
+    },
+    {
+      "kind": "step",
+      "text": "Совместный Cult × Blaster: когда будешь в «Группа / Продажи», напиши туда (текст скопируется):"
+    },
+    {
+      "kind": "copy",
+      "label": "Шаблон · Группа / Продажи",
+      "cta": "Скопировать текст",
+      "text": "Ребята, это для Дениса и Лизы: у вас есть совместный чат продаж Cult × Blaster? Пустите меня, пожалуйста, туда — и Диму тоже."
+    },
+    {
+      "kind": "step",
+      "text": "Или одним сообщением запроси у Димы всё без ссылок:"
+    },
+    {
+      "kind": "telegram",
+      "personId": "dima",
+      "label": "Чаты без ссылок",
+      "cta": "Написать Диме",
+      "prefill": "Привет, Дима! Нужны доступы в Telegram (день 1):\n\n☐ Группа / Продажи\n☐ Спутник х Культ | Продажи\n☐ Вайб-кружок (не срочно, опционально)\n\nОстальные чаты уже по ссылкам в квесте. Спасибо!",
+      "copy": true
+    },
+    {
+      "kind": "step",
+      "text": "Вайб-кружок — необязательно (нейросети, вайбкодинг, созвон раз в неделю):"
+    },
+    {
+      "kind": "telegram",
+      "personId": "dima",
+      "label": "Вайб-кружок (опционально)",
+      "cta": "Попросить добавить",
+      "prefill": "Привет, Дима! Если ок — добавь в Вайб-кружок (не срочно). Спасибо!",
+      "copy": true
+    }
+  ],
+  "1.access": [
+    {
+      "kind": "step",
+      "text": "Открой папки. Нет доступа — напиши Диме. AmoCRM — день 3. Регламенты NB/бриф/Amo — день 4."
+    },
+    {
+      "kind": "step",
+      "text": "Папка коммерции Cult Group"
+    },
+    {
+      "kind": "link",
+      "url": "https://drive.google.com/drive/folders/1TpAPO58bvQN13RQUwd1NnTbGBoOl9We0?usp=sharing",
+      "title": "Коммерция Cult Group",
+      "cta": "Открыть"
+    },
+    {
+      "kind": "step",
+      "text": "Папка продаж Blaster"
+    },
+    {
+      "kind": "link",
+      "url": "https://drive.google.com/drive/folders/1j-ARZnroEcDoSQnr-1Rr-urwUq4izNxb",
+      "title": "Продажи Blaster",
+      "cta": "Открыть"
+    },
+    {
+      "kind": "step",
+      "text": "Папка продаж Sputnik Films"
+    },
+    {
+      "kind": "link",
+      "url": "https://drive.google.com/drive/folders/1C4scLmeG2w3XpJKyM45NZJIgVzADkNNA?usp=sharing",
+      "title": "Продажи Sputnik",
+      "cta": "Открыть"
+    },
+    {
+      "kind": "step",
+      "text": "Папка продаж Cult (legacy)"
+    },
+    {
+      "kind": "link",
+      "url": "https://drive.google.com/drive/folders/1veiUtmQ-TOWNLADaSNtFL1WltpCiu_0J",
+      "title": "Продажи Cult (старое)",
+      "cta": "Открыть"
+    },
+    {
+      "kind": "step",
+      "text": "Drive · Культ-группа (корень)"
+    },
+    {
+      "kind": "resource",
+      "id": "drive_cult_group",
+      "cta": "Открыть"
+    },
+    {
+      "kind": "step",
+      "text": "Сводная таблица Clifton команды — пригодится после теста"
+    },
+    {
+      "kind": "resource",
+      "id": "doc_clifton_team",
+      "cta": "Открыть"
+    },
+    {
+      "kind": "note",
+      "text": "Исключено из дня 1: P&L Blaster, Декомпозиция Cult, Холст, финансовый дэшборд — позже."
+    },
+    {
+      "kind": "telegram",
+      "personId": "dima",
+      "label": "Нет доступа к папке",
+      "cta": "Написать Диме",
+      "prefill": "Привет, Дима! Нет доступа к папке/документу: [название]. Открой, пожалуйста.",
+      "copy": true
+    }
+  ],
+  "1.work_accounts": [
+    {
+      "kind": "step",
+      "text": "1) Напиши Лизе Никоновой — представься и попроси зарегистрировать почту на аккаунт Культа."
+    },
+    {
+      "kind": "telegram",
+      "personId": "se_leverk",
+      "label": "Лиза Никонова",
+      "cta": "Написать Лизе",
+      "prefill": "Привет, Лиза! Это Леонид Мархашов, новый sales Cult Group. Стартую онбординг.\n\nПожалуйста, зарегистрируй / привяжи мою личную почту к аккаунту Культа (рабочая почта leonid@cult.team).\n\nЛичная почта: [впиши свою]\nСпасибо!",
+      "copy": true
+    },
+    {
+      "kind": "step",
+      "text": "2) Обнови данные на рабочей странице: имя, фото, подпись в Google / почте @cult.team."
+    },
+    {
+      "kind": "note",
+      "text": "Когда почта придёт — зайди, проверь вход и заполни профиль."
+    }
+  ],
+  "1.soft_ai": [
+    {
+      "kind": "step",
+      "text": "Cursor и Codex — чтобы упрощать работу через автоматизацию и скиллы. Подписку оплачивает компания — инвайт у Димы."
+    },
+    {
+      "kind": "resource",
+      "id": "soft_cursor",
+      "cta": "Скачать Cursor"
+    },
+    {
+      "kind": "resource",
+      "id": "soft_codex",
+      "cta": "Скачать Codex"
+    },
+    {
+      "kind": "step",
+      "text": "Транскрипция встреч:"
+    },
+    {
+      "kind": "resource",
+      "id": "soft_macwhisper",
+      "cta": "Скачать Whisper · Mac"
+    },
+    {
+      "kind": "resource",
+      "id": "soft_whisper_win",
+      "cta": "Скачать Whisper · Windows"
+    },
+    {
+      "kind": "resource",
+      "id": "soft_handy",
+      "cta": "Скачать Handy"
+    }
+  ],
+  "1.schedule_heads": [
+    {
+      "kind": "step",
+      "text": "Назначь два созвона по ~30 мин. Цель — познакомиться и наладить контакт, не глубокий пресейл."
+    },
+    {
+      "kind": "person",
+      "id": "denis",
+      "cta": "Профиль Дениса"
+    },
+    {
+      "kind": "telegram",
+      "personId": "denis",
+      "label": "Денис Леваков",
+      "cta": "Написать Денису",
+      "prefill": "Привет, Денис! Я Лёня, новый sales Cult Group. Можем созвониться на 30 мин на этой неделе — познакомиться и синхронизироваться? Какие слоты удобны?",
+      "copy": true
+    },
+    {
+      "kind": "person",
+      "id": "liza",
+      "cta": "Профиль Лизы"
+    },
+    {
+      "kind": "telegram",
+      "personId": "liza",
+      "label": "Лиза Иванова",
+      "cta": "Написать Лизе",
+      "prefill": "Привет, Лиза! Я Лёня, новый sales Cult Group. Можем созвониться на 30 мин на этой неделе — познакомиться и синхронизироваться? Какие слоты удобны?",
+      "copy": true
+    },
+    {
+      "kind": "step",
+      "text": "5 вопросов на созвон:"
+    },
+    {
+      "kind": "note",
+      "text": "1. Какие у вас пожелания и ожидания от совместной работы?"
+    },
+    {
+      "kind": "note",
+      "text": "2. Какие сейчас фокусные задачи или фокусные клиенты?"
+    },
+    {
+      "kind": "note",
+      "text": "3. Какие продукты / категории хочется продавать больше? (у Дениса — интерес к FMCG)"
+    },
+    {
+      "kind": "note",
+      "text": "4. Как вам удобнее со мной синхронизироваться: Amo, чат, созвон?"
+    },
+    {
+      "kind": "note",
+      "text": "5. Что вам важно узнать обо мне, чтобы старт был комфортным?"
+    }
+  ],
+  "1.clifton_setup": [
+    {
+      "kind": "step",
+      "text": "Пройди CliftonStrengths: это помогает команде и тебе понимать, как лучше взаимодействовать. Кода доступа не будет — оплати сам, компания компенсирует."
+    },
+    {
+      "kind": "link",
+      "url": "https://www.gallup.com/cliftonstrengths/en/253808/cliftonstrengths.aspx",
+      "title": "CliftonStrengths · Gallup",
+      "cta": "Пройти тест"
+    },
+    {
+      "kind": "step",
+      "text": "После прохождения сохрани ссылку/PDF результата. В отчёте CRO напиши: сколько стоило и куда перевести компенсацию."
+    },
+    {
+      "kind": "resource",
+      "id": "doc_clifton_team",
+      "cta": "Таблица команды"
+    }
+  ],
+  "1.day_report": [
+    {
+      "kind": "telegram",
+      "personId": "dima",
+      "label": "Отчёт за день 1",
+      "cta": "Написать Диме",
+      "prefill": "Дима, отчёт день 1:\n\n✅ Сделано:\n•\n\n⏳ В процессе:\n•\n\nCliftonStrengths: [ссылка на результат]\nСумма теста: [₽]\nКуда перевести компенсацию: [реквизиты]\n\nМутно / блокеры:\n•",
+      "copy": true
     }
   ]
 }

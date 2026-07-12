@@ -39,9 +39,9 @@
     },
     {
       "id": "drive_commerce",
-      "title": "Google Drive · Коммерция",
+      "title": "Google Drive · Коммерция Cult Group",
       "subtitle": "КП, шаблоны, материалы продаж",
-      "url": "https://drive.google.com/drive/folders/1cm50xCY02m_WTNenHbEoKAl-ALZ-Ac_n",
+      "url": "https://drive.google.com/drive/folders/1TpAPO58bvQN13RQUwd1NnTbGBoOl9We0?usp=sharing",
       "owner": "dima",
       "unit": "uk"
     },
@@ -110,6 +110,15 @@
       "owner": "dima",
       "unit": "uk",
       "note": "Только Mac. На Windows/Linux — Handy (handy.computer)."
+    },
+    {
+      "id": "soft_whisper_win",
+      "title": "Whisper · Windows",
+      "subtitle": "Диктовка / транскрипция на Windows (Handy)",
+      "url": "https://handy.computer/",
+      "owner": "dima",
+      "unit": "uk",
+      "note": "На Windows для Whisper используй Handy."
     },
     {
       "id": "soft_handy",

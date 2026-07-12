@@ -1,10 +1,33 @@
 {
   "meta": {
     "title": "Telegram · рабочие чаты",
-    "note": "Публичных ссылок на большинство чатов нет — Дима добавляет вручную. На онбординге Лёню не добавляем в Супертопы, Управление | Культ Груп и продюсерский чат Sputnik (стратегия/споры юнитов — через CRO). Systems|TechTigers — только если CRO явно добавит под iCRM.",
-    "do_not_add_note": "Не добавляем на онбординге (не «потом само»)"
+    "note": "Часть ссылок выгружена из аккаунта CRO (Telethon). Где нет прав админа на инвайт — Лёня пишет Диме.",
+    "do_not_add_note": "Не добавляем на онбординге (не «потом само»)",
+    "sourced_at": "2026-07-12"
   },
   "chats": [
+    {
+      "id": "sales_cult",
+      "name": "Сейлз | Культ Груп",
+      "priority": "required",
+      "week": 1,
+      "unit": "uk",
+      "whoAdds": "ссылка",
+      "inviteUrl": "https://t.me/+iK0kFij8L4FjOTgy",
+      "tg_id": "-5376303378",
+      "desc": "Рабочий чат продаж Cult Group. Вступай по ссылке."
+    },
+    {
+      "id": "sales_manager_cult",
+      "name": "Сейлз-менеджер | Культ Груп",
+      "priority": "required",
+      "week": 1,
+      "unit": "uk",
+      "whoAdds": "ссылка",
+      "inviteUrl": "https://t.me/+De8Uvd8Y_PIzODQy",
+      "tg_id": "-1003759381467",
+      "desc": "Канал/чат сейlz-менеджера Cult Group."
+    },
     {
       "id": "group_sales",
       "name": "Группа / Продажи",
@@ -13,58 +36,51 @@
       "unit": "uk",
       "whoAdds": "Дима Квашнин (@cosmovisioner)",
       "inviteUrl": null,
-      "desc": "Общий контур продаж: лиды, статусы, кросс-сделки между юнитами"
-    },
-    {
-      "id": "sales_manager_cult",
-      "name": "Сейлз | Культ Груп",
-      "priority": "required",
-      "week": 1,
-      "unit": "uk",
-      "whoAdds": "Дима Квашнин (@cosmovisioner)",
-      "inviteUrl": "https://t.me/+iK0kFij8L4FjOTgy",
-      "tg_id": "-1003759381467",
-      "desc": "Рабочий чат продаж Cult Group. Вступай по ссылке."
+      "tg_id": "-5280287302",
+      "desc": "Общий контур продаж. Публичной ссылки нет (CRO не админ на экспорт) — напиши Диме."
     },
     {
       "id": "commercial_director",
-      "name": "Коммерческий директор | Cult Group",
+      "name": "Коммерческий директор | Культ Груп",
       "priority": "required",
       "week": 1,
       "unit": "uk",
-      "whoAdds": "Дима Квашнин",
-      "inviteUrl": null,
-      "desc": "Прямая линия с коммерческим директором: приоритеты, блокеры, эскалации"
+      "whoAdds": "ссылка",
+      "inviteUrl": "https://t.me/+Dox8bNEFaLgzZjMy",
+      "tg_id": "-5311172784",
+      "desc": "Прямая линия с коммерческим директором."
     },
     {
-      "id": "ddl",
-      "name": "ДДЛ бизнес",
-      "priority": "as_needed",
+      "id": "cult_sputnik_sales",
+      "name": "Спутник х Культ | Продажи",
+      "priority": "required",
       "week": 1,
       "unit": "sputnik",
-      "whoAdds": "Дима или Лиза",
+      "whoAdds": "Дима Квашнин",
       "inviteUrl": null,
-      "desc": "Док-проекты Sputnik: ТГНД, ИРИ, ПФКI. Партнёр — Дима Солдатов (@DiOdz)"
+      "tg_id": "-5129431095",
+      "desc": "Совместный контур Sputnik × Cult. Ссылки нет — попроси Диму добавить."
     },
     {
       "id": "blaster_sputnik_sales",
       "name": "Blaster x Sputnik / Продажи",
-      "priority": "as_needed",
+      "priority": "required",
       "week": 1,
       "unit": "blaster",
-      "whoAdds": "Лиза или Дима",
-      "inviteUrl": null,
-      "desc": "Совместные пресейлы, где участвуют и графика, и продакшен"
+      "whoAdds": "ссылка",
+      "inviteUrl": "https://t.me/+Se8NCMboatI5NzRi",
+      "tg_id": "-1003800092654",
+      "desc": "Совместные пресейлы Blaster × Sputnik. Вступай по ссылке."
     },
     {
-      "id": "sputnik_sales",
-      "name": "Спутник / Продажи",
-      "priority": "as_needed",
+      "id": "cult_blaster_sales",
+      "name": "Cult × Blaster | Продажи (совместный)",
+      "priority": "required",
       "week": 1,
-      "unit": "sputnik",
-      "whoAdds": "Дима или Сергей Клейн (@klein_sergey)",
+      "unit": "uk",
+      "whoAdds": "Денис + Лиза (через Группа / Продажи)",
       "inviteUrl": null,
-      "desc": "Док, спецпроекты, решение «берём ли» по Sputnik"
+      "desc": "Отдельного инвайта в аккаунте CRO нет. Когда будешь в «Группа / Продажи» — попроси Дениса и Лизу пустить тебя и Диму."
     },
     {
       "id": "ai_sales",
@@ -72,19 +88,31 @@
       "priority": "week1",
       "week": 1,
       "unit": "techtigers",
-      "whoAdds": "Дима Квашнин (@cosmovisioner)",
-      "inviteUrl": null,
-      "desc": "CRM (Prodavan), ИИ-продукты, формы брифа — roadmap и демо через CRO"
+      "whoAdds": "ссылка",
+      "inviteUrl": "https://t.me/+U7VzMZ8itMk2M2Iy",
+      "tg_id": "-1003341517637",
+      "desc": "CRM (Prodavan), ИИ-продукты — по мере работы."
     },
     {
       "id": "vibe_circle",
       "name": "Вайб-кружок",
-      "priority": "week1",
+      "priority": "optional",
       "week": 1,
       "unit": "uk",
-      "whoAdds": "Дима или Егор Мараев (@egormaraev)",
+      "whoAdds": "Дима или Егор",
       "inviteUrl": null,
-      "desc": "Вайбкодинг, агенты, автоматизация — Лёне полезно для agent-pack и Cursor"
+      "tg_id": "-1003732411848",
+      "desc": "Необязательно. Нейросети, вайбкодинг, созвон раз в неделю. Инвайт только у админов — попроси Диму."
+    },
+    {
+      "id": "sputnik_sales",
+      "name": "Спутник / Продажи",
+      "priority": "as_needed",
+      "week": 1,
+      "unit": "sputnik",
+      "whoAdds": "Дима или Сергей",
+      "inviteUrl": null,
+      "desc": "Док, спецпроекты — по сделкам Sputnik."
     }
   ],
   "skip": [
@@ -97,7 +125,7 @@
   "do_not_add": [
     {
       "name": "Супертопы / Весь холдинг",
-      "reason": "На онбординге — не sales-контур; стратегия/споры юнитов через CRO. Отдельно — только по решению CEO/Кости"
+      "reason": "На онбординге — не sales-контур; стратегия/споры юнитов через CRO."
     },
     {
       "name": "Управление | Культ Груп",

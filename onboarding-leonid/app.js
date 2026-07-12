@@ -7,7 +7,7 @@
   const ACCESS_KEY = "sb-onboarding-leonid-access";
   const QUEST_KEY = "sb-onboarding-leonid-quest-step";
   const MODE_KEY = "sb-onboarding-leonid-program-mode";
-  const ASSET_VER = "20260712-v55";
+  const ASSET_VER = "20260712-v56";
 
   const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya", "alya_dudenkova"]);
 
@@ -711,6 +711,44 @@
     return base + sep + "text=" + encodeURIComponent(prefill);
   }
 
+  function pathCtaHtml({ title, sub, cta, href, attrs, tag, className }) {
+    const Tag = tag || (href ? "a" : "button");
+    const extra = attrs || "";
+    const hrefAttr = href ? ` href="${esc(href)}" target="_blank" rel="noopener"` : "";
+    const typeAttr = Tag === "button" ? ` type="button"` : "";
+    const cls = className || "path-link path-link-cta";
+    return `<${Tag} class="${cls}"${typeAttr}${hrefAttr}${extra}>
+      <span class="path-link-main">
+        <span class="path-link-title">${esc(title || "")}</span>
+        ${sub ? `<span class="path-link-sub">${esc(sub)}</span>` : ""}
+      </span>
+      <span class="path-link-action">${esc(cta || "Открыть")}</span>
+    </${Tag}>`;
+  }
+
+  function openPeopleOverlay() {
+    const body = document.getElementById("modalBody");
+    if (!body || !team) return;
+    const list = (team.people || []).filter(p => p.category === "staff" || SALES_CORE_IDS.has(p.id));
+    const sales = list.filter(p => SALES_CORE_IDS.has(p.id));
+    const rest = list.filter(p => !SALES_CORE_IDS.has(p.id));
+    body.innerHTML = `
+      <h2 class="modal-name">Люди</h2>
+      <p class="modal-role">С кем будешь общаться · закрой и вернёшься к шагу</p>
+      <p class="modal-lead">Нажми карточку — откроется профиль. Крестик или клик вне окна — назад к программе.</p>
+      ${sales.length ? `<h4 class="mono-tag" style="margin:12px 0">Sales-контур</h4><div class="people-grid">${sales.map(personCardHtml).join("")}</div>` : ""}
+      ${rest.length ? `<h4 class="mono-tag" style="margin:16px 0 12px">Штат</h4><div class="people-grid">${rest.map(personCardHtml).join("")}</div>` : ""}
+    `;
+    body.querySelectorAll("[data-person]").forEach(el => {
+      el.addEventListener("click", e => {
+        e.stopPropagation();
+        openPerson(el.dataset.person);
+      });
+    });
+    bindCopyEmail(body);
+    showModal();
+  }
+
   function renderPathItem(item, stepId) {
     if (item.kind === "step") {
       return `<div class="path-step">→ ${esc(item.text)}</div>`;
@@ -718,38 +756,82 @@
     if (item.kind === "note") {
       return `<div class="path-note">${esc(item.text)}</div>`;
     }
+    if (item.kind === "link") {
+      return pathCtaHtml({
+        title: item.title || item.url,
+        sub: item.sub || "",
+        cta: item.cta || "Открыть",
+        href: item.url
+      });
+    }
+    if (item.kind === "copy") {
+      return pathCtaHtml({
+        title: item.label || "Скопировать текст",
+        sub: "Текст попадёт в буфер",
+        cta: item.cta || "Скопировать",
+        attrs: ` data-copy-text="${esc(item.text || "")}"`
+      });
+    }
+    if (item.kind === "overlay" && item.id === "people") {
+      return pathCtaHtml({
+        title: item.title || "Люди Cult Group",
+        sub: "Откроется поверх шага",
+        cta: item.cta || "Открыть",
+        attrs: ` data-overlay="people"`
+      });
+    }
     if (item.kind === "telegram") {
       const url = telegramUrlFor(item.personId || "dima", item.prefill || "");
       if (!url) return "";
-      return `<a class="path-link path-link-tg" href="${esc(url)}" target="_blank" rel="noopener">
-        <span class="icon">TG</span>
-        <span>${esc(item.label || "Написать в Telegram")}<span class="sub">откроется чат</span></span>
-      </a>`;
+      const copyAttr = item.copy && item.prefill
+        ? ` data-copy-text="${esc(item.prefill)}"`
+        : "";
+      return pathCtaHtml({
+        title: item.label || "Написать в Telegram",
+        sub: item.copy ? "Сообщение скопируется и откроется чат" : "Откроется чат",
+        cta: item.cta || "Написать",
+        href: url,
+        className: "path-link path-link-cta path-link-tg",
+        attrs: copyAttr
+      });
     }
     if (item.kind === "person") {
       const p = findPerson(item.id);
       if (!p) return "";
-      return `<button type="button" class="path-link" data-person="${p.id}">
-        <span class="icon">P</span>
-        <span>${p.name}<span class="sub">${p.role}</span></span>
-      </button>`;
+      return pathCtaHtml({
+        title: p.name,
+        sub: p.role,
+        cta: item.cta || "Открыть профиль",
+        attrs: ` data-person="${p.id}"`
+      });
     }
     if (item.kind === "resource") {
       const r = findResource(item.id);
       if (!r) return "";
+      const cta = item.cta || (r.url && r.url.includes("t.me") ? "Вступить" : "Открыть");
+      if (r.action === "people") {
+        return pathCtaHtml({
+          title: r.title,
+          sub: r.subtitle || "поверх шага",
+          cta: cta,
+          attrs: ` data-overlay="people"`
+        });
+      }
       if (r.action) {
-        const icon = r.action === "sales" ? "S" : r.action === "people" ? "L" : r.action === "access" ? "A" : r.action === "skills" ? "K" : "M";
-        const filterAttr = item.filter ? ` data-people-filter="${esc(item.filter)}"` : "";
-        return `<button type="button" class="path-link" data-view="${r.action}"${filterAttr}>
-          <span class="icon">${icon}</span>
-          <span>${r.title}<span class="sub">${r.subtitle}</span></span>
-        </button>`;
+        return pathCtaHtml({
+          title: r.title,
+          sub: r.subtitle || "",
+          cta: cta,
+          attrs: ` data-view="${r.action}"`
+        });
       }
       if (r.url) {
-        return `<a class="path-link" href="${r.url}" target="_blank" rel="noopener">
-          <span class="icon">${r.group === "docs" ? "D" : "→"}</span>
-          <span>${r.title}<span class="sub">${r.subtitle || ""}</span></span>
-        </a>`;
+        return pathCtaHtml({
+          title: r.title,
+          sub: r.subtitle || "",
+          cta: cta,
+          href: r.url
+        });
       }
       const noteBody = r.note || r.subtitle || "запроси у Димы";
       const noteCls = noteBody.length > 120 ? " path-note-rich" : "";
@@ -759,27 +841,23 @@
       const d = findDeck(item.id);
       if (!d) return "";
       if (d.url) {
-        return `<a class="path-link" href="${d.url}" target="_blank" rel="noopener">
-          <span class="icon">D</span>
-          <span>${d.title}<span class="sub">${d.when}</span></span>
-        </a>`;
+        return pathCtaHtml({ title: d.title, sub: d.when || "", cta: "Открыть", href: d.url });
       }
       const owner = findPerson(d.owner);
-      return `<button type="button" class="path-link" data-person="${d.owner}">
-        <span class="icon">D</span>
-        <span>${d.title}<span class="sub">Запросить у ${owner ? owner.name : d.requestVia}</span></span>
-      </button>`;
+      return pathCtaHtml({
+        title: d.title,
+        sub: `Запросить у ${owner ? owner.name : d.requestVia}`,
+        cta: "Запросить",
+        attrs: ` data-person="${d.owner}"`
+      });
     }
     if (item.kind === "section" && item.id === "chats") {
       const list = chatsFiltered(item.filter);
       return list.map(ch => {
         if (ch.inviteUrl) {
-          return `<a class="path-link" href="${ch.inviteUrl}" target="_blank" rel="noopener">
-            <span class="icon">TG</span>
-            <span>${ch.name}<span class="sub">Вступить · добавляет ${ch.whoAdds}</span></span>
-          </a>`;
+          return pathCtaHtml({ title: ch.name, sub: ch.desc || "", cta: "Вступить", href: ch.inviteUrl });
         }
-        return `<div class="path-note">TG · ${ch.name} — попроси ${ch.whoAdds} добавить</div>`;
+        return `<div class="path-note">TG · ${esc(ch.name)} — попроси ${esc(ch.whoAdds)} добавить</div>`;
       }).join("");
     }
     if (item.kind === "access_verify") {
@@ -800,6 +878,27 @@
       el.addEventListener("click", e => {
         if (e.target.closest("[data-copy-email], .person-contact-tg, a.contact-btn")) return;
         openPerson(el.dataset.person);
+      });
+    });
+    container.querySelectorAll("[data-overlay='people']").forEach(el => {
+      el.addEventListener("click", e => {
+        e.preventDefault();
+        openPeopleOverlay();
+      });
+    });
+    container.querySelectorAll("[data-copy-text]").forEach(el => {
+      el.addEventListener("click", async () => {
+        const text = el.getAttribute("data-copy-text") || "";
+        if (!text) return;
+        try {
+          await navigator.clipboard.writeText(text);
+          const action = el.querySelector(".path-link-action");
+          if (action) {
+            const prev = action.textContent;
+            action.textContent = "Скопировано ✓";
+            setTimeout(() => { action.textContent = prev; }, 1600);
+          }
+        } catch (_) { /* ignore */ }
       });
     });
     bindCopyEmail(container);
@@ -1308,13 +1407,13 @@
     const res = s.resource ? findResource(s.resource) : null;
     let link = "";
     if (s.url) {
-      link = `<a class="contact-btn" href="${s.url}" target="_blank" rel="noopener">${s.url.includes("t.me") ? "Вступить" : "Открыть"}</a>`;
+      link = `<a class="contact-btn primary" href="${s.url}" target="_blank" rel="noopener">${s.url.includes("t.me") ? "Вступить" : "Открыть"}</a>`;
     } else if (res && res.url) {
-      link = `<a class="contact-btn" href="${res.url}" target="_blank" rel="noopener">Открыть</a>`;
+      link = `<a class="contact-btn primary" href="${res.url}" target="_blank" rel="noopener">Открыть</a>`;
     } else if (res && res.action) {
-      link = `<button type="button" class="contact-btn" data-view="${res.action}">Открыть раздел</button>`;
+      link = `<button type="button" class="contact-btn primary" data-view="${res.action}">Открыть</button>`;
     } else {
-      link = `<button type="button" class="contact-btn" data-person="dima">Запросить у Димы</button>`;
+      link = `<button type="button" class="contact-btn primary" data-person="dima">Написать Диме</button>`;
     }
     return `<div class="access-sys-card">
       <div class="access-sys-name">${esc(s.name)}</div>
