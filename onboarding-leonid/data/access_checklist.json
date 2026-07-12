@@ -1,138 +1,212 @@
 {
   "meta": {
-    "title": "Доступы",
+    "title": "Ссылки и доступы",
     "note": "Постоянный справочник. Пароли и инвайты — в личке от Димы."
   },
-  "systems": [
+  "sections": [
     {
-      "id": "amo_cult",
-      "name": "AmoCRM · Cult Group",
-      "url": "https://cultteam.amocrm.ru",
-      "role": "full sales · новые сделки группы",
-      "who": "Дима Квашнин",
-      "resource": "amo_cult"
+      "id": "crm",
+      "title": "CRM-системы",
+      "items": [
+        {
+          "id": "amo_cult",
+          "name": "AmoCRM · Cult Group",
+          "url": "https://cultteam.amocrm.ru",
+          "role": "Основная CRM · новые сделки группы",
+          "who": "Дима",
+          "resource": "amo_cult"
+        },
+        {
+          "id": "amo_blaster",
+          "name": "AmoCRM · Blaster",
+          "url": "https://blasterstudio.amocrm.ru",
+          "role": "Read / joint · наследие Blaster",
+          "who": "Лиза + Дима",
+          "resource": "amo_blaster"
+        },
+        {
+          "id": "amo_sputnik",
+          "name": "AmoCRM · Sputnik Films",
+          "url": null,
+          "role": "CRM юнита Sputnik · смотреть наследие",
+          "who": "Дима / Сергей",
+          "resource": "amo_sputnik"
+        },
+        {
+          "id": "icrm",
+          "name": "Prodavan · умная CRM группы",
+          "url": null,
+          "role": "Prodo.one / iCRM · кастомная CRM, в ней начнёшь работать",
+          "who": "Дима",
+          "resource": "icrm"
+        }
+      ]
     },
     {
-      "id": "amo_blaster",
-      "name": "AmoCRM · Blaster",
-      "url": "https://blasterstudio.amocrm.ru",
-      "role": "read / joint · наследие Blaster",
-      "who": "Лиза + Дима",
-      "resource": "amo_blaster"
+      "id": "tools",
+      "title": "Полезные ссылки",
+      "items": [
+        {
+          "id": "cursor",
+          "name": "Скачать Cursor",
+          "url": "https://cursor.com/",
+          "role": "Агентизация · подписку оплачивает компания",
+          "who": "Дима (инвайт)",
+          "resource": "soft_cursor"
+        },
+        {
+          "id": "codex",
+          "name": "Скачать Codex",
+          "url": "https://chatgpt.com/codex",
+          "role": "Альтернатива Cursor",
+          "who": "Дима",
+          "resource": "soft_codex"
+        },
+        {
+          "id": "handy",
+          "name": "Скачать Handy",
+          "url": "https://handy.computer/",
+          "role": "Транскрипция · Mac / Windows",
+          "who": "самостоятельно",
+          "resource": "soft_handy"
+        },
+        {
+          "id": "macwhisper",
+          "name": "Скачать MacWhisper",
+          "url": "https://goodsnooze.gumroad.com/l/macwhisper",
+          "role": "Транскрипция · Mac · локально",
+          "who": "самостоятельно",
+          "resource": "soft_macwhisper"
+        }
+      ]
     },
     {
-      "id": "icrm",
-      "name": "Prodo.one (Prodavan / iCRM)",
-      "url": null,
-      "role": "кастомная CRM · после демо",
-      "who": "Дима Квашнин",
-      "resource": "icrm"
+      "id": "rules",
+      "title": "Регламенты и правила",
+      "intro": "Не забудь подписаться на канал, чтобы не пропустить обновления правил, регламентов и стандартов.",
+      "items": [
+        {
+          "id": "rules_channel",
+          "name": "Канал правил и обновлений",
+          "url": null,
+          "role": "Подпишись — сюда лягут все правила, регламенты, стандарты и оффер",
+          "who": "Дима (ссылка)",
+          "resource": null
+        },
+        {
+          "id": "nb",
+          "name": "Регламент New Business Manager",
+          "url": "https://docs.google.com/spreadsheets/d/1W0xbSDRQVSYWjCOHPtfNL43Ps9yknejEIaspzu28QU4/edit",
+          "role": "Регламент работы",
+          "resource": "doc_nb_reg"
+        },
+        {
+          "id": "handoff",
+          "name": "Передача дел · Саша Алексеев",
+          "url": "https://docs.google.com/document/d/1TgX68T03X0_Tk8KW4QHraXVyJMFi-TGW/edit",
+          "role": "Документ передачи дел",
+          "resource": "doc_handoff_sasha"
+        },
+        {
+          "id": "brief",
+          "name": "Критерии качества оценки брифа",
+          "url": "https://docs.google.com/document/d/1cSkBD_Zx6Oo2RRaDGtv7n2LxW-QglW_rk6hhw9FaF38/edit",
+          "role": "Brief-gate",
+          "resource": "doc_brief_criteria"
+        },
+        {
+          "id": "prod_standards",
+          "name": "Стандарты взаимодействия с продакшеном",
+          "url": "https://docs.google.com/document/d/11PqYVrnfjUYAXHVNfXFcARtkoTV-Gqik7VboIKrKGgw/edit",
+          "role": "Sales ↔ production",
+          "resource": "doc_prod_standards"
+        },
+        {
+          "id": "amo_reg",
+          "name": "Регламент работы в AmoCRM",
+          "url": "https://docs.google.com/document/d/1MwlLD2ZVtKXDeH8FUBOa33VjhAcExHga3ZmwTVYhszI/edit",
+          "role": "Поля, этапы, next step",
+          "resource": "doc_amo_reg"
+        },
+        {
+          "id": "commerce",
+          "name": "Коммерческие правила",
+          "url": "https://docs.google.com/document/d/1Mu4yY-2t8kD-3KCamGuo8VUBPqjvb1yuBsmOwSlvmaM/edit?tab=t.0#heading=h.peq3uhpks7zz",
+          "role": "Полная версия",
+          "resource": "doc_commerce_rules"
+        },
+        {
+          "id": "rules_summary",
+          "name": "Коммерческие правила · кратко",
+          "url": "rules-summary.html",
+          "role": "Краткий конспект",
+          "resource": "doc_rules_summary"
+        },
+        {
+          "id": "offer",
+          "name": "Оффер · Леонид",
+          "url": "assets/docs/offer_cult_group_leonid_markhashov_2026_06_18.pdf",
+          "role": "Подписанные условия",
+          "resource": "doc_offer_leonid"
+        }
+      ]
     },
     {
-      "id": "drive_group",
-      "name": "Google Drive · Культ-группа",
-      "url": "https://drive.google.com/drive/folders/1O89yMg7RCXGIwv_eTQ8Sp6A6oiJiwRmR",
-      "role": "read/edit коммерция",
-      "who": "Дима",
-      "resource": "drive_cult_group"
+      "id": "folders",
+      "title": "Ссылки",
+      "intro": "Папки Drive — открой и проверь доступ.",
+      "items": [
+        {
+          "id": "drive_group",
+          "name": "Google Drive · Культ-группа",
+          "url": "https://drive.google.com/drive/folders/1O89yMg7RCXGIwv_eTQ8Sp6A6oiJiwRmR",
+          "role": "Корень холдинга",
+          "who": "Дима",
+          "resource": "drive_cult_group"
+        },
+        {
+          "id": "drive_commerce",
+          "name": "Google Drive · Коммерция",
+          "url": "https://drive.google.com/drive/folders/1cm50xCY02m_WTNenHbEoKAl-ALZ-Ac_n",
+          "role": "КП, шаблоны, коммерция",
+          "who": "Дима",
+          "resource": "drive_commerce"
+        },
+        {
+          "id": "drive_sales_blaster",
+          "name": "Папка продаж · Blaster",
+          "url": "https://drive.google.com/drive/folders/1j-ARZnroEcDoSQnr-1Rr-urwUq4izNxb",
+          "role": "Материалы Blaster sales"
+        },
+        {
+          "id": "drive_sales_cult",
+          "name": "Папка продаж · Cult (legacy)",
+          "url": "https://drive.google.com/drive/folders/1veiUtmQ-TOWNLADaSNtFL1WltpCiu_0J",
+          "role": "Legacy Cult sales"
+        },
+        {
+          "id": "clifton",
+          "name": "CliftonStrengths",
+          "url": "https://www.gallup.com/access",
+          "role": "Access code у Димы · оплачивает компания",
+          "who": "Дима",
+          "resource": "clifton"
+        },
+        {
+          "id": "email",
+          "name": "Почта @cult.team",
+          "url": null,
+          "role": "leonid@cult.team · outbound sales",
+          "who": "CEO / ops",
+          "resource": "email_leonid"
+        }
+      ]
     },
     {
-      "id": "drive_commerce",
-      "name": "Google Drive · Коммерция",
-      "url": "https://drive.google.com/drive/folders/1cm50xCY02m_WTNenHbEoKAl-ALZ-Ac_n",
-      "role": "edit · КП и шаблоны",
-      "who": "Дима",
-      "resource": "drive_commerce"
-    },
-    {
-      "id": "email",
-      "name": "Почта @cult.team",
-      "url": null,
-      "role": "outbound sales",
-      "who": "CEO / ops Cult",
-      "resource": "email_leonid"
-    },
-    {
-      "id": "clifton",
-      "name": "CliftonStrengths",
-      "url": "https://www.gallup.com/access",
-      "role": "Top 34 · оплачивает компания",
-      "who": "Дима (access code)",
-      "resource": "clifton"
-    },
-    {
-      "id": "macwhisper",
-      "name": "MacWhisper (или Handy)",
-      "url": "https://goodsnooze.gumroad.com/l/macwhisper",
-      "role": "транскрипция встреч",
-      "who": "самостоятельно",
-      "resource": "soft_macwhisper"
-    },
-    {
-      "id": "cursor",
-      "name": "Cursor (или Codex)",
-      "url": "https://cursor.com/",
-      "role": "агентизация · подписку оплачивает компания",
-      "who": "Дима (инвайт)",
-      "resource": "soft_cursor"
-    }
-  ],
-  "docs": [
-    {
-      "id": "nb",
-      "name": "Регламент New Business Manager",
-      "url": "https://docs.google.com/spreadsheets/d/1W0xbSDRQVSYWjCOHPtfNL43Ps9yknejEIaspzu28QU4/edit",
-      "resource": "doc_nb_reg"
-    },
-    {
-      "id": "handoff",
-      "name": "Передача дел · Саша Алексеев",
-      "url": "https://docs.google.com/document/d/1TgX68T03X0_Tk8KW4QHraXVyJMFi-TGW/edit",
-      "resource": "doc_handoff_sasha"
-    },
-    {
-      "id": "brief",
-      "name": "Критерии качества оценки брифа",
-      "url": "https://docs.google.com/document/d/1cSkBD_Zx6Oo2RRaDGtv7n2LxW-QglW_rk6hhw9FaF38/edit",
-      "resource": "doc_brief_criteria"
-    },
-    {
-      "id": "prod_standards",
-      "name": "Стандарты взаимодействия с продакшеном",
-      "url": "https://docs.google.com/document/d/11PqYVrnfjUYAXHVNfXFcARtkoTV-Gqik7VboIKrKGgw/edit",
-      "resource": "doc_prod_standards"
-    },
-    {
-      "id": "amo_reg",
-      "name": "Регламент работы в AmoCRM",
-      "url": "https://docs.google.com/document/d/1MwlLD2ZVtKXDeH8FUBOa33VjhAcExHga3ZmwTVYhszI/edit",
-      "resource": "doc_amo_reg"
-    },
-    {
-      "id": "commerce",
-      "name": "Коммерческие правила",
-      "url": "https://docs.google.com/document/d/1Mu4yY-2t8kD-3KCamGuo8VUBPqjvb1yuBsmOwSlvmaM/edit?tab=t.0#heading=h.peq3uhpks7zz",
-      "resource": "doc_commerce_rules"
-    },
-    {
-      "id": "offer",
-      "name": "Оффер · Леонид",
-      "url": "assets/docs/offer_cult_group_leonid_markhashov_2026_06_18.pdf",
-      "resource": "doc_offer_leonid"
-    }
-  ],
-  "telegram_required": [
-    {
-      "id": "group_sales",
-      "chatId": "group_sales"
-    },
-    {
-      "id": "sales_manager_cult",
-      "chatId": "sales_manager_cult"
-    },
-    {
-      "id": "commercial_director",
-      "chatId": "commercial_director"
+      "id": "telegram",
+      "title": "Telegram-чаты",
+      "intro": "Обязательные — день 1. Остальные — по мере работы. Большинство без публичной ссылки: попроси Диму добавить.",
+      "chats": "all"
     }
   ],
   "hiree_verify": [

@@ -108,7 +108,7 @@
   "1.tg_join": [
     {
       "kind": "resource",
-      "id": "view_chats"
+      "id": "view_access"
     },
     {
       "kind": "section",
@@ -117,7 +117,7 @@
     },
     {
       "kind": "step",
-      "text": "Попроси Диму добавить во все required-чаты"
+      "text": "Полный список чатов — в «Ссылки и доступы» → Telegram-чаты. Попроси Диму добавить во все required."
     }
   ],
   "1.soft_ai": [

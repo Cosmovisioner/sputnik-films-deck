@@ -7,7 +7,7 @@
   const ACCESS_KEY = "sb-onboarding-leonid-access";
   const QUEST_KEY = "sb-onboarding-leonid-quest-step";
   const MODE_KEY = "sb-onboarding-leonid-program-mode";
-  const ASSET_VER = "20260712-v54";
+  const ASSET_VER = "20260712-v55";
 
   const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya", "alya_dudenkova"]);
 
@@ -559,7 +559,7 @@
       {
         kicker: "Инструкция · 3/",
         title: "Шапка и навигация",
-        lead: "Ряд кнопок — разделы: Программа, Карта, Пулы, Люди, Telegram, Презентации, Доступы, Скиллы. Полоска дней — только в «Программе». При скролле дни прячутся, кнопки разделов остаются.",
+        lead: "Ряд кнопок — разделы: Программа, Карта, Пулы, Люди, Презентации, Ссылки и доступы, Скиллы. Полоска дней — только в «Программе». При скролле дни прячутся, кнопки разделов остаются.",
         chips: ["Дни · смена дня", "Вкладки · разделы", "Скролл · шапка короче"]
       },
       {
@@ -938,9 +938,8 @@
           <button type="button" class="btn" data-view="map">Карта группы</button>
           <button type="button" class="btn" data-view="pools">Пулы</button>
           <button type="button" class="btn" data-view="people">Люди</button>
-          <button type="button" class="btn" data-view="chats">Telegram</button>
           <button type="button" class="btn" data-view="decks">Презентации</button>
-          <button type="button" class="btn" data-view="access">Доступы</button>
+          <button type="button" class="btn" data-view="access">Ссылки и доступы</button>
           <button type="button" class="btn" data-view="skills">Скиллы</button>
         </div>
       </div>`;
@@ -1002,9 +1001,8 @@
           <button type="button" class="btn" data-view="map">Карта группы</button>
           <button type="button" class="btn" data-view="pools">Пулы</button>
           <button type="button" class="btn" data-view="people">Люди</button>
-          <button type="button" class="btn" data-view="chats">Telegram</button>
           <button type="button" class="btn" data-view="decks">Презентации</button>
-          <button type="button" class="btn" data-view="access">Доступы</button>
+          <button type="button" class="btn" data-view="access">Ссылки и доступы</button>
           <button type="button" class="btn" data-view="skills">Скиллы</button>
         </div>
       </div>`;
@@ -1310,7 +1308,7 @@
     const res = s.resource ? findResource(s.resource) : null;
     let link = "";
     if (s.url) {
-      link = `<a class="contact-btn" href="${s.url}" target="_blank" rel="noopener">Открыть</a>`;
+      link = `<a class="contact-btn" href="${s.url}" target="_blank" rel="noopener">${s.url.includes("t.me") ? "Вступить" : "Открыть"}</a>`;
     } else if (res && res.url) {
       link = `<a class="contact-btn" href="${res.url}" target="_blank" rel="noopener">Открыть</a>`;
     } else if (res && res.action) {
@@ -1320,45 +1318,63 @@
     }
     return `<div class="access-sys-card">
       <div class="access-sys-name">${esc(s.name)}</div>
-      <div class="access-sys-meta">${esc(s.role || "")}${s.who ? " · выдаёт " + esc(s.who) : ""}</div>
+      <div class="access-sys-meta">${esc(s.role || "")}${s.who ? " · " + esc(s.who) : ""}</div>
       <div class="chat-actions">${link}</div>
     </div>`;
   }
 
+  function renderAccessTelegramSection(section) {
+    const list = chats.chats || [];
+    const required = list.filter(c => c.priority === "required");
+    const rest = list.filter(c => c.priority !== "required");
+    const ban = (chats.do_not_add || []).map(b =>
+      typeof b === "string" ? `<li>${esc(b)}</li>` : `<li><strong>${esc(b.name || "")}</strong>${b.reason ? " — " + esc(b.reason) : ""}</li>`
+    ).join("");
+    return `
+      <div class="card" id="access-telegram">
+        <h3 class="section-heading">${esc(section.title || "Telegram-чаты")}</h3>
+        ${section.intro ? `<p class="card-intro">${esc(section.intro)}</p>` : ""}
+        ${chats.meta?.note ? `<p class="path-note">${esc(chats.meta.note)}</p>` : ""}
+        <h4 class="mono-tag" style="margin:12px 0">Обязательные</h4>
+        <div class="access-sys-grid">${required.map(ch => accessCardHtml({
+          name: ch.name,
+          url: ch.inviteUrl || null,
+          role: ch.desc || "рабочий чат",
+          who: ch.inviteUrl ? "" : ("добавляет " + (ch.whoAdds || "Дима"))
+        })).join("")}</div>
+        <h4 class="mono-tag" style="margin:20px 0 12px">По мере работы</h4>
+        <div class="access-sys-grid">${rest.map(ch => accessCardHtml({
+          name: ch.name,
+          url: ch.inviteUrl || null,
+          role: ch.desc || "по сделкам",
+          who: ch.inviteUrl ? "" : ("добавляет " + (ch.whoAdds || "Дима"))
+        })).join("")}</div>
+        ${ban ? `<div class="skip-list" style="margin-top:16px"><strong>Не добавляем на онбординге:</strong><ul class="hint-list">${ban}</ul></div>` : ""}
+      </div>`;
+  }
+
   function renderAccess() {
     if (!accessChecklist) {
-      return `<div class="card"><h2 class="card-title">Доступы</h2><p class="card-intro">Не удалось загрузить список.</p></div>`;
+      return `<div class="card"><h2 class="card-title">Ссылки и доступы</h2><p class="card-intro">Не удалось загрузить список.</p></div>`;
     }
     const meta = accessChecklist.meta || {};
-    const systemsHtml = (accessChecklist.systems || []).map(accessCardHtml).join("");
-    const docsHtml = (accessChecklist.docs || []).map(d =>
-      accessCardHtml({
-        id: d.id,
-        name: d.name,
-        url: d.url,
-        role: "документ",
-        who: "",
-        resource: d.resource
-      })
-    ).join("");
-    const tgHtml = (accessChecklist.telegram_required || []).map(t => {
-      const ch = (chats.chats || []).find(c => c.id === t.chatId);
-      if (!ch) return "";
-      return `<div class="access-sys-card">
-        <div class="access-sys-name">${esc(ch.name)}</div>
-        <div class="access-sys-meta">Telegram · ${esc(ch.desc || "рабочий чат")}</div>
-        <div class="chat-actions">${ch.inviteUrl
-          ? `<a class="contact-btn primary" href="${ch.inviteUrl}" target="_blank" rel="noopener">Вступить</a>`
-          : `<button type="button" class="contact-btn" data-person="dima">Попросить добавить</button>`}</div>
+    const sections = accessChecklist.sections || [];
+    const body = sections.map(sec => {
+      if (sec.chats) return renderAccessTelegramSection(sec);
+      const grid = (sec.items || []).map(accessCardHtml).join("");
+      return `<div class="card" id="access-${esc(sec.id)}">
+        <h3 class="section-heading">${esc(sec.title)}</h3>
+        ${sec.intro ? `<p class="card-intro">${esc(sec.intro)}</p>` : ""}
+        <div class="access-sys-grid">${grid}</div>
       </div>`;
     }).join("");
 
     return `
       <div class="card">
-        <h2 class="card-title">${esc(meta.title || "Доступы")}</h2>
-        <p class="card-intro">${esc(meta.note || "Постоянный справочник доступов.")}</p>
-        <div class="access-sys-grid">${systemsHtml}${tgHtml}${docsHtml}</div>
-      </div>`;
+        <h2 class="card-title">${esc(meta.title || "Ссылки и доступы")}</h2>
+        <p class="card-intro">${esc(meta.note || "")}</p>
+      </div>
+      ${body}`;
   }
 
   function renderSkills() {
@@ -1421,7 +1437,10 @@
     else if (currentView === "map") main.innerHTML = renderMap();
     else if (currentView === "pools") main.innerHTML = renderPools();
     else if (currentView === "people") main.innerHTML = renderPeople();
-    else if (currentView === "chats") main.innerHTML = renderChats();
+    else if (currentView === "chats") {
+      currentView = "access";
+      main.innerHTML = renderAccess();
+    }
     else if (currentView === "decks") main.innerHTML = renderDecks();
     else if (currentView === "sales") main.innerHTML = renderSales();
     else if (currentView === "access") main.innerHTML = renderAccess();
@@ -1630,12 +1649,13 @@
     if (params.has("map")) currentView = "map";
     else if (params.has("pools")) currentView = "pools";
     else if (params.has("people")) currentView = "people";
-    else if (params.has("chats")) currentView = "chats";
+    else if (params.has("chats")) currentView = "access";
     else if (params.has("decks")) currentView = "decks";
     else if (params.has("sales")) currentView = "sales";
     else if (params.has("access")) currentView = "access";
     else if (params.has("skills")) currentView = "skills";
-    else if (viewParam && ["program","map","pools","people","chats","decks","sales","access","skills"].includes(viewParam)) currentView = viewParam;
+    else if (viewParam === "chats") currentView = "access";
+    else if (viewParam && ["program","map","pools","people","decks","sales","access","skills"].includes(viewParam)) currentView = viewParam;
 
     const dayParam = params.get("day");
     if (dayParam) {

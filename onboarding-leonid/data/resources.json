@@ -21,6 +21,15 @@
       "unit": "blaster"
     },
     {
+      "id": "amo_sputnik",
+      "title": "AmoCRM · Sputnik Films",
+      "subtitle": "CRM юнита Sputnik · доступ через Диму / Сергея",
+      "url": null,
+      "owner": "dima",
+      "unit": "sputnik",
+      "note": "Адрес и логин — у Димы или Сергея. Нужен для понимания наследия Sputnik, не для новых сделок группы."
+    },
+    {
       "id": "drive_cult_group",
       "title": "Google Drive · Культ-группа",
       "subtitle": "Общие материалы холдинга",
@@ -336,9 +345,9 @@
     },
     {
       "id": "view_chats",
-      "title": "Чаты Telegram",
-      "subtitle": "Структура коммуникаций Cult Group",
-      "action": "chats",
+      "title": "Telegram-чаты",
+      "subtitle": "В разделе «Ссылки и доступы»",
+      "action": "access",
       "unit": "uk"
     },
     {
@@ -358,8 +367,8 @@
     },
     {
       "id": "view_access",
-      "title": "Чеклист доступов",
-      "subtitle": "Amo, Drive, TG, почта — что проверить в день 1",
+      "title": "Ссылки и доступы",
+      "subtitle": "CRM, софт, регламенты, папки, Telegram",
       "action": "access",
       "unit": "uk"
     },
