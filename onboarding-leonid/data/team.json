@@ -701,6 +701,37 @@
       "avoid": "Коммерческие решения по сделке — к Диме и хэдам юнитов"
     },
     {
+      "id": "homich",
+      "category": "holding",
+      "name": "Саша Хомич",
+      "role": "CTO / product · CRM (до 01.08.2026)",
+      "unit": "ТехноТигры",
+      "unitId": "techtigers",
+      "initials": "СХ",
+      "photo": null,
+      "status": "leaving",
+      "leaves_on": "2026-08-01",
+      "bio_short": "⚠️ С 1 августа 2026 уходит из компании. Больше не будет в контуре.",
+      "lore": "До 01.08.2026 — CTO/product по CRM (Prodavan / iCRM / Prodo.one) и tech-синк. После этой даты в группе его нет: вопросы по CRM, демо и roadmap — только к Диме (CRO). Не планируй на него долгосрочные задачи и не жди ответов после ухода.",
+      "tasks": [
+        "Исторический контекст: Prodavan / iCRM (до 01.08)",
+        "Не владелец sales-контура"
+      ],
+      "clifton_themes": [],
+      "clifton_tab": null,
+      "clifton_url": null,
+      "clifton_hint": null,
+      "strengths": ["Product CRM", "Tech-контур"],
+      "watch_out": [
+        "С 01.08.2026 — вне компании",
+        "Не эскалировать на него sales/CRM после ухода"
+      ],
+      "contact_when": [
+        "Только до 01.08 и только через Диму — если CRO явно скажет подключить"
+      ],
+      "avoid": "Писать Хомичу напрямую по сделкам; строить процесс «через Хомича» после 1 августа"
+    },
+    {
       "id": "daria_kiryukhina",
       "category": "holding",
       "name": "Дарья",
