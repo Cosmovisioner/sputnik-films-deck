@@ -7,7 +7,7 @@
   const ACCESS_KEY = "sb-onboarding-leonid-access";
   const QUEST_KEY = "sb-onboarding-leonid-quest-step";
   const MODE_KEY = "sb-onboarding-leonid-program-mode";
-  const ASSET_VER = "20260712-v42";
+  const ASSET_VER = "20260712-v43";
 
   const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya", "alya_dudenkova"]);
 
@@ -1617,12 +1617,35 @@
       if (e.target.id === "welcomeBackdrop") closeWelcome();
     });
 
+    bindHeaderCompactOnScroll();
+
     closeModal();
     applyUserBranding();
     setView(currentView);
     maybeShowWelcome();
     document.getElementById("footerNote").textContent =
       "Cult Group · онбординг продаж · " + steps.length + " дней · v" + ASSET_VER;
+  }
+
+  function bindHeaderCompactOnScroll() {
+    const topBar = document.querySelector(".top-bar");
+    if (!topBar) return;
+    const COMPACT_ON = 40;
+    const COMPACT_OFF = 8;
+    let ticking = false;
+    const sync = () => {
+      ticking = false;
+      const y = window.scrollY || document.documentElement.scrollTop || 0;
+      if (y > COMPACT_ON) topBar.classList.add("is-compact");
+      else if (y <= COMPACT_OFF) topBar.classList.remove("is-compact");
+    };
+    window.addEventListener("scroll", () => {
+      if (!ticking) {
+        ticking = true;
+        requestAnimationFrame(sync);
+      }
+    }, { passive: true });
+    sync();
   }
 
   init();
