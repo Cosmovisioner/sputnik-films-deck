@@ -8,7 +8,9 @@
   const QUEST_KEY = "sb-onboarding-leonid-quest-step";
   const MODE_KEY = "sb-onboarding-leonid-program-mode";
   const QUIZ_KEY = "sb-onboarding-leonid-quiz";
-  const ASSET_VER = "20260712-v61";
+  const ASSET_VER = "20260712-v62";
+  /** Временно: проверка онбординга без обязательной сдачи теста. Перед стартом Лёни вернуть false. */
+  const QUIZ_GATE_ENABLED = false;
 
   const SALES_CORE_IDS = new Set(["dima", "sasha_a", "denis", "liza", "sergey", "taya", "alya_dudenkova"]);
 
@@ -114,12 +116,14 @@
   }
 
   function blockPastQuiz(targetIdx) {
+    if (!QUIZ_GATE_ENABLED) return false;
     const qIdx = quizGateIdx();
     if (qIdx < 0) return false;
     return targetIdx > qIdx && !isQuizPassed("rules_day5");
   }
 
   function canCompleteTask(stepId, taskId) {
+    if (!QUIZ_GATE_ENABLED) return true;
     if (String(stepId) === "5" && taskId === "rules_quiz") {
       return isQuizPassed("rules_day5");
     }
@@ -534,7 +538,7 @@
 
   function goToDay(idx) {
     if (idx < 0 || idx >= steps.length) return;
-    if (idx > 4 && !isQuizPassed("rules_day5")) {
+    if (QUIZ_GATE_ENABLED && idx > 4 && !isQuizPassed("rules_day5")) {
       window.alert(quizGateMessage());
       const qIdx = quizGateIdx();
       if (qIdx >= 0) {
