@@ -222,12 +222,37 @@
 
     .hero-actions { display: flex; gap: 12px; flex-wrap: wrap; }
 
-    /* ─── ABOUT CHAIN ─── */
+    /* ─── ABOUT (deck statement) ─── */
     #about.section {
+      position: relative;
       padding: clamp(48px, 7vw, 88px) var(--mx);
+      overflow: hidden;
+    }
+
+    .about-wrap {
+      position: relative;
+      max-width: 920px;
+    }
+
+    .about-watermark {
+      position: absolute;
+      right: -24px;
+      top: 28%;
+      transform: translateY(-50%);
+      font-family: var(--display);
+      font-weight: 800;
+      font-size: clamp(140px, 22vw, 260px);
+      line-height: 0.8;
+      letter-spacing: -0.06em;
+      color: rgba(249, 116, 190, 0.07);
+      pointer-events: none;
+      user-select: none;
+      z-index: 0;
     }
 
     .about-h1 {
+      position: relative;
+      z-index: 1;
       font-family: var(--display);
       font-weight: 700;
       font-size: clamp(24px, 3vw, 36px);
@@ -237,83 +262,83 @@
     }
 
     .about-rule {
-      height: 2px;
-      background: linear-gradient(90deg, var(--accent), rgba(249,116,190,0.15) 55%, transparent);
-      margin-bottom: 24px;
-    }
-
-    .about-chain { max-width: 920px; }
-
-    .ribbon {
-      display: grid;
-      grid-template-columns: 108px 1fr;
-      gap: 16px;
-      align-items: baseline;
-      padding: 16px 20px;
-      background: rgba(255, 255, 255, 0.62);
-      border: 1px solid rgba(249, 116, 190, 0.14);
-      border-left: 3px solid var(--accent);
-      backdrop-filter: blur(6px);
-    }
-
-    .ribbon-label {
-      font-size: 11px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      color: var(--accent);
-      font-weight: 600;
-    }
-
-    .ribbon-text {
-      font-family: var(--display);
-      font-weight: 400;
-      font-size: clamp(14px, 1.55vw, 17px);
-      line-height: 1.5;
-      color: rgba(17,17,17,0.84);
-    }
-
-    .chain-arrow {
       position: relative;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 44px;
-      color: var(--accent);
+      z-index: 1;
+      height: 2px;
+      max-width: 720px;
+      background: linear-gradient(90deg, var(--accent), rgba(249,116,190,0.15) 55%, transparent);
+      margin-bottom: 28px;
     }
 
-    .chain-arrow::before {
+    .about-rule::after {
       content: "";
       position: absolute;
-      top: 4px;
-      left: 50%;
-      width: 2px;
-      height: 14px;
-      background: linear-gradient(180deg, rgba(249, 116, 190, 0.35), var(--accent));
-      transform: translateX(-50%);
+      left: 0;
+      top: 50%;
+      width: 8px;
+      height: 8px;
+      transform: translate(-50%, -50%);
+      border-radius: 50%;
+      background: var(--accent);
+      box-shadow: 0 0 0 4px rgba(249, 116, 190, 0.14);
     }
 
-    .chain-arrow::after {
+    .about-body {
+      position: relative;
+      z-index: 1;
+      max-width: 720px;
+      padding-left: 22px;
+      border-left: 3px solid rgba(249, 116, 190, 0.55);
+    }
+
+    .about-body::before,
+    .about-body::after {
       content: "";
-      width: 12px;
-      height: 12px;
-      margin-top: 18px;
-      border-right: 3px solid var(--accent);
-      border-bottom: 3px solid var(--accent);
-      transform: rotate(45deg);
-      filter: drop-shadow(0 0 10px rgba(249, 116, 190, 0.45));
+      position: absolute;
+      left: -1px;
+      width: 18px;
+      height: 2px;
+      background: rgba(249, 116, 190, 0.55);
+    }
+
+    .about-body::before { top: -4px; }
+    .about-body::after { bottom: -4px; }
+
+    .about-lead {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: clamp(18px, 2vw, 24px);
+      line-height: 1.4;
+      letter-spacing: -0.015em;
+      color: var(--ink);
+      margin: 0 0 20px;
+    }
+
+    .about-text {
+      font-family: var(--display);
+      font-weight: 400;
+      font-size: clamp(15px, 1.6vw, 18px);
+      line-height: 1.5;
+      letter-spacing: -0.01em;
+      color: rgba(17, 17, 17, 0.82);
+      margin: 0;
     }
 
     /* ─── STUDIOS ─── */
-    .studios-h1 {
+    .studios-lead {
       font-family: var(--display);
-      font-weight: 800;
-      font-size: clamp(32px, 4vw, 48px);
-      margin-bottom: 20px;
+      font-weight: 700;
+      font-size: clamp(22px, 2.8vw, 32px);
+      line-height: 1.28;
+      letter-spacing: -0.02em;
+      color: var(--ink);
+      margin: 0 0 20px;
+      max-width: 900px;
     }
 
     .studios-rule {
       height: 2px;
-      background: rgba(17,17,17,0.1);
+      background: linear-gradient(90deg, var(--accent) 0%, rgba(249, 116, 190, 0.12) 45%, rgba(17, 17, 17, 0.08) 100%);
       margin-bottom: 40px;
     }
 
@@ -763,7 +788,6 @@
     @media (max-width: 900px) {
       .hero-grid { grid-template-columns: 1fr; }
       .studios-grid, .studio-links { grid-template-columns: 1fr; }
-      .ribbon { grid-template-columns: 1fr; gap: 10px; }
     }
 
     @media (max-width: 640px) {
@@ -802,7 +826,7 @@
         <div>
           <p class="hero-kicker">Production · 2026</p>
           <h1 class="hero-h1">Холдинг<br/>технологичных продакшнов</h1>
-          <p class="hero-lead">Cult, Blaster и Sputnik — единая точка входа для рекламы, AI-видео, графики, спецпроектов и документального кино.</p>
+          <p class="hero-lead">С нами работа над любым контентом эффективнее. Cult, Blaster и Sputnik — в одном месте.</p>
           <div class="hero-actions">
             <a class="btn btn--accent" href="#work">Смотреть работы</a>
             <a class="btn" href="#about">О группе</a>
@@ -813,22 +837,17 @@
 
     <section class="section" id="about">
       <div class="inner">
-        <h2 class="about-h1">Cult Group — холдинг<br/>технологичных продакшнов</h2>
-        <div class="about-rule"></div>
-        <div class="about-chain">
-          <div class="ribbon">
-            <span class="ribbon-label">Модель</span>
-            <p class="ribbon-text">Мы объединили три профильные студии единой точкой входа для клиента.</p>
-          </div>
-          <div class="chain-arrow" aria-hidden="true"></div>
-          <div class="ribbon">
-            <span class="ribbon-label">Процесс</span>
-            <p class="ribbon-text">Проекты любого формата и жанра создаются командами с узкой специализацией, но управляются по единому, прозрачному стандарту с применением AI и технологий.</p>
-          </div>
-          <div class="chain-arrow" aria-hidden="true"></div>
-          <div class="ribbon">
-            <span class="ribbon-label">Результат</span>
-            <p class="ribbon-text">Это позволяет нам уменьшать расходы на производство, быть гибче и эффективнее в управлении проектами.</p>
+        <div class="about-wrap">
+          <div class="about-watermark" aria-hidden="true">/</div>
+          <h2 class="about-h1">Cult Group — холдинг<br/>технологичных продакшнов</h2>
+          <div class="about-rule"></div>
+          <div class="about-body">
+            <p class="about-lead">С нами работа над любым контентом эффективнее.</p>
+            <p class="about-text">
+              Мы применяем AI и технологии в управлении проектами.<br/>
+              Это позволяет нам уменьшать расходы на производство,<br/>
+              быть гибче и действовать быстрее на каждом этапе.
+            </p>
           </div>
         </div>
       </div>
@@ -836,7 +855,10 @@
 
     <section class="section" id="studios">
       <div class="inner">
-        <h2 class="studios-h1">Компании группы</h2>
+        <p class="studios-lead">
+          Мы объединили три продакшна с разной специализацией,<br/>
+          чтобы клиент мог решать все свои задачи в одном месте.
+        </p>
         <div class="studios-rule"></div>
         <div class="studios-grid">
           <div class="studio-col">
@@ -897,15 +919,6 @@
             <h3 class="work-title">PIK · BBDO · Серия плюс 2025</h3>
           </div>
         </button>
-        <button type="button" class="work-card" data-case-id="tutu_manifest" aria-haspopup="dialog">
-          <div class="work-thumb" style="background-image:url('_assets/tutu_manifest_hero.jpg')">
-            <span class="work-play" aria-hidden="true"></span>
-          </div>
-          <div class="work-meta">
-            <span class="work-studio work-studio--cult">Cult</span>
-            <h3 class="work-title">Tutu · Манифест</h3>
-          </div>
-        </button>
         <button type="button" class="work-card" data-case-id="tbank" aria-haspopup="dialog">
           <div class="work-thumb" style="background-image:url('_assets/tbank_hero.jpg')">
             <span class="work-play" aria-hidden="true"></span>
@@ -913,6 +926,15 @@
           <div class="work-meta">
             <span class="work-studio work-studio--cult">Cult</span>
             <h3 class="work-title">Т-Банк · DDB · Сферы 2025</h3>
+          </div>
+        </button>
+        <button type="button" class="work-card" data-case-id="technopark" aria-haspopup="dialog">
+          <div class="work-thumb" style="background-image:url('_assets/technopark_hero.jpg')">
+            <span class="work-play" aria-hidden="true"></span>
+          </div>
+          <div class="work-meta">
+            <span class="work-studio work-studio--cult">Cult</span>
+            <h3 class="work-title">Технопарк · Setters · Новогодняя кампания</h3>
           </div>
         </button>
         <button type="button" class="work-card" data-case-id="yamore" aria-haspopup="dialog">
@@ -1185,7 +1207,7 @@
 
   <script>
     const ASSETS_BASE = "_assets";
-    const CASES = {"yandex_knigi": {"layout": "standard", "sputnik": false, "logo": "cult_logo.png", "logoMod": "case-logo--cult", "titleHtml": "Яндекс Книги × The Clients <span class=\"slash\">/</span> Я и книги", "blocks": [{"label": "Background", "text": "Яндекс Книги запускают новую бренд-платформу для чтения «Только Я и Книги». Нашей задачей было снять ролик и рассказать, что чтение помогает не просто отдохнуть, а познакомиться с собой через чувства и эмоции от прочтения."}, {"label": "Execution", "text": "Креатив разработало агентство The Clients. За две смены сменили несколько локаций: уютную квартиру, лес с искусственным дождём, МФЦ и трамвайное депо. Провели более 10 волн кастинга, чтобы найти актёров, способных передать нужные эмоции. Голос Константина Хабенского добавил истории глубины и искренности."}], "bodyHtml": null, "images": ["yandex_knigi_hero.jpg", "yandex_knigi_t1.jpg", "yandex_knigi_t2.jpg"], "buttons": [{"url": "https://drive.google.com/file/d/1d2ilKq41AVOyh0DZ9lMXNS2PXZwJtVJp/view?usp=share_link", "label": "Смотреть"}]}, "pik_seriya": {"layout": "standard", "sputnik": false, "logo": "cult_logo.png", "logoMod": "case-logo--cult", "titleHtml": "PIK × BBDO <span class=\"slash\">/</span> Серия плюс 2025", "blocks": [{"label": "Background", "text": "Девелопер ПИК пришёл с задачей снять РК о кварталах повышенного комфорта «Серия плюс». В центре сюжета обычный житель, который рассказывает актёру Александру Петрову, как воплотил свои мечты в новом доме. С готовым креативом к нам пришло агентство BBDO."}, {"label": "Execution", "text": "Было решено строить квартиру с террасой в павильоне и использовать LED-экраны в качестве фонов — это сэкономило время на постпродакшене. Ролик сняли за одну смену и сдали через неделю после съёмок."}], "bodyHtml": null, "images": ["pik_seriya_hero.jpg", "pik_seriya_t1.jpg", "pik_seriya_t2.jpg"], "buttons": [{"url": "https://drive.google.com/file/d/1qlytkKOdjGE3GFCAOUtsgZsp1xslbbUP/view?usp=share_link", "label": "Смотреть"}]}, "tutu_manifest": {"layout": "standard", "sputnik": false, "logo": "cult_logo.png", "logoMod": "case-logo--cult", "titleHtml": "Tutu <span class=\"slash\">/</span> Манифест", "blocks": [{"label": "Background", "text": "Компании Tutu — 21 год. Всё начиналось с сайта с расписанием электричек, а превратилось в полноценный онлайн-сервис по организации путешествий. Нашей задачей было снять ролик-манифест с рассказом об истории компании через жизнь главной героини, которая буквально росла вместе с сервисом."}, {"label": "Execution", "text": "Для реализации задумки мы выбрали коммерческо-документальную стилистику повествования. Большой объём кадров набрали за 3 съёмочные смены в Москве и Сочи. Весь проект от запуска до сдачи по ТТ уложили в 4 недели."}], "bodyHtml": null, "images": ["tutu_manifest_hero.jpg", "tutu_manifest_t1.jpg", "tutu_manifest_t2.jpg"], "buttons": [{"url": "https://drive.google.com/file/d/1L5-s9B4nqwsjGtbyK696ohnmrQ7KYSUE/view?usp=drive_link", "label": "Смотреть"}]}, "tbank": {"layout": "standard", "sputnik": false, "logo": "cult_logo.png", "logoMod": "case-logo--cult", "titleHtml": "Т-Банк × DDB <span class=\"slash\">/</span> Сферы 2025", "blocks": [{"label": "Background", "text": "Т-Банк объединил продукты своей экосистемы в разделы приложения, каждый из которых связан со сферами жизни пользователей: дом, авто, путешествия и шопинг. Нашей задачей было снять 4 коротких ролика и рассказать про каждую из сфер, сделать один крутой ролик про всё сразу и провести фотосессию."}, {"label": "Execution", "text": "Креатив разрабатывало агентство DDB. За 3 съемочных дня построили заправку в павильоне, научили актера водить машину, и провели ночь в салоне красоты на Суперметалле. Между делом провели фотосессию на заправке с Ваней Князевым. Несколько недель на постпродакшн и первые ролики уже на ТВ и в приложении!"}], "bodyHtml": null, "images": ["tbank_hero.jpg", "tbank_t1.jpg", "tbank_t2.jpg"], "buttons": [{"url": "https://drive.google.com/file/d/1dhRcD_gv2LccdOAbpe2n62ArMyyydO3J/view?usp=sharing", "label": "Смотреть"}]}, "yamore": {"layout": "standard", "sputnik": false, "logo": "cult_logo.png", "logoMod": "case-logo--cult", "titleHtml": "Яндекс × More <span class=\"slash\">/</span> Командировки", "blocks": [{"label": "Background", "text": "Яндекс запустили новый сервис – Командировки, который облегчает организацию деловых поездок. Нашей задачей было снять короткий ролик о новом сервисе и помочь рассказать обо всех преимуществах."}, {"label": "Execution", "text": "Главной героиней ролика стала гигантская красная рогатка, как из игры Angry Birds, которую мы натянули прямо в офисе Яндекса. По сюжету, в командировки сотрудников отправляют именно с ее помощью. Но это они еще не знают о Яндекс Командировках."}], "bodyHtml": null, "images": ["yamore_hero.jpg", "yamore_t1.jpg", "yamore_t2.jpg"], "buttons": [{"url": "https://drive.google.com/file/d/1gMRr6ID8MwVMZRxhS200jvE7Cc0cYAUD/view?usp=share_link", "label": "Смотреть"}]}, "rocket_1": {"layout": "grid", "sputnik": false, "logo": "cult_logo.png", "logoMod": "case-logo--cult", "titleHtml": "Рокетбанк <span class=\"slash\">//</span> AI-ролики", "blocks": [{"label": "Background", "text": "К нам обратился Рокетбанк с задачей создать четыре AI-ролика, которые расскажут о преимуществах банка. Мы должны были открыто показать, что ролик сделан с помощью ИИ, поэтому сделали ироничные и слегка абсурдные ситуации, которые в обычной жизни выглядят невозможными."}, {"label": "Execution", "text": "В работе использовали сразу несколько нейросетей — каждую под свою задачу: генерацию сцен, персонажей, анимации и пост-обработку. Время реализации проекта составило примерно 1 месяц."}], "bodyHtml": null, "images": ["rocket_1.png", "rocket_2.png", "rocket_4.png", "rocket_3.png"], "buttons": [{"url": "https://drive.google.com/drive/folders/1qZlsjvDmGAUqrlGn3dJmXyOj4t2iNZrd?hl=ru", "label": "Смотреть"}]}, "tutu": {"layout": "standard", "sputnik": false, "logo": "cult_logo.png", "logoMod": "case-logo--cult", "titleHtml": "Tutu <span class=\"slash\">/</span> Просто песня!", "blocks": [{"label": "Background", "text": "Туту обратились к нам за созданием дерзкого графического ролика для сайтов с видеоконтентом. Нашей задачей было рассказать, что планировать путешествия с Туту — легко, быстро и удобно."}, {"label": "Execution", "text": "В основе креативной концепции от команды Туту были магниты из путешествий, которые есть на холодильнике практически каждого человека. Мы оживили магниты, чтобы они спели заедающую песню в стиле группы «Ленинград». Песню придумали и записали специально для этого проекта. На выходе получилось веселое ска-хулиганство."}], "bodyHtml": null, "images": ["tutu_hero.jpg", "tutu_t1.jpg", "tutu_t2.jpg"], "buttons": [{"url": "https://drive.google.com/file/d/1SHtm4MoXtLBaaEOzyPIfOZJOeQB_YoAV/view?usp=share_link", "label": "Смотреть"}]}, "deti": {"layout": "standard", "sputnik": false, "logo": "blaster_logo.png", "logoMod": "", "titleHtml": "Дети в капусте <span class=\"slash\">/</span> Национальные проекты", "blocks": [{"label": "Background", "text": "«Дети в капусте» — соцкампания Национальных проектов: федеральный ролик почти полностью на нейросетях о поддержке молодых семей."}, {"label": "Execution", "text": "Blaster: генерация сцен и персонажей, AI-липсинк, композ. Ироничный сюжет «выбора родителей» — креатив «Рабочее название», единый AI-пайплайн."}], "bodyHtml": null, "images": ["deti_hero.jpg", "deti_t1.jpg", "deti_t2.jpg"], "buttons": [{"url": "https://drive.google.com/file/d/19lWs7lHzHeKNKzgQwtoBOe88EIo1hcT2/view", "label": "Смотреть"}, {"url": "https://drive.google.com/file/d/1ZmYsNHXiYg_8O4BCQLGaDWzUQbMa-Aq6/view", "label": "Breakdown"}]}, "rostics": {"layout": "standard", "sputnik": false, "logo": "blaster_logo.png", "logoMod": "", "titleHtml": "Rostic's × MOB <span class=\"slash\">/</span> Космическое комбо", "blocks": [{"label": "Background", "text": "Rostic's × MOB «Космическое комбо» — AI-ролик к космической кампании и коллекции «Легенды космоса» для digital."}, {"label": "Execution", "text": "Реалистичные люди на AI-фонах с 3D-вкраплениями. Blaster собрали единый космический стиль: генерация, композ, согласование с брендом."}], "bodyHtml": null, "images": ["rostics_hero.jpg", "rostics_t1.jpg", "rostics_t2.jpg"], "buttons": [{"url": "https://drive.google.com/file/d/1SzdY2bZduSZfD7zLxob8pm4UOdpwse40/view", "label": "Смотреть"}]}, "puhatyri": {"layout": "standard", "sputnik": false, "logo": "blaster_logo.png", "logoMod": "", "titleHtml": "Дикси <span class=\"slash\">/</span> Пухатыри", "blocks": [{"label": "Background", "text": "Дикси «Пухатыри» — digital-ролик с маскотами линейки без классической съёмки, только AI-персонажи."}, {"label": "Execution", "text": "Blaster: нейро-персонажи, анимация и композ в одном пайплайне. Узнаваемые герои и динамика фуд-рекламы для соцсетей ритейлера."}], "bodyHtml": null, "images": ["puhatyri_hero.jpg", "puhatyri_t1.jpg", "puhatyri_t2.jpg"], "buttons": [{"url": "https://drive.google.com/file/d/1FjbnyjubrxDdWz1uL8auaHq4FB4LHzYY/view", "label": "Смотреть"}]}, "gfx_lubiatovo": {"layout": "standard", "sputnik": false, "logo": "blaster_logo.png", "logoMod": "", "titleHtml": "Любятово <span class=\"slash\">/</span> Лис", "blocks": [{"label": "Background", "text": "Для бренда «Любятово» нужно было оживить маскота и собрать яркий анимационный ролик в 3D."}, {"label": "Execution", "text": "Blaster: персонажный 3D, анимация маскота-лиса, стилизация под фуд-бренд. Характерный герой и динамичный ритм для digital-кампании."}], "bodyHtml": null, "images": ["gfx_lubiatovo_hero.jpg", "gfx_lubiatovo_t1.jpg", "gfx_lubiatovo_t2.jpg"], "buttons": [{"url": "https://docs.google.com/file/d/1aIlSuLGSuwQfgOqVTcb1j8cJCYxhI7qc/preview", "label": "Смотреть"}]}, "gfx_lenta": {"layout": "standard", "sputnik": false, "logo": "blaster_logo.png", "logoMod": "", "titleHtml": "Лента <span class=\"slash\">/</span> Хэнги", "blocks": [{"label": "Background", "text": "Ролик для свежей рекламной кампании «Ленты» с обновлённым маскотом Хэнги."}, {"label": "Execution", "text": "3D-анимация персонажа и окружения, сжатые сроки — сделали за 1 месяц. Узнаваемый маскот в новой визуальной подаче ритейлера."}], "bodyHtml": null, "images": ["gfx_lenta_hero.jpg", "gfx_lenta_t1.jpg", "gfx_lenta_t2.jpg"], "buttons": [{"url": "https://docs.google.com/file/d/1pz6XcNxg7BVWaW2Yr4KNtKJRJWoVQ4hJ/preview", "label": "Смотреть"}]}, "gfx_cheesls": {"layout": "standard", "sputnik": false, "logo": "blaster_logo.png", "logoMod": "", "titleHtml": "Cheesl's <span class=\"slash\">/</span> Мышиная мафия", "blocks": [{"label": "Background", "text": "Сложносоставная 3D-история для фуд-бренда: 8 пушистых персонажей-мышей и детально проработанное окружение."}, {"label": "Execution", "text": "Blaster: концепт-арты, персонажный 3D, анимация и композ. Каждый герой с отдельным характером — кинематографичная «мышиная мафия» для рекламы."}], "bodyHtml": null, "images": ["gfx_cheesls_hero.jpg", "gfx_cheesls_t1.jpg", "gfx_cheesls_t2.jpg"], "buttons": [{"url": "https://docs.google.com/file/d/1pbahrUD0I1M-E9-kfNOf32y-vv5Fb84K/preview", "label": "Смотреть"}]}, "gfx_olimpbet": {"layout": "standard", "sputnik": false, "logo": "blaster_logo.png", "logoMod": "", "titleHtml": "БК ОлимпБет <span class=\"slash\">/</span> Basket Olimp", "blocks": [{"label": "Background", "text": "Имиджевый ТВ и OLV-ролик для рекламы Olimpbet. Клиент пришёл с общим креативным замыслом — мы взяли режиссуру и доработку сценария."}, {"label": "Execution", "text": "Чистый lookdev: гиперреализм, акцентное освещение, физичная симуляция мяча. 3D motion design — стильный спортивный имидж за 1 месяц."}], "bodyHtml": null, "images": ["gfx_olimpbet_hero.jpg", "gfx_olimpbet_t1.jpg", "gfx_olimpbet_t2.jpg"], "buttons": [{"url": "https://docs.google.com/file/d/133W3X6iexRZTiCmuW1EqXUnwJX6jmXm9/preview", "label": "Смотреть"}]}, "gfx_tele2": {"layout": "standard", "sputnik": false, "logo": "blaster_logo.png", "logoMod": "", "titleHtml": "Tele2 <span class=\"slash\">/</span> Фоны в реальном времени", "blocks": [{"label": "Background", "text": "Для рекламного ролика Tele2 нужны были объёмные 3D-фоны: горы, облака, голуби — с ощущением живого пространства."}, {"label": "Execution", "text": "Blaster разработал 3D-окружения для интеграции в съёмочный материал. Атмосферные фоны с детальной проработкой света и движения."}], "bodyHtml": null, "images": ["gfx_tele2_hero.jpg", "gfx_tele2_t1.jpg", "gfx_tele2_t2.jpg"], "buttons": [{"url": "https://docs.google.com/file/d/1wxF5wZBsE1ZYvhexGV3FNMyFr-AVOFlz/preview", "label": "Смотреть"}]}, "tancy": {"layout": "standard", "sputnik": true, "logo": "sputnik_logo_ink.png", "logoMod": "", "titleHtml": "Love Generation: Танцы-шманцы <span class=\"slash\">/</span> Promo", "blocks": [], "bodyHtml": "Разработали и реализовали серию промо-роликов для спецпроекта Love Generation в формате караоке-такси. Задача — креативная активация новой линейки бренда. Полностью организовали съёмочный процесс: от перекрытия улицы и размещения группы до обеспечения райдера артистов. Подготовили дополнительные версии роликов для всех площадок. Проект стал вирусным и усилил интерес к бренду. Охват 10+ млн человек и 25+ млн показов.", "images": ["tancy_hero.jpeg", "tancy_t1.jpeg", "tancy_t2.jpeg"], "buttons": [{"url": "https://disk.yandex.ru/i/HvuXCT9_s7KOfQ", "label": "Ролик 1"}, {"url": "https://disk.yandex.ru/i/m9RBVx9L2gQUrQ", "label": "Ролик 2"}, {"url": "https://disk.yandex.ru/i/DUAyjQ_e964vxQ", "label": "Ролик 3"}]}, "brusnika_hero_pdf": {"layout": "standard", "sputnik": true, "logo": "sputnik_logo_ink.png", "logoMod": "", "titleHtml": "Бонд с кнопкой × Брусника <span class=\"slash\">/</span> кухни live-клип", "blocks": [], "bodyHtml": "Live-клип на нашумевший трек «Кухни», снятый на стройке в живом исполнении с хором. Клип облетел весь интернет, собрал более 5 миллионов просмотров.<br/><br/>Особенность проекта в создании трека с миксом звуков стройки, из которых создаётся новый бит и инструментал.<br/><br/>Закрыли все задачи — от разработки идеи до производства бэкстейджа.", "images": ["brusnika_hero_pdf.jpeg", "brusnika_t1_pdf.jpeg", "brusnika_t2_pdf.jpeg"], "buttons": [{"url": "https://vkvideo.ru/video-22382635_456240641", "label": "Ролик"}, {"url": "https://disk.yandex.ru/i/78K3sEryNb5U9g", "label": "Бэкстейдж"}]}, "vtb_v1": {"layout": "vertical", "sputnik": true, "logo": "sputnik_logo_ink.png", "logoMod": "", "titleHtml": "ВТБ HR <span class=\"slash\">/</span> Image", "blocks": [], "bodyHtml": "Вертикальный сериал для HR-отдела ВТБ, направленный на привлечение соискателей через соцсети и укрепление имиджа банка. Все герои — реальные сотрудники, прошедшие внутренний кастинг и репетиции! За один день отсняли 8 роликов, что позволило значительно оптимизировать расходы. Проект вышел живым и достоверным, подчеркнув ценность и профессионализм сотрудников ВТБ.", "images": ["vtb_v1.jpeg", "vtb_v2.jpeg", "vtb_v3.jpeg"], "buttons": [{"url": "https://disk.yandex.ru/d/YmyOJvWVB7pEMA", "label": "Смотреть"}]}, "mts_v1": {"layout": "vertical", "sputnik": true, "logo": "sputnik_logo_ink.png", "logoMod": "", "titleHtml": "МТС <span class=\"slash\">/</span> Social media", "blocks": [], "bodyHtml": "Серия роликов для викторины об экосистеме МТС. Полностью закрыли съёмочный процесс: от организации съёмок до обеспечения райдеров селебрити. За минимальные сроки создали яркую графику по строгому гайдбуку, усилив визуальную идентичность бренда. Запоминающийся проект с интерактивной механикой, точно отражающий дух клиента и вовлекающий аудиторию.", "images": ["mts_v1.jpeg", "mts_v2.jpeg", "mts_v3.jpeg"], "buttons": [{"url": "https://disk.yandex.ru/d/n7uA7LvjieyjXQ", "label": "Смотреть"}]}, "kiss_v1": {"layout": "vertical", "sputnik": true, "logo": "sputnik_logo_ink.png", "logoMod": "", "titleHtml": "Love Generation <span class=\"slash\">/</span> kiss-секретики", "blocks": [], "bodyHtml": "Серия роликов в формате уличного реалити-шоу с интервью для активации новой линейки в бренде косметики Love Generation. Организовали большие съёмки внутри торгового центра, весь продакшен-сервис и постпроизводство «под ключ».", "images": ["kiss_v1.jpeg", "kiss_v2.jpeg", "kiss_v3.jpeg"], "buttons": [{"url": "https://disk.yandex.ru/i/5Nx-mkT7bzRTHg", "label": "Ролик 1"}, {"url": "https://disk.yandex.ru/i/ygOqXGnvjUAWpg", "label": "Ролик 2"}, {"url": "https://disk.yandex.ru/i/5QzuNCncIZWEpQ", "label": "Ролик 3"}]}, "doc_neskory": {"layout": "standard", "sputnik": true, "logo": "sputnik_logo_ink.png", "logoMod": "", "titleHtml": "Нескорый поезд", "blocks": [], "bodyHtml": "На электричках из Москвы до Владивостока — история путешествия трёх друзей в поисках приключений и собственного «я». За 27 съёмочных дней — 10 000 км. Фильм собрал 5+ млн зрителей без вложений, стал победителем «Умного кино», оценка на Кинопоиске — 7.4.", "images": ["doc_neskory_hero.jpg", "doc_neskory_t1.jpg", "doc_neskory_t2.jpg"], "buttons": [{"url": "https://www.kinopoisk.ru/film/5232612/", "label": "Смотреть"}]}, "doc_enisey": {"layout": "standard", "sputnik": true, "logo": "sputnik_logo_ink.png", "logoMod": "", "titleHtml": "Енисейский марафон", "blocks": [], "bodyHtml": "Двое друзей-мечтателей отправляются в опасное путешествие по Сибири на скейтбордах. Вдохновляющий документальный фильм о смельчаках с палатками, решивших проделать необычный путь и испытать себя. Гран-при кинофестиваля «Неизвестная Россия» (2024).", "images": ["doc_enisey_hero.jpg", "doc_enisey_t1.jpg", "doc_enisey_t2.jpg"], "buttons": [{"url": "https://wink.ru/movies/eniseyskiy-marafon-year-2023", "label": "Смотреть"}]}, "doc_komandor": {"layout": "standard", "sputnik": true, "logo": "sputnik_logo_ink.png", "logoMod": "", "titleHtml": "Командор <span class=\"slash\">/</span> Живём Сибирью", "blocks": [], "bodyHtml": "Большой фильм-исследование об истории и масштабах одной из крупнейших сетей продуктовых супермаркетов за Уралом. Полный цикл: от идеи и сценария до многомесячных съёмок в городах Сибири. Гран-при конкурса «Лучшее корпоративное видео» (АКМР × MOTIVE).", "images": ["doc_komandor_hero.jpg", "doc_komandor_t1.jpg", "doc_komandor_t2.jpg"], "buttons": [{"url": "https://youtu.be/bVn7kaga_-o", "label": "Смотреть"}]}, "doc_osetia": {"layout": "standard", "sputnik": true, "logo": "sputnik_logo_ink.png", "logoMod": "", "titleHtml": "Там, где наш дом: <span class=\"slash\">/</span> Северная Осетия", "blocks": [], "bodyHtml": "Третья часть авторского документального проекта. В героях: горцы из высокогорных сёл, известный фотограф, студия осетинского театра, команда строителей арт-объектов. Победитель «Неизвестной России», LAMPA, лауреат премии РГО, финалист «НИКА».", "images": ["doc_osetia_hero.jpg", "doc_osetia_t1.jpg", "doc_osetia_t2.jpg"], "buttons": [{"url": "https://wink.ru/movies/tam-gde-nash-dom-severnaya-osetiya-year-2024", "label": "Смотреть"}]}, "doc_olimp": {"layout": "standard", "sputnik": true, "logo": "sputnik_logo_ink.png", "logoMod": "", "titleHtml": "Улицы Олимпийского резерва", "blocks": [], "bodyHtml": "Фильм о развитии паркура, скейтбординга и BMX в России через истории топ-спортсменов. Победитель грантового конкурса ФПРК, участник фестивалей Beat и Unknown. Проект помог запустить одноимённый фестиваль и строительство экстрим-парка в Саратове.", "images": ["doc_olimp_hero.jpg", "doc_olimp_t1.jpg", "doc_olimp_t2.jpg"], "buttons": [{"url": "https://youtu.be/mOnpqJO4q2E", "label": "Смотреть"}]}};
+    const CASES = {"yandex_knigi": {"layout": "standard", "sputnik": false, "logo": "cult_logo.png", "logoMod": "case-logo--cult", "titleHtml": "Яндекс Книги × The Clients <span class=\"slash\">/</span> Я и книги", "blocks": [{"label": "Background", "text": "Яндекс Книги запускают новую бренд-платформу для чтения «Только Я и Книги». Нашей задачей было снять ролик и рассказать, что чтение помогает не просто отдохнуть, а познакомиться с собой через чувства и эмоции от прочтения."}, {"label": "Execution", "text": "Креатив разработало агентство The Clients. За две смены сменили несколько локаций: уютную квартиру, лес с искусственным дождём, МФЦ и трамвайное депо. Провели более 10 волн кастинга, чтобы найти актёров, способных передать нужные эмоции. Голос Константина Хабенского добавил истории глубины и искренности."}], "bodyHtml": null, "images": ["yandex_knigi_hero.jpg", "yandex_knigi_t1.jpg", "yandex_knigi_t2.jpg"], "buttons": [{"url": "https://drive.google.com/file/d/1d2ilKq41AVOyh0DZ9lMXNS2PXZwJtVJp/view?usp=share_link", "label": "Смотреть"}]}, "pik_seriya": {"layout": "standard", "sputnik": false, "logo": "cult_logo.png", "logoMod": "case-logo--cult", "titleHtml": "PIK × BBDO <span class=\"slash\">/</span> Серия плюс 2025", "blocks": [{"label": "Background", "text": "Девелопер ПИК пришёл с задачей снять РК о кварталах повышенного комфорта «Серия плюс». В центре сюжета обычный житель, который рассказывает актёру Александру Петрову, как воплотил свои мечты в новом доме. С готовым креативом к нам пришло агентство BBDO."}, {"label": "Execution", "text": "Было решено строить квартиру с террасой в павильоне и использовать LED-экраны в качестве фонов — это сэкономило время на постпродакшене. Ролик сняли за одну смену и сдали через неделю после съёмок."}], "bodyHtml": null, "images": ["pik_seriya_hero.jpg", "pik_seriya_t1.jpg", "pik_seriya_t2.jpg"], "buttons": [{"url": "https://drive.google.com/file/d/1qlytkKOdjGE3GFCAOUtsgZsp1xslbbUP/view?usp=share_link", "label": "Смотреть"}]}, "tbank": {"layout": "standard", "sputnik": false, "logo": "cult_logo.png", "logoMod": "case-logo--cult", "titleHtml": "Т-Банк × DDB <span class=\"slash\">/</span> Сферы 2025", "blocks": [{"label": "Background", "text": "Т-Банк объединил продукты своей экосистемы в разделы приложения, каждый из которых связан со сферами жизни пользователей: дом, авто, путешествия и шопинг. Нашей задачей было снять 4 коротких ролика и рассказать про каждую из сфер, сделать один крутой ролик про всё сразу и провести фотосессию."}, {"label": "Execution", "text": "Креатив разрабатывало агентство DDB. За 3 съемочных дня построили заправку в павильоне, научили актера водить машину, и провели ночь в салоне красоты на Суперметалле. Между делом провели фотосессию на заправке с Ваней Князевым. Несколько недель на постпродакшн и первые ролики уже на ТВ и в приложении!"}], "bodyHtml": null, "images": ["tbank_hero.jpg", "tbank_t1.jpg", "tbank_t2.jpg"], "buttons": [{"url": "https://drive.google.com/file/d/1dhRcD_gv2LccdOAbpe2n62ArMyyydO3J/view?usp=sharing", "label": "Смотреть"}]}, "technopark": {"layout": "standard", "sputnik": false, "logo": "cult_logo.png", "logoMod": "case-logo--cult", "titleHtml": "Технопарк × Setters <span class=\"slash\">/</span> Новогодняя кампания", "blocks": [{"label": "Background", "text": "«Технопарк» называет свой магазин digital-сказкой в реальности. С креативом Setters нам нужно было снять новогодний ролик: передать атмосферу премиальной техники, показать ассортимент подарков и сделать поиск гаджетов похожим на путешествие в сказочный мир."}, {"label": "Execution", "text": "Перенесли героиню в зимний технологичный лес: умные лампочки, роботы-пылесосы, смарт-часы вместо птиц. Две локации, ~70 человек на площадке, лёд из эпоксидной смолы вручную и десятки часов графики — чтобы соединить технологии, подарки и немного магии."}], "bodyHtml": null, "images": ["technopark_hero.jpg", "technopark_t1.jpg", "technopark_t2.jpg"], "buttons": [{"url": "https://drive.google.com/file/d/1QTqH8U4S2Z7o7klxbAEzY-pFeVhBtWo3/view?usp=share_link", "label": "Смотреть"}]}, "yamore": {"layout": "standard", "sputnik": false, "logo": "cult_logo.png", "logoMod": "case-logo--cult", "titleHtml": "Яндекс × More <span class=\"slash\">/</span> Командировки", "blocks": [{"label": "Background", "text": "Яндекс запустили новый сервис – Командировки, который облегчает организацию деловых поездок. Нашей задачей было снять короткий ролик о новом сервисе и помочь рассказать обо всех преимуществах."}, {"label": "Execution", "text": "Главной героиней ролика стала гигантская красная рогатка, как из игры Angry Birds, которую мы натянули прямо в офисе Яндекса. По сюжету, в командировки сотрудников отправляют именно с ее помощью. Но это они еще не знают о Яндекс Командировках."}], "bodyHtml": null, "images": ["yamore_hero.jpg", "yamore_t1.jpg", "yamore_t2.jpg"], "buttons": [{"url": "https://drive.google.com/file/d/1gMRr6ID8MwVMZRxhS200jvE7Cc0cYAUD/view?usp=share_link", "label": "Смотреть"}]}, "rocket_1": {"layout": "grid", "sputnik": false, "logo": "cult_logo.png", "logoMod": "case-logo--cult", "titleHtml": "Рокетбанк <span class=\"slash\">//</span> AI-ролики", "blocks": [{"label": "Background", "text": "К нам обратился Рокетбанк с задачей создать четыре AI-ролика, которые расскажут о преимуществах банка. Мы должны были открыто показать, что ролик сделан с помощью ИИ, поэтому сделали ироничные и слегка абсурдные ситуации, которые в обычной жизни выглядят невозможными."}, {"label": "Execution", "text": "В работе использовали сразу несколько нейросетей — каждую под свою задачу: генерацию сцен, персонажей, анимации и пост-обработку. Время реализации проекта составило примерно 1 месяц."}], "bodyHtml": null, "images": ["rocket_1.png", "rocket_2.png", "rocket_4.png", "rocket_3.png"], "buttons": [{"url": "https://drive.google.com/drive/folders/1qZlsjvDmGAUqrlGn3dJmXyOj4t2iNZrd?hl=ru", "label": "Смотреть"}]}, "tutu": {"layout": "standard", "sputnik": false, "logo": "cult_logo.png", "logoMod": "case-logo--cult", "titleHtml": "Tutu <span class=\"slash\">/</span> Просто песня!", "blocks": [{"label": "Background", "text": "Туту обратились к нам за созданием дерзкого графического ролика для сайтов с видеоконтентом. Нашей задачей было рассказать, что планировать путешествия с Туту — легко, быстро и удобно."}, {"label": "Execution", "text": "В основе креативной концепции от команды Туту были магниты из путешествий, которые есть на холодильнике практически каждого человека. Мы оживили магниты, чтобы они спели заедающую песню в стиле группы «Ленинград». Песню придумали и записали специально для этого проекта. На выходе получилось веселое ска-хулиганство."}], "bodyHtml": null, "images": ["tutu_hero.jpg", "tutu_t1.jpg", "tutu_t2.jpg"], "buttons": [{"url": "https://drive.google.com/file/d/1SHtm4MoXtLBaaEOzyPIfOZJOeQB_YoAV/view?usp=share_link", "label": "Смотреть"}]}, "deti": {"layout": "standard", "sputnik": false, "logo": "blaster_logo.png", "logoMod": "", "titleHtml": "Дети в капусте <span class=\"slash\">/</span> Национальные проекты", "blocks": [{"label": "Background", "text": "«Дети в капусте» — соцкампания Национальных проектов: федеральный ролик почти полностью на нейросетях о поддержке молодых семей."}, {"label": "Execution", "text": "Blaster: генерация сцен и персонажей, AI-липсинк, композ. Ироничный сюжет «выбора родителей» — креатив «Рабочее название», единый AI-пайплайн."}], "bodyHtml": null, "images": ["deti_hero.jpg", "deti_t1.jpg", "deti_t2.jpg"], "buttons": [{"url": "https://drive.google.com/file/d/19lWs7lHzHeKNKzgQwtoBOe88EIo1hcT2/view", "label": "Смотреть"}, {"url": "https://drive.google.com/file/d/1ZmYsNHXiYg_8O4BCQLGaDWzUQbMa-Aq6/view", "label": "Breakdown"}]}, "rostics": {"layout": "standard", "sputnik": false, "logo": "blaster_logo.png", "logoMod": "", "titleHtml": "Rostic's × MOB <span class=\"slash\">/</span> Космическое комбо", "blocks": [{"label": "Background", "text": "Rostic's × MOB «Космическое комбо» — AI-ролик к космической кампании и коллекции «Легенды космоса» для digital."}, {"label": "Execution", "text": "Реалистичные люди на AI-фонах с 3D-вкраплениями. Blaster собрали единый космический стиль: генерация, композ, согласование с брендом."}], "bodyHtml": null, "images": ["rostics_hero.jpg", "rostics_t1.jpg", "rostics_t2.jpg"], "buttons": [{"url": "https://drive.google.com/file/d/1SzdY2bZduSZfD7zLxob8pm4UOdpwse40/view", "label": "Смотреть"}]}, "puhatyri": {"layout": "standard", "sputnik": false, "logo": "blaster_logo.png", "logoMod": "", "titleHtml": "Дикси <span class=\"slash\">/</span> Пухатыри", "blocks": [{"label": "Background", "text": "Дикси «Пухатыри» — digital-ролик с маскотами линейки без классической съёмки, только AI-персонажи."}, {"label": "Execution", "text": "Blaster: нейро-персонажи, анимация и композ в одном пайплайне. Узнаваемые герои и динамика фуд-рекламы для соцсетей ритейлера."}], "bodyHtml": null, "images": ["puhatyri_hero.jpg", "puhatyri_t1.jpg", "puhatyri_t2.jpg"], "buttons": [{"url": "https://drive.google.com/file/d/1FjbnyjubrxDdWz1uL8auaHq4FB4LHzYY/view", "label": "Смотреть"}]}, "gfx_lubiatovo": {"layout": "standard", "sputnik": false, "logo": "blaster_logo.png", "logoMod": "", "titleHtml": "Любятово <span class=\"slash\">/</span> Лис", "blocks": [{"label": "Background", "text": "Для бренда «Любятово» нужно было оживить маскота и собрать яркий анимационный ролик в 3D."}, {"label": "Execution", "text": "Blaster: персонажный 3D, анимация маскота-лиса, стилизация под фуд-бренд. Характерный герой и динамичный ритм для digital-кампании."}], "bodyHtml": null, "images": ["gfx_lubiatovo_hero.jpg", "gfx_lubiatovo_t1.jpg", "gfx_lubiatovo_t2.jpg"], "buttons": [{"url": "https://docs.google.com/file/d/1aIlSuLGSuwQfgOqVTcb1j8cJCYxhI7qc/preview", "label": "Смотреть"}]}, "gfx_lenta": {"layout": "standard", "sputnik": false, "logo": "blaster_logo.png", "logoMod": "", "titleHtml": "Лента <span class=\"slash\">/</span> Хэнги", "blocks": [{"label": "Background", "text": "Ролик для свежей рекламной кампании «Ленты» с обновлённым маскотом Хэнги."}, {"label": "Execution", "text": "3D-анимация персонажа и окружения, сжатые сроки — сделали за 1 месяц. Узнаваемый маскот в новой визуальной подаче ритейлера."}], "bodyHtml": null, "images": ["gfx_lenta_hero.jpg", "gfx_lenta_t1.jpg", "gfx_lenta_t2.jpg"], "buttons": [{"url": "https://docs.google.com/file/d/1pz6XcNxg7BVWaW2Yr4KNtKJRJWoVQ4hJ/preview", "label": "Смотреть"}]}, "gfx_cheesls": {"layout": "standard", "sputnik": false, "logo": "blaster_logo.png", "logoMod": "", "titleHtml": "Cheesl's <span class=\"slash\">/</span> Мышиная мафия", "blocks": [{"label": "Background", "text": "Сложносоставная 3D-история для фуд-бренда: 8 пушистых персонажей-мышей и детально проработанное окружение."}, {"label": "Execution", "text": "Blaster: концепт-арты, персонажный 3D, анимация и композ. Каждый герой с отдельным характером — кинематографичная «мышиная мафия» для рекламы."}], "bodyHtml": null, "images": ["gfx_cheesls_hero.jpg", "gfx_cheesls_t1.jpg", "gfx_cheesls_t2.jpg"], "buttons": [{"url": "https://docs.google.com/file/d/1pbahrUD0I1M-E9-kfNOf32y-vv5Fb84K/preview", "label": "Смотреть"}]}, "gfx_olimpbet": {"layout": "standard", "sputnik": false, "logo": "blaster_logo.png", "logoMod": "", "titleHtml": "БК ОлимпБет <span class=\"slash\">/</span> Basket Olimp", "blocks": [{"label": "Background", "text": "Имиджевый ТВ и OLV-ролик для рекламы Olimpbet. Клиент пришёл с общим креативным замыслом — мы взяли режиссуру и доработку сценария."}, {"label": "Execution", "text": "Чистый lookdev: гиперреализм, акцентное освещение, физичная симуляция мяча. 3D motion design — стильный спортивный имидж за 1 месяц."}], "bodyHtml": null, "images": ["gfx_olimpbet_hero.jpg", "gfx_olimpbet_t1.jpg", "gfx_olimpbet_t2.jpg"], "buttons": [{"url": "https://docs.google.com/file/d/133W3X6iexRZTiCmuW1EqXUnwJX6jmXm9/preview", "label": "Смотреть"}]}, "gfx_tele2": {"layout": "standard", "sputnik": false, "logo": "blaster_logo.png", "logoMod": "", "titleHtml": "Tele2 <span class=\"slash\">/</span> Фоны в реальном времени", "blocks": [{"label": "Background", "text": "Для рекламного ролика Tele2 нужны были объёмные 3D-фоны: горы, облака, голуби — с ощущением живого пространства."}, {"label": "Execution", "text": "Blaster разработал 3D-окружения для интеграции в съёмочный материал. Атмосферные фоны с детальной проработкой света и движения."}], "bodyHtml": null, "images": ["gfx_tele2_hero.jpg", "gfx_tele2_t1.jpg", "gfx_tele2_t2.jpg"], "buttons": [{"url": "https://docs.google.com/file/d/1wxF5wZBsE1ZYvhexGV3FNMyFr-AVOFlz/preview", "label": "Смотреть"}]}, "tancy": {"layout": "standard", "sputnik": true, "logo": "sputnik_logo_ink.png", "logoMod": "", "titleHtml": "Love Generation: Танцы-шманцы <span class=\"slash\">/</span> Promo", "blocks": [], "bodyHtml": "Разработали и реализовали серию промо-роликов для спецпроекта Love Generation в формате караоке-такси. Задача — креативная активация новой линейки бренда. Полностью организовали съёмочный процесс: от перекрытия улицы и размещения группы до обеспечения райдера артистов. Подготовили дополнительные версии роликов для всех площадок. Проект стал вирусным и усилил интерес к бренду. Охват 10+ млн человек и 25+ млн показов.", "images": ["tancy_hero.jpeg", "tancy_t1.jpeg", "tancy_t2.jpeg"], "buttons": [{"url": "https://disk.yandex.ru/i/HvuXCT9_s7KOfQ", "label": "Ролик 1"}, {"url": "https://disk.yandex.ru/i/m9RBVx9L2gQUrQ", "label": "Ролик 2"}, {"url": "https://disk.yandex.ru/i/DUAyjQ_e964vxQ", "label": "Ролик 3"}]}, "brusnika_hero_pdf": {"layout": "standard", "sputnik": true, "logo": "sputnik_logo_ink.png", "logoMod": "", "titleHtml": "Бонд с кнопкой × Брусника <span class=\"slash\">/</span> кухни live-клип", "blocks": [], "bodyHtml": "Live-клип на нашумевший трек «Кухни», снятый на стройке в живом исполнении с хором. Клип облетел весь интернет, собрал более 5 миллионов просмотров.<br/><br/>Особенность проекта в создании трека с миксом звуков стройки, из которых создаётся новый бит и инструментал.<br/><br/>Закрыли все задачи — от разработки идеи до производства бэкстейджа.", "images": ["brusnika_hero_pdf.jpeg", "brusnika_t1_pdf.jpeg", "brusnika_t2_pdf.jpeg"], "buttons": [{"url": "https://vkvideo.ru/video-22382635_456240641", "label": "Ролик"}, {"url": "https://disk.yandex.ru/i/78K3sEryNb5U9g", "label": "Бэкстейдж"}]}, "vtb_v1": {"layout": "vertical", "sputnik": true, "logo": "sputnik_logo_ink.png", "logoMod": "", "titleHtml": "ВТБ HR <span class=\"slash\">/</span> Image", "blocks": [], "bodyHtml": "Вертикальный сериал для HR-отдела ВТБ, направленный на привлечение соискателей через соцсети и укрепление имиджа банка. Все герои — реальные сотрудники, прошедшие внутренний кастинг и репетиции! За один день отсняли 8 роликов, что позволило значительно оптимизировать расходы. Проект вышел живым и достоверным, подчеркнув ценность и профессионализм сотрудников ВТБ.", "images": ["vtb_v1.jpeg", "vtb_v2.jpeg", "vtb_v3.jpeg"], "buttons": [{"url": "https://disk.yandex.ru/d/YmyOJvWVB7pEMA", "label": "Смотреть"}]}, "mts_v1": {"layout": "vertical", "sputnik": true, "logo": "sputnik_logo_ink.png", "logoMod": "", "titleHtml": "МТС <span class=\"slash\">/</span> Social media", "blocks": [], "bodyHtml": "Серия роликов для викторины об экосистеме МТС. Полностью закрыли съёмочный процесс: от организации съёмок до обеспечения райдеров селебрити. За минимальные сроки создали яркую графику по строгому гайдбуку, усилив визуальную идентичность бренда. Запоминающийся проект с интерактивной механикой, точно отражающий дух клиента и вовлекающий аудиторию.", "images": ["mts_v1.jpeg", "mts_v2.jpeg", "mts_v3.jpeg"], "buttons": [{"url": "https://disk.yandex.ru/d/n7uA7LvjieyjXQ", "label": "Смотреть"}]}, "kiss_v1": {"layout": "vertical", "sputnik": true, "logo": "sputnik_logo_ink.png", "logoMod": "", "titleHtml": "Love Generation <span class=\"slash\">/</span> kiss-секретики", "blocks": [], "bodyHtml": "Серия роликов в формате уличного реалити-шоу с интервью для активации новой линейки в бренде косметики Love Generation. Организовали большие съёмки внутри торгового центра, весь продакшен-сервис и постпроизводство «под ключ».", "images": ["kiss_v1.jpeg", "kiss_v2.jpeg", "kiss_v3.jpeg"], "buttons": [{"url": "https://disk.yandex.ru/i/5Nx-mkT7bzRTHg", "label": "Ролик 1"}, {"url": "https://disk.yandex.ru/i/ygOqXGnvjUAWpg", "label": "Ролик 2"}, {"url": "https://disk.yandex.ru/i/5QzuNCncIZWEpQ", "label": "Ролик 3"}]}, "doc_neskory": {"layout": "standard", "sputnik": true, "logo": "sputnik_logo_ink.png", "logoMod": "", "titleHtml": "Нескорый поезд", "blocks": [], "bodyHtml": "На электричках из Москвы до Владивостока — история путешествия трёх друзей в поисках приключений и собственного «я». За 27 съёмочных дней — 10 000 км. Фильм собрал 5+ млн зрителей без вложений, стал победителем «Умного кино», оценка на Кинопоиске — 7.4.", "images": ["doc_neskory_hero.jpg", "doc_neskory_t1.jpg", "doc_neskory_t2.jpg"], "buttons": [{"url": "https://www.kinopoisk.ru/film/5232612/", "label": "Смотреть"}]}, "doc_enisey": {"layout": "standard", "sputnik": true, "logo": "sputnik_logo_ink.png", "logoMod": "", "titleHtml": "Енисейский марафон", "blocks": [], "bodyHtml": "Двое друзей-мечтателей отправляются в опасное путешествие по Сибири на скейтбордах. Вдохновляющий документальный фильм о смельчаках с палатками, решивших проделать необычный путь и испытать себя. Гран-при кинофестиваля «Неизвестная Россия» (2024).", "images": ["doc_enisey_hero.jpg", "doc_enisey_t1.jpg", "doc_enisey_t2.jpg"], "buttons": [{"url": "https://wink.ru/movies/eniseyskiy-marafon-year-2023", "label": "Смотреть"}]}, "doc_komandor": {"layout": "standard", "sputnik": true, "logo": "sputnik_logo_ink.png", "logoMod": "", "titleHtml": "Командор <span class=\"slash\">/</span> Живём Сибирью", "blocks": [], "bodyHtml": "Большой фильм-исследование об истории и масштабах одной из крупнейших сетей продуктовых супермаркетов за Уралом. Полный цикл: от идеи и сценария до многомесячных съёмок в городах Сибири. Гран-при конкурса «Лучшее корпоративное видео» (АКМР × MOTIVE).", "images": ["doc_komandor_hero.jpg", "doc_komandor_t1.jpg", "doc_komandor_t2.jpg"], "buttons": [{"url": "https://youtu.be/bVn7kaga_-o", "label": "Смотреть"}]}, "doc_osetia": {"layout": "standard", "sputnik": true, "logo": "sputnik_logo_ink.png", "logoMod": "", "titleHtml": "Там, где наш дом: <span class=\"slash\">/</span> Северная Осетия", "blocks": [], "bodyHtml": "Третья часть авторского документального проекта. В героях: горцы из высокогорных сёл, известный фотограф, студия осетинского театра, команда строителей арт-объектов. Победитель «Неизвестной России», LAMPA, лауреат премии РГО, финалист «НИКА».", "images": ["doc_osetia_hero.jpg", "doc_osetia_t1.jpg", "doc_osetia_t2.jpg"], "buttons": [{"url": "https://wink.ru/movies/tam-gde-nash-dom-severnaya-osetiya-year-2024", "label": "Смотреть"}]}, "doc_olimp": {"layout": "standard", "sputnik": true, "logo": "sputnik_logo_ink.png", "logoMod": "", "titleHtml": "Улицы Олимпийского резерва", "blocks": [], "bodyHtml": "Фильм о развитии паркура, скейтбординга и BMX в России через истории топ-спортсменов. Победитель грантового конкурса ФПРК, участник фестивалей Beat и Unknown. Проект помог запустить одноимённый фестиваль и строительство экстрим-парка в Саратове.", "images": ["doc_olimp_hero.jpg", "doc_olimp_t1.jpg", "doc_olimp_t2.jpg"], "buttons": [{"url": "https://youtu.be/mOnpqJO4q2E", "label": "Смотреть"}]}};
 
     const modal = document.getElementById('case-modal');
     const modalMedia = document.getElementById('modal-media');
