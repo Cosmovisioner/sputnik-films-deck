@@ -157,31 +157,15 @@
       "intro": "Открой и проверь доступ. Нет доступа — напиши Диме.",
       "items": [
         {
-          "id": "drive_group",
-          "name": "Культ-группа",
-          "url": "https://drive.google.com/drive/folders/1O89yMg7RCXGIwv_eTQ8Sp6A6oiJiwRmR",
-          "role": "Корень холдинга",
-          "who": "Дима",
-          "resource": "drive_cult_group"
-        },
-        {
-          "id": "drive_commerce",
-          "name": "Коммерция Cult Group",
-          "url": "https://drive.google.com/drive/folders/1cm50xCY02m_WTNenHbEoKAl-ALZ-Ac_n",
-          "role": "КП, шаблоны, продажи",
-          "who": "Дима",
-          "resource": "drive_commerce"
-        },
-        {
           "id": "drive_sales_blaster",
           "name": "Продажи Blaster",
           "url": "https://drive.google.com/drive/folders/1j-ARZnroEcDoSQnr-1Rr-urwUq4izNxb",
           "role": ""
         },
         {
-          "id": "drive_sales_cult",
-          "name": "Продажи Cult · legacy",
-          "url": "https://drive.google.com/drive/folders/1veiUtmQ-TOWNLADaSNtFL1WltpCiu_0J",
+          "id": "drive_sales_sputnik",
+          "name": "Продажи Sputnik",
+          "url": "https://drive.google.com/drive/folders/1C4scLmeG2w3XpJKyM45NZJIgVzADkNNA?usp=sharing",
           "role": ""
         }
       ]
@@ -201,7 +185,7 @@
     },
     {
       "id": "drive",
-      "text": "Drive Культ-группа + Коммерция открываются",
+      "text": "Drive: Продажи Blaster и Sputnik открываются",
       "phase": "day1"
     },
     {
@@ -217,11 +201,6 @@
     {
       "id": "tg_sales_cult",
       "text": "Вступил в «Сейлз | Культ Груп»",
-      "phase": "day1"
-    },
-    {
-      "id": "tg_cro",
-      "text": "Добавлен в «Коммерческий директор»",
       "phase": "day1"
     },
     {

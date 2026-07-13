@@ -18,17 +18,6 @@
       "desc": "Рабочий чат продаж Cult Group."
     },
     {
-      "id": "commercial_director",
-      "name": "Коммерческий директор | Культ Груп",
-      "priority": "required",
-      "week": 1,
-      "unit": "uk",
-      "whoAdds": "ссылка",
-      "inviteUrl": "https://t.me/+Dox8bNEFaLgzZjMy",
-      "tg_id": "-5311172784",
-      "desc": "Линия с CRO."
-    },
-    {
       "id": "blaster_sputnik_sales",
       "name": "Blaster x Sputnik / Продажи",
       "priority": "required",

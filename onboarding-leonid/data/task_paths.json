@@ -244,13 +244,6 @@
     },
     {
       "kind": "link",
-      "url": "https://t.me/+Dox8bNEFaLgzZjMy",
-      "title": "Коммерческий директор",
-      "cta": "Вступить",
-      "flat": true
-    },
-    {
-      "kind": "link",
       "url": "https://t.me/+Se8NCMboatI5NzRi",
       "title": "Blaster × Sputnik / Продажи",
       "cta": "Вступить",
@@ -272,20 +265,6 @@
   "1.access": [
     {
       "kind": "link",
-      "url": "https://drive.google.com/drive/folders/1O89yMg7RCXGIwv_eTQ8Sp6A6oiJiwRmR",
-      "title": "Культ-группа",
-      "cta": "Открыть",
-      "flat": true
-    },
-    {
-      "kind": "link",
-      "url": "https://drive.google.com/drive/folders/1cm50xCY02m_WTNenHbEoKAl-ALZ-Ac_n",
-      "title": "Коммерция Cult Group",
-      "cta": "Открыть",
-      "flat": true
-    },
-    {
-      "kind": "link",
       "url": "https://drive.google.com/drive/folders/1j-ARZnroEcDoSQnr-1Rr-urwUq4izNxb",
       "title": "Продажи Blaster",
       "cta": "Открыть",
@@ -295,13 +274,6 @@
       "kind": "link",
       "url": "https://drive.google.com/drive/folders/1C4scLmeG2w3XpJKyM45NZJIgVzADkNNA?usp=sharing",
       "title": "Продажи Sputnik",
-      "cta": "Открыть",
-      "flat": true
-    },
-    {
-      "kind": "link",
-      "url": "https://drive.google.com/drive/folders/1veiUtmQ-TOWNLADaSNtFL1WltpCiu_0J",
-      "title": "Продажи Cult · legacy",
       "cta": "Открыть",
       "flat": true
     },
