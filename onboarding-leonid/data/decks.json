@@ -23,6 +23,15 @@
       "unit": "cult"
     },
     {
+      "id": "cult_all_2026",
+      "title": "Cult · все кейсы 2026",
+      "when": "Полная витрина Cult: все кейсы в одной презе",
+      "url": "https://docs.google.com/presentation/d/10YnpwWKvMwXK3P2fMNw3GxSV2A2ubnEjOB0LBK199kw/edit?usp=sharing",
+      "status": "live",
+      "owner": "denis",
+      "unit": "cult"
+    },
+    {
       "id": "blaster_master",
       "title": "Blaster · портфолио (master)",
       "when": "Графика, motion, 3D, мультимедиа, выставки",
@@ -67,6 +76,10 @@
     {
       "signal": "Рекламный ролик, TV/digital",
       "deck": "cult_main_cases"
+    },
+    {
+      "signal": "Нужна полная витрина кейсов Cult",
+      "deck": "cult_all_2026"
     },
     {
       "signal": "CG, 2D/3D, motion, мультимедиа",

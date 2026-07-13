@@ -383,6 +383,10 @@
     {
       "kind": "deck",
       "id": "cult_main_cases"
+    },
+    {
+      "kind": "deck",
+      "id": "cult_all_2026"
     }
   ],
   "2.cases_blaster": [
