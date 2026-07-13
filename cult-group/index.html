@@ -74,6 +74,13 @@
       background: rgba(247, 247, 246, 0.86);
       backdrop-filter: blur(12px);
       border-bottom: 1px solid rgba(17, 17, 17, 0.06);
+      transition: padding 0.22s ease, background 0.22s ease, box-shadow 0.22s ease;
+    }
+
+    .site-header.is-compact {
+      padding: 8px var(--mx);
+      background: rgba(247, 247, 246, 0.94);
+      box-shadow: 0 10px 28px rgba(17, 17, 17, 0.06);
     }
 
     .brand {
@@ -83,7 +90,13 @@
       text-decoration: none;
     }
 
-    .brand img { height: 28px; width: auto; }
+    .brand img {
+      height: 28px;
+      width: auto;
+      transition: height 0.22s ease;
+    }
+
+    .site-header.is-compact .brand img { height: 22px; }
 
     .brand span {
       font-family: var(--display);
@@ -105,10 +118,21 @@
       text-transform: uppercase;
       text-decoration: none;
       color: rgba(17, 17, 17, 0.55);
-      transition: color 0.15s;
+      transition: color 0.15s, font-size 0.22s ease;
     }
 
     .nav a:hover { color: var(--accent); }
+
+    .site-header.is-compact .nav a { font-size: 12px; }
+
+    .site-header__cta {
+      transition: padding 0.22s ease, font-size 0.22s ease, background 0.15s, color 0.15s, border-color 0.15s;
+    }
+
+    .site-header.is-compact .site-header__cta {
+      padding: 8px 14px;
+      font-size: 12px;
+    }
 
     .btn {
       display: inline-flex;
@@ -376,7 +400,7 @@
 
     .work-nav {
       position: sticky;
-      top: 65px;
+      top: 52px;
       z-index: 50;
       display: flex;
       gap: 8px;
@@ -814,7 +838,7 @@
       <a href="#work">Работы</a>
       <a href="#contact">Контакты</a>
     </nav>
-    <a class="btn btn--accent" href="#contact">Обсудить проект</a>
+    <a class="btn btn--accent site-header__cta" href="#contact">Обсудить проект</a>
   </header>
 
   <main id="top">
@@ -908,8 +932,8 @@
     <section class="section work-wrap" id="work">
       <div class="inner">
         <div class="section-head section-head--center">
-          <span class="section-idx">Портфолио</span>
-          <h2 class="section-title">Избранные работы</h2>
+          <span class="section-idx">Works</span>
+          <h2 class="section-title">Портфолио</h2>
         </div>
         <nav class="work-nav" aria-label="Категории работ">
           <a href="#work-reklama">Реклама</a>
@@ -1315,6 +1339,20 @@
     document.addEventListener('keydown', e => {
       if (e.key === 'Escape' && modal.classList.contains('is-open')) closeCaseModal();
     });
+
+    // Compact header on scroll
+    const siteHeader = document.querySelector('.site-header');
+    let headerTick = false;
+    const syncHeader = () => {
+      siteHeader.classList.toggle('is-compact', window.scrollY > 20);
+      headerTick = false;
+    };
+    window.addEventListener('scroll', () => {
+      if (headerTick) return;
+      headerTick = true;
+      requestAnimationFrame(syncHeader);
+    }, { passive: true });
+    syncHeader();
 
     // Highlight active category in sticky nav on scroll
     const navLinks = document.querySelectorAll('.work-nav a');
